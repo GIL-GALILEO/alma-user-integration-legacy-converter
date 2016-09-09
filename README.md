@@ -10,9 +10,11 @@ Will output to /data/sample/output.xml
 
 `ruby run.rb`
 
-##### With Your Own CSV File
+##### With Your Own Data File
 
-`ruby run.rb '/path/to/csv_file.csv' 'path/to/output_file.xml'`
+Only txt files (pipe delimited) and sif files (column delimited) currently supported
+
+`ruby run.rb '/path/to/input_file.txt' 'path/to/output_file.xml'`
 
 ## Running Tests
 
@@ -27,7 +29,7 @@ Tests test that file lines are properly parsed into User objects
 ## To Do
 
 + Add Secondary Identifiers, where available
-+ User Group, Cmapus Code and other mystery fields
++ User Group, Campus Code and other mystery fields
 + FTP Transfer of created file (Zip'd) to Alma server
 + Logging to file
 + Better exception handling for File I/O
