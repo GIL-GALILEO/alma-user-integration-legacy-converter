@@ -1,0 +1,36 @@
+# Alma SIS Integration - Legacy Data Converter
+
+Scripts that will convert from a variety of text formats to something compatible with Alma (Alma XML)
+
+## Usage
+
+##### With Included Sample Data
+
+Will output to /data/sample/output.xml
+
+`ruby run.rb`
+
+##### With Your Own CSV File
+
+`ruby run.rb '/path/to/csv_file.csv' 'path/to/output_file.xml'`
+
+## Running Tests
+
+Tests test that file lines are properly parsed into User objects
+
+`cd test`
+
+`ruby sif_user_test.rb`
+
+`ruby txt_user_test.rb`
+
+## To Do
+
++ Add Secondary Identifiers, where available
++ User Group, Cmapus Code and other mystery fields
++ FTP Transfer of created file (Zip'd) to Alma server
++ Logging to file
++ Better exception handling for File I/O
++ More tests
++ _Validation of controlled values using Alma Configuration API?_
+

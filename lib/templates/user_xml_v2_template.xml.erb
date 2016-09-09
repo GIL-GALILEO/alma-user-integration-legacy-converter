@@ -1,0 +1,49 @@
+<user>
+  <primary_id><%= user.primary_id %></primary_id>
+  <first_name><%= user.first_name %></first_name>
+  <middle_name><%= user.middle_name %></middle_name>
+  <last_name><%= user.last_name %></last_name>
+  <gender><%= user.gender %></gender>
+  <user_group><%= user.user_group %></user_group>
+  <campus_code><%= user.campus_code %></campus_code>
+  <preferred_language>en</preferred_language>
+  <status><%= user.status %></status>
+  <contact_info>
+    <addresses>
+      <address preferred="true">
+        <line1><%= user.address_line_1 %></line1>
+        <line2><%= user.address_line_2 %></line2>
+        <city><%= user.address_city %></city>
+        <state_province><%= user.address_state_province %></state_province>
+        <postal_code><%= user.address_postal_code %></postal_code>
+        <country><%= user.address_country %></country>
+        <address_types>
+          <address_type><%= defaults.preferred_address_type %></address_type>
+        </address_types>
+      </address>
+    </addresses>
+    <emails>
+      <email preferred="true">
+        <email_address><%= user.email %></email_address>
+        <email_types>
+          <email_type><%= defaults.preferred_email_type %></email_type>
+        </email_types>
+      </email>
+    </emails>
+    <phones>
+      <phone preferred="true" preferred_sms="true">
+        <phone_number><%= user.phone %></phone_number>
+        <phone_types>
+          <phone_type><%= defaults.preferred_phone_type %></phone_type>
+        </phone_types>
+      </phone>
+    </phones>
+  </contact_info>
+  <user_identifiers>
+    <!-- todo: add barcode, other ID types if present?? -->
+    <!-- <user_identifier>
+      <id_type>02</id_type>
+      <value>johns02</value>
+    </user_identifier> -->
+  </user_identifiers>
+</user>
