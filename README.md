@@ -16,6 +16,11 @@ Only txt files (pipe delimited) and sif files (column delimited) currently suppo
 
 `ruby run.rb '/path/to/input_file.txt' 'path/to/output_file.xml'`
 
+## Mappings
+
++ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/sif_user.rb#L7)
++ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/txt_user.rb#L7)
+
 ## Running Tests
 
 Tests test that file lines are properly parsed into User objects
