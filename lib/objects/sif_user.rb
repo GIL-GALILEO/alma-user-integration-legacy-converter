@@ -2,8 +2,6 @@ require_relative 'user'
 
 class SifUser < User
 
-  attr_accessor :name
-
   MAPPING = {
           primary_id: [31,41],
           first_name: [73,92],
