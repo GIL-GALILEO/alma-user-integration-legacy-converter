@@ -1,0 +1,5 @@
+global:
+  preferred_address_type: 'HOME'
+  preferred_phone_type: 'MOBILE'
+  preferred_email_type: 'PERSONAL'
+  secondary_id_type: '01'

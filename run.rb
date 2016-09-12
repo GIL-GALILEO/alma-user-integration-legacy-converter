@@ -11,6 +11,7 @@ require './lib/objects/txt_user'
 
 LOG_FILE = './log.log'
 SECRETS_FILE = './config/secrets.yml'
+DEFAULTS_FILE = './config/defaults.yml'
 XML_TEMPLATE_FILE = './lib/templates/user_xml_v2_template.xml.erb'
 SUPPORTED_FILE_TYPES = %w(txt sif)
 
@@ -26,18 +27,34 @@ secrets = YAML.load_file SECRETS_FILE
 unless secrets.is_a? Hash
   log.fatal 'Secrets config file not properly parsed. Stopping.'
   exit
+  end
+
+unless File.exist? DEFAULTS_FILE
+  log.fatal "Defaults file could not be found @ #{DEFAULTS_FILE}. Stopping."
+  exit
+end
+
+defaults = YAML.load_file DEFAULTS_FILE
+unless defaults.is_a? Hash
+  log.fatal 'Defaults config file not properly parsed. Stopping.'
+  exit
 end
 
 unless ARGV.length == 2
   puts 'Input and Output files not defined, using testing defaults'
-  # ARGV[0] = './data/sample/sample.sif'
-  ARGV[0] = './data/sample/sample.txt'
+  ARGV[0] = './data/sample/sample.sif'
+  # ARGV[0] = './data/sample/sample.txt'
   ARGV[1] = './data/sample/output.xml'
   # exit
 end
 
 input_file = ARGV[0]
 output_file = ARGV[1]
+
+if File.exist? output_file
+  log.fatal 'Output file already exists. Stopping.'
+  exit
+end
 
 unless File.exist? input_file
   log.fatal 'Input file not found. Stopping.'
@@ -57,13 +74,8 @@ unless File.exist? XML_TEMPLATE_FILE
 end
 template_file = File.open XML_TEMPLATE_FILE
 
-# Define default values for XML
-# todo: load from config as they may be different per institution? or hopefully not
-defaults = OpenStruct.new
-defaults.preferred_address_type = 'HOME'
-defaults.preferred_phone_type   = 'MOBILE'
-defaults.preferred_email_type   = 'PERSONAL'
-defaults.secondary_id_type      = '01'
+# Convert defaults to OpenStruct for usage in XML template
+defaults = OpenStruct.new defaults['global']
 
 # start User processing
 users = []
