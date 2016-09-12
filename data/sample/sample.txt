@@ -1,1 +1,1 @@
-810123456|User, Alma Test|04||||||100 Main Highway|Athens|GA|30123||||almauser@uga.edu|| |||||
+810123456|User, Alma Test|04||||||100 Main Highway|Athens|GA|30123||||almauser@uga.edu|| ||||123456810123456|

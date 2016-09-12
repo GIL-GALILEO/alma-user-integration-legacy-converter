@@ -2,6 +2,7 @@ require_relative 'user'
 
 class SifUser < User
 
+  # todo: distinguish between a value where we want to use a default string value, and one we want to leave blank/nil
   MAPPING = {
           primary_id:               [31, 41],
           first_name:               [73, 92],
@@ -19,6 +20,7 @@ class SifUser < User
           address_country:          [328, 347],
           email:                    [469, 518],
           phone:                    [348, 372],
+          secondary_id:             nil
   }
 
   def initialize(line_data)

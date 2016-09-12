@@ -6,7 +6,7 @@ Scripts that will convert from a variety of text formats to something compatible
 
 ##### With Included Sample Data
 
-Will output to /data/sample/output.xml
+Will output to `/data/sample/output.xml`. Also, will place zip file on GIL FTP server in `/test`
 
 `ruby run.rb`
 
@@ -25,19 +25,13 @@ Only txt files (pipe delimited) and sif files (column delimited) currently suppo
 
 Tests test that file lines are properly parsed into User objects
 
-`cd test`
+`ruby lib/test/sif_user_test.rb`
 
-`ruby sif_user_test.rb`
-
-`ruby txt_user_test.rb`
+`ruby lib/test/txt_user_test.rb`
 
 ## To Do
-
-+ Add Secondary Identifiers, where available
++ better default value handling (e.g. secondary_id)
 + User Group, Campus Code and other mystery fields
-+ FTP Transfer of created file (Zip'd) to Alma server
-+ Logging to file
-+ Better exception handling for File I/O
 + More tests
 + _Validation of controlled values using Alma Configuration API?_
 

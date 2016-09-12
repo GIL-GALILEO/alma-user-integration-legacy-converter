@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
 require 'csv'
-require '../lib/objects/txt_user'
+require './lib/objects/txt_user'
 
 class TxtUserTest < MiniTest::Test
 

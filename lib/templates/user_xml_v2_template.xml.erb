@@ -39,11 +39,12 @@
       </phone>
     </phones>
   </contact_info>
+  <% if user.secondary_id %>
   <user_identifiers>
-    <!-- todo: add barcode, other ID types if present?? -->
-    <!-- <user_identifier>
-      <id_type>02</id_type>
-      <value>johns02</value>
-    </user_identifier> -->
+    <user_identifier>
+      <id_type><%= defaults.secondary_id_type %></id_type>
+      <value><%= user.secondary_id %></value>
+    </user_identifier>
   </user_identifiers>
+  <% end %>
 </user>

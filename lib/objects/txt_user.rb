@@ -4,6 +4,7 @@ class TxtUser < User
 
   attr_accessor :name
 
+  # todo: distinguish between a value where we want to use a default string value, and one we want to leave blank/nil
   MAPPING = {
       primary_id:               0,
       name:                     1,
@@ -19,6 +20,7 @@ class TxtUser < User
       address_country:          nil,
       email:                    14,
       phone:                    7,
+      secondary_id:             22,
   }
 
   def initialize(line_data)
@@ -40,7 +42,7 @@ class TxtUser < User
     self.last_name = names[0]
     other_names = names[1].split(' ')
     self.first_name = other_names[0]
-    self.middle_name = other_names[1]
+    self.middle_name = other_names[1] if other_names[1]
   end
 
 end

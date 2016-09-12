@@ -18,6 +18,7 @@ class User
     address_country
     email
     phone
+    secondary_id
   )
 
   attr_accessor *USER_ATTRIBUTES
@@ -145,6 +146,13 @@ class User
   # max_length:   255
   def phone=(v)
     @phone = alma_string v
+  end
+
+  # SECONDARY ID
+  # type:         string
+  # max_length:   255
+  def secondary_id=(v)
+    @secondary_id = alma_string v
   end
 
   private
