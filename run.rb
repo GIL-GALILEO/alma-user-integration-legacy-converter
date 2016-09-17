@@ -18,7 +18,7 @@ INSTITUTION_CONFIG_FILE   = './config/inst.yml'
 XML_TEMPLATE_FILE         = './lib/templates/user_xml_v2_template.xml.erb'
 SUPPORTED_FILE_TYPES      = %w(txt sif)
 
-log = Logger.new LOG_FILE
+@logger = Logger.new LOG_FILE
 
 # Check for required files
 exit_log_error("Secrets file could not be found @ #{SECRETS_FILE}. Stopping.")                        unless File.exist? SECRETS_FILE
@@ -76,36 +76,41 @@ inst_config = inst_configs[ARGV[2]]
 # file type check
 exit_log_error("File type specified in config (#{inst_config[:file_type]}) does not match provided file suffix (#{file_type}). Stopping") unless inst_config[:file_type] == file_type
 
-# case
+case file_type
 
-# Handle SIF file
-if file_type == 'sif'
-  File.open(input_file, 'r') do |f|
-    f.each_line do |line|
-      row_count += 1
-      begin
-        users << SifUser.new(line)
-        users_count += 1
-      rescue Exception => e
-        log.error "Couldn't create User object from SIF row #{row_count}: #{e.message}"
-        errors += 1
+  when 'sif'
+
+    File.open(input_file, 'r') do |f|
+      f.each_line do |line|
+        row_count += 1
+        begin
+          users << SifUser.new(line, inst_config)
+          users_count += 1
+        rescue Exception => e
+          log.error "Couldn't create User object from SIF row #{row_count}: #{e.message}"
+          errors += 1
+        end
       end
     end
-  end
-# Handle TXT (CSV, piped) file
-elsif file_type == 'txt'
-  File.open(input_file, 'r') do |f|
-    f.each_line do |line|
-      row_count += 1
-      begin
-        users << TxtUser.new(line)
-        users_count += 1
-      rescue Exception => e
-        log.error "Couldn't create User object from TXT row #{row_count}: #{e.message}"
-        errors += 1
+
+  when 'txt'
+
+    File.open(input_file, 'r') do |f|
+      f.each_line do |line|
+        row_count += 1
+        begin
+          users << TxtUser.new(line, inst_config)
+          users_count += 1
+        rescue Exception => e
+          log.error "Couldn't create User object from TXT row #{row_count}: #{e.message}"
+          errors += 1
+        end
       end
     end
-  end
+
+  else
+    exit_log_error "No handler configured for file type #{file_type}"
+
 end
 
 # Read template
