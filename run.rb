@@ -74,7 +74,7 @@ exit_log_error("No config for specified inst: #{ARGV[2]}. Stopping.") unless ins
 inst_config = inst_configs[ARGV[2]]
 
 # file type check
-exit_log_error("File type specified in config (#{inst_config[:file_type]}) does not match provided file suffix (#{file_type}). Stopping") unless inst_config[:file_type] == file_type
+exit_log_error("File type specified in config (#{inst_config['file_type']}) does not match provided file suffix (#{file_type}). Stopping") unless inst_config['file_type'] == file_type
 
 case file_type
 
@@ -158,7 +158,7 @@ rescue Exception => e
   exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
 end
 
-log.info 'Output created: ' + output_file
-log.info 'Payload delivered: ' + remote_file
-log.info 'Users included: ' + users_count.to_s
-log.info 'Users not included due to errors: ' + errors.to_s
+@logger.info 'Output created: ' + output_file
+@logger.info 'Payload delivered: ' + remote_file
+@logger.info 'Users included: ' + users_count.to_s
+@logger.info 'Users not included due to errors: ' + errors.to_s

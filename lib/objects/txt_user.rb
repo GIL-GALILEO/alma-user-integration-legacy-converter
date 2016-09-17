@@ -24,6 +24,7 @@ class TxtUser < User
   }
 
   def initialize(line_data, config)
+    @config = config
     @parsed_line = CSV.parse_line(line_data, col_sep: '|')
     MAPPING.each do |attr, index|
       if index
@@ -46,6 +47,22 @@ class TxtUser < User
   end
 
   def user_group=(user_group)
+    cc = class_code
+    dept = department
+
+    if dept
+      # obviously staff or faculty?
+    end
+
+    undergrad_ccs = @config['student_class_code_conversion']['undergraduate']
+
+    if undergrad_ccs.include? cc.to_i
+      # we have an undergrad
+    elsif undergrad_ccs.include? cc.to_i
+      # we have a grad
+    else
+      # we have nothing. staff?
+    end
 
   end
 
