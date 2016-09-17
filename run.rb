@@ -8,80 +8,75 @@ require 'net/sftp'
 require './lib/objects/user'
 require './lib/objects/sif_user'
 require './lib/objects/txt_user'
+require './lib/util'
+include Util
 
-LOG_FILE = './log.log'
-SECRETS_FILE = './config/secrets.yml'
-DEFAULTS_FILE = './config/defaults.yml'
-XML_TEMPLATE_FILE = './lib/templates/user_xml_v2_template.xml.erb'
-SUPPORTED_FILE_TYPES = %w(txt sif)
+LOG_FILE                  = './log.log'
+SECRETS_FILE              = './config/secrets.yml'
+DEFAULTS_FILE             = './config/defaults.yml'
+INSTITUTION_CONFIG_FILE   = './config/inst.yml'
+XML_TEMPLATE_FILE         = './lib/templates/user_xml_v2_template.xml.erb'
+SUPPORTED_FILE_TYPES      = %w(txt sif)
 
 log = Logger.new LOG_FILE
 
+# Check for required files
+exit_log_error("Secrets file could not be found @ #{SECRETS_FILE}. Stopping.")                        unless File.exist? SECRETS_FILE
+exit_log_error("Institution config file could not be found @ #{INSTITUTION_CONFIG_FILE}. Stopping.")  unless File.exist? INSTITUTION_CONFIG_FILE
+exit_log_error("Defaults file could not be found @ #{DEFAULTS_FILE}. Stopping.")                      unless File.exist? DEFAULTS_FILE
+exit_log_error("Could not find XML template file @ #{XML_TEMPLATE_FILE}. Stopping.")                  unless File.exist? XML_TEMPLATE_FILE
+
 # Load configs
-unless File.exist? SECRETS_FILE
-  log.fatal "Secrets file could not be found @ #{SECRETS_FILE}. Stopping."
-  exit
-end
+secrets       = YAML.load_file SECRETS_FILE
+inst_configs  = YAML.load_file INSTITUTION_CONFIG_FILE
+defaults      = YAML.load_file DEFAULTS_FILE
 
-secrets = YAML.load_file SECRETS_FILE
-unless secrets.is_a? Hash
-  log.fatal 'Secrets config file not properly parsed. Stopping.'
-  exit
-  end
+# Check configs
+exit_log_error('Secrets config file not properly parsed. Stopping.')      unless secrets.is_a? Hash
+exit_log_error('Institution config file not properly parsed. Stopping.')  unless inst_configs.is_a? Hash
+exit_log_error('Defaults config file not properly parsed. Stopping.')     unless defaults.is_a? Hash
 
-unless File.exist? DEFAULTS_FILE
-  log.fatal "Defaults file could not be found @ #{DEFAULTS_FILE}. Stopping."
-  exit
-end
-
-defaults = YAML.load_file DEFAULTS_FILE
-unless defaults.is_a? Hash
-  log.fatal 'Defaults config file not properly parsed. Stopping.'
-  exit
-end
-
-unless ARGV.length == 2
+# Lead params
+unless ARGV.length == 3
   puts 'Input and Output files not defined, using testing defaults'
-  ARGV[0] = './data/sample/sample.sif'
-  # ARGV[0] = './data/sample/sample.txt'
+  # ARGV[0] = './data/sample/sample.sif'
+  ARGV[0] = './data/sample/sample.txt'
   ARGV[1] = './data/sample/output.xml'
   # exit
+
+  # institution shortname (temp?)
+  ARGV[2] =  'uga'
 end
 
-input_file = ARGV[0]
+input_file  = ARGV[0]
 output_file = ARGV[1]
 
-if File.exist? output_file
-  log.fatal 'Output file already exists. Stopping.'
-  exit
-end
+# Load ERB Template
+template_file = File.open XML_TEMPLATE_FILE
 
-unless File.exist? input_file
-  log.fatal 'Input file not found. Stopping.'
-  exit
-end
+exit_log_error('Output file already exists. Stopping.')   if File.exist? output_file
+exit_log_error('Input file not found. Stopping.')         unless File.exist? input_file
 
 file_type = input_file[-3..-1].downcase
-unless SUPPORTED_FILE_TYPES.include? file_type
-  log.fatal "Unacceptable file type found: #{file_type}. Supported types are: #{SUPPORTED_FILE_TYPES.join(', ')}"
-  exit
-end
-
-# Load ERB Template
-unless File.exist? XML_TEMPLATE_FILE
-  log.fatal "Could not find XML template file @ #{XML_TEMPLATE_FILE}. Stopping."
-  exit
-end
-template_file = File.open XML_TEMPLATE_FILE
+exit_log_error("Unacceptable file type found: #{file_type}. Supported types are: #{SUPPORTED_FILE_TYPES.join(', ')}") unless SUPPORTED_FILE_TYPES.include? file_type
 
 # Convert defaults to OpenStruct for usage in XML template
 defaults = OpenStruct.new defaults['global']
 
 # start User processing
-users = []
-users_count = 0
-row_count = 0
-errors = 0
+users         = []
+users_count   = 0
+row_count     = 0
+errors        = 0
+
+# get specific institution config
+exit_log_error("No config for specified inst: #{ARGV[2]}. Stopping.") unless inst_configs.has_key? ARGV[2]
+inst_config = inst_configs[ARGV[2]]
+
+# file type check
+exit_log_error("File type specified in config (#{inst_config[:file_type]}) does not match provided file suffix (#{file_type}). Stopping") unless inst_config[:file_type] == file_type
+
+# case
 
 # Handle SIF file
 if file_type == 'sif'
@@ -145,8 +140,7 @@ begin
     zipfile.add output_file.gsub('./data/sample/',''), output_file
   end
 rescue Exception => e
-  log.fatal "Problem with compressing XML file for delivery: #{e.message}"
-  exit
+  exit_log_error "Problem compressing XML file for delivery: #{e.message}"
 end
 
 # ftp file
@@ -156,8 +150,7 @@ begin
     c.upload! alma_file, remote_file
   end
 rescue Exception => e
-  log.fatal "Problem delivering file to GIL FTP server: #{e.message}"
-  exit
+  exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
 end
 
 log.info 'Output created: ' + output_file
