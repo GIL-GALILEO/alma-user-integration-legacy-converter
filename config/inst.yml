@@ -1,54 +1,155 @@
+dalton:
+  file_type: 'sif'
+  fac_staff: 'separate'
+  user_group_conversion:
+    1:
+      label: 'UNDERGRAD'
+      alma_group:
 uga:
   file_type: 'txt'
   fac_staff: 'included'
   user_group_conversion:
-    00: 'Student'
-    01: 'Faculty'
-    02: 'Staff'
-    03: 'Alumni'
-    04: 'Retired Faculty/Staff'
-    05: 'Deceased Faculty/Staff'
-    06: 'Prospective Employee'
-    07: 'Adjunct Faculty'
-    08: 'Not Used'
-    09: 'Campus Visitor'
-    10: 'American Language Program (AMLAN)'
-    11: 'Vet Med Student'
-    12: 'Dependent of Student'
-    13: 'Dependent of Faculty/Staff'
-    14: 'Consultant/Contractor'
-    15: 'Board of Regents'
-    16: 'Campus Ministers'
-    17: 'Sorority House Mothers'
-    18: 'MCG SONAT Employees'
-    19: 'ROTC Staff'
-    20: 'SONAT'
-    21: ''
-    22: 'Credit Union Employee'
-    23: 'Cooperative Extension Employee'
-    24: 'Ramsey Access'
-    25: 'Program Participant'
-    26: 'MCG School of Medicine Employee'
-    27: 'MCG School of Medicine Student'
-    28: 'Dependent of Credit Union Staff'
-    29: 'Dependent of Cooperative Extension'
-    30: 'Dependent of Retired Faculty/Staff'
-    31: 'Dependent of Adjunct Faculty'
-    32: 'Dependent of Visiting Faculty'
-    33: 'Dependent of Consultants'
-    34: 'Dependent of Board of Regents'
-    35: 'Dependent of Campus Ministers'
-    36: 'Dependent of Sorority House Mothers'
-    37: 'Dependent of MCG SONAT Staff'
-    38: 'Dependent of ROTC Staff'
-    39: 'Scholar in Residence'
-    40: 'Undergraduate Intern'
-    41: 'Visiting Graduate Student Researcher'
-    50: 'Prospective Student - Applicant'
-    55: 'Prospective Student - Institution Accept'
-    60: 'Prospective Student - Applicant Accept'
-    98: 'Unknown (discard?)'
-    99: 'Historical Student/Record'
+    00:
+      label: 'Student'
+      alma_group:
+    01:
+      label: 'Faculty'
+      alma_group: ''
+    02:
+      label: 'Staff'
+      alma_group: ''
+    03:
+      label: 'Alumni'
+      alma_group: ''
+    04:
+      label: 'Retired Faculty/Staff'
+      alma_group: ''
+    05:
+      label: 'Deceased Faculty/Staff'
+      alma_group: ''
+    06:
+      label: 'Prospective Employee'
+      alma_group: ''
+    07:
+      label: 'Adjunct Faculty'
+      alma_group: ''
+    08:
+      label: 'Not Used'
+      alma_group: ''
+    09:
+      label: 'Campus Visitor'
+      alma_group: ''
+    10:
+      label: 'American Language Program (AMLAN)'
+      alma_group: ''
+    11:
+      label: 'Vet Med Student'
+      alma_group: ''
+    12:
+      label: 'Dependent of Student'
+      alma_group: ''
+    13:
+      label: 'Dependent of Faculty/Staff'
+      alma_group: ''
+    14:
+      label: 'Consultant/Contractor'
+      alma_group: ''
+    15:
+      label: 'Board of Regents'
+      alma_group: ''
+    16:
+      label: 'Campus Ministers'
+      alma_group: ''
+    17:
+      label: 'Sorority House Mothers'
+      alma_group: ''
+    18:
+      label: 'MCG SONAT Employees'
+      alma_group: ''
+    19:
+      label: 'ROTC Staff'
+      alma_group: ''
+    20:
+      label: 'SONAT'
+      alma_group: ''
+    21:
+      label: ''
+      alma_group: ''
+    22:
+      label: 'Credit Union Employee'
+      alma_group: ''
+    23:
+      label: 'Cooperative Extension Employee'
+      alma_group: ''
+    24:
+      label: 'Ramsey Access'
+      alma_group: ''
+    25:
+      label: 'Program Participant'
+      alma_group: ''
+    26:
+      label: 'MCG School of Medicine Employee'
+      alma_group: ''
+    27:
+      label: 'MCG School of Medicine Student'
+      alma_group: ''
+    28:
+      label: 'Dependent of Credit Union Staff'
+      alma_group: ''
+    29:
+      label: 'Dependent of Cooperative Extension'
+      alma_group: ''
+    30:
+      label: 'Dependent of Retired Faculty/Staff'
+      alma_group: ''
+    31:
+      label: 'Dependent of Adjunct Faculty'
+      alma_group: ''
+    32:
+      label: 'Dependent of Visiting Faculty'
+      alma_group: ''
+    33:
+      label: 'Dependent of Consultants'
+      alma_group: ''
+    34:
+      label: 'Dependent of Board of Regents'
+      alma_group: ''
+    35:
+      label: 'Dependent of Campus Ministers'
+      alma_group: ''
+    36:
+      label: 'Dependent of Sorority House Mothers'
+      alma_group: ''
+    37:
+      label: 'Dependent of MCG SONAT Staff'
+      alma_group: ''
+    38:
+      label: 'Dependent of ROTC Staff'
+      alma_group: ''
+    39:
+      label: 'Scholar in Residence'
+      alma_group: ''
+    40:
+      label: 'Undergraduate Intern'
+      alma_group: ''
+    41:
+      label: 'Visiting Graduate Student Researcher'
+      alma_group: ''
+    50:
+      label: 'Prospective Student - Applicant'
+      alma_group: ''
+    55:
+      label: 'Prospective Student - Institution Accept'
+      alma_group: ''
+    60:
+      label: 'Prospective Student - Applicant Accept'
+      alma_group: ''
+    98:
+      label: 'Unknown (discard?)'
+      alma_group: ''
+    99:
+      label: 'Historical Student/Record'
+      alma_group: ''
   student_class_code_conversion:
     undergraduate: [1, 2, 3, 4]
     graduate: [5]
