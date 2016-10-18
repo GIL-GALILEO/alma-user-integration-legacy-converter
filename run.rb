@@ -87,7 +87,7 @@ case file_type
           users << SifUser.new(line, inst_config)
           users_count += 1
         rescue Exception => e
-          log.error "Couldn't create User object from SIF row #{row_count}: #{e.message}"
+          @logger.error "Couldn't create User object from SIF row #{row_count}: #{e.message}"
           errors += 1
         end
       end
@@ -102,7 +102,7 @@ case file_type
           users << TxtUser.new(line, inst_config)
           users_count += 1
         rescue Exception => e
-          log.error "Couldn't create User object from TXT row #{row_count}: #{e.message}"
+          @logger.error "Couldn't create User object from TXT row #{row_count}: #{e.message}"
           errors += 1
         end
       end
@@ -127,7 +127,7 @@ users.each do |user|
   begin
     output.puts(template.result(binding))
   rescue Exception => e
-    log.error "Error creating XML for User #{user.primary_id}: #{e.message}" # todo reconsider use of primary id in logs when in production
+    @logger.error "Error creating XML for User #{user.primary_id}: #{e.message}" # todo reconsider use of primary id in logs when in production
   end
 end
 
