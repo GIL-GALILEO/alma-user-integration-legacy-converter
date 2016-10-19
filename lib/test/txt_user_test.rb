@@ -2,13 +2,17 @@ require 'minitest/autorun'
 require 'yaml'
 require 'csv'
 require './lib/objects/txt_user'
+require './lib/objects/institution'
 
 class TxtUserTest < MiniTest::Test
 
+  TEST_DATA_FILE = './config/test_data.yml'
+
   def setup
 
-    test_data = '810123456|User, Alma Test|04||||||100 Main Highway|Athens|GA|30123||||almauser@uga.edu|| |||||'
-    @user = TxtUser.new test_data
+    test_data = YAML.load_file TEST_DATA_FILE
+    test_inst = Institution.new 'test_txt', true
+    @user = TxtUser.new test_data['txt_test'], test_inst
 
   end
 

@@ -4,9 +4,14 @@ require './lib/objects/sif_user'
 
 class SifUserTest < MiniTest::Test
 
+  TEST_DATA_FILE = './config/test_data.yml'
+
   def setup
-    test_data = 'ST        2016.01.01           930123456  1User                          Alma                Test                010997 12015.01.01          1000 Elm Road Apt 10                                                                                                              Augusta                                 GA     30123                                                                                                                             3                    alma12@ega.edu                                                                                                                                                                                                                                                                                                     '
-    @user = SifUser.new test_data
+
+    test_data = YAML.load_file TEST_DATA_FILE
+    test_inst = Institution.new 'test_sif', true
+    @user = SifUser.new test_data['sif_test'], test_inst
+
   end
 
   def test_has_primary_id

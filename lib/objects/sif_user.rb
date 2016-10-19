@@ -23,7 +23,8 @@ class SifUser < User
           secondary_id:             nil
   }
 
-  def initialize(line_data, config)
+  def initialize(line_data, institution)
+    @institution = institution
     MAPPING.each do |attr, width|
       self.send("#{attr}=", width ? line_data[width[0]..width[1]].strip : 'DEFAULT VALUE')
     end
