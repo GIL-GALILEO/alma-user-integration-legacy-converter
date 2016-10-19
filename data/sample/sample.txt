@@ -1,5 +1,0 @@
-810000001|User, Alma Test|00||||||100 Main Highway|Athens|GA|30123||||almauser1@uga.edu|| ||||000000000000000|
-810000002|Student, Alma Test|00||||||101 Main Highway|Athens|GA|30123||||almauser2@uga.edu|| ||||111111111111111|
-810000003|Staff, Alma Test|02||||||102 Main Highway|Athens|GA|30123||||almauser3@uga.edu|| ||||222222222222222|
-810000004|Faculty, Alma Test|01||||||103 Main Highway|Athens|GA|30123||||almauser4@uga.edu|| ||||333333333333333|
-
