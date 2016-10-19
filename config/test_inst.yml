@@ -1,0 +1,34 @@
+test_sif:
+  file_type:  'sif' # or 'txt'
+  fac_staff_included: 1 # or 0
+  barcode_file: 1 # or 0 if included in sif
+  exp_date_file: 1  # or 0 if included in sif
+  user_group_conversion:
+    1:
+      label: 'UNDERGRAD'
+      alma_group: 'A'
+    2:
+      label: 'GRADUATE'
+      alma_group: 'B'
+test_sif_student_only:
+  file_type:  'sif'
+  fac_staff_included: 0
+  exp_date:   'separate'
+  user_group_conversion:
+    1:
+      label: 'UNDERGRAD'
+      alma_group: 'A'
+    2:
+      label: 'GRADUATE'
+      alma_group: 'B'
+test_txt:
+  file_type:  'sif'
+  fac_staff_included: 0
+  exp_date:   'separate'
+  user_group_conversion:
+    00:
+      label: 'Student'
+      alma_group: 'A'
+    01:
+      label: 'Faculty'
+      alma_group: 'B'
