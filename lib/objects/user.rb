@@ -23,14 +23,6 @@ class User
 
   attr_accessor *USER_ATTRIBUTES
 
-  def initialize(data)
-
-    data.each do |attribute, value|
-      self.send("#{attribute}=", value)
-    end
-
-  end
-
   # ALMA PRIMARY ID
   # type:         string
   # max_length:   255
