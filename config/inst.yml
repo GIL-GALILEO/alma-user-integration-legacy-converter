@@ -1,6 +1,7 @@
 dalton:
-  file_type: 'sif'
-  fac_staff: 'separate'
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   'separate'
   user_group_conversion:
     1:
       label: 'UNDERGRAD'
