@@ -1,20 +1,18 @@
 # Alma SIS Integration - Legacy Data Converter
 
-Scripts that will convert from a variety of text formats to something compatible with Alma (Alma XML)
+Scripts that will convert from a variety of text formats to Alma XML, then zip and upload the files to a secure server.
 
 ## Usage
 
-##### With Included Sample Data
+Currently supports detection and processing the following kinds of files:
 
-Will output to `/data/sample/output.xml`. Also, will place zip file on GIL FTP server in `/test`
++ patron data file in either `sif` or `csv` (pipe delimited) format
++ barcode file mapping primary identifiers to barcodes
++ expiration date file setting expiration date for patron records
 
-`ruby run.rb`
+##### With Your Own Data Files
 
-##### With Your Own Data File
-
-Only txt files (pipe delimited) and sif files (column delimited) currently supported
-
-`ruby run.rb '/path/to/input_file.txt' 'path/to/output_file.xml'`
+`ruby run.rb any_institution_code_here`
 
 ## Mappings
 
@@ -23,15 +21,24 @@ Only txt files (pipe delimited) and sif files (column delimited) currently suppo
 
 ## Running Tests
 
-Tests test that file lines are properly parsed into User objects
+Tests test that objects do what they are supposed to do.
 
 `ruby lib/test/sif_user_test.rb`
 
 `ruby lib/test/txt_user_test.rb`
 
+`ruby lib/test/templater_test.rb`
+
+`ruby lib/test/user_factory_test.rb`
+
+`ruby lib/test/institution_test.rb`
+
 ## To Do
-+ better default value handling (e.g. secondary_id)
-+ User Group, Campus Code and other mystery fields
++ improved zip and upload handling
++ email notifications
++ support expiration date in template
++ support secondary (and tertiary?) identifiers in template
++ finish User Group, Campus Code and other mystery field handling
 + More tests
 + _Validation of controlled values using Alma Configuration API?_
 
