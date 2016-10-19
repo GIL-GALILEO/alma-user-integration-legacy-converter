@@ -55,10 +55,13 @@ class UserFactory
 
         when 'unknown'
 
+          institution.logger.warn("Mystery file encountered: #{file_path}")
+
         else
-          institution.logger.error("File handling error for file: #{file}")
-          next
-      end
+
+          institution.logger.error("File handling error for file: #{file_path}")
+
+        end
 
     end
 
