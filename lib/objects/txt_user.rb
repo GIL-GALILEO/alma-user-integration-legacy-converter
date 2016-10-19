@@ -1,4 +1,5 @@
 require_relative 'user'
+require 'csv'
 
 class TxtUser < User
 

@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
 require './lib/objects/sif_user'
+require './lib/objects/institution'
 
 class SifUserTest < MiniTest::Test
 
