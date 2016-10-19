@@ -1,4 +1,5 @@
-data/sample/output.*
-data/real
+data/
+!data/test_sif
+!data/test_txt
 secrets.yml
-log.log
+*.log
