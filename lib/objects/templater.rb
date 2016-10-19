@@ -1,11 +1,12 @@
 require 'logger'
 require 'erb'
+require 'yaml'
+require 'ostruct'
 
 class Templater
 
   XML_TEMPLATE_FILE = './lib/templates/user_xml_v2_template.xml.erb'
   DEFAULTS_FILE = './config/defaults.yml'
-
 
   def initialize(users, institution)
 
@@ -19,12 +20,8 @@ class Templater
     @template_file = File.open XML_TEMPLATE_FILE
     @defaults = OpenStruct.new defaults['global']
 
-    @users = user
+    @users = users
     @institution = institution
-
-    log_path = "./data/real/#{institution.code}/log.log"
-
-    @institution_logger = Logger.new log_path
 
   end
 
@@ -33,10 +30,7 @@ class Templater
     output = ''
 
     # Read template
-    template = ERB.new(template_file.read)
-
-    # Create and Open output file
-    # output = File.open(output_file , 'w+')
+    template = ERB.new(@template_file.read)
 
     # Initialize XML
     output += "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<users>"
@@ -47,7 +41,7 @@ class Templater
       begin
         output += template.result(binding)
       rescue Exception => e
-        @institution_logger.error "Error creating XML for User on row #{row}: #{e.message}" # todo will this play nice with the block in run?
+        @institution.logger.error "Error creating XML for User on row #{row}: #{e.message}" # todo will this play nice with the block in run?
       ensure
         row += 1
       end
