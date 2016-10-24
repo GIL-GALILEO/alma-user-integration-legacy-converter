@@ -36,8 +36,6 @@ Tests test that objects do what they are supposed to do.
 ## To Do
 + improved zip and upload handling
 + email notifications
-+ support expiration date in template
-+ support secondary (and tertiary?) identifiers in template
 + finish User Group, Campus Code and other mystery field handling
 + More tests
 + _Validation of controlled values using Alma Configuration API?_
