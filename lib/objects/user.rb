@@ -9,7 +9,7 @@ class User
     gender
     user_group
     campus_code
-    exp_date
+    expiry_date
     status
     address_line_1
     address_line_2
@@ -23,7 +23,7 @@ class User
     secondary_id
   )
 
-  attr_accessor *USER_ATTRIBUTES
+  attr_reader *USER_ATTRIBUTES
 
   # ALMA PRIMARY ID
   # type:         string
@@ -82,7 +82,7 @@ class User
   # type:         string
   # max_length:   50
   # format:       2030-01-16Z
-  def expiry_date(v)
+  def expiry_date=(v)
     @expiry_date = alma_string "#{v}Z", 50
   end
 

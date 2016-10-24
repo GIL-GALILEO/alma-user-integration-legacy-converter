@@ -106,7 +106,7 @@ class UserFactory
         end
 
         if institution.expect_exp_date? and exp_date_from_file
-          u.exp_date = exp_date_from_file
+          u.expiry_date = exp_date_from_file
           # todo default exp_date?
         end
 
