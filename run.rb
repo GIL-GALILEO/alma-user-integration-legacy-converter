@@ -2,9 +2,7 @@ require 'logger'
 require 'yaml'
 require 'zip'
 require 'net/sftp'
-require './lib/objects/institution'
-require './lib/objects/user_factory'
-require './lib/objects/templater'
+require './lib/objects/xml_factory'
 require './lib/util'
 include Util
 
@@ -22,32 +20,18 @@ secrets = YAML.load_file SECRETS_FILE
 # Check configs
 exit_log_error('Secrets config file not properly parsed. Stopping.') unless secrets.is_a? Hash
 
-# Lead params
+# Load params
 unless ARGV.length == 1
   puts 'Institution not defined, using testing defaults'
   ARGV[0] = 'dalton'
 end
 
-# Prepare institution
-begin
-  institution = Institution.new(ARGV[0])
-rescue StandardError => e
-  exit_log_error(e.message)
-end
+code = ARGV[0]
 
-# Generate Users
 begin
-  users = UserFactory.generate(institution)
+  output_string = XmlFactory.generate_for code
 rescue StandardError => e
-  exit_log_error(e.message)
-end
-
-# Generate XML
-begin
-  templater = Templater.run users, institution
-  output_string = templater.run
-rescue StandardError => e
-  exit_log_error(e.message)
+  @script_logger.error "Script failed for #{code} with: #{e.message}"
 end
 
 puts output_string
