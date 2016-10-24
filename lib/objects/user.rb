@@ -9,6 +9,7 @@ class User
     gender
     user_group
     campus_code
+    exp_date
     status
     address_line_1
     address_line_2

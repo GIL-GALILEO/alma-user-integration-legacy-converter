@@ -29,7 +29,7 @@ class Templater
     output += "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<users>"
 
     # Write User XML to output file
-    row = 0
+    row = 1
     users.each do |user|
       begin
         output += template.result(binding)

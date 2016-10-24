@@ -7,6 +7,8 @@
   <user_group><%= user.user_group %></user_group>
   <campus_code><%= user.campus_code %></campus_code>
   <preferred_language>en</preferred_language>
+  <% if user.exp_date %><expiry_date><%= user.exp_date %></expiry_date><% end %>
+  <expiry_date>2030-01-16Z</expiry_date>
   <status><%= user.status %></status>
   <contact_info>
     <addresses>
@@ -39,20 +41,14 @@
       </phone>
     </phones>
   </contact_info>
-  <% if user.secondary_id or user.barcode %>
-  <user_identifiers>
-    <% if user.barcode %>
-      <user_identifier>
+  <% if user.secondary_id or user.barcode %><user_identifiers>
+    <% if user.barcode %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
         <value><% user.barcode %></value>
-      </user_identifier>
-    <% end %>
-    <% if user.secondary_id %>
-    <user_identifier>
+      </user_identifier><% end %>
+    <% if user.secondary_id %><user_identifier>
       <id_type><%= defaults.secondary_id_type %></id_type>
       <value><%= user.secondary_id %></value>
-    </user_identifier>
-    <% end %>
-  </user_identifiers>
-  <% end %>
+    </user_identifier><% end %>
+  </user_identifiers><% end %>
 </user>

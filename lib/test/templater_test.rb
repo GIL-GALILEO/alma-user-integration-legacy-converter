@@ -16,11 +16,20 @@ class TemplaterTest < MiniTest::Test
 
     @users = [ SifUser.new(test_data['sif_test'], @test_inst) ]
 
+    @xml = Templater.run(@users, @test_inst)
+
+
   end
 
   def test_returns_xml
 
-    assert_kind_of String, Templater.run(@users, @test_inst)
+    assert_kind_of String, @xml
+
+  end
+
+  def test_returns_user_node
+
+    assert_match /<user>/, @xml
 
   end
 

@@ -2,4 +2,5 @@ global:
   preferred_address_type: 'HOME'
   preferred_phone_type: 'MOBILE'
   preferred_email_type: 'PERSONAL'
+  barcode_type: '00'
   secondary_id_type: '01'
