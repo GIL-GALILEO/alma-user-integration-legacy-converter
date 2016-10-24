@@ -31,7 +31,7 @@ code = ARGV[0]
 begin
   output_string = XmlFactory.generate_for code
 rescue StandardError => e
-  @script_logger.error "Script failed for #{code} with: #{e.message}"
+  exit_log_error "Script failed for #{code} with: #{e.message}"
 end
 
 puts output_string
