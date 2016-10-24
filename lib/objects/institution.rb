@@ -6,7 +6,7 @@ class Institution
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'
   INSTITUTION_DATA_PATH         = './data/'
 
-  def initialize(code, test = false)
+  def initialize(code)
 
     @code = code
     inst_configs = YAML.load_file(INSTITUTION_CONFIG_FILE)
@@ -46,11 +46,11 @@ class Institution
   end
 
   def expect_barcodes?
-    !!@config['fac_staff_included']
+    !!@config['barcode_file']
   end
 
   def expect_exp_date?
-    !!@config['exp_date']
+    !!@config['exp_date_file']
   end
 
 end
