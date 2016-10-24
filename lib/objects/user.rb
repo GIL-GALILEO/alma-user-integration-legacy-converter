@@ -78,6 +78,14 @@ class User
     @campus_code = alma_string v, 50
   end
 
+  # EXPIRY DATE
+  # type:         string
+  # max_length:   50
+  # format:       2030-01-16Z
+  def expiry_date(v)
+    @expiry_date = alma_string "#{v}Z", 50
+  end
+
   # STATUS
   # type:         string
   # max_length:   255
@@ -140,6 +148,13 @@ class User
   # max_length:   255
   def phone=(v)
     @phone = alma_string v
+  end
+
+  # BARCODE
+  # type:         string
+  # max_length:   255
+  def barcode=(v)
+    @barcode = alma_string v
   end
 
   # SECONDARY ID
