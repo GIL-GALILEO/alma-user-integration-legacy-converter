@@ -18,6 +18,7 @@ class User
     address_country
     email
     phone
+    barcode
     secondary_id
   )
 

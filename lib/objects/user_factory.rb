@@ -102,7 +102,7 @@ class UserFactory
       users.each do |u|
 
         if institution.expect_barcodes? and barcode_data[u.primary_id]
-          u.secondary_id = barcode_data[u.primary_id] # todo tertiary identifiers for CAS/SAML support?
+          u.barcode = barcode_data[u.primary_id]
         end
 
         if institution.expect_exp_date? and exp_date_from_file

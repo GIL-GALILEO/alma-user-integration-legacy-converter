@@ -39,12 +39,20 @@
       </phone>
     </phones>
   </contact_info>
-  <% if user.secondary_id %>
+  <% if user.secondary_id or user.barcode %>
   <user_identifiers>
+    <% if user.barcode %>
+      <user_identifier>
+        <id_type><%= defaults.barcode_type %></id_type>
+        <value><% user.barcode %></value>
+      </user_identifier>
+    <% end %>
+    <% if user.secondary_id %>
     <user_identifier>
       <id_type><%= defaults.secondary_id_type %></id_type>
       <value><%= user.secondary_id %></value>
     </user_identifier>
+    <% end %>
   </user_identifiers>
   <% end %>
 </user>
