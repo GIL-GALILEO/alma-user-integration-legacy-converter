@@ -4,13 +4,12 @@ require 'logger'
 class Institution
 
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'
-  INSTITUTION_TEST_CONFIG_FILE  = './config/test_inst.yml'
   INSTITUTION_DATA_PATH         = './data/'
 
   def initialize(code, test = false)
 
     @code = code
-    inst_configs = YAML.load_file(test ? INSTITUTION_TEST_CONFIG_FILE : INSTITUTION_CONFIG_FILE)
+    inst_configs = YAML.load_file(INSTITUTION_CONFIG_FILE)
     @config = inst_configs[@code]
     unless @config
       raise StandardError.new("Institution config could not be loaded for #{@code}")

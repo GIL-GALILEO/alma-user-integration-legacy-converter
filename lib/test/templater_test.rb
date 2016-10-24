@@ -12,7 +12,7 @@ class TemplaterTest < MiniTest::Test
 
     test_data = YAML.load_file TEST_DATA_FILE
 
-    @test_inst = Institution.new('test_sif', true)
+    @test_inst = Institution.new('test_sif')
 
     @users = [ SifUser.new(test_data['sif_test'], @test_inst) ]
 

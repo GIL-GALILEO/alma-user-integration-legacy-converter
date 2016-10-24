@@ -6,7 +6,7 @@ class InstitutionTest < MiniTest::Test
 
   def setup
 
-    @inst = Institution.new('test_sif', true)
+    @inst = Institution.new('test_sif')
 
   end
 

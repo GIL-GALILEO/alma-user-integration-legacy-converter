@@ -9,7 +9,7 @@ class UserFactoryTest < MiniTest::Test
 
   def setup
 
-    @test_inst = Institution.new('test_sif', true)
+    @test_inst = Institution.new('test_sif')
 
   end
 
