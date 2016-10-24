@@ -18,7 +18,7 @@
         <postal_code><%= user.address_postal_code %></postal_code>
         <country><%= user.address_country %></country>
         <address_types>
-          <address_type><%= @defaults.preferred_address_type %></address_type>
+          <address_type><%= defaults.preferred_address_type %></address_type>
         </address_types>
       </address>
     </addresses>
@@ -26,7 +26,7 @@
       <email preferred="true">
         <email_address><%= user.email %></email_address>
         <email_types>
-          <email_type><%= @defaults.preferred_email_type %></email_type>
+          <email_type><%= defaults.preferred_email_type %></email_type>
         </email_types>
       </email>
     </emails>
@@ -34,7 +34,7 @@
       <phone preferred="true" preferred_sms="true">
         <phone_number><%= user.phone %></phone_number>
         <phone_types>
-          <phone_type><%= @defaults.preferred_phone_type %></phone_type>
+          <phone_type><%= defaults.preferred_phone_type %></phone_type>
         </phone_types>
       </phone>
     </phones>
@@ -42,7 +42,7 @@
   <% if user.secondary_id %>
   <user_identifiers>
     <user_identifier>
-      <id_type><%= @defaults.secondary_id_type %></id_type>
+      <id_type><%= defaults.secondary_id_type %></id_type>
       <value><%= user.secondary_id %></value>
     </user_identifier>
   </user_identifiers>

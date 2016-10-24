@@ -14,7 +14,7 @@ SECRETS_FILE = './config/secrets.yml'
 @script_logger = Logger.new LOG_FILE
 
 # Check for required files
-exit_log_error("Secrets file could not be found @ #{SECRETS_FILE}. Stopping.")                        unless File.exist? SECRETS_FILE
+exit_log_error("Secrets file could not be found @ #{SECRETS_FILE}. Stopping.") unless File.exist? SECRETS_FILE
 
 # Load configs
 secrets = YAML.load_file SECRETS_FILE
@@ -44,7 +44,7 @@ end
 
 # Generate XML
 begin
-  templater = Templater.new users, institution
+  templater = Templater.run users, institution
   output_string = templater.run
 rescue StandardError => e
   exit_log_error(e.message)
