@@ -1,14 +1,220 @@
-dalton:
+# Institutional configs
+# inst:
+#   file_type: 'sif' or 'txt' - tell the scripts what file parsing class to use
+#   fac_staff: 'manual' = entered into Alma by staff, 'separate' = provided in separate file, 'mixed' = combined in single patron file with students
+#   exp_date: boolean - expect a separate file to set the patron expiration date
+#   barcodes: boolean = expect a separate file to set the patron barcode
+#   user_group_conversion: - a hash/obj that will be used to map values from the original file into alma groups
+
+# Abraham Baldwin Agricultural College
+abac:
+  file_type:  'sif'
+  fac_staff:  'manual' # want to move to separate
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Armstrong State University
+armstrong:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Albany State University - To be Consolidated with Darton
+asu:
   file_type:  'sif'
   fac_staff:  'separate'
-  exp_date:   'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Atlanta Metropolitan College
+atlm:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Augusta University
+augusta: # summervile file - patrons in this file (and HSC file, not included) are added to special patron groups
+  file_type:  'sif'
+  fac_staff:  'manual' # want to integrate with peoplesoft
+  exp_date:   false
+  barcodes:   true
+  user_group_conversion:
+
+# Bainbridge State College
+bain:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# College of Coastal GA
+ccga:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Clayton State University
+clayton:
+  file_type:  'sif'
+  fac_staff:  'separate' # but no file provided
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Columbus State University
+csu:
+  file_type:  'sif'
+  fac_staff:  'separate' # No file provided
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Dalton State College
+dalton:
+  file_type:  'sif'
+  fac_staff:  'manual' # other signs point to 'separate', but no file provided
+  exp_date:   true
+  barcodes:   true
   user_group_conversion:
     1:
       label: 'UNDERGRAD'
       alma_group:
+
+# Darton - To be Consolidated with Albany State
+darton:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   true
+  barcodes:   false
+  user_group_conversion:
+
+# East Georgia State College
+ega:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Fort Valley State University
+ftv:
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia Southern University
+gasou: # customized ZORVLIB, college and major data included, also patrons from external institutions - see survey results
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia College
+gcsu:
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   true # separate exp_date file included for fac/staff file
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia Gwinnett College
+ggc:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia Highlands College
+ghc:
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Gordon State College
+gordon:
+  file_type:  'sif'
+  fac_staff:  'manual' # ensure facstaff are not included in this file. see survey note
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia Piedmont Technical College
+gptc:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+
+gsu:
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Georgia Southwestern State University
+gsw:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   true
+  barcodes:   false
+  user_group_conversion:
+
+# Kennesaw Sate University - see email from Li for more details
+ksu:
+  file_type:  'sif'
+  fac_staff:  'separate' # need more details - special processing occurs
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Middle Georgia State University
+mga:
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Savannah Sate University
+savst:
+  file_type:  'sif'
+  fac_staff:  'manual' # survey indicates 'GIL Support' ???
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# South Georgia State College
+sgsc:
+  file_type:  'sif'
+  fac_staff:  'manual' # they want to change to separate
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# University of Georgia
 uga:
   file_type: 'txt'
-  fac_staff: 'included'
+  fac_staff: 'mixed'
+  exp_date:  false
+  barcodes:  false
   user_group_conversion:
     00:
       label: 'Student'
@@ -155,16 +361,38 @@ uga:
     undergraduate: [1, 2, 3, 4]
     graduate: [5]
 
+# University of North Georgia
+ung:
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+
+# Valdosta State
+vsu:
+  file_type:  'sif'
+  fac_staff:  'mixed' # not clear - see survey response
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion: # [STUDNTUND, STUDNTGRA, CONSORT]
+
+# University of West Georgia
+westga: # something really funky going on, see survey results
+  file_type:  'sif'
+  fac_staff:  'separate'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
 
 
-
-
+# testing configs
 
 test_sif:
-  file_type:  'sif' # or 'txt'
-  fac_staff_included: 1 # or 0
-  barcode_file: 1 # or 0 if included in sif
-  exp_date_file: 1  # or 0 if included in sif
+  file_type: 'sif'
+  fac_staff: 'manual'
+  exp_date:  true
+  barcodes:  true
   user_group_conversion:
     1:
       label: 'UNDERGRAD'
@@ -175,7 +403,8 @@ test_sif:
 test_sif_student_only:
   file_type:  'sif'
   fac_staff_included: 0
-  exp_date:   'separate'
+  exp_date:   false
+  barcodes:   false
   user_group_conversion:
     1:
       label: 'UNDERGRAD'
@@ -184,9 +413,10 @@ test_sif_student_only:
       label: 'GRADUATE'
       alma_group: 'B'
 test_txt:
-  file_type:  'sif'
-  fac_staff_included: 0
-  exp_date:   'separate'
+  file_type: 'sif'
+  fac_staff: true
+  exp_date:  false
+  barcodes:   false
   user_group_conversion:
     00:
       label: 'Student'
