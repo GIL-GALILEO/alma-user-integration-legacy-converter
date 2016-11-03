@@ -68,7 +68,7 @@ class SifUser < User
 
   def extract_addresses
     address_data = {}
-    1...MAXIMUM_ADDRESS_SEGMENTS.each do |segment_num|
+    (1...MAXIMUM_ADDRESS_SEGMENTS).each do |segment_num|
       address_data[segment_num.to_s] = extract_address_for_segment segment_num
     end
     address_data
