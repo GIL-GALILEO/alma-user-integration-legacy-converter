@@ -63,36 +63,36 @@ class SifUserTest < MiniTest::Test
   #
   # end
 
-  def test_has_address_line_1
-
-    assert_equal '1000 Elm Road Apt 10', @user.address_line_1
-
-  end
-
+  # def test_has_address_line_1
+  #
+  #   assert_equal '1000 Elm Road Apt 10', @user.address_line_1
+  #
+  # end
+  #
   # def test_has_address_line_2
   #
   #   assert_equal '"address_line_2"', @user.address_line_2
   #
   # end
-
-  def test_has_address_city
-
-    assert_equal 'Augusta', @user.address_city
-
-  end
-
-  def test_has_address_postal_code
-
-    assert_equal '30123', @user.address_postal_code
-
-  end
-
-  def test_has_address_state_province
-
-    assert_equal 'GA', @user.address_state_province
-
-  end
-
+  #
+  # def test_has_address_city
+  #
+  #   assert_equal 'Augusta', @user.address_city
+  #
+  # end
+  #
+  # def test_has_address_postal_code
+  #
+  #   assert_equal '30123', @user.address_postal_code
+  #
+  # end
+  #
+  # def test_has_address_state_province
+  #
+  #   assert_equal 'GA', @user.address_state_province
+  #
+  # end
+  #
   # def test_has_address_country
   #
   #   assert_equal '"address_country"', @user.address_country
@@ -105,11 +105,11 @@ class SifUserTest < MiniTest::Test
 
   end
 
-  # def test_has_phone
-  #
-  #   assert_equal '"phone"', @user.phone
-  #
-  # end
+  def test_has_primary_address_phone
+
+    assert_equal '(111)222-3333', @user.primary_address_phone
+
+  end
 
   def test_primary_id_cannot_be_too_long
 

@@ -18,6 +18,7 @@ class User
     primary_address_postal_code
     primary_address_country
     primary_address_phone
+    primary_address_mobile_phone
     secondary_address_line_1
     secondary_address_line_2
     secondary_address_city
@@ -25,8 +26,8 @@ class User
     secondary_address_postal_code
     secondary_address_country
     secondary_address_phone
+    secondary_address_mobile_phone
     email
-    phone
     barcode
     secondary_id
   )
@@ -147,8 +148,8 @@ class User
   # PRIMARY ADDRESS PHONE
   # type:         string
   # max_length:   255
-  def primary_phone=(v)
-    @primary_phone = alma_string v
+  def primary_address_phone=(v)
+    @primary_address_phone = alma_string v
   end
 
   # PRIMARY ADDRESS MOBILE PHONE
@@ -203,8 +204,8 @@ class User
   # SECONDARY ADDRESS PHONE
   # type:         string
   # max_length:   255
-  def secondary_phone=(v)
-    @secondary_phone = alma_string v
+  def secondary_address_phone=(v)
+    @secondary_address_phone = alma_string v
   end
 
   # SECONDARY ADDRESS MOBILE PHONE

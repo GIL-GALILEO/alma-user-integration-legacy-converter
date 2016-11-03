@@ -31,7 +31,7 @@ class SifUser < User
       address_state_province:   [191, 197],
       address_postal_code:      [198, 207],
       address_country:          [208, 227],
-      primary_phone:            [228, 252],
+      address_phone:                    [228, 252],
       mobile_phone:             [253, 277],
   }
 
@@ -69,7 +69,8 @@ class SifUser < User
   def extract_addresses
     address_data = {}
     (1...MAXIMUM_ADDRESS_SEGMENTS).each do |segment_num|
-      address_data[segment_num.to_s] = extract_address_for_segment segment_num
+      address_hash = extract_address_for_segment segment_num
+      address_data[address_hash[:address_type]] = address_hash if address_hash
     end
     address_data
   end
@@ -77,10 +78,11 @@ class SifUser < User
   def extract_address_for_segment(segment_num)
     segment_start = USER_SEGMENT_LENGTH + ( (segment_num - 1) * ADDRESS_SEGMENT_LENGTH )
     segment_finish = segment_start + ADDRESS_SEGMENT_LENGTH
-    address_segment = @line_data[segment_start..segment_finish]
+    address_segment = @line_data[segment_start...segment_finish]
+    return nil unless address_segment && address_segment.strip != '' # exit if no address data
     address_data = {}
     ADDRESS_SEGMENT_MAPPING.each do |attr, width|
-      address_data[attr] = @line_data[width[0]..width[1]].strip
+      address_data[attr] = @line_data[(segment_start + width[0])...(segment_start + width[1])].strip
     end
     address_data
   end
@@ -90,22 +92,25 @@ class SifUser < User
     GENERAL_MAPPING.each do |attr, width|
       general_data[attr] = @line_data[width[0]..width[1]].strip
     end
+    general_data
   end
 
   def set_primary_address(data_hash)
+    data_hash.delete(:address_type)
     data_hash.each do |attr, value|
       set_value "primary_#{attr}", value
     end
   end
 
   def set_secondary_address(data_hash)
+    data_hash.delete(:address_type)
     data_hash.each do |attr, value|
       set_value "secondary_#{attr}", value
     end
   end
 
   def set_email_address(data_hash)
-    set_value 'email', data_hash['address_line_1']
+    set_value 'email', data_hash[:address_line_1]
   end
 
   def set_value(attribute, value)
