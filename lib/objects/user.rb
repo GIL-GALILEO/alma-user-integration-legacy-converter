@@ -17,12 +17,14 @@ class User
     primary_address_state_province
     primary_address_postal_code
     primary_address_country
+    primary_address_phone
     secondary_address_line_1
     secondary_address_line_2
     secondary_address_city
     secondary_address_state_province
     secondary_address_postal_code
     secondary_address_country
+    secondary_address_phone
     email
     phone
     barcode
@@ -142,6 +144,20 @@ class User
     @primary_address_country = alma_string v
   end
 
+  # PRIMARY ADDRESS PHONE
+  # type:         string
+  # max_length:   255
+  def primary_phone=(v)
+    @primary_phone = alma_string v
+  end
+
+  # PRIMARY ADDRESS MOBILE PHONE
+  # type:         string
+  # max_length:   255
+  def primary_mobile_phone=(v)
+    @primary_mobile_phone = alma_string v
+  end
+
   # SECONDARY ADDRESS LINE 1
   # type:         string
   # max_length:   255
@@ -184,18 +200,25 @@ class User
     @secondary_address_country = alma_string v
   end
 
+  # SECONDARY ADDRESS PHONE
+  # type:         string
+  # max_length:   255
+  def secondary_phone=(v)
+    @secondary_phone = alma_string v
+  end
+
+  # SECONDARY ADDRESS MOBILE PHONE
+  # type:         string
+  # max_length:   255
+  def secondary_mobile_phone=(v)
+    @secondary_mobile_phone = alma_string v
+  end
+
   # ADDRESS EMAIL
   # type:         string
   # max_length:   255
   def email=(v)
     @email = alma_string v
-  end
-
-  # ADDRESS PHONE
-  # type:         string
-  # max_length:   255
-  def phone=(v)
-    @phone = alma_string v
   end
 
   # BARCODE
