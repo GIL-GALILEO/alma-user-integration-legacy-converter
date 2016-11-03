@@ -11,12 +11,18 @@ class User
     campus_code
     expiry_date
     status
-    address_line_1
-    address_line_2
-    address_city
-    address_state_province
-    address_postal_code
-    address_country
+    primary_address_line_1
+    primary_address_line_2
+    primary_address_city
+    primary_address_state_province
+    primary_address_postal_code
+    primary_address_country
+    secondary_address_line_1
+    secondary_address_line_2
+    secondary_address_city
+    secondary_address_state_province
+    secondary_address_postal_code
+    secondary_address_country
     email
     phone
     barcode
@@ -94,46 +100,88 @@ class User
     @status = alma_string v
   end
 
-  # ADDRESS LINE 1
+  # PRIMARY ADDRESS LINE 1
   # type:         string
   # max_length:   255
-  def address_line_1=(v)
-    @address_line_1 = alma_string v
+  def primary_address_line_1=(v)
+    @primary_address_line_1 = alma_string v
   end
 
-  # ADDRESS LINE 2
+  # PRIMARY ADDRESS LINE 2
   # type:         string
   # max_length:   255
-  def address_line_2=(v)
-    @address_line_2 = alma_string v
+  def primary_address_line_2=(v)
+    @primary_address_line_2 = alma_string v
   end
 
-  # ADDRESS CITY
+  # PRIMARY ADDRESS CITY
   # type:         string
   # max_length:   255
-  def address_city=(v)
-    @address_city = alma_string v
+  def primary_address_city=(v)
+    @primary_address_city = alma_string v
   end
 
-  # ADDRESS STATE/PROVINCE
+  # PRIMARY ADDRESS STATE/PROVINCE
   # type:         string
   # max_length:   255
-  def address_state_province=(v)
-    @address_state_province = alma_string v
+  def primary_address_state_province=(v)
+    @primary_address_state_province = alma_string v
   end
 
-  # ADDRESS POSTAL CODE
+  # PRIMARY ADDRESS POSTAL CODE
   # type:         string
   # max_length:   255
-  def address_postal_code=(v)
-    @address_postal_code = alma_string v
+  def primary_address_postal_code=(v)
+    @primary_address_postal_code = alma_string v
   end
 
-  # ADDRESS COUNTRY
+  # PRIMARY ADDRESS COUNTRY
   # type:         string
   # max_length:   255
-  def address_country=(v)
-    @address_country = alma_string v
+  def primary_address_country=(v)
+    @primary_address_country = alma_string v
+  end
+
+  # SECONDARY ADDRESS LINE 1
+  # type:         string
+  # max_length:   255
+  def secondary_address_line_1=(v)
+    @secondary_address_line_1 = alma_string v
+  end
+
+  # SECONDARY ADDRESS LINE 2
+  # type:         string
+  # max_length:   255
+  def secondary_address_line_2=(v)
+    @secondary_address_line_2 = alma_string v
+  end
+
+  # SECONDARY ADDRESS CITY
+  # type:         string
+  # max_length:   255
+  def secondary_address_city=(v)
+    @secondary_address_city = alma_string v
+  end
+
+  # SECONDARY ADDRESS STATE/PROVINCE
+  # type:         string
+  # max_length:   255
+  def secondary_address_state_province=(v)
+    @secondary_address_state_province = alma_string v
+  end
+
+  # SECONDARY ADDRESS POSTAL CODE
+  # type:         string
+  # max_length:   255
+  def secondary_address_postal_code=(v)
+    @secondary_address_postal_code = alma_string v
+  end
+
+  # SECONDARY ADDRESS COUNTRY
+  # type:         string
+  # max_length:   255
+  def secondary_address_country=(v)
+    @secondary_address_country = alma_string v
   end
 
   # ADDRESS EMAIL
