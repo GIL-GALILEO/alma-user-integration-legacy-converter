@@ -16,8 +16,8 @@ Currently supports detection and processing the following kinds of files:
 
 ## Mappings
 
-+ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/sif_user.rb#L7)
-+ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/txt_user.rb#L7)
++ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/sif_user.rb#L17)
++ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/txt_user.rb#L9)
 
 ## Running Tests
 
@@ -27,16 +27,19 @@ Tests test that objects do what they are supposed to do.
 
 `ruby lib/test/txt_user_test.rb`
 
+`ruby lib/test/institution_test.rb`
+
 `ruby lib/test/templater_test.rb`
 
 `ruby lib/test/user_factory_test.rb`
 
-`ruby lib/test/institution_test.rb`
+`ruby lib/test/xml_factory_test.rb`
 
 ## To Do
++ pull contacts and configs via API
 + improved zip and upload handling
 + email notifications
-+ finish User Group, Campus Code and other mystery field handling
++ finish field handling for txt type
 + More tests
 + _Validation of controlled values using Alma Configuration API?_
 
