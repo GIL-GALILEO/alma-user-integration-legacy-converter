@@ -13,7 +13,7 @@ class InstitutionTest < MiniTest::Test
   def test_error_on_missing_config
 
     assert_raises StandardError do
-      Institution.new('zoia', true)
+      Institution.new('zoia')
     end
 
   end
