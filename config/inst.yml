@@ -13,6 +13,7 @@ abac:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Armstrong State University
 armstrong:
@@ -21,6 +22,8 @@ armstrong:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Albany State University - To be Consolidated with Darton
 asu:
@@ -37,6 +40,7 @@ atlm:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Augusta University
 augusta: # summervile file - patrons in this file (and HSC file, not included) are added to special patron groups
@@ -44,7 +48,13 @@ augusta: # summervile file - patrons in this file (and HSC file, not included) a
   fac_staff:  'manual' # want to integrate with peoplesoft
   exp_date:   false
   barcodes:   true
-  user_group_conversion:
+  user_group_conversion: # Hmm? Special Snowflake
+    augdb:
+      UNDERGRAD:  ''
+      GRADUATE:   ''
+    mcgdb:
+      UNDERGRAD:  ''
+      GRADUATE:   ''
 
 # Bainbridge State College
 bain:
@@ -53,6 +63,7 @@ bain:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # College of Coastal GA
 ccga:
@@ -61,6 +72,7 @@ ccga:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Clayton State University
 clayton:
@@ -69,6 +81,8 @@ clayton:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Columbus State University
 csu:
@@ -77,6 +91,8 @@ csu:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Dalton State College
 dalton:
@@ -85,9 +101,7 @@ dalton:
   exp_date:   true
   barcodes:   true
   user_group_conversion:
-    1:
-      label: 'UNDERGRAD'
-      alma_group:
+    UNDERGRAD:  ''
 
 # Darton - To be Consolidated with Albany State
 darton:
@@ -96,6 +110,7 @@ darton:
   exp_date:   true
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # East Georgia State College
 ega:
@@ -104,6 +119,7 @@ ega:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Fort Valley State University
 ftv:
@@ -112,6 +128,7 @@ ftv:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Georgia Southern University
 gasou: # customized ZORVLIB, college and major data included, also patrons from external institutions - see survey results
@@ -120,6 +137,10 @@ gasou: # customized ZORVLIB, college and major data included, also patrons from 
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
+    EAST_GA:    ''
+    FAC_STAFF:  ''
 
 # Georgia College
 gcsu:
@@ -128,6 +149,12 @@ gcsu:
   exp_date:   true # separate exp_date file included for fac/staff file
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
+    FACULTY_FT: ''
+    FACULTY_PT: ''
+    STAFF_FT:   ''
+    STAFF_PT:   ''
 
 # Georgia Gwinnett College
 ggc:
@@ -136,6 +163,7 @@ ggc:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Georgia Highlands College
 ghc:
@@ -144,6 +172,8 @@ ghc:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    FACSTAFF: ''
+    UNDERGRAD: ''
 
 # Gordon State College
 gordon:
@@ -152,6 +182,7 @@ gordon:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
 # Georgia Piedmont Technical College
 gptc:
@@ -160,14 +191,18 @@ gptc:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
 
-
+# Georgia State University
+# special format
 gsu:
   file_type:  'sif'
-  fac_staff:  'separate'
+  fac_staff:  'mixed'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    0000000000: ''
+    # ?????????????????
 
 # Georgia Southwestern State University
 gsw:
@@ -176,14 +211,17 @@ gsw:
   exp_date:   true
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Kennesaw Sate University - see email from Li for more details
 ksu:
   file_type:  'sif'
-  fac_staff:  'separate' # need more details - special processing occurs
+  fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+
 
 # Middle Georgia State University
 mga:
@@ -192,6 +230,8 @@ mga:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Savannah Sate University
 savst:
@@ -200,6 +240,8 @@ savst:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # South Georgia State College
 sgsc:
@@ -210,6 +252,7 @@ sgsc:
   user_group_conversion:
 
 # University of Georgia
+# todo
 uga:
   file_type: 'txt'
   fac_staff: 'mixed'
@@ -362,12 +405,15 @@ uga:
     graduate: [5]
 
 # University of North Georgia
+# todo CSV facstaff file, ugh
 ung:
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  ''
+    GRADUATE:   ''
 
 # Valdosta State
 vsu:
@@ -375,9 +421,13 @@ vsu:
   fac_staff:  'mixed' # not clear - see survey response
   exp_date:   false
   barcodes:   false
-  user_group_conversion: # [STUDNTUND, STUDNTGRA, CONSORT]
+  user_group_conversion:
+    STUDNTUND:  ''
+    STUDNTGRA:  ''
+    CONSORT:    ''
 
 # University of West Georgia
+# special format
 westga: # something really funky going on, see survey results
   file_type:  'sif'
   fac_staff:  'separate'
@@ -394,12 +444,9 @@ test_sif:
   exp_date:  true
   barcodes:  true
   user_group_conversion:
-    1:
-      label: 'UNDERGRAD'
-      alma_group: 'A'
-    2:
-      label: 'GRADUATE'
-      alma_group: 'B'
+    UNDERGRAD:  'ALMA UNDERGRAD'
+    GRADUATE:   'ALMA GRAD'
+    FAC_STAFF:  'ALMA FACSTAFF'
 test_sif_student_only:
   file_type:  'sif'
   fac_staff:  0

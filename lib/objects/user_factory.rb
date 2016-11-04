@@ -96,21 +96,19 @@ class UserFactory
       institution.logger.warn "Errors encountered: #{error_count}"
     end
 
-    # barcode and expiration date updating
-    if institution.expect_barcodes? or institution.expect_exp_date?
+    users.each do |u|
 
-      users.each do |u|
-
-        if institution.expect_barcodes? and barcode_data[u.primary_id]
-          u.barcode = barcode_data[u.primary_id]
-        end
-
-        if institution.expect_exp_date? and exp_date_from_file
-          u.expiry_date = exp_date_from_file
-          # todo default exp_date?
-        end
-
+      if institution.expect_barcodes? and barcode_data[u.primary_id]
+        u.barcode = barcode_data[u.primary_id]
       end
+
+      if institution.expect_exp_date? and exp_date_from_file
+        u.expiry_date = exp_date_from_file
+        # todo default exp_date?
+      end
+
+      # do patron_group conversion
+      set_patron_group u, institution
 
     end
 
@@ -131,6 +129,18 @@ class UserFactory
       when /.{400,}/ then 'patron_sif' # todo student/faculty?
       else 'unknown'
 
+    end
+
+  end
+
+  def self.set_patron_group(user, inst)
+
+    groups_translation = inst.groups_data
+
+    if groups_translation.has_key? user.user_group
+      user.user_group = groups_translation[user.user_group]
+    else
+      inst.logger.warn "Undefined user_group found: #{user.user_group}"
     end
 
   end

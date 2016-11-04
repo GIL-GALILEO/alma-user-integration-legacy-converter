@@ -46,4 +46,12 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
+  def test_user_has_alma_patron_group
+
+    result = UserFactory.generate(@test_inst)
+
+    assert_equal 'ALMA UNDERGRAD', result[0].user_group
+
+  end
+
 end

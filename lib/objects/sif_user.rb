@@ -113,7 +113,6 @@ class SifUser < User
     set_value 'email', data_hash[:address_line_1]
   end
 
-
   def extract_from_line(start, finish)
     value = @line_data[start...finish]
     if value
