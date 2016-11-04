@@ -41,16 +41,20 @@ class Institution
     @config['file_type'] == 'txt'
   end
 
-  def expect_combined?
-    !!@config['fac_staff_included']
+  def process_facstaff?
+    !@config['fac_staff'] == 'manual'
+  end
+
+  def expect_mixed?
+    @config['fac_staff'] == 'mixed'
   end
 
   def expect_barcodes?
-    !!@config['barcode_file']
+    !!@config['barcodes']
   end
 
   def expect_exp_date?
-    !!@config['exp_date_file']
+    !!@config['exp_date']
   end
 
 end

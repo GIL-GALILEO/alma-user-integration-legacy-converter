@@ -30,4 +30,20 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
+  def test_user_has_barcode_from_file
+
+    result = UserFactory.generate(@test_inst)
+
+    assert_equal '87654321930123456', result[0].barcode
+
+  end
+
+  def test_user_has_expiry_date_from_file
+
+    result = UserFactory.generate(@test_inst)
+
+    assert_equal '2044-12-20Z', result[0].expiry_date
+
+  end
+
 end

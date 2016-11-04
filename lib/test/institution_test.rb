@@ -42,7 +42,7 @@ class InstitutionTest < MiniTest::Test
 
     assert_includes bools, @inst.expect_sif?
     assert_includes bools, @inst.expect_txt?
-    assert_includes bools, @inst.expect_combined?
+    assert_includes bools, @inst.process_facstaff?
     assert_includes bools, @inst.expect_barcodes?
     assert_includes bools, @inst.expect_exp_date?
 

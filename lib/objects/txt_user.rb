@@ -7,21 +7,21 @@ class TxtUser < User
 
   # todo: distinguish between a value where we want to use a default string value, and one we want to leave blank/nil
   MAPPING = {
-      primary_id:               0,
-      name:                     1,
-      gender:                   nil,
-      user_group:               2,
-      campus_code:              nil,
-      status:                   nil,
-      address_line_1:           3,
-      address_line_2:           nil,
-      address_city:             4,
-      address_state_province:   5,
-      address_postal_code:      6,
-      address_country:          nil,
-      email:                    14,
-      phone:                    7,
-      secondary_id:             22,
+      primary_id:                       0,
+      name:                             1,
+      gender:                           nil,
+      user_group:                       2,
+      campus_code:                      nil,
+      status:                           nil,
+      primary_address_line_1:           3,
+      primary_address_line_2:           nil,
+      primary_address_city:             4,
+      primary_address_state_province:   5,
+      primary_address_postal_code:      6,
+      primary_address_country:          nil,
+      primary_address_phone:            7,
+      email:                            14,
+      secondary_id:                     22,
   }
 
   def initialize(line_data, institution)

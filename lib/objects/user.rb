@@ -34,6 +34,15 @@ class User
 
   attr_reader *USER_ATTRIBUTES
 
+  def has_secondary_address?
+    !!(@secondary_address_line_1 ||
+    @secondary_address_line_2 ||
+    @secondary_address_city ||
+    @secondary_address_state_province ||
+    @secondary_address_postal_code ||
+    @secondary_address_country)
+  end
+
   # ALMA PRIMARY ID
   # type:         string
   # max_length:   255
