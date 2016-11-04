@@ -39,75 +39,105 @@ class SifUserTest < MiniTest::Test
 
   end
 
-  # def test_has_gender
-  #
-  #   assert_equal '"gender"', @user.gender
-  #
-  # end
-  #
-  # def test_has_user_group
-  #
-  #   assert_equal '"user_group"', @user.user_group
-  #
-  # end
-  #
-  # def test_has_campus_code
-  #
-  #   assert_equal '"campus_code"', @user.campus_code
-  #
-  # end
-  #
-  # def test_has_status
-  #
-  #   assert_equal '"status"', @user.status
-  #
-  # end
+  def test_has_primary_address_line_1
 
-  # def test_has_address_line_1
-  #
-  #   assert_equal '1000 Elm Road Apt 10', @user.address_line_1
-  #
-  # end
-  #
-  # def test_has_address_line_2
-  #
-  #   assert_equal '"address_line_2"', @user.address_line_2
-  #
-  # end
-  #
-  # def test_has_address_city
-  #
-  #   assert_equal 'Augusta', @user.address_city
-  #
-  # end
-  #
-  # def test_has_address_postal_code
-  #
-  #   assert_equal '30123', @user.address_postal_code
-  #
-  # end
-  #
-  # def test_has_address_state_province
-  #
-  #   assert_equal 'GA', @user.address_state_province
-  #
-  # end
-  #
-  # def test_has_address_country
-  #
-  #   assert_equal '"address_country"', @user.address_country
-  #
-  # end
+    assert_equal '1000 Elm Road', @user.primary_address_line_1
 
-  def test_has_email
+  end
 
-    assert_equal 'alma12@ega.edu', @user.email
+  def test_has_primary_address_line_2
+
+    assert_equal 'Apt 10', @user.primary_address_line_2
+
+  end
+
+  def test_has_primary_address_city
+
+    assert_equal 'Augusta', @user.primary_address_city
+
+  end
+
+  def test_has_primary_address_postal_code
+
+    assert_equal '30123', @user.primary_address_postal_code
+
+  end
+
+  def test_has_primary_address_state_province
+
+    assert_equal 'GA', @user.primary_address_state_province
+
+  end
+
+  def test_has_primary_address_country
+
+    assert_equal 'United States of Ame', @user.primary_address_country
 
   end
 
   def test_has_primary_address_phone
 
     assert_equal '(111)222-3333', @user.primary_address_phone
+
+  end
+
+  def test_has_primary_address_mobile_phone
+
+    assert_equal nil, @user.primary_address_mobile_phone
+
+  end
+
+  def test_has_secondary_address_line_1
+
+    assert_equal '1234 Street Rd', @user.secondary_address_line_1
+
+  end
+
+  def test_has_secondary_address_line_2
+
+    assert_equal '', @user.secondary_address_line_2
+
+  end
+
+  def test_has_secondary_address_city
+
+    assert_equal 'Sandersville', @user.secondary_address_city
+
+  end
+
+  def test_has_secondary_address_postal_code
+
+    assert_equal '30000', @user.secondary_address_postal_code
+
+  end
+
+  def test_has_secondary_address_state_province
+
+    assert_equal 'GA', @user.secondary_address_state_province
+
+  end
+
+  def test_has_secondary_address_country
+
+    assert_equal 'United States of Ame', @user.secondary_address_country
+
+  end
+
+  def test_has_secondary_address_phone
+
+    assert_equal '(000)111-2222', @user.secondary_address_phone
+
+  end
+
+  def test_has_secondary_address_mobile_phone
+
+    assert_equal nil, @user.secondary_address_mobile_phone
+
+  end
+
+  def test_has_email
+
+    assert_equal 'alma12@ega.edu', @user.email
 
   end
 
