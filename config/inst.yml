@@ -402,7 +402,7 @@ test_sif:
       alma_group: 'B'
 test_sif_student_only:
   file_type:  'sif'
-  fac_staff_included: 0
+  fac_staff:  0
   exp_date:   false
   barcodes:   false
   user_group_conversion:
