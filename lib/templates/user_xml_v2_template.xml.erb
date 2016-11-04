@@ -12,16 +12,29 @@
   <contact_info>
     <addresses>
       <address preferred="true">
-        <line1><%= user.address_line_1 %></line1>
-        <line2><%= user.address_line_2 %></line2>
-        <city><%= user.address_city %></city>
-        <state_province><%= user.address_state_province %></state_province>
-        <postal_code><%= user.address_postal_code %></postal_code>
-        <country><%= user.address_country %></country>
+        <line1><%= user.primary_address_line_1 %></line1>
+        <line2><%= user.primary_address_line_2 %></line2>
+        <city><%= user.primary_address_city %></city>
+        <state_province><%= user.primary_address_state_province %></state_province>
+        <postal_code><%= user.primary_address_postal_code %></postal_code>
+        <country><%= user.primary_address_country %></country>
         <address_types>
           <address_type><%= defaults.preferred_address_type %></address_type>
         </address_types>
       </address>
+      <% if user.has_secondary_address? %>
+      <address>
+        <line1><%= user.secondary_address_line_1 %></line1>
+        <line2><%= user.secondary_address_line_2 %></line2>
+        <city><%= user.secondary_address_city %></city>
+        <state_province><%= user.secondary_address_state_province %></state_province>
+        <postal_code><%= user.secondary_address_postal_code %></postal_code>
+        <country><%= user.secondary_address_country %></country>
+        <address_types>
+          <address_type><%= defaults.secondary_address_type %></address_type>
+        </address_types>
+      </address>
+      <% end %>
     </addresses>
     <emails>
       <email preferred="true">
@@ -33,7 +46,7 @@
     </emails>
     <phones>
       <phone preferred="true" preferred_sms="true">
-        <phone_number><%= user.phone %></phone_number>
+        <phone_number><%= user.primary_address_phone %></phone_number>
         <phone_types>
           <phone_type><%= defaults.preferred_phone_type %></phone_type>
         </phone_types>

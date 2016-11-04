@@ -4,3 +4,4 @@ global:
   preferred_email_type: 'PERSONAL'
   barcode_type: '00'
   secondary_id_type: '01'
+  secondary_address_type: 'SECONDARY'
