@@ -201,8 +201,14 @@ gsu:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    0000000000: ''
-    # ?????????????????
+    L-LAW_FAC: ''
+    PUL2: ''
+    PUL13: ''
+    L-STU: ''
+    PUL11: ''
+    L-LAW_STAF: ''
+    PUL1: ''
+    PUL8: ''
 
 # Georgia Southwestern State University
 gsw:
@@ -443,6 +449,15 @@ test_sif:
   fac_staff: 'manual'
   exp_date:  true
   barcodes:  true
+  user_group_conversion:
+    UNDERGRAD:  'ALMA UNDERGRAD'
+    GRADUATE:   'ALMA GRAD'
+    FAC_STAFF:  'ALMA FACSTAFF'
+test_gsu_sif:
+  file_type: 'sif_plus'
+  fac_staff: 'manual'
+  exp_date:  false
+  barcodes:  false
   user_group_conversion:
     UNDERGRAD:  'ALMA UNDERGRAD'
     GRADUATE:   'ALMA GRAD'
