@@ -11,7 +11,7 @@ class GsuSifUser < SifUser
       email: [917, 983],
       barcode: [20, 28],
       primary_id: [238, 248],
-      # expiry_date: []
+      # expiry_date: [] # so many dates to choose from...
   }
 
   PRIMARY_ADDRESS_MAPPING = {
