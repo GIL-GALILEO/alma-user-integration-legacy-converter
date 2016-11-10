@@ -4,7 +4,7 @@ require 'zip'
 require 'net/sftp'
 require './lib/objects/xml_factory'
 require './lib/util'
-include Util
+include Util::App
 
 LOG_FILE     = './log.log'
 SECRETS_FILE = './config/secrets.yml'

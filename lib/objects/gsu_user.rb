@@ -1,6 +1,8 @@
-require_relative 'sif_user'
+require_relative 'user'
+require './lib/util'
+include Util::File
 
-class GsuSifUser < SifUser
+class GsuUser < User
 
   # All these values are guesses at this time!
   GENERAL_MAPPING = {

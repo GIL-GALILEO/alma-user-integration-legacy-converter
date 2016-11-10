@@ -1,17 +1,17 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/objects/gsu_sif_user'
+require './lib/objects/gsu_user'
 require './lib/objects/institution'
 
-class GsuSifUserTest < MiniTest::Test
+class GsuUserTest < MiniTest::Test
 
   TEST_DATA_FILE = './config/test_data.yml'
 
   def setup
 
     test_data = YAML.load_file TEST_DATA_FILE
-    test_inst = Institution.new 'test_gsu_sif'
-    @user = GsuSifUser.new test_data['gsu_sif_test'], test_inst
+    test_inst = Institution.new 'test_gsu'
+    @user = GsuUser.new test_data['gsu_test'], test_inst
 
   end
 

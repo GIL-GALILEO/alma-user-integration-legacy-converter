@@ -1,4 +1,6 @@
 require_relative 'user'
+require './lib/util'
+include Util::File
 
 # Parser object for standard ZORVLIB Process
 
@@ -111,19 +113,6 @@ class SifUser < User
 
   def set_email_address(data_hash)
     set_value 'email', data_hash[:address_line_1]
-  end
-
-  def extract_from_line(start, finish)
-    value = @line_data[start...finish]
-    if value
-      value.rstrip
-    else
-      ''
-    end
-  end
-
-  def set_value(attribute, value)
-    self.send("#{attribute}=", value)
   end
 
 end

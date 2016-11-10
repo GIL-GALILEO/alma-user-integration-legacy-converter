@@ -1,6 +1,6 @@
 # Institutional configs
 # inst:
-#   file_type: 'sif' or 'txt' - tell the scripts what file parsing class to use
+#   file_type: 'sif' or 'txt' - or custom
 #   fac_staff: 'manual' = entered into Alma by staff, 'separate' = provided in separate file, 'mixed' = combined in single patron file with students
 #   exp_date: boolean - expect a separate file to set the patron expiration date
 #   barcodes: boolean = expect a separate file to set the patron barcode
@@ -453,8 +453,8 @@ test_sif:
     UNDERGRAD:  'ALMA UNDERGRAD'
     GRADUATE:   'ALMA GRAD'
     FAC_STAFF:  'ALMA FACSTAFF'
-test_gsu_sif:
-  file_type: 'sif_plus'
+test_gsu:
+  file_type: 'gsu'
   fac_staff: 'manual'
   exp_date:  false
   barcodes:  false
