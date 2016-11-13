@@ -6,7 +6,7 @@ Scripts that will convert from a variety of text formats to Alma XML, then zip a
 
 Currently supports detection and processing the following kinds of files:
 
-+ patron data file in either `sif` or `csv` (pipe delimited) format
++ patron data file in a supported format
 + barcode file mapping primary identifiers to barcodes
 + expiration date file setting expiration date for patron records
 
@@ -18,6 +18,7 @@ Currently supports detection and processing the following kinds of files:
 
 + [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/sif_user.rb#L17)
 + [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/txt_user.rb#L9)
++ [gsu](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/gsu_user.rb#L8)
 
 ## Running Tests
 
