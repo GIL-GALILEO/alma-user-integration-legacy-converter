@@ -16,13 +16,13 @@ Currently supports detection and processing the following kinds of files:
 
 ## Mappings
 
-+ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/sif_user.rb#L17)
-+ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/txt_user.rb#L9)
-+ [gsu](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/objects/gsu_user.rb#L8)
++ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/sif_user.rb#L17)
++ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/txt_user.rb#L9)
++ [gsu](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/gsu_user.rb#L8)
 
 ## Running Tests
 
-Tests test that objects do what they are supposed to do.
+Tests test that classes do what they are supposed to do.
 
 `ruby lib/test/sif_user_test.rb`
 

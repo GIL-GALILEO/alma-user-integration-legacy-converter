@@ -1,6 +1,6 @@
-require './lib/objects/institution'
-require './lib/objects/user_factory'
-require './lib/objects/templater'
+require './lib/classes/institution'
+require './lib/classes/user_factory'
+require './lib/classes/templater'
 
 class XmlFactory
 

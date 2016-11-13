@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/objects/institution'
-require './lib/objects/user_factory'
+require './lib/classes/institution'
+require './lib/classes/user_factory'
 
 class UserFactoryTest < MiniTest::Test
 

@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './lib/objects/xml_factory'
+require './lib/classes/xml_factory'
 
 class XmlFactoryTest < MiniTest::Test
 

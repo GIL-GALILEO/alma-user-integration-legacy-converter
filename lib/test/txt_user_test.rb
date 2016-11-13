@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/objects/txt_user'
-require './lib/objects/institution'
+require './lib/classes/txt_user'
+require './lib/classes/institution'
 
 class TxtUserTest < MiniTest::Test
 

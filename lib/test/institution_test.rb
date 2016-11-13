@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/objects/institution'
+require './lib/classes/institution'
 
 class InstitutionTest < MiniTest::Test
 

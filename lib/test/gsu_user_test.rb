@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/objects/gsu_user'
-require './lib/objects/institution'
+require './lib/classes/gsu_user'
+require './lib/classes/institution'
 
 class GsuUserTest < MiniTest::Test
 

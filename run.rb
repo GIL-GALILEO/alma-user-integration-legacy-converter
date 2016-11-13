@@ -2,7 +2,7 @@ require 'logger'
 require 'yaml'
 require 'zip'
 require 'net/sftp'
-require './lib/objects/xml_factory'
+require './lib/classes/xml_factory'
 require './lib/util'
 include Util::App
 

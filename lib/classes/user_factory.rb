@@ -1,6 +1,6 @@
 require 'csv'
-require './lib/objects/txt_user'
-require './lib/objects/sif_user'
+require './lib/classes/txt_user'
+require './lib/classes/sif_user'
 
 class UserFactory
 
