@@ -28,6 +28,8 @@ Tests test that objects do what they are supposed to do.
 
 `ruby lib/test/txt_user_test.rb`
 
+`ruby lib/test/gsu_user_test.rb`
+
 `ruby lib/test/institution_test.rb`
 
 `ruby lib/test/templater_test.rb`
