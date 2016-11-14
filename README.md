@@ -10,9 +10,15 @@ Currently supports detection and processing the following kinds of files:
 + barcode file mapping primary identifiers to barcodes
 + expiration date file setting expiration date for patron records
 
-##### With Your Own Data Files
+### Make the Magic Happen
+
+For the full experience:
 
 `ruby run.rb any_institution_code_here`
+
+To just generate files and not upload or send notifications:
+
+`ruby run.rb any_institution_code_here dry-run`
 
 ## Mappings
 
@@ -34,13 +40,16 @@ Tests test that classes do what they are supposed to do.
 
 `ruby lib/test/templater_test.rb`
 
+`ruby lib/test/zipper_test.rb`
+
 `ruby lib/test/user_factory_test.rb`
 
 `ruby lib/test/xml_factory_test.rb`
 
 ## To Do
++ rake task to run all tests
++ cleanup files created in tests
 + pull contacts and configs via API
-+ improved zip and upload handling
 + email notifications
 + finish field handling for txt type
 + More tests
