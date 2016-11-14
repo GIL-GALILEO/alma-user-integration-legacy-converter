@@ -5,8 +5,8 @@ class XmlFactoryTest < MiniTest::Test
 
   def setup
 
-    @xml_factory_sif_result = XmlFactory.generate_for 'test_sif'
-    # @xml_factory_txt_result = XmlFactory.generate_for 'test_txt'
+    @xml_factory_sif_result = XmlFactory.generate_for(Institution.new('test_sif'))
+    # @xml_factory_txt_result = XmlFactory.generate_for(Institution.new('test_txt'))
 
   end
 

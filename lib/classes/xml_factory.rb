@@ -1,16 +1,9 @@
-require './lib/classes/institution'
 require './lib/classes/user_factory'
 require './lib/classes/templater'
 
 class XmlFactory
 
-  def self.generate_for(code)
-
-    begin
-      institution = Institution.new(code)
-    rescue StandardError => e
-      raise StandardError.new("XML Factory (Institution) error: #{e.message}")
-    end
+  def self.generate_for(institution)
 
     begin
       users = UserFactory.generate(institution)
