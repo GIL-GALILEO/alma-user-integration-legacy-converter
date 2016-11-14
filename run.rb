@@ -2,6 +2,8 @@ require 'logger'
 require 'yaml'
 require 'zip'
 require 'net/sftp'
+require './lib/classes/institution'
+require './lib/classes/zipper'
 require './lib/classes/xml_factory'
 require './lib/util'
 include Util::App
@@ -21,42 +23,46 @@ secrets = YAML.load_file SECRETS_FILE
 exit_log_error('Secrets config file not properly parsed. Stopping.') unless secrets.is_a? Hash
 
 # Load params
-unless ARGV.length == 1
-  puts 'Institution not defined, using testing defaults'
-  ARGV[0] = 'dalton'
-end
-
 code = ARGV[0]
+dry_run = ARGV[1] == 'dry-run'
 
 begin
-  output_string = XmlFactory.generate_for code
+  institution = Institution.new(code)
+rescue StandardError => e
+  raise StandardError.new("Institution error: #{e.message}")
+end
+
+begin
+  output_string = XmlFactory.generate_for institution
 rescue StandardError => e
   exit_log_error "Script failed for #{code} with: #{e.message}"
 end
 
-puts output_string
+# zip up file
+zip_file = Zipper.do output_string, institution
 
-# zip file
-# alma_file = output_file.gsub('.xml','.zip')
-# begin
-#   Zip::File.open(alma_file, Zip::File::CREATE) do |zipfile|
-#     zipfile.add output_file.gsub('./data/sample/',''), output_file
-#   end
-# rescue Exception => e
-#   exit_log_error "Problem compressing XML file for delivery: #{e.message}"
-# end
-#
-# # ftp file
-# remote_file = alma_file.gsub('./data/sample/','test/')
-# begin
-#   Net::SFTP.start(secrets['ftp']['url'], secrets['ftp']['user'], password: secrets['ftp']['pass'], port: secrets['ftp']['port']) do |c|
-#     c.upload! alma_file, remote_file
-#   end
-# rescue Exception => e
-#   exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
-# end
+unless dry_run
 
-# @logger.info 'Output created: ' + output_file
-# @logger.info 'Payload delivered: ' + remote_file
-# @logger.info 'Users included: ' + users_count.to_s
-# @logger.info 'Users not included due to errors: ' + errors.to_s
+  remote_file = File.join(
+      secrets['ftp']['path'].gsub('__inst__', institution.code),
+      File.basename(zip_file)
+  )
+
+  begin
+    Net::SFTP.start(
+        secrets['ftp']['url'],
+        secrets['ftp']['user'],
+        password: secrets['ftp']['pass'],
+        port: secrets['ftp']['port']) do |c|
+      c.upload! zip_file, remote_file
+    end
+    @script_logger.info "File successfully delivered for #{institution.code}: #{zip_file}"
+  rescue Exception => e
+    exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
+  end
+
+  # todo send email notifications here
+
+end
+
+# done
