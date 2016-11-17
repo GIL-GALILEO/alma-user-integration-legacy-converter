@@ -434,8 +434,8 @@ vsu:
 
 # University of West Georgia
 # special format
-westga: # something really funky going on, see survey results
-  file_type:  'sif'
+westga: # using a format/process similar to gsu
+  file_type:  'westga'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
@@ -454,6 +454,15 @@ test_sif:
     GRADUATE:   'ALMA GRAD'
     FAC_STAFF:  'ALMA FACSTAFF'
 test_gsu:
+  file_type: 'gsu'
+  fac_staff: 'manual'
+  exp_date:  false
+  barcodes:  false
+  user_group_conversion:
+    UNDERGRAD:  'ALMA UNDERGRAD'
+    GRADUATE:   'ALMA GRAD'
+    FAC_STAFF:  'ALMA FACSTAFF'
+test_westga:
   file_type: 'gsu'
   fac_staff: 'manual'
   exp_date:  false
