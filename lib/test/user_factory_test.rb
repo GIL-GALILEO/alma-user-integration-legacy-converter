@@ -1,11 +1,8 @@
 require 'minitest/autorun'
-require 'yaml'
 require './lib/classes/institution'
 require './lib/classes/user_factory'
 
 class UserFactoryTest < MiniTest::Test
-
-  TEST_DATA_FILE = './config/test_data.yml'
 
   def setup
 
