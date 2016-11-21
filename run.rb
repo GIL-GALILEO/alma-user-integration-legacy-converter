@@ -11,6 +11,10 @@ include Util::App
 LOG_FILE     = './log.log'
 SECRETS_FILE = './config/secrets.yml'
 
+FILES_ROOT   = '/gilftpfiles'
+PICKUP_POINT = '/patrondrop'
+DROP_POINT   = '/sis/import'
+
 @script_logger = Logger.new LOG_FILE
 
 # Check for required files
@@ -43,23 +47,29 @@ zip_file = Zipper.do output_string, institution
 
 unless dry_run
 
-  remote_file = File.join(
-      secrets['ftp']['path'].gsub('__inst__', institution.code),
-      File.basename(zip_file)
-  )
+  # MOVE FOR ALMA PICKUP
+  source_file = File.join Dir.pwd, zip_file.path
+  destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
+  FileUtils.mv(source_file, destination_file)
 
-  begin
-    Net::SFTP.start(
-        secrets['ftp']['url'],
-        secrets['ftp']['user'],
-        password: secrets['ftp']['pass'],
-        port: secrets['ftp']['port']) do |c|
-      c.upload! zip_file, remote_file
-    end
-    @script_logger.info "File successfully delivered for #{institution.code}: #{zip_file}"
-  rescue Exception => e
-    exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
-  end
+  # FTP TO REMOTE SERVER
+  # remote_file = File.join(
+  #     secrets['ftp']['path'].gsub('__inst__', institution.code),
+  #     File.basename(zip_file)
+  # )
+  #
+  # begin
+  #   Net::SFTP.start(
+  #       secrets['ftp']['url'],
+  #       secrets['ftp']['user'],
+  #       password: secrets['ftp']['pass'],
+  #       port: secrets['ftp']['port']) do |c|
+  #     c.upload! zip_file, remote_file
+  #   end
+  #   @script_logger.info "File successfully delivered for #{institution.code}: #{zip_file}"
+  # rescue Exception => e
+  #   exit_log_error "Problem delivering file to GIL FTP server: #{e.message}"
+  # end
 
   # todo send email notifications here
 
