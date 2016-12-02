@@ -2,5 +2,4 @@ data/
 !data/test_sif
 !data/test_txt
 !data/test_gsu
-secrets.yml
 *.log
