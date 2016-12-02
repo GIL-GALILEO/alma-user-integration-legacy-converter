@@ -119,7 +119,7 @@ ega:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'ST'
 
 # Fort Valley State University
 ftv:
