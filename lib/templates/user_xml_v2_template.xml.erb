@@ -3,9 +3,8 @@
   <first_name><%= user.first_name %></first_name>
   <middle_name><%= user.middle_name %></middle_name>
   <last_name><%= user.last_name %></last_name>
-  <gender><%= user.gender %></gender>
   <user_group><%= user.user_group %></user_group>
-  <campus_code><%= user.campus_code %></campus_code>
+  <% if user.campus_code && user.campus_code != '' %><campus_code><%= user.campus_code %></campus_code><% end %>
   <preferred_language>en</preferred_language><% if user.expiry_date %><expiry_date><%= user.expiry_date %></expiry_date><% end %>
   <expiry_date>2030-01-16Z</expiry_date>
   <contact_info>
@@ -43,6 +42,7 @@
         </email_types>
       </email>
     </emails>
+    <% if user.primary_address_phone != '' && user.primary_address_phone %>
     <phones>
       <phone preferred="true" preferred_sms="true">
         <phone_number><%= user.primary_address_phone %></phone_number>
@@ -51,6 +51,7 @@
         </phone_types>
       </phone>
     </phones>
+    <% end %>
   </contact_info><% if user.secondary_id or user.barcode %><user_identifiers>
     <% if user.barcode %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
