@@ -1,7 +1,7 @@
 global:
-  preferred_address_type: 'Home'
-  preferred_phone_type: 'Mobile'
-  preferred_email_type: 'Personal'
+  preferred_address_type: 'home'
+  preferred_phone_type: 'mobile'
+  preferred_email_type: 'personal'
   barcode_type: '00'
   secondary_id_type: '01'
-  secondary_address_type: 'SECONDARY'
+  secondary_address_type: 'alternative'
