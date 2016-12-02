@@ -248,7 +248,16 @@ class User
   private
 
   def alma_string(str, size = MAXIMUM_STRING_VALUE_LENGTH)
-    str[0...size] if str
+    xml_safe(str[0...size]) if str
+  end
+
+  def xml_safe(string)
+    string
+        .gsub('&','&amp;')
+        .gsub('"','&quot;')
+        .gsub("'",'&apos;')
+        .gsub('<','&lt;')
+        .gsub('>','&gt;')
   end
 
 end
