@@ -411,10 +411,12 @@ uga:
     graduate: [5]
 
 # University of North Georgia
-# todo CSV facstaff file, ugh
+# todo future usage of facstaff CSV
+# todo exp_date input by gil web form - does that generate the exp_date file?
+# todo barcode just is the primary id
 ung:
   file_type:  'sif'
-  fac_staff:  'separate'
+  fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
