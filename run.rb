@@ -12,7 +12,7 @@ LOG_FILE     = './log.log'
 
 FILES_ROOT   = '/gilftpfiles'
 PICKUP_POINT = '/patrondrop'
-DROP_POINT   = '/sis/import'
+DROP_POINT   = '/sis/synchronize'
 
 @script_logger = Logger.new LOG_FILE
 
