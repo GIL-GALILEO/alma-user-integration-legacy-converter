@@ -45,6 +45,7 @@ class InstitutionTest < MiniTest::Test
     assert_includes bools, @inst.process_facstaff?
     assert_includes bools, @inst.expect_barcodes?
     assert_includes bools, @inst.expect_exp_date?
+    assert_includes bools, @inst.autoexpire_missing_users?
 
   end
 

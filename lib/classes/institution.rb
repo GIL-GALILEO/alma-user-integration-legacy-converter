@@ -57,4 +57,8 @@ class Institution
     !!@config['exp_date']
   end
 
+  def autoexpire_missing_users?
+    !!@config['expire_users']
+  end
+
 end

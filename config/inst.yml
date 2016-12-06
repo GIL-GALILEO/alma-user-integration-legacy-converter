@@ -447,10 +447,11 @@ westga: # using a format/process similar to gsu
 # testing configs
 
 test_sif:
-  file_type: 'sif'
-  fac_staff: 'manual'
-  exp_date:  true
-  barcodes:  true
+  file_type:    'sif'
+  fac_staff:    'manual'
+  exp_date:     true
+  barcodes:     true
+  expire_users: true
   user_group_conversion:
     UNDERGRAD:  'ALMA UNDERGRAD'
     GRADUATE:   'ALMA GRAD'
