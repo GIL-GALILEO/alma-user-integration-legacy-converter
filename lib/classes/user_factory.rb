@@ -1,4 +1,5 @@
 require 'csv'
+require './lib/classes/databaser'
 require './lib/classes/txt_user'
 require './lib/classes/sif_user'
 
@@ -104,7 +105,6 @@ class UserFactory
 
       if institution.expect_exp_date? and exp_date_from_file
         u.expiry_date = exp_date_from_file
-        # todo default exp_date?
       end
 
       # do patron_group conversion
@@ -112,7 +112,19 @@ class UserFactory
 
     end
 
-    users
+    users << users_to_expire(user_class)
+
+  end
+
+  def self.users_to_expire(klass)
+
+    db = Databaser.new institution
+
+    db.all_users_from_previous_load.each do |id|
+
+      # todo???
+
+    end
 
   end
 

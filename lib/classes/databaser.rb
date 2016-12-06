@@ -13,6 +13,7 @@ class Databaser
     # prepare statements
     @connection.prepare 'usr_chk', "SELECT 1 FROM #{@table} WHERE instid = $1;"
     @connection.prepare 'add_usr', "INSERT INTO #{@table} (instid) VALUES($1);"
+    @connection.prepare 'all_usr', "SELECT instid FROM #{@table};"
 
   end
 
@@ -38,6 +39,12 @@ class Databaser
 
   end
 
+  def all_users_from_previous_load
+
+    execute 'all_usr'
+
+  end
+
   def close_connection
     @connection.close
   end
@@ -60,7 +67,7 @@ class Databaser
     end
   end
 
-  def execute(name, values)
+  def execute(name, values = [])
 
     begin
       rs = @connection.exec_prepared name, values
@@ -72,7 +79,7 @@ class Databaser
 
     rs.clear if rs
 
-    data
+    data.flatten
 
   end
 
