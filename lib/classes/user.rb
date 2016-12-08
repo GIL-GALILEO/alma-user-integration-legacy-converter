@@ -36,11 +36,31 @@ class User
 
   def has_secondary_address?
     !!(@secondary_address_line_1 ||
-    @secondary_address_line_2 ||
-    @secondary_address_city ||
-    @secondary_address_state_province ||
-    @secondary_address_postal_code ||
-    @secondary_address_country)
+      @secondary_address_line_2 ||
+      @secondary_address_city ||
+      @secondary_address_state_province ||
+      @secondary_address_postal_code ||
+      @secondary_address_country)
+  end
+  
+  def has_primary_address?
+    !!(@primary_address_line_1 ||
+      @primary_address_line_2 ||
+      @primary_address_city ||
+      @primary_address_state_province ||
+      @primary_address_postal_code ||
+      @primary_address_country)
+  end
+
+  def has_contact_info?
+    !!(has_primary_address? ||
+      has_secondary_address? ||
+      @email ||
+      @primary_address_phone)
+  end
+
+  def has_additional_identifiers?
+    !!(@barcode || @secondary_id)
   end
 
   # ALMA PRIMARY ID

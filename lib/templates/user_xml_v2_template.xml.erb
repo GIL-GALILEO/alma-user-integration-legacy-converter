@@ -1,39 +1,42 @@
 <user>
   <primary_id><%= user.primary_id %></primary_id>
-  <first_name><%= user.first_name %></first_name>
-  <middle_name><%= user.middle_name %></middle_name>
-  <last_name><%= user.last_name %></last_name>
-  <user_group><%= user.user_group %></user_group>
-  <% if user.campus_code && user.campus_code != '' %><campus_code><%= user.campus_code %></campus_code><% end %>
-  <preferred_language>en</preferred_language><% if user.expiry_date %><expiry_date><%= user.expiry_date %></expiry_date><% end %>
-  <expiry_date>2030-01-16Z</expiry_date>
+  <% if user.first_name %><first_name><%= user.first_name %></first_name><% end %>
+  <% if user.middle_name %><middle_name><%= user.middle_name %></middle_name><% end %>
+  <% if user.last_name %><last_name><%= user.last_name %></last_name><% end %>
+  <% if user.user_group %><user_group><%= user.user_group %></user_group><% end %>
+  <% if user.campus_code %><campus_code><%= user.campus_code %></campus_code><% end %>
+  <% if user.expiry_date %><expiry_date><%= user.expiry_date %></expiry_date><% end %>
+  <% if user.has_contact_info? %>
   <contact_info>
+    <% if user.has_primary_address? %>
     <addresses>
       <address preferred="true">
-        <line1><%= user.primary_address_line_1 %></line1>
-        <line2><%= user.primary_address_line_2 %></line2>
-        <city><%= user.primary_address_city %></city>
-        <state_province><%= user.primary_address_state_province %></state_province>
-        <postal_code><%= user.primary_address_postal_code %></postal_code>
-        <country><%= user.primary_address_country %></country>
+        <% if user.primary_address_line_1 %><line1><%= user.primary_address_line_1 %></line1><% end %>
+        <% if user.primary_address_line_2 %><line2><%= user.primary_address_line_2 %></line2><% end %>
+        <% if user.primary_address_city %><city><%= user.primary_address_city %></city><% end %>
+        <% if user.primary_address_state_province %><state_province><%= user.primary_address_state_province %></state_province><% end %>
+        <% if user.primary_address_postal_code %><postal_code><%= user.primary_address_postal_code %></postal_code><% end %>
+        <% if user.primary_address_country %><country><%= user.primary_address_country %></country><% end %>
         <address_types>
           <address_type><%= defaults.preferred_address_type %></address_type>
         </address_types>
       </address>
       <% if user.has_secondary_address? %>
       <address>
-        <line1><%= user.secondary_address_line_1 %></line1>
-        <line2><%= user.secondary_address_line_2 %></line2>
-        <city><%= user.secondary_address_city %></city>
-        <state_province><%= user.secondary_address_state_province %></state_province>
-        <postal_code><%= user.secondary_address_postal_code %></postal_code>
-        <country><%= user.secondary_address_country %></country>
+        <% if user.secondary_address_line_1 %><line1><%= user.secondary_address_line_1 %></line1><% end %>
+        <% if user.secondary_address_line_2 %><line2><%= user.secondary_address_line_2 %></line2><% end %>
+        <% if user.secondary_address_city %><city><%= user.secondary_address_city %></city><% end %>
+        <% if user.secondary_address_state_province %><state_province><%= user.secondary_address_state_province %></state_province><% end %>
+        <% if user.secondary_address_postal_code %><postal_code><%= user.secondary_address_postal_code %></postal_code><% end %>
+        <% if user.secondary_address_country %><country><%= user.secondary_address_country %></country><% end %>
         <address_types>
           <address_type><%= defaults.secondary_address_type %></address_type>
         </address_types>
       </address>
       <% end %>
     </addresses>
+    <% end %>
+    <% if user.email %>
     <emails>
       <email preferred="true">
         <email_address><%= user.email %></email_address>
@@ -42,7 +45,8 @@
         </email_types>
       </email>
     </emails>
-    <% if user.primary_address_phone != '' && user.primary_address_phone %>
+    <% end %>
+    <% if user.primary_address_phone %>
     <phones>
       <phone preferred="true" preferred_sms="true">
         <phone_number><%= user.primary_address_phone %></phone_number>
@@ -52,14 +56,21 @@
       </phone>
     </phones>
     <% end %>
-  </contact_info><% if user.secondary_id or user.barcode %><user_identifiers>
-    <% if user.barcode %><user_identifier>
+  </contact_info>
+  <% end %>
+  <% if user.has_additional_identifiers? %>
+  <user_identifiers>
+    <% if user.barcode %>
+    <user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
         <value><%= user.barcode %></value>
       </user_identifier><% end %>
-    <% if user.secondary_id %><user_identifier>
+    <% if user.secondary_id %>
+    <user_identifier>
       <id_type><%= defaults.secondary_id_type %></id_type>
       <value><%= user.secondary_id %></value>
-    </user_identifier><% end %>
-  </user_identifiers><% end %>
+    </user_identifier>
+    <% end %>
+  </user_identifiers>
+  <% end %>
 </user>
