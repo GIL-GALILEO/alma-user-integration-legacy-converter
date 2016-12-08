@@ -10,11 +10,11 @@ class TemplaterTest < MiniTest::Test
 
   def setup
 
-    test_data = YAML.load_file TEST_DATA_FILE
+    @test_data = YAML.load_file TEST_DATA_FILE
 
     @test_inst = Institution.new('test_sif')
 
-    @users = [ SifUser.new(test_data['sif_test'], @test_inst) ]
+    @users = [ SifUser.new(@test_data['sif_test'], @test_inst) ]
 
     @xml = Templater.run(@users, @test_inst)
 
@@ -30,6 +30,20 @@ class TemplaterTest < MiniTest::Test
   def test_returns_user_node
 
     assert_match /<user>/, @xml
+
+  end
+
+  def test_only_include_node_if_present
+
+    users = [ SifUser.new(@test_data['sif_test'], @test_inst) ]
+
+    users[0].middle_name = nil
+
+    xml = Templater.run(users, @test_inst)
+
+    match = xml =~ /<middle_name>/
+
+    assert !match
 
   end
 
