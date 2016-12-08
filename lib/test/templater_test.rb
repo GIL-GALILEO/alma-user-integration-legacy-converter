@@ -33,6 +33,22 @@ class TemplaterTest < MiniTest::Test
 
   end
 
+  def test_expire_record_fields
+
+    user = User.new
+    user.primary_id = '123456789'
+    user.expiry_date = '1-1-2000Z'
+
+    users = [ user ]
+
+    xml = Templater.run users, @test_inst
+
+    assert_match /<primary_id>/, xml
+    assert_match /<primary_id>/, xml
+    assert !(xml =~ /<middle_name>/)
+
+  end
+
   def test_only_include_node_if_present
 
     users = [ SifUser.new(@test_data['sif_test'], @test_inst) ]
@@ -41,9 +57,26 @@ class TemplaterTest < MiniTest::Test
 
     xml = Templater.run(users, @test_inst)
 
-    match = xml =~ /<middle_name>/
+    assert !(xml =~ /<middle_name>/)
 
-    assert !match
+  end
+
+
+  def test_users_of_two_different_classes_in_same_xml
+
+    user = User.new
+    user.primary_id = '123456789'
+    user.expiry_date = '1-1-2000Z'
+
+    users = [
+        SifUser.new(@test_data['sif_test'], @test_inst),
+        user
+    ]
+
+    xml = Templater.run(users, @test_inst)
+
+    assert_equal xml.scan(/<primary_id>/).length, 2
+    assert_equal xml.scan(/<first_name>/).length, 1
 
   end
 
