@@ -31,15 +31,12 @@ class Databaser
 
   def is_user_in_archive(user)
 
-    user_id = user_id user
-
-    z = execute 'usr_chk', [user_id]
-
+    z = execute 'usr_chk', [user_id(user)]
     !z.empty?
 
   end
 
-  def all_users_from_previous_load
+  def user_ids_from_previous_load
 
     execute 'all_usr'
 
@@ -73,7 +70,7 @@ class Databaser
       rs = @connection.exec_prepared name, values
       data = rs.values
     rescue PG::Error => e
-      #todo ?
+      #todo log error
       return false
     end
 

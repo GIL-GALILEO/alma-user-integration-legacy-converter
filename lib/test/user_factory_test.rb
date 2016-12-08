@@ -1,14 +1,24 @@
 require 'minitest/autorun'
 require './lib/classes/institution'
 require './lib/classes/user_factory'
+require './lib/classes/databaser'
 
 class UserFactoryTest < MiniTest::Test
 
   def setup
 
     @test_inst = Institution.new('test_sif')
+    @databaser = Databaser.new @test_inst
 
   end
+
+  def teardown
+
+    @databaser.truncate_table
+    @databaser.close_connection
+
+  end
+
 
   def test_error_on_bad_institution
 
@@ -48,6 +58,17 @@ class UserFactoryTest < MiniTest::Test
     result = UserFactory.generate(@test_inst)
 
     assert_equal 'ALMA UNDERGRAD', result[0].user_group
+
+  end
+
+  def test_users_of_two_different_classes
+
+    @databaser.add_user_to_archive('123456789')
+
+    result = UserFactory.generate(@test_inst)
+
+    assert_kind_of SifUser, result[0]
+    assert_kind_of User, result[1]
 
   end
 

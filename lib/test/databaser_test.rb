@@ -38,7 +38,7 @@ class DatabaserTest < MiniTest::Test
     @databaser.add_user_to_archive '111111111'
     @databaser.add_user_to_archive '222222222'
 
-    assert_equal %w(111111111 222222222), @databaser.all_users_from_previous_load
+    assert_equal %w(111111111 222222222), @databaser.user_ids_from_previous_load
 
   end
 

@@ -14,7 +14,7 @@ class UserFactory
       raise StandardError.new('Bad Institution provided to user factory')
     end
 
-    files_path = DATA_DIR_BASE + "#{institution.code}/*"
+    files_path = File.join DATA_DIR_BASE, "#{institution.code}/*"
     files = Dir.glob(files_path)
     files_found = files.length
     patron_file = false
@@ -97,6 +97,8 @@ class UserFactory
       institution.logger.warn "Errors encountered: #{error_count}"
     end
 
+    new_users = []
+
     users.each do |u|
 
       if institution.expect_barcodes? and barcode_data[u.primary_id]
@@ -110,21 +112,40 @@ class UserFactory
       # do patron_group conversion
       set_patron_group u, institution
 
+      new_users << u.primary_id
+
     end
 
-    users << users_to_expire(user_class)
+    if institution.autoexpire_missing_users?
+
+      bye_user_ids = users_to_expire institution, new_users
+
+      users.concat user_objects_for_expired_users(bye_user_ids)
+
+    end
+
+    users
 
   end
 
-  def self.users_to_expire(klass)
+  def self.user_objects_for_expired_users(bye_user_ids = [])
+
+    bye_user_ids.map do |id|
+      u = User.new
+      u.primary_id = id
+      u.expiry_date = Date.new.strftime('%Y-%m-%d')
+      u
+    end
+
+  end
+
+  def self.users_to_expire(institution, new_users = [])
 
     db = Databaser.new institution
 
-    db.all_users_from_previous_load.each do |id|
+    old_users = db.user_ids_from_previous_load
 
-      # todo???
-
-    end
+    old_users - new_users
 
   end
 
