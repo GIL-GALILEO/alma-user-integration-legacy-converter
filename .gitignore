@@ -3,3 +3,4 @@ data/
 !data/test_txt
 !data/test_gsu
 *.log
+config/test_data.yml
