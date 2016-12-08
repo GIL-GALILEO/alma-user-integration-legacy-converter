@@ -1,4 +1,5 @@
 global:
+  purge_date: '2382-12-21Z'
   preferred_address_type: 'home'
   preferred_phone_type: 'mobile'
   preferred_email_type: 'personal'
