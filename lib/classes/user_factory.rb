@@ -14,7 +14,7 @@ class UserFactory
       raise StandardError.new('Bad Institution provided to user factory')
     end
 
-    files_path = File.join DATA_DIR_BASE, "#{institution.code}/*"
+    files_path = File.join DATA_DIR_BASE, "#{institution.code}/full/*"
     files = Dir.glob(files_path)
     files_found = files.length
     patron_file = false
