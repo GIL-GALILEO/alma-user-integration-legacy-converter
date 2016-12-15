@@ -23,7 +23,7 @@ class UserFactory
     exp_date_from_file = nil
 
     if files_found == 0
-      institution.logger.warning 'No files found'
+      institution.logger.warn 'No files found'
       return nil
     else
       institution.logger.info "#{files_found} files found for processing"
