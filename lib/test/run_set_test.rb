@@ -6,9 +6,9 @@ class RunSetTest < MiniTest::Test
 
   def setup
 
-    barcode_file = File.new 'data/test_sif/barcode_file'
-    exp_file     = File.new 'data/test_sif/exp_date'
-    data_file    = File.new 'data/test_sif/student'
+    barcode_file = File.new 'data/test_sif/full/barcode_file'
+    exp_file     = File.new 'data/test_sif/full/exp_date'
+    data_file    = File.new 'data/test_sif/full/student'
     config       = { run_type: :full }
 
     @run_set = RunSet.new
@@ -39,7 +39,7 @@ class RunSetTest < MiniTest::Test
 
   def test_has_a_exp_date_file
 
-    assert_kind_of File, @run_set.exp_date
+    assert_kind_of File, @run_set.exp
 
   end
 
