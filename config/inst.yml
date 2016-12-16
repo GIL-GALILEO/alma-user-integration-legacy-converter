@@ -1,6 +1,7 @@
 # Institutional configs
 # inst:
-#   file_type: 'sif' or 'txt' - or custom
+#   user_class_file: base name of user class file in classes directory
+#   file_type: 'sif' or 'txt' - or custom DEPRECATED todo remove
 #   fac_staff: 'manual' = entered into Alma by staff, 'separate' = provided in separate file, 'mixed' = combined in single patron file with students
 #   exp_date: boolean - expect a separate file to set the patron expiration date
 #   barcodes: boolean = expect a separate file to set the patron barcode
@@ -8,130 +9,159 @@
 
 # Abraham Baldwin Agricultural College
 abac:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # want to move to separate
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STU'
+    GRADUATE:  'STU'
 
 # Armstrong State University
 armstrong:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'Student'
+    GRADUATE:   'GRAD'
 
 # Albany State University - To be Consolidated with Darton
 asu:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD: 'UG'
+    GRADUATE: 'G'
+    FACULTY: 'F' # todo guessed on the sif value
 
 # Atlanta Metropolitan College
 atlm:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STU'
 
 # Augusta University
 augusta: # summervile file - patrons in this file (and HSC file, not included) are added to special patron groups
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # want to integrate with peoplesoft
   exp_date:   false
   barcodes:   true
   user_group_conversion: # Hmm? Special Snowflake
-    augdb:
-      UNDERGRAD:  ''
-      GRADUATE:   ''
-    mcgdb:
-      UNDERGRAD:  ''
-      GRADUATE:   ''
+#    augdb: # todo figure out a way to handle two distinct files for this institutions patrons
+#      UNDERGRAD:  ''
+#      GRADUATE:   ''
+#    mcgdb:
+#      UNDERGRAD:  ''
+#      GRADUATE:   ''
+    UNDERGRAD: 'Rundergrad'
+    GRADUATE: 'Rundergrad'
+    FACULTY: 'Rfaculty'
+    STAFF: 'Rstaff'
+    PARTFAC: 'Rtemp_prt'
 
 # Bainbridge State College
 bain:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STU'
+    GRADUATE:  'STU'
 
 # College of Coastal GA
 ccga:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'SEMESTER'
+    GRADUATE:  'SEMESTER'
 
 # Clayton State University
 clayton:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate' # but no file provided
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'STUDENT'
+    GRADUATE:   'STUDENT'
 
 # Columbus State University
 csu:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate' # No file provided
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'RG'
+    GRADUATE:   'RG'
 
 # Dalton State College
 dalton:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # other signs point to 'separate', but no file provided
   exp_date:   true
   barcodes:   true
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STUDENT'
+    GRADUATE:   'STUDENT'
 
 # Darton - To be Consolidated with Albany State
 darton:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   true
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'dstu'
+    GRADUATE:   'dstu'
 
 # East Georgia State College
 ega:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
     UNDERGRAD:  'ST'
+    GRADUATE:   'ST'
 
 # Fort Valley State University
 ftv:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'fvstudent'
+    GRADUATE:   'fvgrad'
 
 # Georgia Southern University
 gasou: # customized ZORVLIB, college and major data included, also patrons from external institutions - see survey results
+  user_class_file: 'gasou_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
@@ -144,125 +174,140 @@ gasou: # customized ZORVLIB, college and major data included, also patrons from 
 
 # Georgia College
 gcsu:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   true # separate exp_date file included for fac/staff file
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
-    FACULTY_FT: ''
-    FACULTY_PT: ''
-    STAFF_FT:   ''
-    STAFF_PT:   ''
+    UNDERGRAD:  'STUDENT'
+    GRADUATE:   'GRADUATE'
+    FACULTY_FT: 'FACULTY'
+    FACULTY_PT: 'FACULTY PT'
+    STAFF_FT:   'FACULTY'
+    STAFF_PT:   'FACULTY PT'
 
 # Georgia Gwinnett College
 ggc:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STU'
+    GRADUATE: 'STU'
 
 # Georgia Highlands College
 ghc:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    FACSTAFF: ''
-    UNDERGRAD: ''
+    FACSTAFF: 'FACSTAFF'
+    UNDERGRAD: 'STUD'
 
 # Gordon State College
 gordon:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # ensure facstaff are not included in this file. see survey note
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'STUDENT'
 
 # Georgia Piedmont Technical College
 gptc:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
+    UNDERGRAD:  'UNDERGRAD'
 
 # Georgia State University
 # special format
 gsu:
+  user_class_file: 'gsu_user'
   file_type:  'sif'
   fac_staff:  'mixed'
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
-    L-LAW_FAC: ''
-    PUL2: ''
-    PUL13: ''
-    L-STU: ''
-    PUL11: ''
-    L-LAW_STAF: ''
-    PUL1: ''
-    PUL8: ''
+  user_group_conversion: # todo needed to confirm these as they just copy
+    L-LAW_FAC: 'L-LAW_FAC'
+    PUL2: 'PUL2'
+    PUL13: 'PUL13'
+    L-STU: 'L-STU'
+    PUL11: 'PUL11'
+    L-LAW_STAF: 'L-LAW_STAF'
+    PUL1: 'PUL1'
+    PUL8: 'PUL8'
 
 # Georgia Southwestern State University
 gsw:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   true
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'STUDENT'
+    GRADUATE:   'STUDENT'
 
 # Kennesaw Sate University - see email from Li for more details
 ksu:
+  user_class_file: 'ksu_user'
   file_type:  'sif'
   fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  'UNDERGRAD'
-    GRADUATE:   'GRADUATE'
-
+    undergrad:  'undergrad'
+    graduate:   'graduate'
 
 # Middle Georgia State University
 mga:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  'UNDERGRAD'
-    GRADUATE:   'GRADUATE'
+    UNDERGRAD:  'STUDENT'
+    GRADUATE:   'STUDENT'
 
 # Savannah Sate University
 savst:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # survey indicates 'GIL Support' ???
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'ST'
+    GRADUATE:   'GS'
 
 # South Georgia State College
 sgsc:
+  user_class_file: 'sif_user'
   file_type:  'sif'
   fac_staff:  'manual' # they want to change to separate
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
+  user_group_conversion: # todo two campus files...
+#    waycross:
+#    douglas:
+    UNDERGRAD: 'WCSTDT'
+    GRADUATE: 'WCSTDT'
 
 # University of Georgia
 # todo
 uga:
-  file_type: 'txt'
+  user_class_file: 'uga_user' # todo rename txt_user...
   fac_staff: 'mixed'
   exp_date:  false
   barcodes:  false
@@ -417,38 +462,42 @@ uga:
 # todo exp_date input by gil web form - does that generate the exp_date file?
 # todo barcode just is the primary id
 ung:
+  user_class_file: 'ung_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'student'
+    GRADUATE:   'student'
 
 # Valdosta State
 vsu:
+  user_class_file: 'vsu_user'
   file_type:  'sif'
   fac_staff:  'mixed' # not clear - see survey response
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    STUDNTUND:  ''
-    STUDNTGRA:  ''
-    CONSORT:    ''
+    STUDNTUND:  'STUDNTUND'
+    STUDNTGRA:  'STUDNTGRA'
+    CONSORT:    'CONSORT'
 
 # University of West Georgia
 # special format
 westga: # using a format/process similar to gsu
+  user_class_file: 'westga_user'
   file_type:  'westga'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
+  user_group_conversion: # todo...so many
 
 
 # testing configs
 
 test_sif:
+  user_class_file: 'sif_user'
   file_type:    'sif'
   fac_staff:    'manual'
   exp_date:     true
