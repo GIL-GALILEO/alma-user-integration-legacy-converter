@@ -61,15 +61,4 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
-  def test_users_of_two_different_classes
-
-    @databaser.add_user_to_archive('123456789')
-
-    result = UserFactory.generate(@test_inst)
-
-    assert_kind_of SifUser, result[0]
-    assert_kind_of User, result[1]
-
-  end
-
 end

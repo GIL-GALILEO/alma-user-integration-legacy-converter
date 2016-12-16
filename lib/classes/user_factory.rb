@@ -120,7 +120,7 @@ class UserFactory
 
       bye_user_ids = users_to_expire institution, new_users
 
-      users.concat user_objects_for_expired_users(bye_user_ids)
+      users.concat user_objects_for_expired_users(bye_user_ids, user_class)
 
     end
 
@@ -128,10 +128,10 @@ class UserFactory
 
   end
 
-  def self.user_objects_for_expired_users(bye_user_ids = [])
+  def self.user_objects_for_expired_users(bye_user_ids = [], user_class)
 
     bye_user_ids.map do |id|
-      u = User.new
+      u = user_class.new
       u.primary_id = id
       u.expiry_date = Date.new.strftime('%Y-%m-%d')
       u
