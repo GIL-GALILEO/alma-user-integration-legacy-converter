@@ -1,10 +1,13 @@
 require 'minitest/autorun'
 require './lib/classes/file_handler'
 require './lib/classes/run_set'
+require './lib/classes/institution'
 
 class RunSetTest < MiniTest::Test
 
   def setup
+
+    inst = Institution.new('test_sif')
 
     barcode_file = File.new 'data/test_sif/full/barcode_file'
     exp_file     = File.new 'data/test_sif/full/exp_date'
@@ -12,6 +15,7 @@ class RunSetTest < MiniTest::Test
     config       = { run_type: :full }
 
     @run_set = RunSet.new
+    @run_set.inst = inst
     @run_set.barcode = barcode_file
     @run_set.data = data_file
     @run_set.exp = exp_file
@@ -22,6 +26,12 @@ class RunSetTest < MiniTest::Test
   def test_is_a_runset
 
     assert_kind_of RunSet, @run_set
+
+  end
+
+  def test_has_an_institution
+
+    assert_kind_of Institution, @run_set.inst
 
   end
 

@@ -1,11 +1,22 @@
 class RunSet
 
-  attr_reader :data, :exp, :barcode, :config
+  attr_reader :data, :exp, :barcode, :config, :inst
+
+  # the institution object
+  def inst=(inst)
+    if inst.is_a? Institution
+      @inst = inst
+    else
+      raise StandardError.new('Institution provided is not an Institution!')
+    end
+  end
 
   # the patron or facstaff file
   def data=(data_file)
     if is_file? data_file
       @data = data_file
+    else
+      raise StandardError.new('Data file provided is not a File!')
     end
   end
 
@@ -13,6 +24,8 @@ class RunSet
   def exp=(exp_file)
     if is_file? exp_file
       @exp = exp_file
+    else
+      raise StandardError.new('Exp Date file provided is not a File!')
     end
   end
 
@@ -20,6 +33,8 @@ class RunSet
   def barcode=(barcode_file)
     if is_file? barcode_file
       @barcode = barcode_file
+    else
+      raise StandardError.new('Barcode file provided is not a File!')
     end
   end
 
