@@ -137,10 +137,10 @@ gasou: # customized ZORVLIB, college and major data included, also patrons from 
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
-    EAST_GA:    ''
-    FAC_STAFF:  ''
+    UNDERGRAD:  'ST'
+    GRADUATE:   'GR'
+    EAST_GA:    'RS'
+    FAC_STAFF:  'GF'
 
 # Georgia College
 gcsu:
@@ -227,6 +227,8 @@ ksu:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
+    UNDERGRAD:  'UNDERGRAD'
+    GRADUATE:   'GRADUATE'
 
 
 # Middle Georgia State University
@@ -236,8 +238,8 @@ mga:
   exp_date:   false
   barcodes:   false
   user_group_conversion:
-    UNDERGRAD:  ''
-    GRADUATE:   ''
+    UNDERGRAD:  'UNDERGRAD'
+    GRADUATE:   'GRADUATE'
 
 # Savannah Sate University
 savst:
