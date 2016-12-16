@@ -99,6 +99,7 @@ class FileHandler
     end
       
     run_set.config = run_config
+    run_set.inst = @institution
 
     run_set
 

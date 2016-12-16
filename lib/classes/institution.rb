@@ -41,6 +41,10 @@ class Institution
     @config['file_type'] == 'txt'
   end
 
+  def user_class
+    @config['user_class_file']
+  end
+
   def process_facstaff?
     !@config['fac_staff'] == 'manual'
   end

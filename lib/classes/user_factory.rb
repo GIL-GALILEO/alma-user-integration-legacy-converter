@@ -1,88 +1,40 @@
 require 'csv'
 require './lib/classes/databaser'
-require './lib/classes/txt_user'
-require './lib/classes/sif_user'
+require './lib/classes/run_set'
+require './lib/classes/institution'
+require './lib/classes/user'
 
 class UserFactory
 
-  DATA_DIR_BASE = './data/'
-  TXT_FIELD_COUNT = 22
+  def self.generate(run_set)
 
-  def self.generate(institution)
-
-    unless institution.kind_of? Institution
-      raise StandardError.new('Bad Institution provided to user factory')
+    unless run_set.kind_of? RunSet
+      raise StandardError.new('Bad RunSet provided to user factory')
     end
 
-    files_path = File.join DATA_DIR_BASE, "#{institution.code}/full/*"
-    files = Dir.glob(files_path)
-    files_found = files.length
-    patron_file = false
-    user_class = nil
-    barcode_data = nil
-    exp_date_from_file = nil
+    @run_set = run_set
 
-    if files_found == 0
-      institution.logger.warn 'No files found'
-      return nil
-    else
-      institution.logger.info "#{files_found} files found for processing"
-    end
+    user_class = load_and_initialize_user_class run_set.inst.user_class
 
-    files.each do |file_path|
-
-      begin
-        file_first_line = File.open(file_path, &:readline)
-      rescue StandardError => e
-        institution.logger.error("File read error: #{e.message}")
-        next
-      end
-
-      case detect_type_of_file(file_first_line)
-
-        when 'exp_date'
-
-          exp_date_from_file = file_first_line.strip
-
-        when 'barcode'
-
-          barcode_array = CSV.read(file_path, col_sep: '|')
-          barcode_data = Hash[*barcode_array.flatten]
-
-        when 'patron_sif'
-
-          patron_file = file_path
-          user_class = SifUser
-
-        when 'patron_txt'
-
-          patron_file = file_path
-          user_class = TxtUser
-
-        when 'unknown'
-
-          institution.logger.warn("Mystery file encountered: #{file_path}")
-
-        else
-
-          institution.logger.error("File handling error for file: #{file_path}")
-
-        end
-
+    unless user_class.ancestors.include? User
+      raise StandardError.new('User class not loaded properly in user factory')
     end
 
     users = []
     error_count = 0
 
-    if patron_file and user_class
+    barcode_hash = run_set.barcode_hash
+    exp_date_from_file = run_set.exp_date
 
-      File.foreach(patron_file).with_index do |line, line_num|
+    if run_set.is_sufficient?
+
+      File.foreach(run_set.data).with_index do |line, line_num|
 
         begin
-          users << user_class.new(line, institution)
+          users << user_class.new(line, run_set.inst)
         rescue StandardError => e
           error_count += 1
-          institution.logger.error("Problem loading line #{line_num} from file: #{e.message}")
+          run_set.inst.logger.warn("Problem loading line #{line_num} from file: #{e.message}")
         end
 
       end
@@ -94,31 +46,27 @@ class UserFactory
     end
 
     if error_count > 0
-      institution.logger.warn "Errors encountered: #{error_count}"
+      run_set.inst.logger.warn "Errors encountered: #{error_count}"
     end
 
     new_users = []
 
     users.each do |u|
 
-      if institution.expect_barcodes? and barcode_data[u.primary_id]
-        u.barcode = barcode_data[u.primary_id]
-      end
+      u.barcode = barcode_hash[u.primary_id] if barcode_hash
 
-      if institution.expect_exp_date? and exp_date_from_file
-        u.expiry_date = exp_date_from_file
-      end
+      u.expiry_date= exp_date_from_file if exp_date_from_file
 
       # do patron_group conversion
-      set_patron_group u, institution
+      set_patron_group u, run_set.inst
 
       new_users << u.primary_id
 
     end
 
-    if institution.autoexpire_missing_users?
+    if run_set.inst.autoexpire_missing_users?
 
-      bye_user_ids = users_to_expire institution, new_users
+      bye_user_ids = users_to_expire run_set.inst, new_users
 
       users.concat user_objects_for_expired_users(bye_user_ids, user_class)
 
@@ -149,23 +97,6 @@ class UserFactory
 
   end
 
-  def self.detect_type_of_file(line)
-
-    if CSV.parse_line(line, col_sep: '|').length == TXT_FIELD_COUNT
-      return 'patron_txt'
-    end
-
-    case line
-
-      when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
-      when /[0-9]{9}[|][0-9]+/ then 'barcode'
-      when /.{400,}/ then 'patron_sif' # todo student/faculty?
-      else 'unknown'
-
-    end
-
-  end
-
   def self.set_patron_group(user, inst)
 
     groups_translation = inst.groups_data
@@ -175,6 +106,13 @@ class UserFactory
     else
       inst.logger.warn "Undefined user_group found: #{user.user_group}"
     end
+
+  end
+
+  def self.load_and_initialize_user_class(user_class)
+
+    require_relative user_class
+    Kernel.const_get user_class.split('_').collect(&:capitalize).join
 
   end
 

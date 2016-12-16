@@ -1,3 +1,5 @@
+require 'csv'
+
 class RunSet
 
   attr_reader :data, :exp, :barcode, :config, :inst
@@ -48,6 +50,21 @@ class RunSet
       @config = config_hash
     else
       raise StandardError.new('Config value provided is not a Hash!')
+    end
+  end
+
+  def barcode_hash
+    if inst.expect_barcodes?
+      barcode_array = CSV.read(@barcode.path, col_sep: '|')
+      Hash[*barcode_array.flatten]
+    else
+      nil
+    end
+  end
+
+  def exp_date
+    if inst.expect_exp_date?
+      File.open(@exp.path, &:readline)
     end
   end
 

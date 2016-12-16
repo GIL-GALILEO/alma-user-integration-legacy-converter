@@ -1,12 +1,19 @@
 require './lib/classes/user_factory'
 require './lib/classes/templater'
+require './lib/classes/file_handler'
 
 class XmlFactory
 
   def self.generate_for(institution)
 
     begin
-      users = UserFactory.generate(institution)
+      run_set = FileHandler.new(institution).generate
+    rescue StandardError => e
+      raise StandardError.new("XML Factory (FileHandler) error: #{e.message}")
+    end
+
+    begin
+      users = UserFactory.generate(run_set)
     rescue StandardError => e
       raise StandardError.new("XML Factory (UserFactory) error: #{e.message}")
     end
