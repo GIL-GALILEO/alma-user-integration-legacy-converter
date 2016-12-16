@@ -33,6 +33,12 @@ class TemplaterTest < MiniTest::Test
 
   end
 
+  def test_includes_default_epiry_date
+
+    assert_match /2382-12-21Z/, @xml
+
+  end
+
   def test_expire_record_fields
 
     user = User.new
