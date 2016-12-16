@@ -2,6 +2,10 @@ class RunSet
 
   attr_reader :data, :exp, :barcode, :config, :inst
 
+  def is_sufficient?
+    !!(inst && data && config)
+  end
+
   # the institution object
   def inst=(inst)
     if inst.is_a? Institution

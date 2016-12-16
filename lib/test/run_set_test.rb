@@ -23,6 +23,20 @@ class RunSetTest < MiniTest::Test
 
   end
 
+  def test_returns_true_if_is_sufficient
+
+    assert_equal true, @run_set.is_sufficient?
+
+  end
+
+  def test_returns_false_if_not_sufficient
+
+    bad_run_set = RunSet.new
+
+    assert_equal false, bad_run_set.is_sufficient?
+
+  end
+
   def test_is_a_runset
 
     assert_kind_of RunSet, @run_set
