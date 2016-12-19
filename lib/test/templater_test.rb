@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/classes/sif_user'
+require './lib/classes/users/sif_user'
 require './lib/classes/institution'
 require './lib/classes/templater'
 

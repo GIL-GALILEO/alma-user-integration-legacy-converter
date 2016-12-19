@@ -111,7 +111,7 @@ class UserFactory
 
   def self.load_and_initialize_user_class(user_class)
 
-    require_relative user_class
+    require "./lib/classes/users/#{user_class}"
     Kernel.const_get user_class.split('_').collect(&:capitalize).join
 
   end

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/classes/west_ga_user'
+require './lib/classes/users/west_ga_user'
 require './lib/classes/institution'
 
 class WestGaUserTest < MiniTest::Test

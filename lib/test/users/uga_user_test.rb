@@ -1,9 +1,9 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/classes/txt_user'
+require './lib/classes/users/uga_user'
 require './lib/classes/institution'
 
-class TxtUserTest < MiniTest::Test
+class UgaUserTest < MiniTest::Test
 
   TEST_DATA_FILE = './config/test_data.yml'
 
@@ -11,7 +11,7 @@ class TxtUserTest < MiniTest::Test
 
     test_data = YAML.load_file TEST_DATA_FILE
     test_inst = Institution.new 'test_txt'
-    @user = TxtUser.new test_data['txt_test'], test_inst
+    @user = UgaUser.new test_data['txt_test'], test_inst
 
   end
 

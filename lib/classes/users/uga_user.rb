@@ -1,7 +1,7 @@
-require_relative 'user'
+require './lib/classes/user'
 require 'csv'
 
-class TxtUser < User
+class UgaUser < User
 
   attr_accessor :name
 

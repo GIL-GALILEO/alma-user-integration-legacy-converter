@@ -1,4 +1,4 @@
-require_relative 'user'
+require './lib/classes/user'
 require './lib/util'
 include Util::File
 
