@@ -1,43 +1,49 @@
-require_relative 'gsu_user'
+require './lib/classes/users/sif_user'
 
-class WestGaUser < GsuUser
+class WestGaUser < SifUser
 
-  def initialize(line_data, institution)
+  USER_SEGMENT_LENGTH = 488
+  ADDRESS_SEGMENT_LENGTH = 429
+  MAXIMUM_ADDRESS_SEGMENTS = 2
 
-    super(line_data, institution)
+  GENERAL_MAPPING = {
+      user_group: [45, 55],
+      first_name: [340, 360],
+      middle_name: [360, 380],
+      last_name: [310, 330],
+      email: [1346, 1396],
+      barcode: [20, 29],
+      primary_id: [238, 248],
+  }
 
-    secondary_address_mapping.each do |attr, width|
-
-      set_value("secondary_#{attr}", extract_from_line(width[0], width[1]))
-
-    end
-
-  end
+  ADDRESS_SEGMENT_MAPPING = {
+      address_line_1:           [0, 99],
+      address_line_2:           [99, 199],
+      address_city:             [210, 250],
+      address_state_province:   [250, 257],
+      address_postal_code:      [257, 267],
+      address_country:          [267, 287],
+      address_phone:            [287, 307],
+  }
 
   def general_mapping
-    {
-        user_group: [45, 55],
-        first_name: [340, 360],
-        middle_name: [360, 380],
-        last_name: [310, 330],
-        email: [1347, 1396], # todo
-        barcode: [20, 28],
-        primary_id: [238, 248],
-        # expiry_date: [] # so many dates to choose from...
-    }
+    GENERAL_MAPPING
   end
 
-  def secondary_address_mapping
-    {
-        # address_line_1:           [488, 588],
-        # address_line_2:           [588, 698],
-        # address_city:             [698, 738],
-        # address_state_province:   [738, 745],
-        # address_postal_code:      [745, 756],
-        # address_country:          [],
-        # address_phone:            [],
-        # mobile_phone:             [],
-    }
+  def user_segment_length
+    USER_SEGMENT_LENGTH
+  end
+
+  def address_segment_length
+    ADDRESS_SEGMENT_LENGTH
+  end
+
+  def maximum_address_segments
+    MAXIMUM_ADDRESS_SEGMENTS
+  end
+
+  def address_segment_mapping
+    ADDRESS_SEGMENT_MAPPING
   end
 
 end
