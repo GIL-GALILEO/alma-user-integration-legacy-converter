@@ -8,7 +8,7 @@ class SifUser < User
 
   USER_SEGMENT_LENGTH       = 120
   ADDRESS_SEGMENT_LENGTH    = 328
-  MAXIMUM_ADDRESS_SEGMENTS  = 9
+  MAXIMUM_ADDRESS_SEGMENTS  = 3
 
   ADDRESS_TYPE_MAPPING = {
       '1': 'Permanent Address',
@@ -50,7 +50,7 @@ class SifUser < User
 
     address_data.each do |segment, data_hash|
 
-      case segment
+      case segment.to_s
         when '1'
           # permanent
           set_primary_address(data_hash)
@@ -68,22 +68,43 @@ class SifUser < User
 
   end
 
+  def user_segment_length
+    USER_SEGMENT_LENGTH
+  end
+
+  def address_segment_length
+    ADDRESS_SEGMENT_LENGTH
+  end
+
+  def maximum_address_segments
+    MAXIMUM_ADDRESS_SEGMENTS
+  end
+
+  def general_mapping
+    GENERAL_MAPPING
+  end
+
+  def address_segment_mapping
+    ADDRESS_SEGMENT_MAPPING
+  end
+
   def extract_addresses
     address_data = {}
-    (1...MAXIMUM_ADDRESS_SEGMENTS).each do |segment_num|
+    (1..maximum_address_segments).each do |segment_num|
       address_hash = extract_address_for_segment segment_num
-      address_data[address_hash[:address_type]] = address_hash if address_hash
+      address_type = address_hash[:address_type] || segment_num
+      address_data[address_type] = address_hash if address_hash
     end
     address_data
   end
 
   def extract_address_for_segment(segment_num)
-    segment_start = USER_SEGMENT_LENGTH + ( (segment_num - 1) * ADDRESS_SEGMENT_LENGTH )
-    segment_finish = segment_start + ADDRESS_SEGMENT_LENGTH
+    segment_start = user_segment_length + ( (segment_num - 1) * address_segment_length )
+    segment_finish = segment_start + address_segment_length
     address_segment = @line_data[segment_start...segment_finish]
     return nil unless address_segment && address_segment.strip != '' # exit if no address data
     address_data = {}
-    ADDRESS_SEGMENT_MAPPING.each do |attr, width|
+    address_segment_mapping.each do |attr, width|
       address_data[attr] = extract_from_line((segment_start + width[0]), (segment_start + width[1]))
     end
     address_data
@@ -91,7 +112,7 @@ class SifUser < User
 
   def extract_user_data
     general_data = {}
-    GENERAL_MAPPING.each do |attr, width|
+    general_mapping.each do |attr, width|
       general_data[attr] = extract_from_line width[0], width[1]
     end
     general_data

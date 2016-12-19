@@ -537,7 +537,7 @@ test_sif_student_only:
     2:
       label: 'GRADUATE'
       alma_group: 'B'
-test_txt:
+test_uga:
   file_type: 'sif'
   fac_staff: true
   exp_date:  false
