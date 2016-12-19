@@ -525,6 +525,15 @@ test_westga:
     UNDERGRAD:  'ALMA UNDERGRAD'
     GRADUATE:   'ALMA GRAD'
     FAC_STAFF:  'ALMA FACSTAFF'
+test_vsu:
+  file_type: 'vsu'
+  fac_staff: 'manual'
+  exp_date:  false
+  barcodes:  false
+  user_group_conversion:
+    UNDERGRAD:  'ALMA UNDERGRAD'
+    GRADUATE:   'ALMA GRAD'
+    FAC_STAFF:  'ALMA FACSTAFF'
 test_sif_student_only:
   file_type:  'sif'
   fac_staff:  0
