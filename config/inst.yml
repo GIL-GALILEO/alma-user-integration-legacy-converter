@@ -307,7 +307,7 @@ sgsc:
 # University of Georgia
 # todo
 uga:
-  user_class_file: 'uga_user' # todo rename txt_user...
+  user_class_file: 'uga_user'
   fac_staff: 'mixed'
   exp_date:  false
   barcodes:  false

@@ -45,4 +45,106 @@ class UgaUserTest < MiniTest::Test
 
   end
 
+  def test_has_email
+
+    assert_equal @user.email, 'almauser@uga.edu'
+
+  end
+
+  # def test_has_user_group
+  #
+  #   assert_equal @user.user_group, ''
+  #
+  # end
+
+  def test_has_primary_address_line_1
+
+    assert_equal @user.primary_address_line_1, '200 Broad St'
+
+  end
+
+  def test_has_primary_address_city
+
+    assert_equal @user.primary_address_city, 'Athens'
+
+  end
+
+  def test_has_primary_address_state
+
+    assert_equal @user.primary_address_state_province, 'GA'
+
+  end
+
+  def test_has_primary_address_postal_code
+
+    assert_equal @user.primary_address_postal_code, '33333'
+
+  end
+
+  def test_has_primary_address_phone
+
+    assert_equal @user.primary_address_phone, '9042411080'
+
+  end
+
+  def test_has_secondary_address_line_1
+
+    assert_equal @user.secondary_address_line_1, '100 Main Highway'
+
+  end
+
+  def test_has_secondary_address_city
+
+    assert_equal @user.secondary_address_city, 'Athens'
+
+  end
+
+  def test_has_secondary_address_state
+
+    assert_equal @user.secondary_address_state_province, 'GA'
+
+  end
+
+  def test_has_secondary_address_postal_code
+
+    assert_equal @user.secondary_address_postal_code, '30123'
+
+  end
+
+  def test_has_secondary_address_phone
+
+    assert_equal @user.secondary_address_phone, '9007654321'
+
+  end
+
+  def test_has_last_pay_date
+
+    assert_equal @user.last_pay_date, '20160831'
+
+  end
+
+  def test_has_last_enrolled_date
+
+    assert_equal @user.last_enrolled_date, '201608'
+
+  end
+
+  def test_has_barcode
+
+    assert_equal @user.barcode, '1234567891234567'
+
+  end
+
+  def test_has_class_code
+
+    assert_equal @user.class_code, 'G'
+
+  end
+
+  # def test_has_secondary_id
+  #
+  #   assert_equal @user.secondary_id, 'tbd'
+  #
+  # end
+
 end
