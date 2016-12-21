@@ -5,7 +5,7 @@ require './lib/classes/run_set'
 class FileHandler
 
   DATA_DIR_BASE = './data/'
-  TXT_FILE_FIELD_COUNT = 22
+  TXT_FILE_FIELD_COUNT = 23
 
   DROP_LOCATIONS = %w(full delta)
 
@@ -30,17 +30,21 @@ class FileHandler
     # todo this does the job, but doesn't seem ideal
     DROP_LOCATIONS.each do |loc|
 
-      run_config[:run_type] = loc
+      unless run_set
 
-      drop_location = File.join @inst_files_root, loc, '*'
+        run_config[:run_type] = loc
 
-      files = get_files_in drop_location
+        drop_location = File.join @inst_files_root, loc, '*'
 
-      unless files.length > 0
-        break
+        files = get_files_in drop_location
+
+        unless files.length > 0
+          break
+        end
+
+        run_set = compose_runset(files, run_config)
+
       end
-
-      run_set = compose_runset(files, run_config)
 
     end
 

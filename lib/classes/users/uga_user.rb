@@ -59,7 +59,7 @@ class UgaUser < User
   end
 
   def user_group=(fs_codes)
-    determine_user_group_based_on fs_codes
+    @user_group = determine_user_group_based_on fs_codes
   end
 
   def class_code=(class_code)
@@ -68,9 +68,41 @@ class UgaUser < User
 
   private
 
-  def determine_user_group_based_on(fs_codes)
+  def determine_user_group_based_on(fs_codes = nil)
 
     fs_codes = fs_codes.split(FS_CODE_SEPARATOR)
+
+    user_group = {}
+
+    fs_codes.each do |fs_code|
+
+      # if FS code has no mapping key, do not generate a user object
+      if @institution.groups_data.has_key? fs_code
+
+          alma_name = @institution.groups_data[fs_code]
+
+          group_settings = @institution.groups_settings[alma_name]
+
+          this_user_group = {
+              alma_name: alma_name,
+              weight: group_settings['weight']
+          }
+
+          user_group = this_user_group if user_group.empty? || this_user_group[:weight] > user_group[:weight]
+
+      else
+        # todo purge user from user array somehow...
+        # self.do_not_include = true # ???
+        return nil
+      end
+
+
+    end
+
+    # todo prevent this from being overwritten by other means
+    self.expiry_date = Time.now + @institution.groups_settings[user_group[:alma_name]]['exp_date_days'].to_i
+
+    user_group[:alma_name]
 
   end
 

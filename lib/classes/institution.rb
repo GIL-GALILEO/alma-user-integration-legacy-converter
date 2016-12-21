@@ -33,6 +33,10 @@ class Institution
     @config['user_group_conversion']
   end
 
+  def groups_settings
+    @config['user_group_settings']
+  end
+
   def expect_sif?
     @config['file_type'] == 'sif'
   end

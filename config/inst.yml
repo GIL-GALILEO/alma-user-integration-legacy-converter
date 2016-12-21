@@ -310,22 +310,38 @@ uga:
   fac_staff: 'mixed'
   exp_date:  false
   barcodes:  false
-  user_group_conversion:
-    00: 'UNDER PRIV'  # student
-    01: 'FAC'         # faculty
-    02: 'STAFF'       # staff
-    07: 'FAC'         # adj faculty
-    10: 'GRAD PRIV'   # postdoc
-    15: 'STAFF PRIV'  # bor (athens)
-    16: 'STAFF PRIV'  # campus ministers
-    17: 'STAFF PRIV'  # greek house dir
-    18: 'STAFF PRIV'  # mcg sonat employee
-    23: 'STAFF PRIV'  # coop ext serv
-    26: 'STAFF'       # mcg staff
-    27: 'UNDER PRIV'  # mcg student
-    39: 'GRAD PRIV'   # visiting scholar in residence
-    40: 'UNDER PRIV'  # visiting undergrad intern
-    41: 'GRAD PRIV'   # visiting graduate researcher
+  user_group_conversion: # todo beta
+    '00': 'UNDER PRIV'  # student
+    '01': 'FAC'         # faculty
+    '02': 'STAFF'       # staff
+    '07': 'FAC'         # adj faculty
+    '10': 'GRAD PRIV'   # postdoc
+    '15': 'STAFF PRIV'  # bor (athens)
+    '16': 'STAFF PRIV'  # campus ministers
+    '17': 'STAFF PRIV'  # greek house dir
+    '18': 'STAFF PRIV'  # mcg sonat employee
+    '23': 'STAFF PRIV'  # coop ext serv
+    '26': 'STAFF'       # mcg staff
+    '27': 'UNDER PRIV'  # mcg student
+    '39': 'GRAD PRIV'   # visiting scholar in residence
+    '40': 'UNDER PRIV'  # visiting undergrad intern
+    '41': 'GRAD PRIV'   # visiting graduate researcher
+  user_group_settings:
+    'UNDER PRIV':
+      weight: 1 # lowest
+      exp_date_days: 180
+    'FAC':
+      weight: 10 # highest
+      exp_date_days: 365
+    'GRAD PRIV':
+      weight: 5
+      exp_date_days: 180
+    'STAFF':
+      weight: 8
+      exp_date_days: 365
+    'STAFF PRIV':
+      weight: 6
+      exp_date_days: 180
 
 # University of North Georgia
 # todo future usage of facstaff CSV
@@ -420,10 +436,35 @@ test_uga:
   fac_staff: true
   exp_date:  false
   barcodes:   false
-  user_group_conversion:
-    00:
-      label: 'Student'
-      alma_group: 'A'
-    01:
-      label: 'Faculty'
-      alma_group: 'B'
+  user_group_conversion: # todo beta
+    '00': 'UNDER PRIV'  # student
+    '01': 'FAC'         # faculty
+    '02': 'STAFF'       # staff
+    '07': 'FAC'         # adj faculty
+    '10': 'GRAD PRIV'   # postdoc
+    '15': 'STAFF PRIV'  # bor (athens)
+    '16': 'STAFF PRIV'  # campus ministers
+    '17': 'STAFF PRIV'  # greek house dir
+    '18': 'STAFF PRIV'  # mcg sonat employee
+    '23': 'STAFF PRIV'  # coop ext serv
+    '26': 'STAFF'       # mcg staff
+    '27': 'UNDER PRIV'  # mcg student
+    '39': 'GRAD PRIV'   # visiting scholar in residence
+    '40': 'UNDER PRIV'  # visiting undergrad intern
+    '41': 'GRAD PRIV'   # visiting graduate researcher
+  user_group_settings:
+    'UNDER PRIV':
+      weight: 1 # lowest
+      exp_date_days: 180
+    'FAC':
+      weight: 10 # highest
+      exp_date_days: 365
+    'GRAD PRIV':
+      weight: 5
+      exp_date_days: 180
+    'STAFF':
+      weight: 8
+      exp_date_days: 365
+    'STAFF PRIV':
+      weight: 6
+      exp_date_days: 180

@@ -51,11 +51,11 @@ class UgaUserTest < MiniTest::Test
 
   end
 
-  # def test_has_user_group
-  #
-  #   assert_equal @user.user_group, ''
-  #
-  # end
+  def test_has_user_group
+
+    assert_equal @user.user_group, 'STAFF'
+
+  end
 
   def test_has_primary_address_line_1
 
