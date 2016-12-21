@@ -305,161 +305,30 @@ sgsc:
     GRADUATE: 'WCSTDT'
 
 # University of Georgia
-# todo
 uga:
   user_class_file: 'uga_user'
   fac_staff: 'mixed'
   exp_date:  false
   barcodes:  false
   user_group_conversion:
-    00:
-      label: 'Student'
-      alma_group:
-    01:
-      label: 'Faculty'
-      alma_group: ''
-    02:
-      label: 'Staff'
-      alma_group: ''
-    03:
-      label: 'Alumni'
-      alma_group: ''
-    04:
-      label: 'Retired Faculty/Staff'
-      alma_group: ''
-    05:
-      label: 'Deceased Faculty/Staff'
-      alma_group: ''
-    06:
-      label: 'Prospective Employee'
-      alma_group: ''
-    07:
-      label: 'Adjunct Faculty'
-      alma_group: ''
-    08:
-      label: 'Not Used'
-      alma_group: ''
-    09:
-      label: 'Campus Visitor'
-      alma_group: ''
-    10:
-      label: 'American Language Program (AMLAN)'
-      alma_group: ''
-    11:
-      label: 'Vet Med Student'
-      alma_group: ''
-    12:
-      label: 'Dependent of Student'
-      alma_group: ''
-    13:
-      label: 'Dependent of Faculty/Staff'
-      alma_group: ''
-    14:
-      label: 'Consultant/Contractor'
-      alma_group: ''
-    15:
-      label: 'Board of Regents'
-      alma_group: ''
-    16:
-      label: 'Campus Ministers'
-      alma_group: ''
-    17:
-      label: 'Sorority House Mothers'
-      alma_group: ''
-    18:
-      label: 'MCG SONAT Employees'
-      alma_group: ''
-    19:
-      label: 'ROTC Staff'
-      alma_group: ''
-    20:
-      label: 'SONAT'
-      alma_group: ''
-    21:
-      label: ''
-      alma_group: ''
-    22:
-      label: 'Credit Union Employee'
-      alma_group: ''
-    23:
-      label: 'Cooperative Extension Employee'
-      alma_group: ''
-    24:
-      label: 'Ramsey Access'
-      alma_group: ''
-    25:
-      label: 'Program Participant'
-      alma_group: ''
-    26:
-      label: 'MCG School of Medicine Employee'
-      alma_group: ''
-    27:
-      label: 'MCG School of Medicine Student'
-      alma_group: ''
-    28:
-      label: 'Dependent of Credit Union Staff'
-      alma_group: ''
-    29:
-      label: 'Dependent of Cooperative Extension'
-      alma_group: ''
-    30:
-      label: 'Dependent of Retired Faculty/Staff'
-      alma_group: ''
-    31:
-      label: 'Dependent of Adjunct Faculty'
-      alma_group: ''
-    32:
-      label: 'Dependent of Visiting Faculty'
-      alma_group: ''
-    33:
-      label: 'Dependent of Consultants'
-      alma_group: ''
-    34:
-      label: 'Dependent of Board of Regents'
-      alma_group: ''
-    35:
-      label: 'Dependent of Campus Ministers'
-      alma_group: ''
-    36:
-      label: 'Dependent of Sorority House Mothers'
-      alma_group: ''
-    37:
-      label: 'Dependent of MCG SONAT Staff'
-      alma_group: ''
-    38:
-      label: 'Dependent of ROTC Staff'
-      alma_group: ''
-    39:
-      label: 'Scholar in Residence'
-      alma_group: ''
-    40:
-      label: 'Undergraduate Intern'
-      alma_group: ''
-    41:
-      label: 'Visiting Graduate Student Researcher'
-      alma_group: ''
-    50:
-      label: 'Prospective Student - Applicant'
-      alma_group: ''
-    55:
-      label: 'Prospective Student - Institution Accept'
-      alma_group: ''
-    60:
-      label: 'Prospective Student - Applicant Accept'
-      alma_group: ''
-    98:
-      label: 'Unknown (discard?)'
-      alma_group: ''
-    99:
-      label: 'Historical Student/Record'
-      alma_group: ''
-  student_class_code_conversion:
-    undergraduate: [1, 2, 3, 4]
-    graduate: [5]
+    00: 'UNDER PRIV'  # student
+    01: 'FAC'         # faculty
+    02: 'STAFF'       # staff
+    07: 'FAC'         # adj faculty
+    10: 'GRAD PRIV'   # postdoc
+    15: 'STAFF PRIV'  # bor (athens)
+    16: 'STAFF PRIV'  # campus ministers
+    17: 'STAFF PRIV'  # greek house dir
+    18: 'STAFF PRIV'  # mcg sonat employee
+    23: 'STAFF PRIV'  # coop ext serv
+    26: 'STAFF'       # mcg staff
+    27: 'UNDER PRIV'  # mcg student
+    39: 'GRAD PRIV'   # visiting scholar in residence
+    40: 'UNDER PRIV'  # visiting undergrad intern
+    41: 'GRAD PRIV'   # visiting graduate researcher
 
 # University of North Georgia
 # todo future usage of facstaff CSV
-# todo exp_date input by gil web form - does that generate the exp_date file?
 # todo barcode just is the primary id
 ung:
   user_class_file: 'ung_user'
