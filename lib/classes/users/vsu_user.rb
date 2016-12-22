@@ -1,6 +1,6 @@
 require './lib/classes/users/sif_user'
 
-class WestGaUser < SifUser
+class VsuUser < SifUser
 
   VSU_USER_SEGMENT_LENGTH = 488
   VSU_ADDRESS_SEGMENT_LENGTH = 429

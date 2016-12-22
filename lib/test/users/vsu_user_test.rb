@@ -11,7 +11,7 @@ class VsuUserTest < MiniTest::Test
 
     test_data = YAML.load_file TEST_DATA_FILE
     test_inst = Institution.new 'test_vsu'
-    @user = WestGaUser.new test_data['vsu_test'], test_inst
+    @user = VsuUser.new test_data['vsu_test'], test_inst
 
   end
 

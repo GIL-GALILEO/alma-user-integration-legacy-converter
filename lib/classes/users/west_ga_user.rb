@@ -11,7 +11,7 @@ class WestGaUser < SifUser
       first_name: [340, 360],
       middle_name: [360, 380],
       last_name: [310, 330],
-      email: [1346, 1396],
+      email: [1347, 1396],
       barcode: [20, 29],
       primary_id: [238, 248],
   }
@@ -19,7 +19,7 @@ class WestGaUser < SifUser
   WESTGA_ADDRESS_SEGMENT_MAPPING = {
       address_line_1:           [0, 99],
       address_line_2:           [99, 199],
-      address_city:             [210, 250],
+      address_city:             [210, 249],
       address_state_province:   [250, 257],
       address_postal_code:      [257, 267],
       address_country:          [267, 287],

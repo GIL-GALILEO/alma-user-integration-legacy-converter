@@ -89,19 +89,13 @@ class WestGaUserTest < MiniTest::Test
 
   def test_has_primary_address_phone
 
-    assert_equal '(800)111-2222', @user.primary_address_phone
-
-  end
-
-  def test_has_primary_address_mobile_phone
-
-    assert_equal nil, @user.primary_address_mobile_phone
+    assert_equal '800-111-2222', @user.primary_address_phone
 
   end
 
   def test_has_secondary_address_line_1
 
-    assert_equal '200 Crows Ct', @user.secondary_address_line_1
+    assert_equal '100 Crows Ct', @user.secondary_address_line_1
 
   end
 
@@ -138,12 +132,6 @@ class WestGaUserTest < MiniTest::Test
   def test_has_secondary_address_phone
 
     assert_equal '', @user.secondary_address_phone
-
-  end
-
-  def test_has_secondary_address_mobile_phone
-
-    assert_equal '', @user.secondary_address_mobile_phone
 
   end
 
