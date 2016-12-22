@@ -17,127 +17,127 @@ class UgaUserTest < MiniTest::Test
 
   def test_has_primary_id
 
-    assert_equal @user.primary_id, '810123456'
+    assert_equal '810123456', @user.primary_id
 
   end
 
   def test_has_name
 
-    assert_equal @user.name, 'User, Alma Test'
+    assert_equal 'User, Alma Test', @user.name
 
   end
 
   def test_has_first_name
 
-    assert_equal @user.first_name, 'Alma'
+    assert_equal 'Alma', @user.first_name
 
   end
 
   def test_has_middle_name
 
-    assert_equal @user.middle_name, 'Test'
+    assert_equal 'Test', @user.middle_name
 
   end
 
   def test_has_last_name
 
-    assert_equal @user.last_name, 'User'
+    assert_equal 'User', @user.last_name
 
   end
 
   def test_has_email
 
-    assert_equal @user.email, 'almauser@uga.edu'
+    assert_equal 'almauser@uga.edu', @user.email
 
   end
 
   def test_has_user_group
 
-    assert_equal @user.user_group, 'STAFF'
+    assert_equal 'STAFF', @user.user_group
 
   end
 
   def test_has_primary_address_line_1
 
-    assert_equal @user.primary_address_line_1, '200 Broad St'
+    assert_equal '200 Broad St', @user.primary_address_line_1
 
   end
 
   def test_has_primary_address_city
 
-    assert_equal @user.primary_address_city, 'Athens'
+    assert_equal 'Athens', @user.primary_address_city
 
   end
 
   def test_has_primary_address_state
 
-    assert_equal @user.primary_address_state_province, 'GA'
+    assert_equal 'GA', @user.primary_address_state_province
 
   end
 
   def test_has_primary_address_postal_code
 
-    assert_equal @user.primary_address_postal_code, '33333'
+    assert_equal '33333', @user.primary_address_postal_code
 
   end
 
   def test_has_primary_address_phone
 
-    assert_equal @user.primary_address_phone, '9042411080'
+    assert_equal '9042411080', @user.primary_address_phone
 
   end
 
   def test_has_secondary_address_line_1
 
-    assert_equal @user.secondary_address_line_1, '100 Main Highway'
+    assert_equal '100 Main Highway', @user.secondary_address_line_1
 
   end
 
   def test_has_secondary_address_city
 
-    assert_equal @user.secondary_address_city, 'Athens'
+    assert_equal 'Athens', @user.secondary_address_city
 
   end
 
   def test_has_secondary_address_state
 
-    assert_equal @user.secondary_address_state_province, 'GA'
+    assert_equal 'GA', @user.secondary_address_state_province
 
   end
 
   def test_has_secondary_address_postal_code
 
-    assert_equal @user.secondary_address_postal_code, '30123'
+    assert_equal '30123', @user.secondary_address_postal_code
 
   end
 
   def test_has_secondary_address_phone
 
-    assert_equal @user.secondary_address_phone, '9007654321'
+    assert_equal '9007654321', @user.secondary_address_phone
 
   end
 
   def test_has_last_pay_date
 
-    assert_equal @user.last_pay_date, '20160831'
+    assert_equal '20160831', @user.last_pay_date
 
   end
 
   def test_has_last_enrolled_date
 
-    assert_equal @user.last_enrolled_date, '201608'
+    assert_equal '201608', @user.last_enrolled_date
 
   end
 
   def test_has_barcode
 
-    assert_equal @user.barcode, '1234567891234567'
+    assert_equal '1234567891234567', @user.barcode
 
   end
 
   def test_has_class_code
 
-    assert_equal @user.class_code, 'G'
+    assert_equal 'G', @user.class_code
 
   end
 
