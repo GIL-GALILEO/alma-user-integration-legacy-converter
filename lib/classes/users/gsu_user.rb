@@ -2,11 +2,11 @@ require './lib/classes/users/sif_user'
 
 class GsuUser < SifUser
 
-  USER_SEGMENT_LENGTH = 488
-  ADDRESS_SEGMENT_LENGTH = 429
-  MAXIMUM_ADDRESS_SEGMENTS = 1
+  GSU_USER_SEGMENT_LENGTH = 488
+  GSU_ADDRESS_SEGMENT_LENGTH = 429
+  GSU_MAXIMUM_ADDRESS_SEGMENTS = 1
 
-  GENERAL_MAPPING = {
+  GSU_GENERAL_MAPPING = {
       user_group: [45, 55],
       first_name: [340, 360],
       middle_name: [360, 380],
@@ -16,7 +16,7 @@ class GsuUser < SifUser
       primary_id: [238, 248],
   }
 
-  ADDRESS_SEGMENT_MAPPING = {
+  GSU_ADDRESS_SEGMENT_MAPPING = {
       address_line_1:           [0, 99],
       address_line_2:           [99, 199],
       address_city:             [210, 250],
@@ -27,23 +27,23 @@ class GsuUser < SifUser
   }
 
   def general_mapping
-    GENERAL_MAPPING
+    GSU_GENERAL_MAPPING
   end
 
   def user_segment_length
-    USER_SEGMENT_LENGTH
+    GSU_USER_SEGMENT_LENGTH
   end
 
   def address_segment_length
-    ADDRESS_SEGMENT_LENGTH
+    GSU_ADDRESS_SEGMENT_LENGTH
   end
 
   def address_segment_mapping
-    ADDRESS_SEGMENT_MAPPING
+    GSU_ADDRESS_SEGMENT_MAPPING
   end
 
   def maximum_address_segments
-    MAXIMUM_ADDRESS_SEGMENTS
+    GSU_MAXIMUM_ADDRESS_SEGMENTS
   end
 
 end

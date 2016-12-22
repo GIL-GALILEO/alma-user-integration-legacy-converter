@@ -2,11 +2,11 @@ require './lib/classes/users/sif_user'
 
 class WestGaUser < SifUser
 
-  USER_SEGMENT_LENGTH = 488
-  ADDRESS_SEGMENT_LENGTH = 429
-  MAXIMUM_ADDRESS_SEGMENTS = 1
+  VSU_USER_SEGMENT_LENGTH = 488
+  VSU_ADDRESS_SEGMENT_LENGTH = 429
+  VSU_MAXIMUM_ADDRESS_SEGMENTS = 1
 
-  GENERAL_MAPPING = {
+  VSU_GENERAL_MAPPING = {
       user_group: [45, 55],
       first_name: [340, 360],
       middle_name: [360, 380],
@@ -16,7 +16,7 @@ class WestGaUser < SifUser
       primary_id: [238, 248],
   }
 
-  ADDRESS_SEGMENT_MAPPING = {
+  VSU_ADDRESS_SEGMENT_MAPPING = {
       address_line_1:           [0, 99],
       address_line_2:           [99, 199],
       address_city:             [210, 250],
@@ -27,23 +27,23 @@ class WestGaUser < SifUser
   }
 
   def general_mapping
-    GENERAL_MAPPING
+    VSU_GENERAL_MAPPING
   end
 
   def user_segment_length
-    USER_SEGMENT_LENGTH
+    VSU_USER_SEGMENT_LENGTH
   end
 
   def address_segment_length
-    ADDRESS_SEGMENT_LENGTH
+    VSU_ADDRESS_SEGMENT_LENGTH
   end
 
   def maximum_address_segments
-    MAXIMUM_ADDRESS_SEGMENTS
+    VSU_MAXIMUM_ADDRESS_SEGMENTS
   end
 
   def address_segment_mapping
-    ADDRESS_SEGMENT_MAPPING
+    VSU_ADDRESS_SEGMENT_MAPPING
   end
 
 end
