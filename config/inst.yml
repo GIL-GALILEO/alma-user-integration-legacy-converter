@@ -388,60 +388,51 @@ test_sif:
   exp_date:     true
   barcodes:     true
   expire_users: true
-  user_group_conversion:
-    UNDERGRAD:  'ALMA UNDERGRAD'
-    GRADUATE:   'ALMA GRAD'
-    FAC_STAFF:  'ALMA FACSTAFF'
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'UNDERGRAD'
+      exp_date_days: 180
+
 test_gsu:
   file_type: 'gsu'
   fac_staff: 'manual'
   exp_date:  false
   barcodes:  false
-  user_group_conversion:
-    UNDERGRAD:  'ALMA UNDERGRAD'
-    GRADUATE:   'ALMA GRAD'
-    FAC_STAFF:  'ALMA FACSTAFF'
+  user_group_settings:
+    PUL1:
+      alma_name: 'PUL1'
+      exp_date_days: 180
+
 test_westga:
   file_type: 'gsu'
   fac_staff: 'manual'
   exp_date:  false
   barcodes:  false
-  user_group_conversion:
-    UNDERGRAD:  'ALMA UNDERGRAD'
-    GRADUATE:   'ALMA GRAD'
-    FAC_STAFF:  'ALMA FACSTAFF'
+  user_group_settings:
+    undergrad:
+      alma_name: 'UNDERGRAD'
+      exp_date_days: 180
+
 test_vsu:
   file_type: 'vsu'
   fac_staff: 'manual'
   exp_date:  false
   barcodes:  false
-  user_group_conversion:
-    UNDERGRAD:  'ALMA UNDERGRAD'
-    GRADUATE:   'ALMA GRAD'
-    FAC_STAFF:  'ALMA FACSTAFF'
+  user_group_settings:
+    STUDNTGRA:
+      alma_name: 'STUDNTGRA'
+      exp_date_days: 180
+
 test_ga_sou:
   user_class_file: 'ga_sou_user'
   file_type:  'sif'
   fac_staff:  'separate'
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'ST'
-    GRADUATE:   'GR'
-    EAST_GA:    'RS'
-    FAC_STAFF:  'GF'
-test_sif_student_only:
-  file_type:  'sif'
-  fac_staff:  0
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    1:
-      label: 'UNDERGRAD'
-      alma_group: 'A'
-    2:
-      label: 'GRADUATE'
-      alma_group: 'B'
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'ST'
+      exp_date_days: 180
 
 test_uga:
   file_type: 'sif'
@@ -487,16 +478,22 @@ test_ksu:
   fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
-    undergrad:    'undergrad'
-    graduate:     'graduate'
+#  user_group_conversion:
+#    undergrad:    'undergrad'
+#    graduate:     'graduate'
 #    'f-fac/staf': 'facstaff'
+  user_group_settings:
+    'f-fac/staf':
+      alma_name: 'facstaff'
+      exp_date_days: 365
+
 test_ung:
   user_class_file: 'ung_user'
   file_type:  'sif'
   fac_staff:  'manual'
   exp_date:   false
   barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'student'
-    GRADUATE:   'student'
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'student'
+      exp_date_days: 180

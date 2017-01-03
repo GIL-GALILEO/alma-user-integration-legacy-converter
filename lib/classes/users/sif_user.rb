@@ -1,6 +1,4 @@
 require './lib/classes/user'
-require './lib/util'
-include Util::File
 
 # Parser object for standard ZORVLIB Process
 
@@ -65,6 +63,8 @@ class SifUser < User
       end
 
     end
+
+    set_expiry_date(@user_group) if @user_group
 
   end
 
@@ -134,6 +134,10 @@ class SifUser < User
 
   def set_email_address(data_hash)
     set_value 'email', data_hash[:address_line_1]
+  end
+
+  def set_expiry_date(user_group)
+    set_value 'expiry_date', date_days_from_now(@institution.groups_settings[user_group]['exp_date_days'])
   end
 
 end

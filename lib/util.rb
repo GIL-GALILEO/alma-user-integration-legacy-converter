@@ -7,6 +7,12 @@ module Util
       exit
     end
 
+    def date_days_from_now(days)
+
+      Time.now + (days * 24 * 60 * 60)
+
+    end
+
   end
 
   module File

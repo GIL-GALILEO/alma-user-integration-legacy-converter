@@ -1,3 +1,7 @@
+require './lib/util'
+include Util::App
+include Util::File
+
 class User
 
   MAXIMUM_STRING_VALUE_LENGTH = 255

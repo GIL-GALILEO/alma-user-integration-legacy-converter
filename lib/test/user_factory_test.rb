@@ -71,7 +71,7 @@ class UserFactoryTest < MiniTest::Test
 
     result = UserFactory.generate(@run_set)
 
-    assert_equal 'ALMA UNDERGRAD', result[0].user_group
+    assert_equal 'UNDERGRAD', result[0].user_group
 
   end
 
