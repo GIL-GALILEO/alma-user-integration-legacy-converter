@@ -3,7 +3,7 @@ require 'yaml'
 require './lib/classes/users/ga_sou_user'
 require './lib/classes/institution'
 
-class GsuUserTest < MiniTest::Test
+class GaSouUserTest < MiniTest::Test
 
   TEST_DATA_FILE = './config/test_data.yml'
 
@@ -83,7 +83,7 @@ class GsuUserTest < MiniTest::Test
 
   def test_has_primary_address_country
 
-    assert_nil @user.primary_address_country
+    assert_equal '', @user.primary_address_country
 
   end
 
@@ -107,37 +107,37 @@ class GsuUserTest < MiniTest::Test
 
   def test_has_secondary_address_line_2
 
-    assert_nil @user.secondary_address_line_2
+    assert_equal '', @user.secondary_address_line_2
 
   end
 
   def test_has_secondary_address_city
 
-    assert_nil @user.secondary_address_city
+    assert_equal '', @user.secondary_address_city
 
   end
 
   def test_has_secondary_address_postal_code
 
-    assert_nil @user.secondary_address_postal_code
+    assert_equal '', @user.secondary_address_postal_code
 
   end
 
   def test_has_secondary_address_state_province
 
-    assert_equal 'GA', @user.secondary_address_state_province
+    assert_equal '', @user.secondary_address_state_province
 
   end
 
   def test_has_secondary_address_country
 
-    assert_nil @user.secondary_address_country
+    assert_equal '', @user.secondary_address_country
 
   end
 
   def test_has_secondary_address_phone
 
-    assert_nil @user.secondary_address_phone
+    assert_equal '', @user.secondary_address_phone
 
   end
 
