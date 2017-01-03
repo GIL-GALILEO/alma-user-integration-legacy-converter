@@ -479,3 +479,13 @@ test_uga:
     'STAFF PRIV':
       weight: 6
       exp_date_days: 180
+test_ksu:
+  user_class_file: 'ksu_user'
+  file_type:  'sif'
+  fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+    undergrad:    'undergrad'
+    graduate:     'graduate'
+#    'f-fac/staf': 'facstaff'
