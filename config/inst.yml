@@ -489,3 +489,12 @@ test_ksu:
     undergrad:    'undergrad'
     graduate:     'graduate'
 #    'f-fac/staf': 'facstaff'
+test_ung:
+  user_class_file: 'ung_user'
+  file_type:  'sif'
+  fac_staff:  'manual'
+  exp_date:   false
+  barcodes:   false
+  user_group_conversion:
+    UNDERGRAD:  'student'
+    GRADUATE:   'student'
