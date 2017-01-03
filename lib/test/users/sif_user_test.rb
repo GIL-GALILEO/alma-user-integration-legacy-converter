@@ -83,7 +83,7 @@ class SifUserTest < MiniTest::Test
 
   def test_has_primary_address_mobile_phone
 
-    assert_equal nil, @user.primary_address_mobile_phone
+    assert_nil @user.primary_address_mobile_phone
 
   end
 
@@ -131,7 +131,7 @@ class SifUserTest < MiniTest::Test
 
   def test_has_secondary_address_mobile_phone
 
-    assert_equal nil, @user.secondary_address_mobile_phone
+    assert_nil @user.secondary_address_mobile_phone
 
   end
 

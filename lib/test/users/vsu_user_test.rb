@@ -95,7 +95,7 @@ class VsuUserTest < MiniTest::Test
 
   def test_has_primary_address_mobile_phone
 
-    assert_equal nil, @user.primary_address_mobile_phone
+    assert_nil @user.primary_address_mobile_phone
 
   end
 
