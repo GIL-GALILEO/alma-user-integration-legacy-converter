@@ -141,6 +141,12 @@ class UgaUserTest < MiniTest::Test
 
   end
 
+  def test_has_proper_expiry_date
+
+    assert_equal((Time.now + (365 * 24 * 60 * 60) ).to_s + 'Z', @user.expiry_date)
+
+  end
+
   # def test_has_secondary_id
   #
   #   assert_equal @user.secondary_id, 'tbd'

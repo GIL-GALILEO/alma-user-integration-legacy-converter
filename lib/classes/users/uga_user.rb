@@ -68,7 +68,7 @@ class UgaUser < User
 
   private
 
-  def determine_user_group_based_on(fs_codes = nil)
+  def determine_user_group_based_on(fs_codes)
 
     fs_codes = fs_codes.split(FS_CODE_SEPARATOR)
 
@@ -100,7 +100,7 @@ class UgaUser < User
     end
 
     # todo prevent this from being overwritten by other means
-    self.expiry_date = Time.now + @institution.groups_settings[user_group[:alma_name]]['exp_date_days'].to_i
+    self.expiry_date = Time.now + (@institution.groups_settings[user_group[:alma_name]]['exp_date_days'].to_i * 24 * 60 * 60)
 
     user_group[:alma_name]
 

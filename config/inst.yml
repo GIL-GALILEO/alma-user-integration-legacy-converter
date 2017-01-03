@@ -442,6 +442,7 @@ test_sif_student_only:
     2:
       label: 'GRADUATE'
       alma_group: 'B'
+
 test_uga:
   file_type: 'sif'
   fac_staff: true
@@ -479,6 +480,7 @@ test_uga:
     'STAFF PRIV':
       weight: 6
       exp_date_days: 180
+
 test_ksu:
   user_class_file: 'ksu_user'
   file_type:  'sif'
