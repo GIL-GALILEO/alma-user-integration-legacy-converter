@@ -9,16 +9,14 @@ class RunSetTest < MiniTest::Test
 
     inst = Institution.new('test_sif')
 
-    barcode_file = File.new 'data/test_sif/full/barcode_file'
-    exp_file     = File.new 'data/test_sif/full/exp_date'
-    data_file    = File.new 'data/test_sif/full/student'
+    barcode_file = File.new 'data/test_sif/barcode_file'
+    data_file    = File.new 'data/test_sif/student'
     config       = { run_type: :full }
 
     @run_set = RunSet.new
     @run_set.inst = inst
     @run_set.barcode = barcode_file
     @run_set.data = data_file
-    @run_set.exp = exp_file
     @run_set.config = config
 
   end
@@ -58,12 +56,6 @@ class RunSetTest < MiniTest::Test
   def test_has_a_data_file
 
     assert_kind_of File, @run_set.data
-
-  end
-
-  def test_has_a_exp_date_file
-
-    assert_kind_of File, @run_set.exp
 
   end
 

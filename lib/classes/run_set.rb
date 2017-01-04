@@ -2,7 +2,7 @@ require 'csv'
 
 class RunSet
 
-  attr_reader :data, :exp, :barcode, :config, :inst
+  attr_reader :data, :barcode, :config, :inst
 
   def is_sufficient?
     !!(inst && data && config)
@@ -54,17 +54,11 @@ class RunSet
   end
 
   def barcode_hash
-    if inst.expect_barcodes?
+    if inst.expect_barcodes? and @barcode
       barcode_array = CSV.read(@barcode.path, col_sep: '|')
       Hash[*barcode_array.flatten]
     else
       nil
-    end
-  end
-
-  def exp_date
-    if inst.expect_exp_date?
-      File.open(@exp.path, &:readline)
     end
   end
 
@@ -74,7 +68,7 @@ class RunSet
     if var.is_a? File
       true
     else
-      raise StandardError.new('Value provided to FileSet is not a File!')
+      raise StandardError.new('Value provided to FileSet is not a File!') # todo just return false and handle errors elsewhere
     end
   end
 

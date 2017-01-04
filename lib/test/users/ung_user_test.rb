@@ -17,7 +17,7 @@ class UngUserTest < MiniTest::Test
 
   def test_has_user_group
 
-    assert_equal 'UNDERGRAD', @user.user_group
+    assert_equal 'student', @user.user_group
 
   end
 

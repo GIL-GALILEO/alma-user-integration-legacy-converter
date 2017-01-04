@@ -1,39 +1,59 @@
 require 'minitest/autorun'
 require './lib/classes/xml_factory'
 require './lib/classes/institution'
+require 'date'
 
 class XmlFactoryTest < MiniTest::Test
 
   def setup
 
-    # @xml_factory_sif_result = XmlFactory.generate_for(Institution.new('test_sif')) # usingthis would cause tests to fail when run as a group, very strange
-    # @xml_factory_txt_result = XmlFactory.generate_for(Institution.new('test_txt'))
     @institution = Institution.new('test_sif')
 
   end
 
-  def test_sif_produces_xml_string
+  def test_generate_produces_xml_string
 
-    # assert_kind_of String, @xml_factory_sif_result
     assert_kind_of String, XmlFactory.generate_for(@institution)
 
   end
 
-  def test_sif_produces_xml_with_user_node
+  def test_generate_produces_xml_with_user_node
 
     assert_match /<user>/, XmlFactory.generate_for(@institution)
 
   end
 
-  def test_sif_produces_xml_with_expiry_date
+  def test_generate_produces_xml_with_expiry_date
 
-    assert_match /2044-12-20Z/, XmlFactory.generate_for(@institution)
+    date = (Date.parse(Time.now.to_s) + 180).strftime('%Y-%m-%d')
+
+    assert_match /#{date}Z/, XmlFactory.generate_for(@institution)
 
   end
 
-  def test_sif_produces_xml_with_barcode
+  def test_generate_produces_xml_with_barcode
 
     assert_match /87654321930123456/, XmlFactory.generate_for(@institution)
+
+  end
+  
+  def test_expire_produces_xml_string
+
+    assert_kind_of String, XmlFactory.expire_for(@institution)
+
+  end
+
+  def test_expire_produces_xml_with_user_node
+
+    assert_match /<user>/, XmlFactory.expire_for(@institution)
+
+  end
+
+  def test_expire_produces_xml_with_today_expiry_date
+
+    date = Date.parse(Time.now.strftime('%Y-%m-%d')).to_s
+
+    assert XmlFactory.expire_for(@institution).index(date)
 
   end
 

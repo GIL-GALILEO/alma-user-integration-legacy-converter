@@ -64,7 +64,7 @@ class SifUser < User
 
     end
 
-    set_expiry_date(@user_group) if @user_group
+    set_alma_user_group_and_expiry_date
 
   end
 
@@ -133,11 +133,23 @@ class SifUser < User
   end
 
   def set_email_address(data_hash)
-    set_value 'email', data_hash[:address_line_1]
+    self.email = data_hash[:address_line_1]
   end
 
-  def set_expiry_date(user_group)
-    set_value 'expiry_date', date_days_from_now(@institution.groups_settings[user_group]['exp_date_days'])
+  def set_alma_user_group_and_expiry_date
+
+    if @institution.groups_settings.has_key? @user_group
+      alma_user_group_settings = @institution.groups_settings[@user_group]
+      self.user_group = alma_user_group_settings['alma_name']
+      self.expiry_date = date_days_from_now alma_user_group_settings['exp_date_days']
+    else
+      # no translation available for this user_group
+      # leave user_group as is but set exp date using a default
+      self.expiry_date = date_days_from_now DEFAULT_EXPIRY_DATE_DAYS
+    end
+
+    self
+
   end
 
 end

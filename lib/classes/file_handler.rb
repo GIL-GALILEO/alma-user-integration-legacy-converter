@@ -7,7 +7,7 @@ class FileHandler
   DATA_DIR_BASE = './data/'
   TXT_FILE_FIELD_COUNT = 23
 
-  DROP_LOCATIONS = %w(full delta)
+  EXPIRE_DIR = 'expire'
 
   def initialize(institution)
 
@@ -21,35 +21,21 @@ class FileHandler
 
   end
 
-  def generate
+  def generate(config = {})
 
     run_config = {}
-    run_set = nil
 
-    # todo a run should only pick up files from a single location
-    # todo this does the job, but doesn't seem ideal
-    DROP_LOCATIONS.each do |loc|
-
-      unless run_set
-
-        run_config[:run_type] = loc
-
-        drop_location = File.join @inst_files_root, loc, '*'
-
-        files = get_files_in drop_location
-
-        unless files.length > 0
-          break
-        end
-
-        run_set = compose_runset(files, run_config)
-
-      end
-
+    if config.has_key?(:expire) and config[:expire]
+      run_config[:run_type] = :expire
+      drop_location = File.join @inst_files_root, EXPIRE_DIR, '*'
+    else
+      run_config[:run_type] = :add
+      drop_location = File.join @inst_files_root, '*'
     end
 
-    # return nil if no run_set was generated (no files found anywhere)
-    run_set ? run_set : nil
+    files = get_files_in drop_location
+
+    compose_runset(files, run_config)
 
   end
 

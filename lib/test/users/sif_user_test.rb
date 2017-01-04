@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'yaml'
 require './lib/classes/users/sif_user'
 require './lib/classes/institution'
+require './lib/util'
+include Util::App
 
 class SifUserTest < MiniTest::Test
 
@@ -138,6 +140,23 @@ class SifUserTest < MiniTest::Test
   def test_has_email
 
     assert_equal 'alma12@ega.edu', @user.email
+
+  end
+
+  def test_has_proper_user_group
+
+    assert_equal 'ALMA STUDENT', @user.user_group
+
+  end
+
+  def test_has_proper_expiry_date
+
+    days_from_now = 180
+
+    assert_equal(
+      "#{date_days_from_now(days_from_now)}Z",
+      @user.expiry_date
+    )
 
   end
 

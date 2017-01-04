@@ -4,6 +4,8 @@ include Util::File
 
 class User
 
+  DEFAULT_EXPIRY_DATE_DAYS = 365
+
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(
     primary_id

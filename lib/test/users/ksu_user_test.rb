@@ -17,7 +17,7 @@ class KsuUserTest < MiniTest::Test
 
   def test_has_user_group
 
-    assert_equal 'f-fac/staf', @user.user_group
+    assert_equal 'facstaff', @user.user_group
 
   end
 

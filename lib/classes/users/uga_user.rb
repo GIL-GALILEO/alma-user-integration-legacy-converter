@@ -32,6 +32,7 @@ class UgaUser < User
   }
 
   def initialize(line_data, institution)
+
     @institution = institution
     @parsed_line = CSV.parse_line(line_data, col_sep: FIELD_SEPARATOR)
     mapping.each do |attr, index|
@@ -42,6 +43,9 @@ class UgaUser < User
         self.send("#{attr}=", 'DEFAULT_VALUE')
       end
     end
+
+    set_alma_user_group_and_expiry_date
+
   end
 
   def mapping
@@ -58,52 +62,43 @@ class UgaUser < User
     self.middle_name = other_names[1] if other_names[1]
   end
 
-  def user_group=(fs_codes)
-    @user_group = determine_user_group_based_on fs_codes
-  end
+  def set_alma_user_group_and_expiry_date
 
-  def class_code=(class_code)
-    @class_code = class_code
-  end
-
-  private
-
-  # todo rename to include exp_date behavior
-  def determine_user_group_based_on(fs_codes)
-
-    fs_codes = fs_codes.split(FS_CODE_SEPARATOR)
+    fs_codes = @user_group.split(FS_CODE_SEPARATOR)
 
     user_group = {}
+    exp_date_days = DEFAULT_EXPIRY_DATE_DAYS
 
     fs_codes.each do |fs_code|
 
       # if FS code has no mapping key, do not generate a user object
       if @institution.groups_data.has_key? fs_code
 
-          alma_name = @institution.groups_data[fs_code]
+        alma_name = @institution.groups_data[fs_code]
 
-          group_settings = @institution.groups_settings[alma_name]
+        group_settings = @institution.groups_settings[alma_name]
+        exp_date_days = @institution.groups_settings[alma_name]['exp_date_days'].to_i
 
-          this_user_group = {
-              alma_name: alma_name,
-              weight: group_settings['weight']
-          }
+        this_user_group = {
+            alma_name: alma_name,
+            weight: group_settings['weight']
+        }
 
-          user_group = this_user_group if user_group.empty? || this_user_group[:weight] > user_group[:weight]
+        if user_group.empty? || this_user_group[:weight] > user_group[:weight]
+          user_group = this_user_group
+        end
 
       else
-        # todo purge user from user array somehow...
-        # self.do_not_include = true # ???
-        return nil
-      end
 
+        self.user_group = nil
+
+      end
 
     end
 
-    # todo prevent this from being overwritten by other means
-    self.expiry_date = date_days_from_now @institution.groups_settings[user_group[:alma_name]]['exp_date_days'].to_i
+    self.expiry_date = date_days_from_now exp_date_days
 
-    user_group[:alma_name]
+    self.user_group = user_group[:alma_name]
 
   end
 

@@ -1,5 +1,4 @@
 require 'csv'
-# require './lib/classes/databaser'
 require './lib/classes/run_set'
 require './lib/classes/institution'
 require './lib/classes/user'
@@ -12,8 +11,6 @@ class UserFactory
       raise StandardError.new('Bad RunSet provided to user factory')
     end
 
-    @run_set = run_set
-
     user_class = load_and_initialize_user_class run_set.inst.user_class
 
     unless user_class.ancestors.include? User
@@ -22,9 +19,6 @@ class UserFactory
 
     users = []
     error_count = 0
-
-    barcode_hash = run_set.barcode_hash
-    exp_date_from_file = run_set.exp_date
 
     if run_set.is_sufficient?
 
@@ -41,7 +35,7 @@ class UserFactory
 
     else
 
-      throw StandardError.new 'Problem processing patron file'
+      throw StandardError.new 'RunSet is not sufficient'
 
     end
 
@@ -49,66 +43,18 @@ class UserFactory
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
     end
 
-    # new_users = []
+    if run_set.barcode_hash || run_set.config[:run_type] == :expire
 
-    users.each do |u|
+      users.each do |u|
 
-      u.barcode = barcode_hash[u.primary_id] if barcode_hash
+        u.barcode = run_set.barcode_hash[u.primary_id] if run_set.barcode_hash
+        u.expiry_date = date_days_from_now(0) if run_set.config[:run_type] == :expire
 
-      u.expiry_date= exp_date_from_file if exp_date_from_file
-
-      # do patron_group conversion
-      set_patron_group u, run_set.inst
-
-      # new_users << u.primary_id
+      end
 
     end
-
-    #
-    # USER AUTO-EXPIRING DISABLED IN FAVOR OF STATIC EXPIRY DATES FOR USER CLASSES
-    #
-    # if run_set.inst.autoexpire_missing_users?
-    #
-    #   bye_user_ids = users_to_expire run_set.inst, new_users
-    #
-    #   users.concat user_objects_for_expired_users(bye_user_ids, user_class)
-    #
-    # end
 
     users
-
-  end
-
-  def self.user_objects_for_expired_users(bye_user_ids = [], user_class)
-
-    bye_user_ids.map do |id|
-      u = user_class.new
-      u.primary_id = id
-      u.expiry_date = Date.new.strftime('%Y-%m-%d')
-      u
-    end
-
-  end
-
-  def self.users_to_expire(institution, new_users = [])
-
-    db = Databaser.new institution
-
-    old_users = db.user_ids_from_previous_load
-
-    old_users - new_users
-
-  end
-
-  def self.set_patron_group(user, inst)
-
-    groups_translation = inst.groups_data
-
-    if groups_translation.has_key? user.user_group
-      user.user_group = groups_translation[user.user_group]
-    else
-      inst.logger.warn "Undefined user_group found: #{user.user_group}"
-    end
 
   end
 

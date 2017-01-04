@@ -1,3 +1,5 @@
+require 'date'
+
 module Util
 
   module App
@@ -9,7 +11,8 @@ module Util
 
     def date_days_from_now(days)
 
-      Time.now + (days * 24 * 60 * 60)
+      d = Date.parse(Time.now.to_s)
+      (d + days).strftime('%Y-%m-%d')
 
     end
 

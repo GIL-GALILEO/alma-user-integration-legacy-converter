@@ -385,12 +385,10 @@ test_sif:
   user_class_file: 'sif_user'
   file_type:    'sif'
   fac_staff:    'manual'
-  exp_date:     true
   barcodes:     true
-  expire_users: true
   user_group_settings:
     UNDERGRAD:
-      alma_name: 'UNDERGRAD'
+      alma_name: 'ALMA STUDENT'
       exp_date_days: 180
 
 test_gsu:
@@ -410,7 +408,7 @@ test_westga:
   barcodes:  false
   user_group_settings:
     undergrad:
-      alma_name: 'UNDERGRAD'
+      alma_name: 'student'
       exp_date_days: 180
 
 test_vsu:
@@ -437,7 +435,6 @@ test_ga_sou:
 test_uga:
   file_type: 'sif'
   fac_staff: true
-  exp_date:  false
   barcodes:   false
   user_group_conversion: # todo beta
     '00': 'UNDER PRIV'  # student

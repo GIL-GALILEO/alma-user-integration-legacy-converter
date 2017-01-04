@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'yaml'
 require './lib/classes/users/uga_user'
 require './lib/classes/institution'
+require './lib/util'
+include Util::App
 
 class UgaUserTest < MiniTest::Test
 
@@ -143,7 +145,15 @@ class UgaUserTest < MiniTest::Test
 
   def test_has_proper_expiry_date
 
-    assert_equal((Time.now + (365 * 24 * 60 * 60) ).to_s + 'Z', @user.expiry_date)
+    date = "#{date_days_from_now(365)}Z"
+
+    assert_equal date, @user.expiry_date
+
+  end
+
+  def test_has_proper_user_group
+
+    assert_equal 'STAFF', @user.user_group
 
   end
 

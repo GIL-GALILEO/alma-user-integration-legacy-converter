@@ -12,16 +12,14 @@ class UserFactoryTest < MiniTest::Test
     @test_inst = Institution.new('test_sif')
     @databaser = Databaser.new @test_inst
 
-    barcode_file = File.new 'data/test_sif/full/barcode_file'
-    exp_file     = File.new 'data/test_sif/full/exp_date'
-    data_file    = File.new 'data/test_sif/full/student'
+    barcode_file = File.new 'data/test_sif/barcode_file'
+    data_file    = File.new 'data/test_sif/student'
     config       = { run_type: :full }
 
     @run_set = RunSet.new
     @run_set.inst = @test_inst
     @run_set.barcode = barcode_file
     @run_set.data = data_file
-    @run_set.exp = exp_file
     @run_set.config = config
 
   end
@@ -59,19 +57,11 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
-  def test_user_has_expiry_date_from_file
-
-    result = UserFactory.generate(@run_set)
-
-    assert_equal '2044-12-20Z', result[0].expiry_date
-
-  end
-
   def test_user_has_alma_patron_group
 
     result = UserFactory.generate(@run_set)
 
-    assert_equal 'UNDERGRAD', result[0].user_group
+    assert_equal 'ALMA STUDENT', result[0].user_group
 
   end
 
