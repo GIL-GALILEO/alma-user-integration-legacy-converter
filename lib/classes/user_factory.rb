@@ -1,5 +1,5 @@
 require 'csv'
-require './lib/classes/databaser'
+# require './lib/classes/databaser'
 require './lib/classes/run_set'
 require './lib/classes/institution'
 require './lib/classes/user'
@@ -49,7 +49,7 @@ class UserFactory
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
     end
 
-    new_users = []
+    # new_users = []
 
     users.each do |u|
 
@@ -60,17 +60,20 @@ class UserFactory
       # do patron_group conversion
       set_patron_group u, run_set.inst
 
-      new_users << u.primary_id
+      # new_users << u.primary_id
 
     end
 
-    if run_set.inst.autoexpire_missing_users?
-
-      bye_user_ids = users_to_expire run_set.inst, new_users
-
-      users.concat user_objects_for_expired_users(bye_user_ids, user_class)
-
-    end
+    #
+    # USER AUTO-EXPIRING DISABLED IN FAVOR OF STATIC EXPIRY DATES FOR USER CLASSES
+    #
+    # if run_set.inst.autoexpire_missing_users?
+    #
+    #   bye_user_ids = users_to_expire run_set.inst, new_users
+    #
+    #   users.concat user_objects_for_expired_users(bye_user_ids, user_class)
+    #
+    # end
 
     users
 
