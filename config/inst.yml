@@ -237,15 +237,19 @@ gsu:
   fac_staff:  'mixed'
   exp_date:   false
   barcodes:   false
-  user_group_conversion: # todo needed to confirm these as they just copy
-    L-LAW_FAC: 'L-LAW_FAC'
-    PUL2: 'PUL2'
-    PUL13: 'PUL13'
-    L-STU: 'L-STU'
-    PUL11: 'PUL11'
-    L-LAW_STAF: 'L-LAW_STAF'
-    PUL1: 'PUL1'
-    PUL8: 'PUL8'
+  user_group_settings:
+    PUL1:
+      alma_name: 'PUL1'
+      exp_date_days: 180
+#  user_group_conversion: # todo needed to confirm these as they just copy
+#    L-LAW_FAC: 'L-LAW_FAC'
+#    PUL2: 'PUL2'
+#    PUL13: 'PUL13'
+#    L-STU: 'L-STU'
+#    PUL11: 'PUL11'
+#    L-LAW_STAF: 'L-LAW_STAF'
+#    PUL1: 'PUL1'
+#    PUL8: 'PUL8'
 
 # Georgia Southwestern State University
 gsw:

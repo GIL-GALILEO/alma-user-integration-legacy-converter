@@ -5,7 +5,7 @@ class Zipper
 
   ZIP_ARCHIVE_PATH = 'data/__INST_CODE__/archive/'
 
-  def self.do(string, institution)
+  def self.do(file, institution)
 
     time = Time.now.strftime('%Y%m%d_%H%M%S')
 
@@ -15,18 +15,14 @@ class Zipper
     FileUtils::mkpath files_path
 
     xml_file_name = files_name + '.xml'
-    zip_file_name = files_name + '.zip'
     xml_file_path = File.join files_path, xml_file_name
+    zip_file_name = files_name + '.zip'
     zip_file_path = File.join files_path, zip_file_name
 
     begin
 
-      File.open(xml_file_path, 'w') { |file|
-        file.write string
-      }
-
       Zip::File.open(zip_file_path, Zip::File::CREATE) do |zipfile|
-        zipfile.add xml_file_name, xml_file_path
+        zipfile.add xml_file_name, File.realpath(file)
       end
 
     rescue Exception => e
@@ -34,6 +30,8 @@ class Zipper
       raise StandardError.new("Problem compressing XML file for delivery: #{e.message}")
 
     end
+
+    FileUtils.mv(File.realpath(file), xml_file_path)
 
     File.new zip_file_path
 

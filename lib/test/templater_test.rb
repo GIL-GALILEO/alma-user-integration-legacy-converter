@@ -21,21 +21,9 @@ class TemplaterTest < MiniTest::Test
 
   end
 
-  def test_returns_xml
+  def test_returns_file
 
-    assert_kind_of String, @xml
-
-  end
-
-  def test_returns_user_node
-
-    assert_match /<user>/, @xml
-
-  end
-
-  def test_includes_default_epiry_date
-
-    assert_match /2382-12-21Z/, @xml
+    assert_kind_of File, @xml
 
   end
 

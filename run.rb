@@ -27,13 +27,13 @@ rescue StandardError => e
 end
 
 begin
-  output_string = XmlFactory.generate_for institution
+  output_file = XmlFactory.generate_for institution
 rescue StandardError => e
   exit_log_error "Script failed for #{code} with: #{e.message}"
 end
 
 # zip up file
-zip_file = Zipper.do output_string, institution
+zip_file = Zipper.do output_file, institution
 
 unless dry_run
 

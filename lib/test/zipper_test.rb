@@ -6,10 +6,13 @@ class XmlFactoryTest < MiniTest::Test
 
   def setup
 
-    @string = 'anything'
+    @xml_file = File.open('./temp/text.xml','w')
+    @xml_file.puts 'test content'
+    @xml_file.close
+
     @institution = Institution.new 'test_sif'
 
-    @file = Zipper.do(@string, @institution)
+    @file = Zipper.do(@xml_file, @institution)
 
   end
 

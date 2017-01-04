@@ -4,24 +4,6 @@ require './lib/classes/file_handler'
 
 class XmlFactory
 
-  def self.get_result
-
-    begin
-      users = UserFactory.generate(@run_set)
-    rescue StandardError => e
-      raise StandardError.new("XML Factory (UserFactory) error: #{e.message}")
-    end
-
-    begin
-      result = Templater.run users, @run_set.inst
-    rescue StandardError => e
-      raise StandardError.new("XML Factory (Templater) error: #{e.message}")
-    end
-
-    result
-
-  end
-
   def self.generate_for(institution)
 
     begin
@@ -43,6 +25,24 @@ class XmlFactory
     end
 
     get_result
+
+  end
+
+  def self.get_result
+
+    begin
+      users = UserFactory.generate(@run_set)
+    rescue StandardError => e
+      raise StandardError.new("XML Factory (UserFactory) error: #{e.message}")
+    end
+
+    begin
+      result = Templater.run users, @run_set.inst
+    rescue StandardError => e
+      raise StandardError.new("XML Factory (Templater) error: #{e.message}")
+    end
+
+    result
 
   end
 

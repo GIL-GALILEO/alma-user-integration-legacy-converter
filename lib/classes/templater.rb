@@ -20,28 +20,31 @@ class Templater
     template = File.open XML_TEMPLATE_FILE
     defaults = OpenStruct.new defaults['global']
 
-    output = ''
-
     # Read template
     template = ERB.new(template.read)
 
+    output_filename = "./temp/#{institution.code}_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
+
+    file = File.open(output_filename, 'w')
+
     # Initialize XML
-    output += "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<users>"
+    file.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<users>"
 
     # Write User XML to output file
     row = 1
     users.each do |user|
       begin
-        output += template.result(binding)
+        file.puts template.result(binding)
       rescue Exception => e
-        institution.logger.error "Error creating XML for User on row #{row}: #{e.message}" # todo will this play nice with the block in run?
+        institution.logger.error "Error creating XML for User on row #{row}: #{e.message}"
       ensure
         row += 1
       end
     end
 
-    # Finish XML
-    output += '</users>'
+    file.puts '</users>'
+    file.close
+    file
 
   end
 
