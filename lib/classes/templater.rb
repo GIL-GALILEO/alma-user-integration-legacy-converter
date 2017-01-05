@@ -25,10 +25,10 @@ class Templater
     # Read template
     template = ERB.new(template.read)
 
-    if run_set.config.has_key?(:expire) && run_set.config[:expire]
-      output_filename = "./temp/#{institution.code}_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
-    else
+    if run_set.config.has_key?(:run_type) && run_set.config[:run_type] == :expire
       output_filename = "./temp/#{institution.code}_expire_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
+    else
+      output_filename = "./temp/#{institution.code}_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
 
     end
 

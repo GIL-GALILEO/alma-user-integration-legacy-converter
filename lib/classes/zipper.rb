@@ -10,19 +10,18 @@ class Zipper
     time = Time.now.strftime('%Y%m%d_%H%M%S')
 
     files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__',institution.code)
-    files_name = "alma_xml_#{time}"
 
     FileUtils::mkpath files_path
 
-    xml_file_name = files_name + '.xml'
-    xml_file_path = File.join files_path, xml_file_name
-    zip_file_name = files_name + '.zip'
+    file_basename = File.basename file
+    xml_file_path = File.join files_path, file_basename
+    zip_file_name = file_basename.gsub! '.xml', '.zip'
     zip_file_path = File.join files_path, zip_file_name
 
     begin
 
       Zip::File.open(zip_file_path, Zip::File::CREATE) do |zipfile|
-        zipfile.add xml_file_name, File.realpath(file)
+        zipfile.add file_basename, File.realpath(file)
       end
 
     rescue Exception => e
