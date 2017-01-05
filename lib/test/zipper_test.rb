@@ -22,12 +22,6 @@ class XmlFactoryTest < MiniTest::Test
 
   end
 
-  def test_file_has_proper_name
-
-    assert_match "alma_xml_#{Time.now.strftime('%Y%m%d_%H%M%S')}.zip", @file.path
-
-  end
-
   def teardown
 
     File.delete @file
