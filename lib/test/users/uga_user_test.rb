@@ -157,10 +157,4 @@ class UgaUserTest < MiniTest::Test
 
   end
 
-  # def test_has_secondary_id
-  #
-  #   assert_equal @user.secondary_id, 'tbd'
-  #
-  # end
-
 end

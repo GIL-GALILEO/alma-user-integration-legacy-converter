@@ -8,13 +8,12 @@ class UserFactoryTest < MiniTest::Test
 
   def setup
 
-
     @test_inst = Institution.new('test_sif')
     @databaser = Databaser.new @test_inst
 
-    barcode_file = File.new 'data/test_sif/barcode_file'
-    data_file    = File.new 'data/test_sif/student'
-    config       = { run_type: :full }
+    barcode_file  = File.new 'data/test_sif/barcode_file'
+    data_file     = File.new 'data/test_sif/student'
+    config        = { run_type: :full }
 
     @run_set = RunSet.new
     @run_set.inst = @test_inst
@@ -62,6 +61,14 @@ class UserFactoryTest < MiniTest::Test
     result = UserFactory.generate(@run_set)
 
     assert_equal 'ALMA STUDENT', result[0].user_group
+
+  end
+
+  def test_users_without_groups_are_not_included
+
+    @run_set.data = File.new 'data/test_sif/student_dni'
+
+    assert_empty UserFactory.generate(@run_set)
 
   end
 
