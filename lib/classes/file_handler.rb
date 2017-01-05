@@ -69,12 +69,10 @@ class FileHandler
         when 'patron_sif'
 
           run_set.data = File.new file_path
-          run_config[:file_type] = :sif
 
         when 'patron_txt'
 
           run_set.data = File.new file_path
-          run_config[:file_type] = :txt
 
         when 'unknown'
 
