@@ -6,6 +6,7 @@ module Util
 
     def exit_log_error(message)
       @script_logger.fatal message
+      puts "#{message}. See logs."
       exit
     end
 

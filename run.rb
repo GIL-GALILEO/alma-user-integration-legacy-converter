@@ -14,6 +14,8 @@ FILES_ROOT   = '/gilftpfiles'
 PICKUP_POINT = '/patrondrop'
 DROP_POINT   = '/sis/synchronize'
 
+start = Time.now
+
 @script_logger = Logger.new LOG_FILE
 
 # Load params
@@ -46,4 +48,5 @@ unless dry_run
 
 end
 
-# done
+puts "File Generation complete for #{institution.code}"
+puts "Time: #{Time.now - start} seconds"
