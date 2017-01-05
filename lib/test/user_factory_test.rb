@@ -66,9 +66,18 @@ class UserFactoryTest < MiniTest::Test
 
   def test_users_without_groups_are_not_included
 
-    @run_set.data = File.new 'data/test_sif/student_dni'
+    @run_set.add_data File.new 'data/test_sif/student_dni'
 
-    assert_empty UserFactory.generate(@run_set)
+    assert_equal 1, UserFactory.generate(@run_set).size
+
+  end
+
+  def test_users_from_both_files_are_included
+
+    @run_set.add_data File.new 'data/test_sif/student_2'
+
+    assert_equal 'Alma', UserFactory.generate(@run_set)[0].first_name
+    assert_equal 'Other', UserFactory.generate(@run_set)[1].first_name
 
   end
 

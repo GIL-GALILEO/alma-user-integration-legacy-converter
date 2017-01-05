@@ -68,11 +68,13 @@ class FileHandler
 
         when 'patron_sif'
 
-          run_set.data = File.new file_path
+          # run_set.data = File.new file_path
+          run_set.add_data File.new(file_path)
 
         when 'patron_txt'
 
-          run_set.data = File.new file_path
+          # run_set.data = File.new file_path
+          run_set.add_data File.new(file_path)
 
         when 'unknown'
 

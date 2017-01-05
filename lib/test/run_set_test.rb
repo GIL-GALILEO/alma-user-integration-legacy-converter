@@ -53,9 +53,17 @@ class RunSetTest < MiniTest::Test
 
   end
 
-  def test_has_a_data_file
+  def test_has_a_data_file_array
 
-    assert_kind_of File, @run_set.data
+    assert_kind_of Array, @run_set.data
+
+  end
+
+  def test_can_have_two_data_files
+
+    @run_set.add_data File.new('data/test_sif/student_dni')
+
+    assert_kind_of Array, @run_set.data
 
   end
 

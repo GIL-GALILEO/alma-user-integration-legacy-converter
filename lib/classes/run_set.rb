@@ -4,6 +4,10 @@ class RunSet
 
   attr_reader :data, :barcode, :config, :inst
 
+  def initialize
+    @data = []
+  end
+
   def is_sufficient?
     !!(inst && data && config)
   end
@@ -17,10 +21,20 @@ class RunSet
     end
   end
 
+  def add_data(data_file)
+
+    if is_file? data_file
+      @data << data_file
+    else
+      raise StandardError.new('Data file provided is not a File!')
+    end
+
+  end
+
   # the patron or facstaff file
   def data=(data_file)
     if is_file? data_file
-      @data = data_file
+      @data << data_file
     else
       raise StandardError.new('Data file provided is not a File!')
     end
