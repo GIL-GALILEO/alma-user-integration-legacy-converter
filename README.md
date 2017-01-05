@@ -1,14 +1,14 @@
 # Alma SIS Integration - Legacy Data Converter
 
-Scripts that will convert from a variety of text formats to Alma XML, then zip and upload the files to a secure server.
+Scripts that will convert from a variety of text formats to Alma XML, then zip 
+and make the files available to Alma.
 
 ## Usage
 
-Currently supports detection and processing the following kinds of files:
-
-+ patron data file in a supported format
-+ barcode file mapping primary identifiers to barcodes
-+ expiration date file setting expiration date for patron records
+For each institution, this script will look in a fixed location for patron files 
+(and any accompanying barcode files), parse the user information using the 
+specified mappings, and create an XML document using the provided 
+[template file](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/templates/user_xml_v2_template.xml.erb). 
 
 ### Make the Magic Happen
 
@@ -16,42 +16,21 @@ For the full experience:
 
 `ruby run.rb any_institution_code_here`
 
+To set the value of the `expiry_date` field to the current day for all users in 
+the provided file (these files bust be in the `expire` directory):
+
+`ruby run.rb any_institution_code_here expire`
+
 To just generate files and not upload or send notifications:
 
 `ruby run.rb any_institution_code_here dry-run`
 
 ## Mappings
 
-+ [sif](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/sif_user.rb#L17)
-+ [txt](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/txt_user.rb#L9)
-+ [gsu](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/gsu_user.rb#L8)
-
-## Running Tests
-
-Tests test that classes do what they are supposed to do.
-
-`ruby lib/test/sif_user_test.rb`
-
-`ruby lib/test/txt_user_test.rb`
-
-`ruby lib/test/gsu_user_test.rb`
-
-`ruby lib/test/institution_test.rb`
-
-`ruby lib/test/templater_test.rb`
-
-`ruby lib/test/zipper_test.rb`
-
-`ruby lib/test/user_factory_test.rb`
-
-`ruby lib/test/xml_factory_test.rb`
-
-## To Do
-+ rake task to run all tests
-+ cleanup files created in tests
-+ pull contacts and configs via API
-+ email notifications
-+ finish field handling for txt type
-+ More tests
-+ _Validation of controlled values using Alma Configuration API?_
-
++ [Default SIF](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/sif_user.rb#L17)
++ [University of Georgia](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/uga_user.rb#L12)
++ [Georgia State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/gsu_user.rb#L9)
++ [Georgia Southern](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/ga_sou_user.rb#L9)
++ [Kennesaw State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/ksu_user.rb#L9)
++ [Valdosta State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/vsu_user.rb#L9)
++ [West Georgia](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/west_ga_user.rb#L9)
