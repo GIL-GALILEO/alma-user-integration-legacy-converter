@@ -1,319 +1,361 @@
 # Institutional configs
 # inst:
 #   user_class_file: base name of user class file in classes directory
-#   file_type: 'sif' or 'txt' - or custom DEPRECATED todo remove
-#   fac_staff: 'manual' = entered into Alma by staff, 'separate' = provided in separate file, 'mixed' = combined in single patron file with students
-#   exp_date: boolean - expect a separate file to set the patron expiration date
 #   barcodes: boolean = expect a separate file to set the patron barcode
-#   user_group_conversion: - a hash/obj that will be used to map values from the original file into alma groups
+#   user_group_settings: - a hash/obj that will be used to map values from the original file into alma groups
 
 # Abraham Baldwin Agricultural College
 abac:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # want to move to separate
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STU'
-    GRADUATE:  'STU'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STU'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'STU'
+      exp_date_days: 365
 
 # Armstrong State University
 armstrong:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'Student'
-    GRADUATE:   'GRAD'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'Student'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'GRAD'
+       exp_date_days: 365
 
 # Albany State University - To be Consolidated with Darton
 asu:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD: 'UG'
-    GRADUATE: 'G'
-    FACULTY: 'F' # todo guessed on the sif value
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'UG'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'G'
+      exp_date_days: 365
+    FACULTY:
+      alma_name: 'F' # todo guessed on the sif value
+      exp_date_days: 365
 
 # Atlanta Metropolitan College
 atlm:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STU'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STU'
+      exp_date_days: 180
 
 # Augusta University
 augusta: # summervile file - patrons in this file (and HSC file, not included) are added to special patron groups
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # want to integrate with peoplesoft
-  exp_date:   false
-  barcodes:   true
-  user_group_conversion: # Hmm? Special Snowflake
+  barcodes: true
+  user_group_settings: # Hmm? Special Snowflake
 #    augdb: # todo figure out a way to handle two distinct files for this institutions patrons
 #      UNDERGRAD:  ''
 #      GRADUATE:   ''
 #    mcgdb:
 #      UNDERGRAD:  ''
 #      GRADUATE:   ''
-    UNDERGRAD: 'Rundergrad'
-    GRADUATE: 'Rundergrad'
-    FACULTY: 'Rfaculty'
-    STAFF: 'Rstaff'
-    PARTFAC: 'Rtemp_prt'
+    UNDERGRAD:
+      alma_name: 'Rundergrad'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'Rundergrad'
+      exp_date_days: 365
+    FACULTY:
+      alma_name: 'Rfaculty'
+      exp_date_days: 365
+    STAFF:
+      alma_name: 'Rstaff'
+      exp_date_days: 365
+    PARTFAC:
+      alma_name: 'Rtemp_prt'
+      exp_date_days: 365
 
 # Bainbridge State College
 bain:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STU'
-    GRADUATE:  'STU'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STU'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'STU'
+      exp_date_days: 365
 
 # College of Coastal GA
 ccga:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'SEMESTER'
-    GRADUATE:  'SEMESTER'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'SEMESTER'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'SEMESTER'
+      exp_date_days: 365
 
 # Clayton State University
 clayton:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate' # but no file provided
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
-    GRADUATE:   'STUDENT'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'STUDENT'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'STUDENT'
+       exp_date_days: 365
 
 # Columbus State University
 csu:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate' # No file provided
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'RG'
-    GRADUATE:   'RG'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'RG'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'RG'
+       exp_date_days: 365
 
 # Dalton State College
 dalton:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # other signs point to 'separate', but no file provided
-  exp_date:   true
-  barcodes:   true
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
-    GRADUATE:   'STUDENT'
+  barcodes: true
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'STUDENT'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'STUDENT'
+       exp_date_days: 365
 
 # Darton - To be Consolidated with Albany State
 darton:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   true
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'dstu'
-    GRADUATE:   'dstu'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'dstu'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'dstu'
+      exp_date_days: 365
 
 # East Georgia State College
 ega:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'ST'
-    GRADUATE:   'ST'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'ST'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'ST'
+       exp_date_days: 365
 
 # Fort Valley State University
 ftv:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'fvstudent'
-    GRADUATE:   'fvgrad'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'fvstudent'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'fvgrad'
+       exp_date_days: 365
 
 # Georgia Southern University
-gasou: # customized ZORVLIB, college and major data included, also patrons from external institutions - see survey results
+gasou:
   user_class_file: 'gasou_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'ST'
-    GRADUATE:   'GR'
-    EAST_GA:    'RS'
-    FAC_STAFF:  'GF'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'ST'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'GR'
+       exp_date_days: 365
+    EAST_GA:
+       alma_name: 'RS'
+       exp_date_days: 180
+    FAC_STAFF:
+       alma_name: 'GF'
+       exp_date_days: 365
 
 # Georgia College
 gcsu:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   true # separate exp_date file included for fac/staff file
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
-    GRADUATE:   'GRADUATE'
-    FACULTY_FT: 'FACULTY'
-    FACULTY_PT: 'FACULTY PT'
-    STAFF_FT:   'FACULTY'
-    STAFF_PT:   'FACULTY PT'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+    GRADUATE:
+       alma_name: 'GRADUATE'
+       exp_date_days: 365
+    FACULTY_FT:
+       alma_name: 'FACULTY'
+       exp_date_days: 365
+    FACULTY_PT:
+       alma_name: 'FACULTY PT'
+       exp_date_days: 365
+    STAFF_FT:
+       alma_name: 'FACULTY'
+       exp_date_days: 365
+    STAFF_PT:
+       alma_name: 'FACULTY PT'
+       exp_date_days: 365
 
 # Georgia Gwinnett College
 ggc:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STU'
-    GRADUATE: 'STU'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STU'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'STU'
+      exp_date_days: 180
 
 # Georgia Highlands College
 ghc:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    FACSTAFF: 'FACSTAFF'
-    UNDERGRAD: 'STUD'
+  barcodes: false
+  user_group_settings:
+    FACSTAFF:
+      alma_name: 'FACSTAFF'
+      exp_date_days: 365
+    UNDERGRAD:
+      alma_name: 'STUD'
+      exp_date_days: 180
 
 # Gordon State College
 gordon:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # ensure facstaff are not included in this file. see survey note
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
 
 # Georgia Piedmont Technical College
 gptc:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'UNDERGRAD'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'UNDERGRAD'
+      exp_date_days: 180
 
 # Georgia State University
-# special format
 gsu:
   user_class_file: 'gsu_user'
-  file_type:  'sif'
-  fac_staff:  'mixed'
-  exp_date:   false
-  barcodes:   false
+  barcodes: false
   user_group_settings:
     PUL1:
       alma_name: 'PUL1'
       exp_date_days: 180
-#  user_group_conversion: # todo needed to confirm these as they just copy
-#    L-LAW_FAC: 'L-LAW_FAC'
-#    PUL2: 'PUL2'
-#    PUL13: 'PUL13'
-#    L-STU: 'L-STU'
-#    PUL11: 'PUL11'
-#    L-LAW_STAF: 'L-LAW_STAF'
-#    PUL1: 'PUL1'
-#    PUL8: 'PUL8'
+    L-LAW_FAC:
+      alma_name: 'L-LAW_FAC'
+      exp_date_days: 365
+    PUL2:
+      alma_name: 'PUL2'
+      exp_date_days: 180
+    PUL13:
+      alma_name: 'PUL13'
+      exp_date_days: 180
+    L-STU:
+      alma_name: 'L-STU'
+      exp_date_days: 180
+    PUL11:
+      alma_name: 'PUL11'
+      exp_date_days: 180
+    L-LAW_STAF:
+      alma_name: 'L-LAW_STAF'
+      exp_date_days: 365
+    PUL8:
+      alma_name: 'PUL8'
+      exp_date_days: 180
 
 # Georgia Southwestern State University
 gsw:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   true
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
-    GRADUATE:   'STUDENT'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+       alma_name: 'STUDENT'
+       exp_date_days: 180
+    GRADUATE:
+       alma_name: 'STUDENT'
+       exp_date_days: 180
 
-# Kennesaw Sate University - see email from Li for more details
+# Kennesaw Sate University
 ksu:
   user_class_file: 'ksu_user'
-  file_type:  'sif'
-  fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    undergrad:  'undergrad'
-    graduate:   'graduate'
+  barcodes: false
+  user_group_settings:
+    undergrad:
+       alma_name: 'undergrad'
+       exp_date_days: 180
+    graduate:
+       alma_name: 'graduate'
+       exp_date_days: 180
 
 # Middle Georgia State University
 mga:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'STUDENT'
-    GRADUATE:   'STUDENT'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
 
 # Savannah Sate University
 savst:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # survey indicates 'GIL Support' ???
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'ST'
-    GRADUATE:   'GS'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'ST'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'GS'
+      exp_date_days: 365
 
 # South Georgia State College
 sgsc:
   user_class_file: 'sif_user'
-  file_type:  'sif'
-  fac_staff:  'manual' # they want to change to separate
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion: # todo two campus files...
+  barcodes: false
+  user_group_settings: # todo two campus files...
 #    waycross:
 #    douglas:
-    UNDERGRAD: 'WCSTDT'
-    GRADUATE: 'WCSTDT'
+    UNDERGRAD:
+     alma_name: 'WCSTDT'
+     exp_date_days: 180
+    GRADUATE:
+     alma_name: 'WCSTDT'
+     exp_date_days: 365
 
 # University of Georgia
 uga:
   user_class_file: 'uga_user'
   fac_staff: 'mixed'
-  exp_date:  false
-  barcodes:  false
+  barcodes: false
   user_group_conversion: # todo beta
     '00': 'UNDER PRIV'  # student
     '01': 'FAC'         # faculty
@@ -348,78 +390,72 @@ uga:
       exp_date_days: 180
 
 # University of North Georgia
-# todo future usage of facstaff CSV
 # todo barcode just is the primary id
 ung:
   user_class_file: 'ung_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    UNDERGRAD:  'student'
-    GRADUATE:   'student'
+  barcodes: false
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'student'
+      exp_date_days: 180
+    GRADUATE:
+       alma_name: 'student'
+       exp_date_days: 365
 
 # Valdosta State
 vsu:
   user_class_file: 'vsu_user'
-  file_type:  'sif'
-  fac_staff:  'mixed' # not clear - see survey response
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion:
-    STUDNTUND:  'STUDNTUND'
-    STUDNTGRA:  'STUDNTGRA'
-    CONSORT:    'CONSORT'
+  barcodes: false
+  user_group_settings:
+    STUDNTUND:
+       alma_name: 'STUDNTUND'
+       exp_date_days: 180
+    STUDNTGRA:
+       alma_name: 'STUDNTGRA'
+       exp_date_days: 365
+    CONSORT:
+       alma_name: 'CONSORT'
+       exp_date_days: 180
 
 # University of West Georgia
-# special format
-westga: # using a format/process similar to gsu
+westga:
   user_class_file: 'west_ga_user'
-  file_type:  'westga'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
-  user_group_conversion: # todo...so many
-
+  barcodes: false
+  user_group_settings:
+    undergrad:
+      alma_name: 'student'
+      exp_date_days: 180
 
 # testing configs
 
 test_sif:
   user_class_file: 'sif_user'
-  file_type:    'sif'
-  fac_staff:    'manual'
-  barcodes:     true
+  fac_staff: 'manual'
+  barcodes: true
   user_group_settings:
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
       exp_date_days: 180
 
 test_gsu:
-  file_type: 'gsu'
-  fac_staff: 'manual'
-  exp_date:  false
-  barcodes:  false
+  user_class_file: 'gsu_user'
+  barcodes: false
   user_group_settings:
     PUL1:
       alma_name: 'PUL1'
       exp_date_days: 180
 
 test_westga:
-  file_type: 'gsu'
-  fac_staff: 'manual'
-  exp_date:  false
-  barcodes:  false
+  user_class_file: 'west_ga_user'
+  barcodes: false
   user_group_settings:
     undergrad:
       alma_name: 'student'
       exp_date_days: 180
 
 test_vsu:
-  file_type: 'vsu'
-  fac_staff: 'manual'
-  exp_date:  false
-  barcodes:  false
+  user_class_file: 'vsu_user'
+  barcodes: false
   user_group_settings:
     STUDNTGRA:
       alma_name: 'STUDNTGRA'
@@ -427,10 +463,7 @@ test_vsu:
 
 test_ga_sou:
   user_class_file: 'ga_sou_user'
-  file_type:  'sif'
-  fac_staff:  'separate'
-  exp_date:   false
-  barcodes:   false
+  barcodes: false
   user_group_settings:
     UNDERGRAD:
       alma_name: 'ST'
@@ -438,8 +471,7 @@ test_ga_sou:
 
 test_uga:
   file_type: 'sif'
-  fac_staff: true
-  barcodes:   false
+  barcodes: false
   user_group_conversion: # todo beta
     '00': 'UNDER PRIV'  # student
     '01': 'FAC'         # faculty
@@ -475,14 +507,7 @@ test_uga:
 
 test_ksu:
   user_class_file: 'ksu_user'
-  file_type:  'sif'
-  fac_staff:  'mixed' # need more details - special processing occurs, only one file provided
-  exp_date:   false
-  barcodes:   false
-#  user_group_conversion:
-#    undergrad:    'undergrad'
-#    graduate:     'graduate'
-#    'f-fac/staf': 'facstaff'
+  barcodes: false
   user_group_settings:
     'f-fac/staf':
       alma_name: 'facstaff'
@@ -490,10 +515,7 @@ test_ksu:
 
 test_ung:
   user_class_file: 'ung_user'
-  file_type:  'sif'
-  fac_staff:  'manual'
-  exp_date:   false
-  barcodes:   false
+  barcodes: false
   user_group_settings:
     UNDERGRAD:
       alma_name: 'student'
