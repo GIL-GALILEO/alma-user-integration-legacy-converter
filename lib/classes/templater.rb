@@ -8,7 +8,9 @@ class Templater
   XML_TEMPLATE_FILE = './lib/templates/user_xml_v2_template.xml.erb'
   DEFAULTS_FILE = './config/defaults.yml'
 
-  def self.run(users, institution)
+  def self.run(users, run_set)
+
+    institution = run_set.inst
 
     raise StandardError.new("Could not find XML template file @ #{XML_TEMPLATE_FILE}. Stopping.") unless File.exist? XML_TEMPLATE_FILE
     raise StandardError.new("Defaults file could not be found @ #{DEFAULTS_FILE}. Stopping.") unless File.exist? DEFAULTS_FILE
@@ -23,7 +25,12 @@ class Templater
     # Read template
     template = ERB.new(template.read)
 
-    output_filename = "./temp/#{institution.code}_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
+    if run_set.config.has_key?(:expire) && run_set.config[:expire]
+      output_filename = "./temp/#{institution.code}_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
+    else
+      output_filename = "./temp/#{institution.code}_expire_patrons_#{Time.now.strftime('%Y%m%d')}.xml"
+
+    end
 
     file = File.open(output_filename, 'w')
 

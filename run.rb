@@ -20,7 +20,8 @@ start = Time.now
 
 # Load params
 code = ARGV[0]
-dry_run = ARGV[1] == 'dry-run'
+dry_run = ARGV.include? 'dry-run'
+expire = ARGV.include? 'expire'
 
 begin
   institution = Institution.new(code)
@@ -29,7 +30,7 @@ rescue StandardError => e
 end
 
 begin
-  output_file = XmlFactory.generate_for institution
+  output_file = expire ? XmlFactory.expire_for(institution) : XmlFactory.generate_for(institution)
 rescue StandardError => e
   exit_log_error "Script failed for #{code} with: #{e.message}"
 end

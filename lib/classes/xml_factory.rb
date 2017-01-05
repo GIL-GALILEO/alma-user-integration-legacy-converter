@@ -37,7 +37,7 @@ class XmlFactory
     end
 
     begin
-      result = Templater.run users, @run_set.inst
+      result = Templater.run users, @run_set
     rescue StandardError => e
       raise StandardError.new("XML Factory (Templater) error: #{e.message}")
     end
