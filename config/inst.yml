@@ -52,17 +52,11 @@ atlm:
       alma_name: 'STU'
       exp_date_days: 180
 
-# Augusta University
-augusta: # summervile file - patrons in this file (and HSC file, not included) are added to special patron groups
+# Augusta University (Summerville)
+augusta:
   user_class_file: 'sif_user'
   barcodes: true
-  user_group_settings: # Hmm? Special Snowflake
-#    augdb: # todo figure out a way to handle two distinct files for this institutions patrons
-#      UNDERGRAD:  ''
-#      GRADUATE:   ''
-#    mcgdb:
-#      UNDERGRAD:  ''
-#      GRADUATE:   ''
+  user_group_settings:
     UNDERGRAD:
       alma_name: 'Rundergrad'
       exp_date_days: 180
@@ -77,6 +71,27 @@ augusta: # summervile file - patrons in this file (and HSC file, not included) a
       exp_date_days: 365
     PARTFAC:
       alma_name: 'Rtemp_prt'
+      exp_date_days: 365
+
+# Augusta University - MCG
+augusta-mcg:
+  user_class_file: 'sif_user'
+  barcodes: true
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'Mundergrad'
+      exp_date_days: 180
+    GRADUATE:
+      alma_name: 'Mundergrad'
+      exp_date_days: 365
+    FACULTY:
+      alma_name: 'Mfaculty'
+      exp_date_days: 365
+    STAFF:
+      alma_name: 'Mstaff'
+      exp_date_days: 365
+    PARTFAC:
+      alma_name: 'Mtemp_prt'
       exp_date_days: 365
 
 # Bainbridge State College
@@ -337,13 +352,23 @@ savst:
       alma_name: 'GS'
       exp_date_days: 365
 
-# South Georgia State College
+# South Georgia State College (Douglas)
 sgsc:
   user_class_file: 'sif_user'
   barcodes: false
-  user_group_settings: # todo two campus files...
-#    waycross:
-#    douglas:
+  user_group_settings:
+    UNDERGRAD:
+     alma_name: 'STDT'
+     exp_date_days: 180
+    GRADUATE:
+     alma_name: 'STDT'
+     exp_date_days: 365
+
+# South Georgia State College (Waycross)
+sgsc-way:
+  user_class_file: 'sif_user'
+  barcodes: false
+  user_group_settings:
     UNDERGRAD:
      alma_name: 'WCSTDT'
      exp_date_days: 180
