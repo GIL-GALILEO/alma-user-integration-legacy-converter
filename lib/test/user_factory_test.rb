@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require './lib/classes/institution'
 require './lib/classes/user_factory'
-require './lib/classes/databaser'
 require './lib/classes/run_set'
 
 class UserFactoryTest < MiniTest::Test
@@ -9,7 +8,6 @@ class UserFactoryTest < MiniTest::Test
   def setup
 
     @test_inst = Institution.new('test_sif')
-    @databaser = Databaser.new @test_inst
 
     barcode_file  = File.new 'data/test_sif/barcode_file'
     data_file     = File.new 'data/test_sif/student'
@@ -22,14 +20,6 @@ class UserFactoryTest < MiniTest::Test
     @run_set.config = config
 
   end
-
-  def teardown
-
-    @databaser.truncate_table
-    @databaser.close_connection
-
-  end
-
 
   def test_error_on_bad_institution
 
