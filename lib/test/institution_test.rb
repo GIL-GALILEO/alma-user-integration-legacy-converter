@@ -24,6 +24,20 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_has_nil_for_path_if_no_path_set
+
+    assert_nil @inst.path
+
+  end
+
+  def test_has_path
+
+    inst = Institution.new('test_sif_campus2')
+
+    assert_equal 'campus2', inst.path
+
+  end
+
   def test_has_logger
 
     assert_kind_of Logger, @inst.logger

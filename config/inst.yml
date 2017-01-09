@@ -54,6 +54,7 @@ atlm:
 
 # Augusta University (Summerville)
 augusta:
+  path: 'summerville'
   user_class_file: 'sif_user'
   barcodes: true
   user_group_settings:
@@ -75,6 +76,7 @@ augusta:
 
 # Augusta University - MCG
 augusta-mcg:
+  path: 'mcg'
   user_class_file: 'sif_user'
   barcodes: true
   user_group_settings:
@@ -454,6 +456,16 @@ westga:
 # testing configs
 
 test_sif:
+  user_class_file: 'sif_user'
+  fac_staff: 'manual'
+  barcodes: true
+  user_group_settings:
+    UNDERGRAD:
+      alma_name: 'ALMA STUDENT'
+      exp_date_days: 180
+
+test_sif_campus2:
+  path: 'campus2'
   user_class_file: 'sif_user'
   fac_staff: 'manual'
   barcodes: true

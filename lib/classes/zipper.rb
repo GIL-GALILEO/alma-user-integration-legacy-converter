@@ -3,11 +3,9 @@ require 'zip'
 
 class Zipper
 
-  ZIP_ARCHIVE_PATH = 'data/__INST_CODE__/archive/'
+  ZIP_ARCHIVE_PATH = '/gilftpfiles/__INST_CODE__/archive/'
 
   def self.do(file, institution)
-
-    time = Time.now.strftime('%Y%m%d_%H%M%S')
 
     files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__',institution.code)
 

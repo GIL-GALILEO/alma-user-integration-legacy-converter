@@ -4,7 +4,7 @@ require 'logger'
 class Institution
 
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'
-  INSTITUTION_DATA_PATH         = './data/'
+  INSTITUTION_DATA_PATH         = '/gilftpfiles/'
 
   def initialize(code)
 
@@ -47,6 +47,10 @@ class Institution
 
   def user_class
     @config['user_class_file']
+  end
+
+  def path
+    @config['path']
   end
 
   def process_facstaff?

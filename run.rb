@@ -11,7 +11,6 @@ include Util::App
 LOG_FILE     = './log.log'
 
 FILES_ROOT   = '/gilftpfiles'
-PICKUP_POINT = '/patrondrop'
 DROP_POINT   = '/sis/synchronize'
 
 start = Time.now
@@ -41,7 +40,7 @@ zip_file = Zipper.do output_file, institution
 unless dry_run
 
   # MOVE FOR ALMA PICKUP
-  source_file = File.join Dir.pwd, zip_file.path
+  source_file = File.join zip_file.path
   destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
   FileUtils.mv(source_file, destination_file)
 

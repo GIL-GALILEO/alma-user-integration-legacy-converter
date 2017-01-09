@@ -9,8 +9,8 @@ class RunSetTest < MiniTest::Test
 
     inst = Institution.new('test_sif')
 
-    barcode_file = File.new 'data/test_sif/barcode_file'
-    data_file    = File.new 'data/test_sif/student'
+    barcode_file = File.new '/gilftpfiles/test_sif/patrondrop/barcode_file'
+    data_file    = File.new '/gilftpfiles/test_sif/patrondrop/student'
     config       = { run_type: :full }
 
     @run_set = RunSet.new
@@ -61,7 +61,7 @@ class RunSetTest < MiniTest::Test
 
   def test_can_have_two_data_files
 
-    @run_set.add_data File.new('data/test_sif/student_dni')
+    @run_set.add_data File.new('/gilftpfiles/test_sif/patrondrop/student_dni')
 
     assert_kind_of Array, @run_set.data
 

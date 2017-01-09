@@ -4,10 +4,11 @@ require './lib/classes/run_set'
 
 class FileHandler
 
-  DATA_DIR_BASE = './data/'
-  TXT_FILE_FIELD_COUNT = 23
-
+  DATA_DIR_BASE = '/gilftpfiles'
+  FILE_DROP_SITE = 'patrondrop'
   EXPIRE_DIR = 'expire'
+
+  TXT_FILE_FIELD_COUNT = 23
 
   def initialize(institution)
 
@@ -15,7 +16,11 @@ class FileHandler
       raise StandardError.new('Cannot generate for something that is not an Institution!')
     end
 
-    @inst_files_root = File.join DATA_DIR_BASE, institution.code
+    if institution.path
+      @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE, institution.path
+    else
+      @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE
+    end
 
     @institution = institution
 
@@ -58,9 +63,9 @@ class FileHandler
 
       case detect_type_of_file(file_first_line)
 
-        when 'exp_date'
-
-          run_set.exp = File.new file_path
+        # when 'exp_date'
+        #
+        #   run_set.exp = File.new file_path
 
         when 'barcode'
 
