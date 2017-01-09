@@ -90,6 +90,7 @@ class UgaUser < User
 
       else
 
+        @institution.logger.warn "User Group encountered with no translation configured (#{self.user_group}). Patron will not be included in XML file."
         self.user_group = nil
 
       end

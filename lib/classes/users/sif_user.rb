@@ -145,6 +145,7 @@ class SifUser < User
     else
       # no translation available for this user_group
       # leave user_group as is but set exp date using a default
+      @institution.logger.warn "User Group encountered with no configured translation: #{self.user_group}"
       self.expiry_date = date_days_from_now DEFAULT_EXPIRY_DATE_DAYS
     end
 
