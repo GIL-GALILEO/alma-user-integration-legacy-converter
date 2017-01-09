@@ -24,6 +24,7 @@ class XmlFactoryTest < MiniTest::Test
 
   def teardown
 
+    File.delete(File.realpath(@file).gsub!('.zip','.xml'))
     File.delete @file
 
   end
