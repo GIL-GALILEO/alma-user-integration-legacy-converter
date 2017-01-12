@@ -14,7 +14,7 @@ LOG_FILE     = './log.log'
 FILES_ROOT   = '/gilftpfiles'
 DROP_POINT   = '/sis/synchronize'
 
-NOTIFICATIONS_FROM = 'gil@usg.edu'
+NOTIFICATIONS_FROM = 'mak@uga.edu'
 
 start = Time.now
 
