@@ -51,7 +51,7 @@ unless dry_run
 
   Net::SMTP.start('post.uga.edu', 587,
                   'uga.edu',
-                  ENV['SMTP_USER'], ENV['SMTP_PASSWORD'], :login) do |smtp|
+                  ENV['SMTP_USER'], ENV['SMTP_PASSWORD'], :plain) do |smtp|
     smtp.send_message(
       message,
       NOTIFICATIONS_FROM,
