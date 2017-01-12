@@ -194,7 +194,7 @@ ftv:
 
 # Georgia Southern University
 gasou:
-  user_class_file: 'gasou_user'
+  user_class_file: 'ga_sou_user'
   barcodes: false
   user_group_settings:
     UNDERGRAD:
