@@ -50,7 +50,7 @@ unless dry_run
   message = "Uploaded patron file for #{institution.code} processed and sent to Alma for processing."
 
   Net::SMTP.start('post.uga.edu', 587,
-                  'galib.uga.edu',
+                  'uga.edu',
                   ENV['SMTP_USER'], ENV['SMTP_PASSWORD'], :login) do |smtp|
     smtp.send_message(
       message,
