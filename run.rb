@@ -1,20 +1,17 @@
 require 'logger'
 require 'yaml'
 require 'zip'
-require 'net/sftp'
 require './lib/classes/institution'
 require './lib/classes/zipper'
 require './lib/classes/xml_factory'
+require './lib/classes/mailer'
 require './lib/util'
-require 'net/smtp'
 include Util::App
 
 LOG_FILE     = './log.log'
 
 FILES_ROOT   = '/gilftpfiles'
 DROP_POINT   = '/sis/synchronize'
-
-NOTIFICATIONS_FROM = 'mak@uga.edu'
 
 start = Time.now
 
@@ -49,17 +46,9 @@ unless dry_run
 
   message = "Uploaded patron file for #{institution.code} processed and sent to Alma for processing."
 
-  Net::SMTP.start('localhost',
-                  25
-                  # 'uga.edu',
-                  # ENV['SMTP_USER'], ENV['SMTP_PASSWORD'], :plain)
-  ) do |smtp|
-    smtp.send_message(
-      message,
-      NOTIFICATIONS_FROM,
-      'mak@uga.edu'
-    )
-  end
+  Mailer.send 'mak@uga.edu',
+              "Patron file for #{institution.code} processed and sent to Alma",.
+              message
 
 end
 
