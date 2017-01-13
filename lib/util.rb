@@ -5,6 +5,9 @@ module Util
   module App
 
     def exit_log_error(message)
+      if @institution
+        @institution.mailer.send_admin_notification message
+      end
       @script_logger.fatal message
       puts "#{message}. See logs."
       exit

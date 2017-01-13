@@ -1,5 +1,6 @@
 require 'yaml'
 require 'logger'
+require './lib/classes/mailer'
 
 class Institution
 
@@ -18,11 +19,16 @@ class Institution
     log_path = "#{INSTITUTION_DATA_PATH}#{code}/log.log"
 
     @institution_logger = Logger.new log_path
+    @mailer = Mailer.new self
 
   end
 
   def logger
     @institution_logger
+  end
+
+  def mailer
+    @mailer
   end
 
   def code

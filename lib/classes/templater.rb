@@ -43,7 +43,9 @@ class Templater
       begin
         file.puts template.result(binding)
       rescue Exception => e
-        institution.logger.error "Error creating XML for User on row #{row}: #{e.message}"
+        msg = "Error creating XML for User on row #{row}: #{e.message}"
+        institution.logger.error msg
+        institution.logger.mailer.add_script_error_message msg
       ensure
         row += 1
       end
