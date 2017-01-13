@@ -459,6 +459,9 @@ test_sif:
   user_class_file: 'sif_user'
   fac_staff: 'manual'
   barcodes: true
+  notification_emails:
+    - 'mak@uga.edu'
+    - 'mkanning@uga.edu'
   user_group_settings:
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'

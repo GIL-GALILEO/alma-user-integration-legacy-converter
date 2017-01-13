@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'yaml'
+require 'net/smtp'
 require './lib/classes/institution'
 
 class InstitutionTest < MiniTest::Test
@@ -21,6 +22,15 @@ class InstitutionTest < MiniTest::Test
   def test_has_code
 
     assert_equal @inst.code, 'test_sif'
+
+  end
+
+  def test_has_array_of_notification_emails
+
+    emails = @inst.notification_emails
+
+    assert_kind_of Array, emails
+    assert_match URI::MailTo::EMAIL_REGEXP, emails[0]
 
   end
 

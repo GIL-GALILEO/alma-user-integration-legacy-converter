@@ -29,6 +29,10 @@ class Institution
     @code
   end
 
+  def notification_emails
+    @config['notification_emails'] ? @config['notification_emails'] : []
+  end
+
   def groups_data
     @config['user_group_conversion'] ? @config['user_group_conversion'] : {}
   end
