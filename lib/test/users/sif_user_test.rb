@@ -17,6 +17,12 @@ class SifUserTest < MiniTest::Test
 
   end
 
+  def test_default_user_group
+
+    assert_equal 'unknown', SifUser::DEFAULT_USER_GROUP
+
+  end
+
   def test_has_primary_id
 
     assert_equal '930123456', @user.primary_id

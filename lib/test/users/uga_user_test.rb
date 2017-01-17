@@ -23,6 +23,12 @@ class UgaUserTest < MiniTest::Test
 
   end
 
+  def test_default_user_group_is_nil
+
+    assert_nil UgaUser::DEFAULT_USER_GROUP
+
+  end
+
   def test_has_name
 
     assert_equal 'User, Alma Test', @user.name

@@ -6,6 +6,8 @@ class UgaUser < User
   FIELD_SEPARATOR = '|'
   FS_CODE_SEPARATOR = '~'
 
+  DEFAULT_USER_GROUP = nil
+
   attr_accessor :name, :class_code, :last_enrolled_date, :last_pay_date
 
   # todo: distinguish between a value where we want to use a default string value, and one we want to leave blank/nil
