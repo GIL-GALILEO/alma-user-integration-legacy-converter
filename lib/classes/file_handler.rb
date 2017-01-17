@@ -112,9 +112,9 @@ class FileHandler
 
     case line
 
-      when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
+      # when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
       when /[0-9]{9}[|][0-9]+/ then 'barcode'
-      when /.{400,}/ then 'patron_sif' # todo student/faculty?
+      when /.{400,}/ then 'patron_sif'
       else 'unknown'
 
     end
