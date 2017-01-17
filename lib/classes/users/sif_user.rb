@@ -92,8 +92,10 @@ class SifUser < User
     address_data = {}
     (1..maximum_address_segments).each do |segment_num|
       address_hash = extract_address_for_segment segment_num
-      address_type = address_hash[:address_type] || segment_num
-      address_data[address_type] = address_hash if address_hash
+      if address_hash
+        address_type = address_hash[:address_type] || segment_num
+        address_data[address_type] = address_hash
+      end
     end
     address_data
   end
