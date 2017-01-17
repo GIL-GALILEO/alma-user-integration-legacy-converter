@@ -12,7 +12,7 @@ class UgaUserTest < MiniTest::Test
   def setup
 
     test_data = YAML.load_file TEST_DATA_FILE
-    test_inst = Institution.new 'test_uga'
+    test_inst = Institution.new 'uga'
     @user = UgaUser.new test_data['uga_test'], test_inst
 
   end

@@ -10,7 +10,7 @@ class GsuUserTest < MiniTest::Test
   def setup
 
     test_data = YAML.load_file TEST_DATA_FILE
-    test_inst = Institution.new 'test_gsu'
+    test_inst = Institution.new 'gsu'
     @user = GsuUser.new test_data['gsu_test'], test_inst
 
   end

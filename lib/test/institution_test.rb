@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'yaml'
 require 'net/smtp'
+require 'uri'
 require './lib/classes/institution'
 
 class InstitutionTest < MiniTest::Test
