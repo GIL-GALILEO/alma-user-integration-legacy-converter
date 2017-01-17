@@ -32,7 +32,7 @@ class UserFactory
             users << user unless user.user_group.empty?
           rescue StandardError => e
             error_count += 1
-            msg = "Problem loading line #{line_num} from file: #{e.message}"
+            msg = "Problem loading line #{line_num + 1} from file: #{e.message}"
             run_set.inst.logger.warn msg
             run_set.inst.mailer.add_file_error_message msg
           end
