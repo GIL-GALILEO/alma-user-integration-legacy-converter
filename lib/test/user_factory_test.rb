@@ -54,11 +54,22 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
-  def test_users_without_groups_are_not_included
+  # def test_users_without_groups_are_not_included
+  #
+  #   @run_set.add_data File.new '/gilftpfiles/test_sif/patrondrop/student_dni'
+  #
+  #   assert_equal 1, UserFactory.generate(@run_set).size
+  #
+  # end
 
-    @run_set.add_data File.new '/gilftpfiles/test_sif/patrondrop/student_dni'
+  def test_users_with_no_group_are_given_default
 
-    assert_equal 1, UserFactory.generate(@run_set).size
+      @run_set.add_data File.new '/gilftpfiles/test_sif/patrondrop/student_dni'
+
+      result = UserFactory.generate(@run_set)
+
+      assert_equal 2, result.size
+      assert_equal 'unknown', result[1].user_group
 
   end
 
