@@ -266,6 +266,12 @@ gordon:
     UNDERGRAD:
       alma_name: 'STUDENT'
       exp_date_days: 180
+    STAFF:
+      alma_name: 'STAFF'
+      exp_date_days: 365
+    FACULTY:
+      alma_name: 'FACULTY'
+      exp_date_days: 365
 
 # Georgia Piedmont Technical College
 gptc:
