@@ -393,30 +393,31 @@ sgsc-way:
 # University of Georgia
 uga:
   user_class_file: 'uga_user'
-  fac_staff: 'mixed'
   barcodes: false
-  user_group_conversion: # todo beta
+  user_group_conversion:
     '00': 'UNDER PRIV'  # student
     '01': 'FAC'         # faculty
     '02': 'STAFF'       # staff
+    '03': 'OUTSIDE'     # alumni
+    '04': 'STAFF PRIV'  # retired fac/staff
     '07': 'FAC'         # adj faculty
+    '08': 'FAC PRIV'    # emeritus
     '10': 'GRAD PRIV'   # postdoc
     '15': 'STAFF PRIV'  # bor (athens)
     '16': 'STAFF PRIV'  # campus ministers
     '17': 'STAFF PRIV'  # greek house dir
-    '18': 'STAFF PRIV'  # mcg sonat employee
     '23': 'STAFF PRIV'  # coop ext serv
-    '26': 'STAFF'       # mcg staff
+    '26': 'FAC PRIV'    # mcg staff
     '27': 'UNDER PRIV'  # mcg student
-    '39': 'GRAD PRIV'   # visiting scholar in residence
-    '40': 'UNDER PRIV'  # visiting undergrad intern
-    '41': 'GRAD PRIV'   # visiting graduate researcher
   user_group_settings:
     'UNDER PRIV':
-      weight: 1 # lowest
+      weight: 2 # lowest
       exp_date_days: 180
     'FAC':
       weight: 10 # highest
+      exp_date_days: 365
+    'FAC PRIV':
+      weight: 9
       exp_date_days: 365
     'GRAD PRIV':
       weight: 5
@@ -427,6 +428,9 @@ uga:
     'STAFF PRIV':
       weight: 6
       exp_date_days: 180
+    'OUTSIDE':
+      weight: 1
+      exp_date_days:
 
 # University of North Georgia
 # todo barcode just is the primary id
@@ -469,7 +473,6 @@ westga:
 
 test_sif:
   user_class_file: 'sif_user'
-  fac_staff: 'manual'
   barcodes: true
   notification_emails:
     - 'mak@uga.edu'
@@ -482,7 +485,6 @@ test_sif:
 test_sif_campus2:
   path: 'campus2'
   user_class_file: 'sif_user'
-  fac_staff: 'manual'
   barcodes: true
   user_group_settings:
     UNDERGRAD:
