@@ -71,9 +71,11 @@ class UgaUser < User
     user_group = {}
     exp_date_days = DEFAULT_EXPIRY_DATE_DAYS
 
+    user_group = nil
+
     fs_codes.each do |fs_code|
 
-      # if FS code has no mapping key, do not generate a user object
+      # if FS code has no mapping key, do not set a user_group value
       if @institution.groups_data.has_key? fs_code
 
         alma_name = @institution.groups_data[fs_code]
@@ -86,22 +88,21 @@ class UgaUser < User
             weight: group_settings['weight']
         }
 
-        if user_group.empty? || this_user_group[:weight] > user_group[:weight]
+        if !user_group || this_user_group[:weight] > user_group[:weight]
           user_group = this_user_group
         end
-
-      else
-
-        @institution.logger.warn "User Group encountered with no translation configured (#{self.user_group}). Patron will not be included in XML file."
-        self.user_group = nil
 
       end
 
     end
 
-    self.expiry_date = date_days_from_now exp_date_days
+    if user_group
+      self.user_group = user_group[:alma_name]
+    else
+      @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
+    end
 
-    self.user_group = user_group[:alma_name]
+    self.expiry_date = date_days_from_now exp_date_days
 
   end
 

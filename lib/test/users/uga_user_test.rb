@@ -163,4 +163,10 @@ class UgaUserTest < MiniTest::Test
 
   end
 
+  def test_user_with_multiple_class_codes
+
+
+
+  end
+
 end

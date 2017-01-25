@@ -27,9 +27,8 @@ class UserFactory
         File.foreach(f).with_index do |line, line_num|
 
           begin
-            # only process user if they have a user group
             user = user_class.new(line, run_set.inst)
-            users << user unless user.user_group.empty?
+            users << user if user.user_group # only process user if they have a user group
           rescue StandardError => e
             error_count += 1
             msg = "Problem loading line #{line_num + 1} from file: #{e.message}"
