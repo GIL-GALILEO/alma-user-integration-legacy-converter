@@ -1,16 +1,21 @@
 require './lib/classes/user'
 require 'csv'
+require 'date'
 
 class UgaUser < User
 
   FIELD_SEPARATOR = '|'
   FS_CODE_SEPARATOR = '~'
 
+  LAST_ENROLLED_DATE_FORMAT = '%Y%m'
+  LAST_PAY_DATE_FORMAT = '%Y%m%d'
+  LAST_ENROLLED_EXPIRE_DAYS = 180
+  LAST_PAY_EXPIRE_DAYS = 180
+
   DEFAULT_USER_GROUP = nil
 
   attr_accessor :name, :class_code, :last_enrolled_date, :last_pay_date
 
-  # todo: distinguish between a value where we want to use a default string value, and one we want to leave blank/nil
   MAPPING = {
       primary_id:                       0,
       name:                             1,
@@ -64,11 +69,42 @@ class UgaUser < User
     self.middle_name = other_names[1] if other_names[1]
   end
 
+  def last_pay_date_obj
+    return nil unless last_pay_date
+    DateTime.strptime last_pay_date, LAST_PAY_DATE_FORMAT
+  end
+
+  def last_enrolled_date_obj
+    return nil unless last_enrolled_date
+    DateTime.strptime last_enrolled_date, LAST_ENROLLED_DATE_FORMAT
+  end
+
+  def expire_based_on_last_pay_date?
+    # if the last pay date is more than 180 days ago, expire user
+    return false unless last_pay_date_obj && is_group_facstaff?
+    (DateTime.now - last_pay_date_obj).to_i > LAST_PAY_EXPIRE_DAYS
+  end
+
+  def expire_based_on_last_enrolled_date?
+    # if the last enrolled date is more than 180 days ago, expire user
+    return false unless last_enrolled_date_obj && is_group_student?
+    (DateTime.now - last_enrolled_date_obj).to_i > LAST_ENROLLED_EXPIRE_DAYS
+  end
+
+  def is_group_facstaff?
+    return false unless user_group
+    user_group.downcase.include?('staff') || user_group.downcase.include?('fac')
+  end
+
+  def is_group_student?
+    return false unless user_group
+    user_group.downcase.include?('under') || user_group.downcase.include?('grad')
+  end
+
   def set_alma_user_group_and_expiry_date
 
     fs_codes = @user_group.split(FS_CODE_SEPARATOR)
 
-    user_group = {}
     exp_date_days = DEFAULT_EXPIRY_DATE_DAYS
 
     user_group = nil
@@ -102,7 +138,11 @@ class UgaUser < User
       @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
     end
 
-    self.expiry_date = date_days_from_now exp_date_days
+    if expire_based_on_last_enrolled_date? || expire_based_on_last_pay_date?
+      self.expiry_date = date_days_from_now 0
+    else
+      self.expiry_date = date_days_from_now exp_date_days
+    end
 
   end
 

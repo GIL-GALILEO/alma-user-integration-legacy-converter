@@ -137,6 +137,64 @@ class UgaUserTest < MiniTest::Test
 
   end
 
+  def test_has_last_pay_date_object
+
+    assert_kind_of DateTime, @user.last_pay_date_obj
+
+  end
+
+  def test_has_last_enrolled_date_object
+
+    assert_kind_of DateTime, @user.last_enrolled_date_obj
+
+  end
+
+  def test_expire_based_on_last_pay_date
+
+    @user.user_group = 'STAFF'
+    @user.last_pay_date = '20150801'
+
+    assert_equal true, @user.expire_based_on_last_pay_date?
+
+  end
+
+  def test_expire_based_on_last_enrolled_date
+
+    @user.user_group = 'UNDER'
+    @user.last_enrolled_date = '201508'
+
+    assert_equal true, @user.expire_based_on_last_enrolled_date?
+
+  end
+
+  def test_is_group_facstaff?
+
+    assert_equal true, @user.is_group_facstaff?
+
+  end
+
+  def test_is_group_student?
+
+    assert_equal false, @user.is_group_student?
+
+  end
+
+  def test_group_is_student_with_nil
+
+    @user.user_group = nil
+
+    assert_equal false, @user.is_group_student?
+
+  end
+
+  def test_group_is_facstaff_with_nil
+
+    @user.user_group = nil
+
+    assert_equal false, @user.is_group_facstaff?
+
+  end
+
   def test_has_barcode
 
     assert_equal '1234567891234567', @user.barcode
@@ -157,15 +215,33 @@ class UgaUserTest < MiniTest::Test
 
   end
 
-  def test_has_proper_user_group
+  def test_stale_student_user_gets_expired
 
-    assert_equal 'STAFF', @user.user_group
+    @user.user_group = 'UNDER'
+    @user.last_enrolled_date = '201508'
+    @user.set_alma_user_group_and_expiry_date
+
+    date = "#{date_days_from_now(0)}Z"
+
+    assert_equal date, @user.expiry_date
 
   end
 
-  def test_user_with_multiple_class_codes
+  def test_stale_facstaff_user_gets_expired
 
+    @user.user_group = 'STAFF'
+    @user.last_pay_date = '20150801'
+    @user.set_alma_user_group_and_expiry_date
 
+    date = "#{date_days_from_now(0)}Z"
+
+    assert_equal date, @user.expiry_date
+
+  end
+
+  def test_has_proper_user_group
+
+    assert_equal 'STAFF', @user.user_group
 
   end
 
