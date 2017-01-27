@@ -74,4 +74,16 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_has_alma_archive_path
+
+    assert_equal '/gilftpfiles/test_sif/archive', @inst.alma_archive_path
+
+  end
+
+  def test_has_raw_archive_path
+
+    assert_equal '/gilftpfiles/test_sif/archive/raw', @inst.raw_archive_path
+
+  end
+
 end

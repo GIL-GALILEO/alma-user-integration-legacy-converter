@@ -35,6 +35,14 @@ class Institution
     @code
   end
 
+  def alma_archive_path
+    File.join INSTITUTION_DATA_PATH, code, 'archive'
+  end
+
+  def raw_archive_path
+    File.join alma_archive_path, 'raw'
+  end
+
   def notification_emails
     @config['notification_emails'] ? @config['notification_emails'] : []
   end
