@@ -458,6 +458,9 @@ vsu:
     STUDNTGRA:
        alma_name: 'STUDNTGRA'
        exp_date_days: 365
+    STUDNTCOMM:
+       alma_name: 'STUDNTCOMM'
+       exp_date_days: 365
     CONSORT:
        alma_name: 'CONSORT'
        exp_date_days: 180
