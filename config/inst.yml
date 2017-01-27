@@ -368,6 +368,7 @@ savst:
 
 # South Georgia State College (Douglas)
 sgsc:
+  path: 'douglas'
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
@@ -380,6 +381,7 @@ sgsc:
 
 # South Georgia State College (Waycross)
 sgsc-way:
+  path: 'waycross'
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
