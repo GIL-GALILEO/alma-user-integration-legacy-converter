@@ -42,32 +42,34 @@ class User
   attr_reader *USER_ATTRIBUTES
 
   def has_secondary_address?
-    !!(@secondary_address_line_1 ||
-      @secondary_address_line_2 ||
-      @secondary_address_city ||
-      @secondary_address_state_province ||
-      @secondary_address_postal_code ||
-      @secondary_address_country)
+    !(@secondary_address_line_1.to_s.empty? &&
+      @secondary_address_line_2.to_s.empty? &&
+      @secondary_address_city.to_s.empty? &&
+      @secondary_address_state_province.to_s.empty? &&
+      @secondary_address_postal_code.to_s.empty? &&
+      @secondary_address_country.to_s.empty?)
   end
   
   def has_primary_address?
-    !!(@primary_address_line_1 ||
-      @primary_address_line_2 ||
-      @primary_address_city ||
-      @primary_address_state_province ||
-      @primary_address_postal_code ||
-      @primary_address_country)
+    !(@primary_address_line_1.to_s.empty? &&
+      @primary_address_line_2.to_s.empty? &&
+      @primary_address_city.to_s.empty? &&
+      @primary_address_state_province.to_s.empty? &&
+      @primary_address_postal_code.to_s.empty? &&
+      @primary_address_country.to_s.empty?)
   end
 
   def has_contact_info?
-    !!(has_primary_address? ||
+    (
+      has_primary_address? ||
       has_secondary_address? ||
-      @email ||
-      @primary_address_phone)
+      !@email.to_s.empty? ||
+      !@primary_address_phone.to_s.empty?
+    )
   end
 
   def has_additional_identifiers?
-    !!(@barcode || @secondary_id)
+    !( ( @barcode.to_s.empty? ) && ( @secondary_id.to_s.empty? ) )
   end
 
   # ALMA PRIMARY ID
