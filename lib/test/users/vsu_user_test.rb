@@ -59,7 +59,7 @@ class VsuUserTest < MiniTest::Test
 
   def test_has_primary_address_line_2
 
-    assert_equal '', @user.primary_address_line_2
+    assert_equal '1000 W Wilson St', @user.primary_address_line_2
 
   end
 
@@ -83,7 +83,7 @@ class VsuUserTest < MiniTest::Test
 
   def test_has_primary_address_country
 
-    assert_equal '', @user.primary_address_country
+    assert_equal 'United States', @user.primary_address_country
 
   end
 

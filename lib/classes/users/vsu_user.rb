@@ -17,8 +17,8 @@ class VsuUser < SifUser
   }
 
   VSU_ADDRESS_SEGMENT_MAPPING = {
-      address_line_1:           [0, 99],
-      address_line_2:           [99, 199],
+      address_line_1:           [0, 50],
+      address_line_2:           [50, 90],
       address_city:             [210, 250],
       address_state_province:   [250, 257],
       address_postal_code:      [257, 267],
