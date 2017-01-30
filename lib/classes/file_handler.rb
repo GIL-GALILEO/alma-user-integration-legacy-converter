@@ -63,22 +63,16 @@ class FileHandler
 
       case detect_type_of_file(file_first_line)
 
-        # when 'exp_date'
-        #
-        #   run_set.exp = File.new file_path
-
         when 'barcode'
 
           run_set.barcode = File.new file_path
 
         when 'patron_sif'
 
-          # run_set.data = File.new file_path
           run_set.add_data File.new(file_path)
 
         when 'patron_txt'
 
-          # run_set.data = File.new file_path
           run_set.add_data File.new(file_path)
 
         when 'unknown'

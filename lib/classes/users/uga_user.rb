@@ -31,7 +31,7 @@ class UgaUser < User
       secondary_address_postal_code:    11,
       secondary_address_phone:          13,
       email:                            15,
-      secondary_id:                     nil,
+      # secondary_id:                     nil,
       barcode:                          22,
       class_code:                       16,
       last_pay_date:                    21,
@@ -46,8 +46,6 @@ class UgaUser < User
       if index
         value = @parsed_line[index]
         self.send("#{attr}=", value ? value.strip : '')
-      else
-        self.send("#{attr}=", 'DEFAULT_VALUE')
       end
     end
 
