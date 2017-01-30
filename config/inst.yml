@@ -260,7 +260,7 @@ ghc:
 
 # Gordon State College
 gordon:
-  user_class_file: 'sif_user'
+  user_class_file: 'gordon_user'
   barcodes: false
   user_group_settings:
     UNDERGRAD:
