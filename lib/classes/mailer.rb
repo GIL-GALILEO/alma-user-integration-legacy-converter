@@ -1,4 +1,5 @@
 require 'net/smtp'
+require 'uri'
 
 class Mailer
 
