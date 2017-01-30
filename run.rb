@@ -20,6 +20,11 @@ start = Time.now
 code = ARGV[0]
 dry_run = ARGV.include? 'dry-run'
 expire = ARGV.include? 'expire'
+sample = ARGV.include? 'sample'
+
+if expire && sample
+  exit_log_error "You've attempted to sample from an expire run. That is not supported!"
+end
 
 begin
   @institution = Institution.new(code)
@@ -28,7 +33,7 @@ rescue StandardError => e
 end
 
 begin
-  output_file = expire ? XmlFactory.expire_for(@institution) : XmlFactory.generate_for(@institution)
+  output_file = expire ? XmlFactory.expire_for(@institution) : XmlFactory.generate_for(@institution, sample)
 rescue StandardError => e
   exit_log_error "Script failed for #{code} with: #{e.message}"
 end
@@ -43,7 +48,7 @@ unless dry_run
   destination_file = File.join FILES_ROOT, @institution.code, DROP_POINT, File.basename(zip_file.path)
   FileUtils.mv(source_file, destination_file)
 
-  message = "Uploaded patron file for #{@institution.code} processed and sent to Alma for processing."
+  message = "Uploaded patron file for #{@institution.code} processed and sent to Alma for processing." #todo ??
 
   @institution.mailer.send_finished_notification
 

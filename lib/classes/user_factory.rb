@@ -39,8 +39,8 @@ class UserFactory
 
         end
 
-        # archive original uploaded file unless testing
-        archive_raw_file(f, run_set.inst) unless defined? MiniTest
+        # archive original uploaded file unless testing or sampling
+        archive_raw_file(f, run_set.inst) unless defined? MiniTest || run_set.config[:sample]
 
       end
 
@@ -63,9 +63,12 @@ class UserFactory
 
       end
 
-      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest)
+      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest)|| run_set.config[:sample]
 
     end
+
+    # randomly sample from array if sample flag is set
+    users = users.sample(5) if run_set.config[:sample]
 
     users
 

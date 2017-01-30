@@ -4,7 +4,7 @@ require './lib/classes/file_handler'
 
 class XmlFactory
 
-  def self.generate_for(institution)
+  def self.generate_for(institution, sample = false)
 
     begin
       @run_set = FileHandler.new(institution).generate
@@ -12,7 +12,7 @@ class XmlFactory
       raise StandardError.new("XML Factory (FileHandler) error: #{e.message}")
     end
 
-    get_result
+    get_result sample
 
   end
 
@@ -28,7 +28,9 @@ class XmlFactory
 
   end
 
-  def self.get_result
+  def self.get_result(sample = false)
+
+    @run_set.config[:sample] = sample
 
     begin
       users = UserFactory.generate(@run_set)
