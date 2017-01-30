@@ -275,7 +275,7 @@ gordon:
 
 # Georgia Piedmont Technical College
 gptc:
-  user_class_file: 'sif_user'
+  user_class_file: 'gptc_user'
   barcodes: false
   user_group_settings:
     UNDERGRAD:
