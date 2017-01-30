@@ -39,7 +39,8 @@ class UserFactory
 
         end
 
-        archive_raw_file f, run_set.inst
+        # archive original uploaded file unless testing
+        archive_raw_file(f, run_set.inst) unless defined? MiniTest
 
       end
 
@@ -61,6 +62,8 @@ class UserFactory
         u.expiry_date = date_days_from_now(0) if run_set.config[:run_type] == :expire
 
       end
+
+      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest)
 
     end
 
