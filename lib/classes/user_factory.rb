@@ -70,6 +70,8 @@ class UserFactory
     # randomly sample from array if sample flag is set
     users = users.sample(5) if run_set.config[:sample]
 
+    run_set.inst.mailer.add_result_message "Users extracted from file: #{users.length}"
+
     users
 
   end
