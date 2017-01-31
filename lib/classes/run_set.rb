@@ -53,6 +53,7 @@ class RunSet
   def barcode=(barcode_file)
     if is_file? barcode_file
       @barcode = barcode_file
+      parse_barcodes
     else
       raise StandardError.new('Barcode file provided is not a File!')
     end
@@ -68,15 +69,19 @@ class RunSet
   end
 
   def barcode_hash
-    if inst.expect_barcodes? and @barcode
-      barcode_array = CSV.read(@barcode.path, col_sep: inst.barcode_separator)
-      Hash[*barcode_array.flatten]
+    if @barcode_hash && @inst.expect_barcodes?
+      @barcode_hash
     else
       nil
     end
   end
 
   private
+
+  def parse_barcodes
+    barcode_array = CSV.read(@barcode.path, col_sep: @inst.barcode_separator)
+    @barcode_hash = Hash[*barcode_array.flatten]
+  end
 
   def is_file?(var)
     if var.is_a? File

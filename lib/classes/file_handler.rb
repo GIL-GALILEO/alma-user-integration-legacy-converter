@@ -51,6 +51,7 @@ class FileHandler
     return nil unless files
 
     run_set = RunSet.new
+    run_set.inst = @institution
 
     files.each do |file_path|
 
@@ -88,7 +89,6 @@ class FileHandler
     end
       
     run_set.config = run_config
-    run_set.inst = @institution
 
     run_set
 
