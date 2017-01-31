@@ -100,8 +100,12 @@ class FileHandler
 
   def detect_type_of_file(line)
 
-    if CSV.parse_line(line).length == TXT_FILE_FIELD_COUNT
-      return 'patron_txt'
+    begin
+      if CSV.parse_line(line).length == TXT_FILE_FIELD_COUNT
+        return 'patron_txt'
+      end
+    rescue StandardError => e
+      @institution.logger.error("File read error for file #{file_path}: #{e.message}")
     end
 
     case line
@@ -112,6 +116,8 @@ class FileHandler
       else 'unknown'
 
     end
+
+    return 'unknown'
 
   end
 
