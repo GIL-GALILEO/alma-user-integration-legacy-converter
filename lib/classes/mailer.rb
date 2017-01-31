@@ -41,11 +41,9 @@ class Mailer
 
   def send_finished_notification
 
-    # formulate message
-
     message = <<END
 From: GIL Alma Integrations <#{FROM_ADDRESS}>
-Subject: #{subject}
+Subject: Patron File Sent to Alma for #{@institution.code}
 
 Your patron file was parsed and successfully sent to Alma.
 
@@ -54,7 +52,6 @@ Results Info:
 
 File warnings/errors:
 #{@file_errors.empty? ? 'None' : @file_errors.join("\n")}
-
 
 Have a nice day!
 
@@ -67,6 +64,7 @@ END
   def send_admin_notification(message)
 
     message = <<END
+From: GIL Alma Integrations <#{FROM_ADDRESS}>
 Subject: Patron file parse script error for #{@institution.code}
 
 #{message}

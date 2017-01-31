@@ -48,8 +48,6 @@ unless dry_run
   destination_file = File.join FILES_ROOT, @institution.code, DROP_POINT, File.basename(zip_file.path)
   FileUtils.mv(source_file, destination_file)
 
-  message = "Uploaded patron file for #{@institution.code} processed and sent to Alma for processing." #todo ??
-
   @institution.mailer.send_finished_notification
 
 end
