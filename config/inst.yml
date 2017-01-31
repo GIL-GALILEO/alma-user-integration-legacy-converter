@@ -437,7 +437,7 @@ uga:
 # University of North Georgia
 # todo barcode just is the primary id
 ung:
-  user_class_file: 'ung_user'
+  user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
     UNDERGRAD:
