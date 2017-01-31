@@ -69,18 +69,17 @@ class RunSet
   end
 
   def barcode_hash
-    if @barcode_hash && @inst.expect_barcodes?
-      @barcode_hash
-    else
-      nil
-    end
+    @barcode_hash
   end
 
   private
 
   def parse_barcodes
-    barcode_array = CSV.read(@barcode.path, col_sep: @inst.barcode_separator)
-    @barcode_hash = Hash[*barcode_array.flatten]
+    if inst.expect_barcodes? && barcode && inst
+      barcode_array = CSV.read(barcode.path, col_sep: inst.barcode_separator)
+      @barcode_hash = Hash[*barcode_array.flatten]
+    end
+    nil
   end
 
   def is_file?(var)
