@@ -5,8 +5,8 @@
   <last_name><%= user.last_name %></last_name>
   <user_group><%= user.user_group %></user_group>
   <purge_date><%= defaults.purge_date %></purge_date>
-  <% if user.expiry_date %><expiry_date><%= user.expiry_date %></expiry_date><% end %>
-  <% if user.has_contact_info? %><contact_info>
+  <expiry_date><%= user.expiry_date %></expiry_date>
+  <contact_info>
     <% if user.has_primary_address? %><addresses>
       <address preferred="true">
         <line1><%= user.primary_address_line_1 %></line1>
@@ -31,14 +31,14 @@
         </address_types>
       </address><% end %>
     </addresses><% end %>
-    <% if user.email.to_s.empty? %><emails>
+    <emails>
       <email preferred="true">
-        <email_address><%= user.email %></email_address>
+        <email_address><% if user.email.to_s.empty? %><%= defaults.no_email_provided %><% else %><%= user.email %><% end %></email_address>
         <email_types>
           <email_type><%= defaults.preferred_email_type %></email_type>
         </email_types>
       </email>
-    </emails><% end %>
+    </emails>
     <% unless user.primary_address_phone.to_s.empty? %><phones>
       <phone preferred="true" preferred_sms="true">
         <phone_number><%= user.primary_address_phone %></phone_number>
@@ -47,7 +47,7 @@
         </phone_types>
       </phone>
     </phones><% end %>
-  </contact_info><% end %>
+  </contact_info>
   <% if user.has_additional_identifiers? %><user_identifiers>
     <% unless user.barcode.to_s.empty? %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>

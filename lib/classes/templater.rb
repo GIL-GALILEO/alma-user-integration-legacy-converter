@@ -41,7 +41,8 @@ class Templater
     row = 1
     users.each do |user|
       begin
-        file.puts template.result(binding)
+        xml = template.result(binding).gsub("\n  \n", "\n") # remove any single blank lines?
+        file.puts xml
       rescue Exception => e
         msg = "Error creating XML for User on row #{row}: #{e.message}"
         institution.logger.error msg

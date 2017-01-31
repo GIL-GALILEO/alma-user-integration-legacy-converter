@@ -3,6 +3,7 @@ global:
   preferred_address_type: 'home'
   preferred_phone_type: 'mobile'
   preferred_email_type: 'personal'
+  no_email_provided: 'none'
   barcode_type: '00'
   secondary_id_type: '01'
   secondary_address_type: 'alternative'
