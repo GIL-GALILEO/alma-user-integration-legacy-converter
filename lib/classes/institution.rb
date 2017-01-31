@@ -35,6 +35,10 @@ class Institution
     @code
   end
 
+  def barcode_separator
+    @config['barcode_separator']
+  end
+
   def alma_archive_path
     File.join INSTITUTION_DATA_PATH, code, 'archive'
   end

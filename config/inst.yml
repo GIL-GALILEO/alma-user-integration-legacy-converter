@@ -57,6 +57,7 @@ augusta:
   path: 'summerville'
   user_class_file: 'sif_user'
   barcodes: true
+  barcode_separator: ","
   user_group_settings:
     UNDERGRAD:
       alma_name: 'Rundergrad'
@@ -79,6 +80,7 @@ augusta-mcg:
   path: 'mcg'
   user_class_file: 'sif_user'
   barcodes: true
+  barcode_separator: "\t"
   user_group_settings:
     UNDERGRAD:
       alma_name: 'Mundergrad'
@@ -148,6 +150,7 @@ csu:
 dalton:
   user_class_file: 'sif_user'
   barcodes: true
+  barcode_separator: '|'
   user_group_settings:
     UNDERGRAD:
        alma_name: 'STUDENT'
@@ -478,6 +481,7 @@ westga:
 test_sif:
   user_class_file: 'sif_user'
   barcodes: true
+  barcode_separator: '|'
   notification_emails:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'

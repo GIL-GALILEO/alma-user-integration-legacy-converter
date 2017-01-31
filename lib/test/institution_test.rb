@@ -26,6 +26,12 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_barcode_separator
+
+    assert_equal @inst.barcode_separator, '|'
+
+  end
+
   def test_has_array_of_notification_emails
 
     emails = @inst.notification_emails

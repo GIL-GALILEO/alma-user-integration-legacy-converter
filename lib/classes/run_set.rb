@@ -69,7 +69,7 @@ class RunSet
 
   def barcode_hash
     if inst.expect_barcodes? and @barcode
-      barcode_array = CSV.read(@barcode.path, col_sep: '|')
+      barcode_array = CSV.read(@barcode.path, col_sep: inst.barcode_separator)
       Hash[*barcode_array.flatten]
     else
       nil
