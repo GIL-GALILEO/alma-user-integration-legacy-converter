@@ -41,6 +41,8 @@ class Mailer
 
   def send_finished_notification
 
+    recipients = @institution.notification_emails << ADMIN_ADDRESS
+
     message = <<END
 From: GIL Alma Integrations <#{FROM_ADDRESS}>
 Subject: Patron File Sent to Alma for #{@institution.code}
@@ -57,7 +59,7 @@ Have a nice day!
 
 END
 
-    email @institution.notification_emails, message
+    email recipients, message
 
   end
 
