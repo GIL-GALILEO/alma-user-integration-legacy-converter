@@ -106,6 +106,7 @@ class FileHandler
       end
     rescue StandardError => e
       @institution.logger.error("File read error for file #{file_path}: #{e.message}")
+      return 'unknown'
     end
 
     case line
@@ -116,8 +117,6 @@ class FileHandler
       else 'unknown'
 
     end
-
-    return 'unknown'
 
   end
 
