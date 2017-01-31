@@ -9,7 +9,7 @@
   <contact_info>
     <% if user.has_primary_address? %><addresses>
       <address preferred="true">
-        <line1><%= user.primary_address_line_1 %></line1>
+        <line1><% if user.primary_address_line_1.to_s.empty? %><%= defaults.no_address_provided %><% else %><%= user.primary_address_line_1 %><% end %></line1>
         <line2><%= user.primary_address_line_2 %></line2>
         <city><%= user.primary_address_city %></city>
         <state_province><%= user.primary_address_state_province %></state_province>

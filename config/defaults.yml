@@ -4,6 +4,7 @@ global:
   preferred_phone_type: 'mobile'
   preferred_email_type: 'personal'
   no_email_provided: 'none'
+  no_address_provided: 'none provided'
   barcode_type: 'BARCODE'
   secondary_id_type: '01'
   secondary_address_type: 'alternative'
