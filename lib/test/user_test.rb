@@ -49,6 +49,15 @@ class UserTest < MiniTest::Test
 
     assert @user.has_additional_identifiers?
 
+    @user.secondary_id = 'username'
+
+    assert @user.has_additional_identifiers?
+
+    @user.barcode = ''
+    @user.secondary_id = ''
+
+    assert !@user.has_additional_identifiers?
+
   end
 
 

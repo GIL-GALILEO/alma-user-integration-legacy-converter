@@ -48,12 +48,12 @@
       </phone>
     </phones><% end %>
   </contact_info>
-  <% if user.has_additional_identifiers? %><user_identifiers>
-    <% unless user.barcode.to_s.empty? %><user_identifier>
+  <% unless user.has_additional_identifiers? %><user_identifiers>
+    <% if user.barcode.to_s != '' %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
         <value><%= user.barcode %></value>
       </user_identifier><% end %>
-    <% unless user.secondary_id.to_s.empty? %><user_identifier>
+    <% if user.secondary_id.to_s != '' %><user_identifier>
       <id_type><%= defaults.secondary_id_type %></id_type>
       <value><%= user.secondary_id %></value>
     </user_identifier><% end %>

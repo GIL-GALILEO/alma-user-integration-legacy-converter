@@ -69,7 +69,7 @@ class User
   end
 
   def has_additional_identifiers?
-    !( ( @barcode.to_s.empty? ) && ( @secondary_id.to_s.empty? ) )
+    !@barcode.to_s.empty? || !@secondary_id.to_s.empty?
   end
 
   # ALMA PRIMARY ID
