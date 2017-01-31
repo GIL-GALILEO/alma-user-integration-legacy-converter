@@ -435,9 +435,8 @@ uga:
       exp_date_days:
 
 # University of North Georgia
-# todo barcode just is the primary id
 ung:
-  user_class_file: 'sif_user'
+  user_class_file: 'ung_user'
   barcodes: false
   user_group_settings:
     UNDERGRAD:
