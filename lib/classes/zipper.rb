@@ -13,7 +13,7 @@ class Zipper
 
     file_basename = File.basename file
     xml_file_path = File.join files_path, file_basename
-    zip_file_name = file_basename.gsub! '.xml', '.zip'
+    zip_file_name = file_basename.gsub '.xml', '.zip'
     zip_file_path = File.join files_path, zip_file_name
 
     begin
