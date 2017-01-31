@@ -25,6 +25,10 @@ To just generate files and not upload or send notifications:
 
 `ruby run.rb any_institution_code_here dry-run`
 
+To randomly pick 5 patron records from the parsed file and skip archiving of original files, use:
+
+`ruby run.rb any_institution_code_here sample`
+
 ## Mappings
 
 + [Default SIF](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/sif_user.rb#L17)
@@ -34,3 +38,5 @@ To just generate files and not upload or send notifications:
 + [Kennesaw State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/ksu_user.rb#L9)
 + [Valdosta State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/vsu_user.rb#L9)
 + [West Georgia](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/west_ga_user.rb#L9)
++ [Georgia Perimiter](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/gptc_user.rb#L9)
++ [Gordon State](https://github.com/mksndz/alma-user-integration-legacy-converter/blob/master/lib/classes/users/gordon_user.rb#L9)
