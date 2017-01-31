@@ -48,7 +48,7 @@
       </phone>
     </phones><% end %>
   </contact_info>
-  <% unless user.has_additional_identifiers? %><user_identifiers>
+  <% if user.has_additional_identifiers? %><user_identifiers>
     <% if user.barcode.to_s != '' %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
         <value><%= user.barcode %></value>
