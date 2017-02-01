@@ -54,11 +54,27 @@ class UserFactory
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
     end
 
+    # randomly sample from array if sample flag is set
+    users = users.sample(5) if run_set.config[:sample]
+
     if run_set.barcode_hash || run_set.config[:run_type] == :expire
 
       users.each do |u|
 
-        u.barcode = run_set.barcode_hash[u.primary_id] if run_set.barcode_hash
+        # set barcode
+        if run_set.barcode_hash
+
+          barcode = run_set.barcode_hash[u.primary_id]
+
+          if barcode
+            u.barcode = barcode
+          else
+            run_set.inst.logger.warn("Barcode for user (#{u.primary_id}) not found in file #{File.basename(run_set.barcode)}.")
+          end
+
+        end
+
+        # set expire date if expire run
         u.expiry_date = date_days_from_now(0) if run_set.config[:run_type] == :expire
 
       end
@@ -67,8 +83,6 @@ class UserFactory
 
     end
 
-    # randomly sample from array if sample flag is set
-    users = users.sample(5) if run_set.config[:sample]
 
     run_set.inst.mailer.add_result_message "Users extracted from file: #{users.length}"
 
