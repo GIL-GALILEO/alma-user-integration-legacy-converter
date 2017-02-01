@@ -68,12 +68,12 @@ class UgaUser < User
   end
 
   def last_pay_date_obj
-    return nil unless last_pay_date
+    return nil if last_pay_date.to_s.empty?
     DateTime.strptime last_pay_date, LAST_PAY_DATE_FORMAT
   end
 
   def last_enrolled_date_obj
-    return nil unless last_enrolled_date
+    return nil if last_enrolled_date.to_s.empty?
     DateTime.strptime last_enrolled_date, LAST_ENROLLED_DATE_FORMAT
   end
 
