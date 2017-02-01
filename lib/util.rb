@@ -7,8 +7,8 @@ module Util
     def exit_log_error(message)
       if @institution
         @institution.mailer.send_admin_notification message
+        @institution.logger.fatal message
       end
-      @script_logger.fatal message
       puts "#{message}. See logs."
       exit
     end
