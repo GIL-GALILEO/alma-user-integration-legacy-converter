@@ -79,7 +79,7 @@ class UserFactory
 
       end
 
-      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest)|| run_set.config[:sample]
+      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest) || run_set.config[:sample]
 
     end
 
