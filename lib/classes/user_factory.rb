@@ -54,6 +54,12 @@ class UserFactory
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
     end
 
+    if users.length == 0
+      message = "No users created from file. Something's likely gone wrong."
+      exit_log_error message
+      run_set.inst.mailer.send_admin_notification message
+    end
+
     # randomly sample from array if sample flag is set
     users = users.sample(5) if run_set.config[:sample]
 
