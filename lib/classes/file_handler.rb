@@ -101,7 +101,7 @@ class FileHandler
   def detect_type_of_file(line)
 
     begin
-      if CSV.parse_line(line).length == TXT_FILE_FIELD_COUNT
+      if CSV.parse_line(line, col_sep: '|' ).length == TXT_FILE_FIELD_COUNT
         return 'patron_txt'
       end
     rescue StandardError => e
