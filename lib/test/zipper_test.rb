@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require './lib/classes/zipper'
 require './lib/classes/institution'
 
-class XmlFactoryTest < MiniTest::Test
+class ZipperTest < MiniTest::Test
 
   def setup
 
