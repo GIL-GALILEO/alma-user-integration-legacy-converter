@@ -243,10 +243,10 @@ ggc:
   barcodes: false
   user_group_settings:
     UNDERGRAD:
-      alma_name: 'STU'
+      alma_name: 'STUD'
       exp_date_days: 180
     GRADUATE:
-      alma_name: 'STU'
+      alma_name: 'STUD'
       exp_date_days: 180
 
 # Georgia Highlands College
@@ -282,7 +282,7 @@ gptc:
   barcodes: false
   user_group_settings:
     UNDERGRAD:
-      alma_name: 'UNDERGRAD'
+      alma_name: 'STUDENT'
       exp_date_days: 180
 
 # Georgia State University
