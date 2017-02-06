@@ -35,6 +35,14 @@ class Institution
     @code
   end
 
+  def default_user_group
+    @config['default_user_group']
+  end
+
+  def default_exp_date_days
+    @config['default_exp_date_days']
+  end
+
   def barcode_separator
     @config['barcode_separator']
   end

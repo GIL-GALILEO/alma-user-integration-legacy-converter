@@ -32,6 +32,18 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_default_user_group
+
+    assert_equal @inst.default_user_group, 'DEFAULT'
+
+  end
+
+  def test_default_exp_date_days
+
+    assert_equal @inst.default_exp_date_days, 365
+
+  end
+
   def test_has_array_of_notification_emails
 
     emails = @inst.notification_emails
