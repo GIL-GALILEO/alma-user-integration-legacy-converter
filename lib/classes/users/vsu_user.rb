@@ -12,7 +12,7 @@ class VsuUser < SifUser
       middle_name: [360, 380],
       last_name: [310, 330],
       email: [917, 967],
-      barcode: [20, 29],
+      # barcode: [20, 29], # barcode and primary id cannot be identical in Alma
       primary_id: [238, 248],
   }
 
