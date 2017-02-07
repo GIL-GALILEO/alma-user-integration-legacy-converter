@@ -376,10 +376,10 @@ sgsc:
   barcodes: false
   user_group_settings:
     UNDERGRAD:
-     alma_name: 'STDT'
+     alma_name: 'DCSTDT'
      exp_date_days: 180
     GRADUATE:
-     alma_name: 'STDT'
+     alma_name: 'DCSTDT'
      exp_date_days: 365
 
 # South Georgia State College (Waycross)
