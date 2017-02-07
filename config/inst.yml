@@ -266,7 +266,7 @@ gordon:
   user_class_file: 'gordon_user'
   barcodes: false
   user_group_settings:
-    UNDERGRAD:
+    STUDENT:
       alma_name: 'STUDENT'
       exp_date_days: 180
     STAFF:
