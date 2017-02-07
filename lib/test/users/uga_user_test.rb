@@ -217,7 +217,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_stale_student_user_gets_expired
 
-    @user.user_group = 'UNDER'
+    @user.user_group = '00'
     @user.last_enrolled_date = '201508'
     @user.set_alma_user_group_and_expiry_date
 
@@ -229,7 +229,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_stale_facstaff_user_gets_expired
 
-    @user.user_group = 'STAFF'
+    @user.user_group = '02'
     @user.last_pay_date = '20150801'
     @user.set_alma_user_group_and_expiry_date
 
