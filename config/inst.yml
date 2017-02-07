@@ -153,10 +153,10 @@ dalton:
   barcode_separator: '|'
   user_group_settings:
     UNDERGRAD:
-       alma_name: 'STUDENT'
+       alma_name: 'STUD'
        exp_date_days: 180
     GRADUATE:
-       alma_name: 'STUDENT'
+       alma_name: 'STUD'
        exp_date_days: 365
 
 # Darton - To be Consolidated with Albany State
