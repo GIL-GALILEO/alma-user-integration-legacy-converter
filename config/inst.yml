@@ -224,16 +224,16 @@ gcsu:
     GRADUATE:
        alma_name: 'GRADUATE'
        exp_date_days: 365
-    FACULTY_FT:
+    'FACULTY FT':
        alma_name: 'FACULTY'
        exp_date_days: 365
-    FACULTY_PT:
+    'FACULTY PT':
        alma_name: 'FACULTY PT'
        exp_date_days: 365
-    STAFF_FT:
+    'STAFF FT':
        alma_name: 'FACULTY'
        exp_date_days: 365
-    STAFF_PT:
+    'STAFF PT':
        alma_name: 'FACULTY PT'
        exp_date_days: 365
 
@@ -490,6 +490,9 @@ test_sif:
   user_group_settings:
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
+      exp_date_days: 180
+    'SPACED TEST':
+      alma_name: 'WORKS'
       exp_date_days: 180
 
 test_sif_campus2:

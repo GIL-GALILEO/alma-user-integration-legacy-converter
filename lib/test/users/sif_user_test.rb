@@ -32,6 +32,15 @@ class SifUserTest < MiniTest::Test
 
   end
 
+  def test_can_handle_groups_with_spaces
+
+    @user.user_group = 'SPACED TEST'
+    @user.set_alma_user_group_and_expiry_date
+
+    assert_equal @user.user_group, 'WORKS'
+
+  end
+
   def test_has_primary_id
 
     assert_equal '930123456', @user.primary_id
