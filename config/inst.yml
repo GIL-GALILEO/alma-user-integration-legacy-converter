@@ -509,3 +509,6 @@ test_sif_campus2:
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
       exp_date_days: 180
+
+test_sif_empty:
+  user_class_file: 'sif_user'

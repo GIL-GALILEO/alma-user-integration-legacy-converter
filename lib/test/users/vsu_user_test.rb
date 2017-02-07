@@ -29,7 +29,7 @@ class VsuUserTest < MiniTest::Test
 
   def test_has_barcode
 
-    assert_equal '870123456', @user.barcode
+    assert_nil @user.barcode
 
   end
 

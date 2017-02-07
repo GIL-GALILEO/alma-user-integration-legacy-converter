@@ -42,7 +42,11 @@ class FileHandler
 
     files = get_files_in drop_location
 
-    compose_runset(files, run_config)
+    if files.empty?
+      nil
+    else
+      compose_runset(files, run_config)
+    end
 
   end
 

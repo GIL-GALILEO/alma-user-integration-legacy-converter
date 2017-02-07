@@ -9,7 +9,7 @@ module Util
         @institution.mailer.send_admin_notification message
         @institution.logger.fatal message
       end
-      puts "#{message}. See logs."
+      puts "#{message} See logs."
       exit
     end
 

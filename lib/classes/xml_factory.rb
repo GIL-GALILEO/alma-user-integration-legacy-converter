@@ -12,7 +12,7 @@ class XmlFactory
       raise StandardError.new("XML Factory (FileHandler) error: #{e.message}")
     end
 
-    get_result sample
+    get_result sample if @run_set
 
   end
 
@@ -24,7 +24,7 @@ class XmlFactory
       raise StandardError.new("XML Factory (FileHandler - Expire) error: #{e.message}")
     end
 
-    get_result
+    get_result if @run_set
 
   end
 

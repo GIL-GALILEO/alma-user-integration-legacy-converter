@@ -38,23 +38,32 @@ rescue StandardError => e
   exit_log_error "Script failed for #{code} with: #{e.message}"
 end
 
-# zip up file
-zip_file = Zipper.do output_file, @institution
+if output_file
 
-unless dry_run
+  # zip up file
+  zip_file = Zipper.do output_file, @institution
 
-  # MOVE FOR ALMA PICKUP
-  source_file = File.join zip_file.path
-  if @institution.parent_inst
-    destination_file = File.join FILES_ROOT, @institution.parent_inst.code, DROP_POINT, File.basename(zip_file.path)
-  else
-    destination_file = File.join FILES_ROOT, @institution.code, DROP_POINT, File.basename(zip_file.path)
+  unless dry_run
+
+    # MOVE FOR ALMA PICKUP
+    source_file = File.join zip_file.path
+    if @institution.parent_inst
+      destination_file = File.join FILES_ROOT, @institution.parent_inst.code, DROP_POINT, File.basename(zip_file.path)
+    else
+      destination_file = File.join FILES_ROOT, @institution.code, DROP_POINT, File.basename(zip_file.path)
+    end
+    FileUtils.mv(source_file, destination_file)
+
+    @institution.mailer.send_finished_notification
+
   end
-  FileUtils.mv(source_file, destination_file)
 
-  @institution.mailer.send_finished_notification
+  puts "File Generation complete for #{@institution.code}"
+  puts "Time: #{Time.now - start} seconds"
+
+else
+
+  puts "No files for #{@institution.code}"
 
 end
 
-puts "File Generation complete for #{@institution.code}"
-puts "Time: #{Time.now - start} seconds"

@@ -18,4 +18,10 @@ class FileHandlerTest < MiniTest::Test
 
   end
 
+  def test_returns_nil_if_no_files
+
+    assert_nil FileHandler.new(Institution.new('test_sif_empty')).generate
+
+  end
+
 end
