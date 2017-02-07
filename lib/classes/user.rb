@@ -68,8 +68,35 @@ class User
     )
   end
 
+  def has_phone_numbers?
+    has_primary_phone_numbers? || has_secondary_phone_numbers?
+  end
+
+  def has_primary_phone_numbers?
+    !(@primary_address_phone.to_s.empty? && @primary_address_mobile_phone.to_s.empty?)
+  end
+
+  def has_secondary_phone_numbers?
+    !(@secondary_address_phone.to_s.empty? && @secondary_address_mobile_phone.to_s.empty?)
+  end
+
   def has_additional_identifiers?
     !@barcode.to_s.empty? || !@secondary_id.to_s.empty?
+  end
+
+  def order_phone_numbers
+    @ordered_phone_numbers = [
+        @primary_address_phone,
+        @primary_address_mobile_phone,
+        @secondary_address_phone,
+        @secondary_address_mobile_phone
+    ].reject do |pn|
+      pn.to_s.empty?
+    end
+  end
+
+  def ordered_phone_numbers
+    @ordered_phone_numbers
   end
 
   # ALMA PRIMARY ID
@@ -193,8 +220,8 @@ class User
   # PRIMARY ADDRESS MOBILE PHONE
   # type:         string
   # max_length:   255
-  def primary_mobile_phone=(v)
-    @primary_mobile_phone = alma_string v
+  def primary_address_mobile_phone=(v)
+    @primary_address_mobile_phone = alma_string v
   end
 
   # SECONDARY ADDRESS LINE 1
@@ -249,8 +276,8 @@ class User
   # SECONDARY ADDRESS MOBILE PHONE
   # type:         string
   # max_length:   255
-  def secondary_mobile_phone=(v)
-    @secondary_mobile_phone = alma_string v
+  def secondary_address_mobile_phone=(v)
+    @secondary_address_mobile_phone = alma_string v
   end
 
   # ADDRESS EMAIL

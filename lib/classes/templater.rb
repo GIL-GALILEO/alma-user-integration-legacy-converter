@@ -41,6 +41,7 @@ class Templater
     row = 1
     users.each do |user|
       begin
+        user.order_phone_numbers
         xml = template.result(binding).gsub(/\n\s*\n/, "\n")
         file.puts xml
       rescue Exception => e

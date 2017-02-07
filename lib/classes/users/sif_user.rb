@@ -32,7 +32,7 @@ class SifUser < User
       address_postal_code:      [198, 208],
       address_country:          [208, 228],
       address_phone:            [228, 253],
-      mobile_phone:             [253, 278],
+      address_mobile_phone:     [258, 288],
   }
 
   def initialize(line_data, institution)

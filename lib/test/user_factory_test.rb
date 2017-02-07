@@ -69,7 +69,7 @@ class UserFactoryTest < MiniTest::Test
       result = UserFactory.generate(@run_set)
 
       assert_equal 2, result.size
-      assert_equal 'unknown', result[1].user_group
+      assert_equal 'DEFAULT', result[1].user_group
 
   end
 

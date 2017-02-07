@@ -36,6 +36,18 @@ class XmlFactoryTest < MiniTest::Test
     assert File.foreach(XmlFactory.generate_for(@institution)).grep /87654321930123456/
 
   end
+
+  def test_generate_produces_xml_with_primary_phone
+
+    assert File.foreach(XmlFactory.generate_for(@institution)).grep /(111)222-3333/
+
+  end
+
+  def test_generate_produces_xml_with_secondary_phone
+
+    assert File.foreach(XmlFactory.generate_for(@institution)).grep /(123)456-7890/
+
+  end
   
   def test_expire_produces_file
 

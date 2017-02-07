@@ -39,13 +39,22 @@
         </email_types>
       </email>
     </emails>
-    <% unless user.primary_address_phone.to_s.empty? %><phones>
-      <phone preferred="true" preferred_sms="true">
-        <phone_number><%= user.primary_address_phone %></phone_number>
-        <phone_types>
-          <phone_type><%= defaults.preferred_phone_type %></phone_type>
-        </phone_types>
+    <% if user.has_phone_numbers? %><phones>
+        <phone preferred="true" preferred_sms="true">
+          <phone_number><%= user.ordered_phone_numbers[0] %></phone_number>
+          <phone_types>
+            <phone_type><%= defaults.preferred_phone_type %></phone_type>
+          </phone_types>
+        </phone>
+      <% if user.ordered_phone_numbers[1] %>
+      <phone>
+          <phone_number><%= user.ordered_phone_numbers[1] %></phone_number>
+          <phone_types>
+            <phone_type><%= defaults.secondary_phone_type %></phone_type>
+          </phone_types>
       </phone>
+      <% end %>
+
     </phones><% end %>
   </contact_info>
   <% if user.has_additional_identifiers? %><user_identifiers>

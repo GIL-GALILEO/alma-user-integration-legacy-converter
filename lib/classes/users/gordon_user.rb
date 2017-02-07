@@ -24,6 +24,7 @@ class GordonUser < SifUser
       address_postal_code:      [279, 289],
       address_country:          [289, 309],
       address_phone:            [309, 321],
+      # address_mobile_phone:     [309, 321],
   }
 
   def general_mapping

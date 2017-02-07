@@ -19,6 +19,29 @@ class UserTest < MiniTest::Test
 
   end
 
+  def test_has_phone_numbers?
+
+    @user.secondary_address_mobile_phone = '111-222-3333'
+
+    assert @user.has_phone_numbers?
+
+  end
+
+  def test_has_ordered_phone_numbers
+
+    @user.primary_address_phone = '111-222-3333'
+    @user.primary_address_mobile_phone = nil
+    @user.secondary_address_phone = '123-456-7890'
+    @user.secondary_address_mobile_phone = ''
+
+    @user.order_phone_numbers
+
+    assert_equal 2, @user.ordered_phone_numbers.length
+    assert_equal '111-222-3333', @user.ordered_phone_numbers[0]
+    assert_equal '123-456-7890', @user.ordered_phone_numbers[1]
+
+  end
+
   def test_has_primary_address?
 
     @user.primary_address_state_province = 'GA'

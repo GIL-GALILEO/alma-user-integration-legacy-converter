@@ -89,13 +89,13 @@ class KsuUserTest < MiniTest::Test
 
   def test_has_primary_address_phone
 
-    assert_equal '', @user.primary_address_phone
+    assert_equal '(123) 456-7890', @user.primary_address_phone
 
   end
 
   def test_has_primary_address_mobile_phone
 
-    assert_nil @user.primary_address_mobile_phone
+    assert_equal '(111) 222-3333', @user.primary_address_mobile_phone
 
   end
 

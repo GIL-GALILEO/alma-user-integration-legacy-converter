@@ -23,7 +23,8 @@ class GaSouUser < SifUser
       address_state_province:   [191, 197],
       address_postal_code:      [198, 208],
       address_country:          [208, 225],
-      address_phone:            [228, 248],
+      address_phone:            [228, 253],
+      address_mobile_phone:     [253, 278],
   }
 
   def general_mapping

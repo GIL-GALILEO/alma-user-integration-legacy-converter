@@ -95,7 +95,7 @@ class GaSouUserTest < MiniTest::Test
 
   def test_has_primary_address_mobile_phone
 
-    assert_nil @user.primary_address_mobile_phone
+    assert_equal '(111)222-3333', @user.primary_address_mobile_phone
 
   end
 
@@ -143,7 +143,7 @@ class GaSouUserTest < MiniTest::Test
 
   def test_has_secondary_address_mobile_phone
 
-    assert_nil @user.secondary_address_mobile_phone
+    assert_equal '', @user.secondary_address_mobile_phone
 
   end
 

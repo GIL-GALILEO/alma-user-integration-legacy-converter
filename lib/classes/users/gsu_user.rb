@@ -24,6 +24,7 @@ class GsuUser < SifUser
       address_postal_code:      [257, 267],
       address_country:          [267, 287],
       address_phone:            [287, 307],
+      # address_mobile_phone:     [],
   }
 
   def general_mapping

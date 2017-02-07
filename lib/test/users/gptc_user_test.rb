@@ -17,7 +17,7 @@ class GptcUserTest < MiniTest::Test
 
   def test_has_user_group
 
-    assert_equal 'UNDERGRAD', @user.user_group
+    assert_equal 'STUDENT', @user.user_group
 
   end
 
@@ -95,7 +95,7 @@ class GptcUserTest < MiniTest::Test
 
   def test_has_primary_address_mobile_phone
 
-    assert_nil @user.primary_address_mobile_phone
+    assert_equal '', @user.primary_address_mobile_phone
 
   end
 
