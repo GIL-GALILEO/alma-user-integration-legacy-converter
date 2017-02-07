@@ -17,13 +17,13 @@ class KsuUser < SifUser
 
   KSU_ADDRESS_SEGMENT_MAPPING = {
       address_type:             [0, 1],
-      address_line_1:           [22, 112],
-      address_line_2:           [112, 232],
+      address_line_1:           [22, 72],
+      address_line_2:           [72, 112],
       address_city:             [232, 272],
       address_state_province:   [272, 279],
       address_postal_code:      [279, 289],
       address_country:          [289, 309],
-      address_phone:            [309, 334],
+      address_phone:            [309, 335],
       address_mobile_phone:     [384, 409],
   }
 

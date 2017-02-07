@@ -40,12 +40,12 @@
       </email>
     </emails>
     <% if user.has_phone_numbers? %><phones>
-        <phone preferred="true" preferred_sms="true">
-          <phone_number><%= user.ordered_phone_numbers[0] %></phone_number>
-          <phone_types>
-            <phone_type><%= defaults.preferred_phone_type %></phone_type>
-          </phone_types>
-        </phone>
+      <phone preferred="true" preferred_sms="true">
+        <phone_number><%= user.ordered_phone_numbers[0] %></phone_number>
+        <phone_types>
+          <phone_type><%= defaults.preferred_phone_type %></phone_type>
+        </phone_types>
+      </phone>
       <% if user.ordered_phone_numbers[1] %>
       <phone>
           <phone_number><%= user.ordered_phone_numbers[1] %></phone_number>

@@ -59,7 +59,7 @@ class KsuUserTest < MiniTest::Test
 
   def test_has_primary_address_line_2
 
-    assert_equal 'Some Midtown Apartments', @user.primary_address_line_2
+    assert_equal 'Room 12', @user.primary_address_line_2
 
   end
 
