@@ -131,15 +131,20 @@ class UgaUser < User
     end
 
     if user_group
-      self.user_group = user_group[:alma_name]
-    else
-      @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
-    end
 
-    if expire_based_on_last_enrolled_date? || expire_based_on_last_pay_date?
-      self.expiry_date = date_days_from_now 0
+      self.user_group = user_group[:alma_name]
+
+      if expire_based_on_last_enrolled_date? || expire_based_on_last_pay_date?
+        self.expiry_date = date_days_from_now 0
+      else
+        self.expiry_date = date_days_from_now exp_date_days
+      end
+
     else
-      self.expiry_date = date_days_from_now exp_date_days
+
+      @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
+      self.user_group = nil # set user group to nil so user is not subject to further processing
+
     end
 
   end
