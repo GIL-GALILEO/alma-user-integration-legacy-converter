@@ -16,7 +16,12 @@ class Institution
       raise StandardError.new("Institution config could not be loaded for #{@code}")
     end
 
-    log_path = "#{INSTITUTION_DATA_PATH}#{code}/log.log"
+    if @config['parent']
+      set_parent_inst
+      log_path = "#{INSTITUTION_DATA_PATH}#{parent_inst.code}/#{code}_log.log"
+    else
+      log_path = "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
+    end
 
     @institution_logger = Logger.new log_path
     @mailer = Mailer.new self
@@ -33,6 +38,10 @@ class Institution
 
   def code
     @code
+  end
+
+  def parent_inst
+    @parent_inst
   end
 
   def default_user_group
@@ -101,6 +110,16 @@ class Institution
 
   def autoexpire_missing_users?
     !!@config['expire_users']
+  end
+
+  private
+
+  def set_parent_inst
+    begin
+      @parent_inst = Institution.new(@config['parent'])
+    rescue StandardError => e
+      @institution_logger.error "Parent Institution for #{code} could not be instantiated: #{e}"
+    end
   end
 
 end

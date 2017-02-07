@@ -59,11 +59,26 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_returns_nil_if_no_parent
+
+    assert_nil @inst.parent_inst
+
+  end
+
   def test_has_path
 
     inst = Institution.new('test_sif_campus2')
 
     assert_equal 'campus2', inst.path
+
+  end
+
+  def test_can_have_parent_institution
+
+    inst = Institution.new('test_sif_campus2')
+
+    assert_kind_of Institution, inst.parent_inst
+    assert_equal 'test_sif', inst.parent_inst.code
 
   end
 

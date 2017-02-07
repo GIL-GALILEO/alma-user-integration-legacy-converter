@@ -16,7 +16,9 @@ class FileHandler
       raise StandardError.new('Cannot generate for something that is not an Institution!')
     end
 
-    if institution.path
+    if institution.path && institution.parent_inst
+      @inst_files_root = File.join DATA_DIR_BASE, institution.parent_inst.code, FILE_DROP_SITE, institution.path
+    elsif institution.path
       @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE, institution.path
     else
       @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE
