@@ -41,7 +41,7 @@ class UgaUser < User
   def initialize(line_data, institution)
 
     @institution = institution
-    @parsed_line = CSV.parse_line(line_data, col_sep: FIELD_SEPARATOR)
+    @parsed_line = CSV.parse_line(line_data, col_sep: FIELD_SEPARATOR, quote_char: "\x00")
     mapping.each do |attr, index|
       if index
         value = @parsed_line[index]
@@ -61,6 +61,10 @@ class UgaUser < User
     @name = full_name
     names = full_name.split(',')
     names.map!(&:strip)
+    unless names[0] and names[1]
+      handle_empty_names
+      return
+    end
     self.last_name = names[0]
     other_names = names[1].split(' ')
     self.first_name = other_names[0]
@@ -142,11 +146,18 @@ class UgaUser < User
 
     else
 
-      @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
+      # @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
       self.user_group = nil # set user group to nil so user is not subject to further processing
 
     end
 
+  end
+
+  private
+
+  def handle_empty_names
+    self.last_name = 'NONE'
+    self.first_name = 'NONE'
   end
 
 end
