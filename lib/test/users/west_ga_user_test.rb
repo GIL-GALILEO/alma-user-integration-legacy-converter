@@ -17,7 +17,7 @@ class WestGaUserTest < MiniTest::Test
 
   def test_has_user_group
 
-    assert_equal 'student', @user.user_group
+    assert_kind_of UserGroup, @user.user_group
 
   end
 

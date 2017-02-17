@@ -15,9 +15,15 @@ class GsuUserTest < MiniTest::Test
 
   end
 
-  def test_has_user_group
+  def test_has_original_user_group
 
-    assert_equal 'PUL1', @user.user_group
+    assert_equal 'PUL1', @user.original_user_group
+
+  end
+
+  def test_has_user_group_object
+
+    assert_kind_of UserGroup, @user.user_group
 
   end
 

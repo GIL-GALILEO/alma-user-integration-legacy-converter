@@ -1,4 +1,5 @@
 require './lib/classes/user'
+require './lib/classes/user_group'
 require 'csv'
 require 'date'
 
@@ -12,14 +13,12 @@ class UgaUser < User
   LAST_ENROLLED_EXPIRE_DAYS = 180
   LAST_PAY_EXPIRE_DAYS = 180
 
-  DEFAULT_USER_GROUP = nil
-
-  attr_accessor :name, :class_code, :last_enrolled_date, :last_pay_date
+  attr_accessor :name, :fs_codes, :class_code, :last_enrolled_date, :last_pay_date
 
   MAPPING = {
       primary_id:                       0,
       name:                             1,
-      user_group:                       2,
+      fs_codes:                         2,
       primary_address_line_1:           3,
       primary_address_city:             4,
       primary_address_state_province:   5,
@@ -49,7 +48,9 @@ class UgaUser < User
       end
     end
 
-    set_alma_user_group_and_expiry_date
+    set_user_group_from_original
+
+    run_expire_checks
 
   end
 
@@ -95,61 +96,31 @@ class UgaUser < User
 
   def is_group_facstaff?
     return false unless user_group
-    user_group.downcase.include?('staff') || user_group.downcase.include?('fac')
+    user_group_for_alma.downcase.include?('staff') || user_group_for_alma.downcase.include?('fac')
   end
 
   def is_group_student?
     return false unless user_group
-    user_group.downcase.include?('under') || user_group.downcase.include?('grad')
+    user_group_for_alma.downcase.include?('under') || user_group_for_alma.downcase.include?('grad')
   end
 
-  def set_alma_user_group_and_expiry_date
+  def set_user_group_from_original
 
-    fs_codes = @user_group.split(FS_CODE_SEPARATOR)
+    begin
 
-    exp_date_days = DEFAULT_EXPIRY_DATE_DAYS
+      self.user_group = UserGroup.new @institution, nil, fs_codes.split(FS_CODE_SEPARATOR)
 
-    user_group = nil
-
-    fs_codes.each do |fs_code|
-
-      # if FS code has no mapping key, do not set a user_group value
-      if @institution.groups_data.has_key? fs_code
-
-        alma_name = @institution.groups_data[fs_code]
-
-        group_settings = @institution.groups_settings[alma_name]
-        exp_date_days = @institution.groups_settings[alma_name]['exp_date_days'].to_i
-
-        this_user_group = {
-            alma_name: alma_name,
-            weight: group_settings['weight']
-        }
-
-        if !user_group || this_user_group[:weight] > user_group[:weight]
-          user_group = this_user_group
-        end
-
-      end
+    rescue StandardError => e # todo exception used for flow control...
 
     end
 
-    if user_group
+  end
 
-      self.user_group = user_group[:alma_name]
+  def run_expire_checks
 
-      if expire_based_on_last_enrolled_date? || expire_based_on_last_pay_date?
-        self.expiry_date = date_days_from_now 0
-      else
-        self.expiry_date = date_days_from_now exp_date_days
+      if user_group && ( expire_based_on_last_enrolled_date? || expire_based_on_last_pay_date? )
+        self.user_group.exp_date_days = 0
       end
-
-    else
-
-      # @institution.logger.info("Patron record had no translatable FS codes in (#{fs_codes.join(', ')}). Patron will not be added to Alma XML.")
-      self.user_group = nil # set user group to nil so user is not subject to further processing
-
-    end
 
   end
 

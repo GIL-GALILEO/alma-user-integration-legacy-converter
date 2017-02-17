@@ -7,7 +7,7 @@ class VsuUser < SifUser
   VSU_MAXIMUM_ADDRESS_SEGMENTS = 1
 
   VSU_GENERAL_MAPPING = {
-      user_group: [45, 55],
+      original_user_group: [45, 55],
       first_name: [340, 360],
       middle_name: [360, 380],
       last_name: [310, 330],

@@ -2,6 +2,9 @@ require 'logger'
 require 'erb'
 require 'yaml'
 require 'ostruct'
+require './lib/util'
+include Util::App
+include Util::File
 
 class Templater
 

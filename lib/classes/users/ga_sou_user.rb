@@ -7,7 +7,7 @@ class GaSouUser < SifUser
   GA_SOU_MAXIMUM_ADDRESS_SEGMENTS = 3
 
   GA_SOU_GENERAL_MAPPING = {
-      user_group:   [0, 9],
+      original_user_group:   [0, 9],
       last_name:    [32, 62],
       first_name:   [62, 82],
       middle_name:  [82, 102],

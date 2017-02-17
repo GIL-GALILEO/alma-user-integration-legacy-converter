@@ -3,6 +3,7 @@ require 'fileutils'
 require './lib/classes/run_set'
 require './lib/classes/institution'
 require './lib/classes/user'
+require './lib/classes/user_group'
 
 class UserFactory
 
@@ -18,7 +19,7 @@ class UserFactory
       raise StandardError.new('User class not loaded properly in user factory')
     end
 
-    users = []
+    users_hash = {}
     error_count = 0
 
     if run_set.is_sufficient?
@@ -28,8 +29,36 @@ class UserFactory
         File.foreach(f).with_index do |line, line_num|
 
           begin
+
             user = user_class.new(line, run_set.inst)
-            users << user if user.user_group # only process user if they have a user group
+
+            ug = user.user_group
+            id = user.primary_id
+
+            if ug && id
+
+              if users_hash[id]
+
+                same_user = users_hash[id]
+
+                if ug.is_heavier_than? same_user.user_group
+
+                  users_hash[id] = user
+
+                end
+
+              else
+
+                users_hash[id] = user
+
+              end
+
+            else
+
+              # either no user group or no primary_id, either way leave out of final user array
+
+            end
+
           rescue StandardError => e
             error_count += 1
             msg = "Problem loading line #{line_num + 1} from file: #{e.message}"
@@ -49,6 +78,8 @@ class UserFactory
       throw StandardError.new 'RunSet is not sufficient'
 
     end
+
+    users = users_hash.values
 
     if error_count > 0
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
@@ -81,7 +112,7 @@ class UserFactory
         end
 
         # set expire date if expire run
-        u.expiry_date = date_days_from_now(0) if run_set.config[:run_type] == :expire
+        u.user_group.exp_date_days = 0 if run_set.config[:run_type] == :expire
 
       end
 

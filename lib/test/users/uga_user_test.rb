@@ -23,12 +23,6 @@ class UgaUserTest < MiniTest::Test
 
   end
 
-  def test_default_user_group_is_nil
-
-    assert_nil UgaUser::DEFAULT_USER_GROUP
-
-  end
-
   def test_has_name
 
     assert_equal 'User, Alma Test', @user.name
@@ -61,7 +55,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_has_user_group
 
-    assert_equal 'STAFF', @user.user_group
+    assert_equal 'STAFF', @user.user_group.alma_name
 
   end
 
@@ -151,7 +145,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_expire_based_on_last_pay_date
 
-    @user.user_group = 'STAFF'
+    @user.user_group.alma_name = 'STAFF'
     @user.last_pay_date = '20150801'
 
     assert_equal true, @user.expire_based_on_last_pay_date?
@@ -160,7 +154,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_expire_based_on_last_enrolled_date
 
-    @user.user_group = 'UNDER'
+    @user.user_group.alma_name = 'UNDER'
     @user.last_enrolled_date = '201508'
 
     assert_equal true, @user.expire_based_on_last_enrolled_date?
@@ -211,19 +205,20 @@ class UgaUserTest < MiniTest::Test
 
     date = "#{date_days_from_now(365)}Z"
 
-    assert_equal date, @user.expiry_date
+    assert_equal date, @user.exp_date_for_alma
 
   end
 
   def test_stale_student_user_gets_expired
 
-    @user.user_group = '00'
+    @user.fs_codes = '00'
     @user.last_enrolled_date = '201508'
-    @user.set_alma_user_group_and_expiry_date
+    @user.set_user_group_from_original
+    @user.run_expire_checks
 
     date = "#{date_days_from_now(0)}Z"
 
-    assert_equal date, @user.expiry_date
+    assert_equal date, @user.exp_date_for_alma
 
   end
 
@@ -231,17 +226,12 @@ class UgaUserTest < MiniTest::Test
 
     @user.user_group = '02'
     @user.last_pay_date = '20150801'
-    @user.set_alma_user_group_and_expiry_date
+    @user.set_user_group_from_original
+    @user.run_expire_checks
 
     date = "#{date_days_from_now(0)}Z"
 
-    assert_equal date, @user.expiry_date
-
-  end
-
-  def test_has_proper_user_group
-
-    assert_equal 'STAFF', @user.user_group
+    assert_equal date, @user.exp_date_for_alma
 
   end
 

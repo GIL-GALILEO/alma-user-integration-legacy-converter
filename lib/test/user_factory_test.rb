@@ -50,7 +50,7 @@ class UserFactoryTest < MiniTest::Test
 
     result = UserFactory.generate(@run_set)
 
-    assert_equal 'ALMA STUDENT', result[0].user_group
+    assert_equal 'ALMA STUDENT', result[0].user_group.alma_name
 
   end
 
@@ -69,7 +69,7 @@ class UserFactoryTest < MiniTest::Test
       result = UserFactory.generate(@run_set)
 
       assert_equal 2, result.size
-      assert_equal 'DEFAULT', result[1].user_group
+      assert_equal 'DEFAULT', result[1].user_group.alma_name
 
   end
 
@@ -79,6 +79,21 @@ class UserFactoryTest < MiniTest::Test
 
     assert_equal 'Alma', UserFactory.generate(@run_set)[0].first_name
     assert_equal 'Other', UserFactory.generate(@run_set)[1].first_name
+
+  end
+
+  def test_duplicate_user_entries_take_the_role_with_highest_weight
+
+    inst = Institution.new('test_sif_facstaff')
+
+    file = File.new '/gilftpfiles/test_sif_facstaff/patrondrop/test_sif.txt'
+
+    run_set = RunSet.new
+    run_set.inst = inst
+    run_set.config = { run_type: :full }
+    run_set.data = file
+
+    assert_equal 'ALMA STAFF', UserFactory.generate(run_set)[0].user_group_for_alma
 
   end
 

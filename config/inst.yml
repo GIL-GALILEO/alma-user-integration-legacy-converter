@@ -9,48 +9,72 @@ abac:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STU'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STU'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'STU'
       exp_date_days: 365
+      weight: 6
 
 # Armstrong State University
 armstrong:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'Student'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'Student'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'GRAD'
        exp_date_days: 365
+       weight: 6
 
 # Albany State University - To be Consolidated with Darton
 asu:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'UG'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'UG'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'G'
       exp_date_days: 365
+      weight: 6
     FACULTY:
-      alma_name: 'F' # todo guessed on the sif value
+      alma_name: 'F'
       exp_date_days: 365
+      weight: 9
 
 # Atlanta Metropolitan College
 atlm:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STU'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STU'
       exp_date_days: 180
+      weight: 5
 
 # Augusta University (Summerville)
 augusta:
@@ -59,21 +83,30 @@ augusta:
   barcodes: true
   barcode_separator: ","
   user_group_settings:
+    DEFAULT:
+      alma_name: 'Rundergrad'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'Rundergrad'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'Rundergrad'
       exp_date_days: 365
+      weight: 6
     FACULTY:
       alma_name: 'Rfaculty'
       exp_date_days: 365
+      weight: 9
     STAFF:
       alma_name: 'Rstaff'
       exp_date_days: 365
+      weight: 7
     PARTFAC:
       alma_name: 'Rtemp_prt'
       exp_date_days: 365
+      weight: 8
 
 # Augusta University - MCG
 augusta-mcg:
@@ -83,69 +116,102 @@ augusta-mcg:
   barcodes: true
   barcode_separator: "\t"
   user_group_settings:
+    DEFAULT:
+      alma_name: 'Mundergrad'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'Mundergrad'
       exp_date_days: 180
+      weight: 3
     GRADUATE:
       alma_name: 'Mundergrad'
       exp_date_days: 365
+      weight: 5
     FACULTY:
       alma_name: 'Mfaculty'
       exp_date_days: 365
+      weight: 9
     STAFF:
       alma_name: 'Mstaff'
       exp_date_days: 365
+      weight: 7
     PARTFAC:
       alma_name: 'Mtemp_prt'
       exp_date_days: 365
+      weight: 6
 
 # Bainbridge State College
 bain:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STU'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STU'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'STU'
       exp_date_days: 365
+      weight: 6
 
 # College of Coastal GA
 ccga:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'SEMESTER'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'SEMESTER'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'SEMESTER'
       exp_date_days: 365
+      weight: 6
 
 # Clayton State University
 clayton:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'STUDENT'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'STUDENT'
        exp_date_days: 365
+       weight: 6
 
 # Columbus State University
 csu:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'RG'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'RG'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'RG'
        exp_date_days: 365
+       weight: 6
 
 # Dalton State College
 dalton:
@@ -153,222 +219,326 @@ dalton:
   barcodes: true
   barcode_separator: '|'
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUD'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'STUD'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'STUD'
        exp_date_days: 365
+       weight: 6
 
 # Darton - To be Consolidated with Albany State
 darton:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'dstu'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'dstu'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'dstu'
       exp_date_days: 365
+      weight: 6
 
 # East Georgia State College
 ega:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'ST'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'ST'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'ST'
        exp_date_days: 365
+       weight: 6
 
 # Fort Valley State University
 ftv:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'fvstudent'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'fvstudent'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'fvgrad'
        exp_date_days: 365
+       weight: 6
 
 # Georgia Southern University
 gasou:
   user_class_file: 'ga_sou_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'ST'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'ST'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'GR'
        exp_date_days: 365
+       weight: 6
     EAST_GA:
        alma_name: 'RS'
        exp_date_days: 180
+       weight: 4
     FAC_STAFF:
        alma_name: 'GF'
        exp_date_days: 365
+       weight: 9
 
 # Georgia College
 gcsu:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
        alma_name: 'GRADUATE'
        exp_date_days: 365
+       weight: 6
     'FACULTY FT':
        alma_name: 'FACULTY'
        exp_date_days: 365
+       weight: 8
     'FACULTY PT':
        alma_name: 'FACULTY PT'
        exp_date_days: 365
+       weight: 9
     'STAFF FT':
        alma_name: 'FACULTY'
        exp_date_days: 365
+       weight: 7
     'STAFF PT':
        alma_name: 'FACULTY PT'
        exp_date_days: 365
+       weight: 6
 
 # Georgia Gwinnett College
 ggc:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUD'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STUD'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'STUD'
       exp_date_days: 180
+      weight: 6
 
 # Georgia Highlands College
 ghc:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUD'
+      exp_date_days: 180
+      weight: 5
     FACSTAFF:
       alma_name: 'FACSTAFF'
       exp_date_days: 365
+      weight: 8
     UNDERGRAD:
       alma_name: 'STUD'
       exp_date_days: 180
+      weight: 5
 
 # Gordon State College
 gordon:
   user_class_file: 'gordon_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     STUDENT:
       alma_name: 'STUDENT'
       exp_date_days: 180
+      weight: 5
     STAFF:
       alma_name: 'STAFF'
       exp_date_days: 365
+      weight: 7
     FACULTY:
       alma_name: 'FACULTY'
       exp_date_days: 365
+      weight: 9
 
 # Georgia Piedmont Technical College
 gptc:
   user_class_file: 'gptc_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
       exp_date_days: 180
+      weight: 5
 
 # Georgia State University
 gsu:
   user_class_file: 'gsu_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'PUL1'
+      exp_date_days: 180
+      weight: 5
     PUL1:
       alma_name: 'PUL1'
       exp_date_days: 180
+      weight: 2
     L-LAW_FAC:
       alma_name: 'L-LAW_FAC'
       exp_date_days: 365
+      weight: 7
     PUL2:
       alma_name: 'PUL2'
       exp_date_days: 180
+      weight: 3
     PUL13:
       alma_name: 'PUL13'
       exp_date_days: 180
+      weight: 4
     L-STU:
       alma_name: 'L-STU'
       exp_date_days: 180
+      weight: 5
     PUL11:
       alma_name: 'PUL11'
       exp_date_days: 180
+      weight: 5
     L-LAW_STAF:
       alma_name: 'L-LAW_STAF'
       exp_date_days: 365
+      weight: 8
     PUL8:
       alma_name: 'PUL8'
       exp_date_days: 180
+      weight: 4
 
 # Georgia Southwestern State University
 gsw:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
        alma_name: 'STUDENT'
        exp_date_days: 180
+       weight: 5
     GRADUATE:
        alma_name: 'STUDENT'
        exp_date_days: 180
+       weight: 6
 
 # Kennesaw Sate University
 ksu:
   user_class_file: 'ksu_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'undergrad'
+      exp_date_days: 180
+      weight: 5
     undergrad:
        alma_name: 'undergrad'
        exp_date_days: 180
+       weight: 5
     graduate:
        alma_name: 'graduate'
        exp_date_days: 180
+       weight: 6
     p-fac/staf:
        alma_name: 'facstaff'
        exp_date_days: 180
+       weight: 7
     f-fac/staf:
        alma_name: 'facstaff'
        exp_date_days: 180
+       weight: 8
 
 # Middle Georgia State University
 mga:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDENT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'STUDENT'
       exp_date_days: 180
+      weight: 6
 
 # Savannah Sate University
 savst:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'ST'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'ST'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
       alma_name: 'GS'
       exp_date_days: 365
+      weight: 6
 
 # South Georgia State College (Douglas)
 sgsc:
@@ -376,12 +546,18 @@ sgsc:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'DCSTDT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
      alma_name: 'DCSTDT'
      exp_date_days: 180
+     weight: 5
     GRADUATE:
      alma_name: 'DCSTDT'
      exp_date_days: 365
+     weight: 6
 
 # South Georgia State College (Waycross)
 sgsc-way:
@@ -390,15 +566,22 @@ sgsc-way:
   user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'WCSTDT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
      alma_name: 'WCSTDT'
      exp_date_days: 180
+     weight: 5
     GRADUATE:
      alma_name: 'WCSTDT'
      exp_date_days: 365
+     weight: 6
     WCFAC-STF:
      alma_name: 'WCFAC-STF'
      exp_date_days: 365
+     weight: 9
 
 # University of Georgia
 uga:
@@ -420,56 +603,81 @@ uga:
     '26': 'FAC PRIV'    # mcg staff
     '27': 'UNDER PRIV'  # mcg student
   user_group_settings:
+#    DEFAULT:
+#      alma_name: 'STU'
+#      exp_date_days: 180
+#      weight: 5
     'UNDER PRIV':
+      alma_name: 'UNDER PRIV'
       weight: 2 # lowest
       exp_date_days: 180
     'FAC':
+      alma_name: 'FAC'
       weight: 10 # highest
       exp_date_days: 365
     'FAC PRIV':
+      alma_name: 'FAC PRIV'
       weight: 9
       exp_date_days: 365
     'GRAD PRIV':
+      alma_name: 'GRAD PRIV'
       weight: 5
       exp_date_days: 180
     'STAFF':
+      alma_name: 'STAFF'
       weight: 8
       exp_date_days: 365
     'STAFF PRIV':
+      alma_name: 'STAFF PRIV'
       weight: 6
       exp_date_days: 180
     'OUTSIDE':
+      alma_name: 'OUTSIDE'
       weight: 1
-      exp_date_days:
+      exp_date_days: 180
 
 # University of North Georgia
 ung:
   user_class_file: 'ung_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'student'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'student'
       exp_date_days: 180
+      weight: 5
     GRADUATE:
        alma_name: 'student'
        exp_date_days: 365
+       weight: 6
 
 # Valdosta State
 vsu:
   user_class_file: 'vsu_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'STUDNTUND'
+      exp_date_days: 180
+      weight: 5
     STUDNTUND:
        alma_name: 'STUDNTUND'
+       weight: 5
        exp_date_days: 180
     STUDNTGRA:
        alma_name: 'STUDNTGRA'
+       weight: 10
        exp_date_days: 365
     STUDNTCOMM:
        alma_name: 'STUDNTCOMM'
+       weight: 7
        exp_date_days: 365
     CONSORT:
        alma_name: 'CONSORT'
+       weight: 1
        exp_date_days: 180
 
 # University of West Georgia
@@ -477,9 +685,14 @@ westga:
   user_class_file: 'west_ga_user'
   barcodes: false
   user_group_settings:
+    DEFAULT:
+      alma_name: 'student'
+      exp_date_days: 180
+      weight: 5
     undergrad:
       alma_name: 'student'
       exp_date_days: 180
+      weight: 5
 
 # testing configs
 
@@ -493,11 +706,52 @@ test_sif:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'
   user_group_settings:
+    DEFAULT:
+      alma_name: 'DEFAULT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
+      weight: 1
       exp_date_days: 180
+    STAFF:
+      alma_name: 'ALMA STAFF'
+      weight: 10
+      exp_date_days: 365
     'SPACED TEST':
       alma_name: 'WORKS'
+      weight: 5
+      exp_date_days: 180
+
+test_sif_facstaff:
+  user_class_file: 'sif_user'
+  barcodes: true
+  barcode_separator: '|'
+  default_user_group: 'DEFAULT'
+  default_exp_date_days: 365
+  notification_emails:
+    - 'mak@uga.edu'
+    - 'mkanning@uga.edu'
+  user_group_settings:
+    DEFAULT:
+      alma_name: 'DEFAULT'
+      exp_date_days: 180
+      weight: 5
+    UNDERGRAD:
+      alma_name: 'ALMA STUDENT'
+      weight: 1
+      exp_date_days: 180
+    STAFF:
+      alma_name: 'ALMA STAFF'
+      weight: 9
+      exp_date_days: 365
+    FACULTY:
+      alma_name: 'ALMA FACULTY'
+      weight: 10
+      exp_date_days: 365
+    'SPACED TEST':
+      alma_name: 'WORKS'
+      weight: 5
       exp_date_days: 180
 
 test_sif_campus2:
@@ -506,9 +760,14 @@ test_sif_campus2:
   user_class_file: 'sif_user'
   barcodes: true
   user_group_settings:
+    DEFAULT:
+      alma_name: 'DEFAULT'
+      exp_date_days: 180
+      weight: 5
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
       exp_date_days: 180
+      weight: 5
 
 test_sif_empty:
   user_class_file: 'sif_user'

@@ -7,12 +7,12 @@ class GordonUser < SifUser
   GORDON_MAXIMUM_ADDRESS_SEGMENTS = 2
 
   GORDON_GENERAL_MAPPING = {
-      barcode:      [20, 40],
-      user_group:   [45, 55],
-      primary_id:   [238, 248],
-      last_name:    [310, 330],
-      first_name:   [340, 360],
-      middle_name:  [360, 380],
+      barcode:             [20, 40],
+      original_user_group: [45, 55],
+      primary_id:          [238, 248],
+      last_name:           [310, 330],
+      first_name:          [340, 360],
+      middle_name:         [360, 380],
   }
 
   GORDON_ADDRESS_SEGMENT_MAPPING = {

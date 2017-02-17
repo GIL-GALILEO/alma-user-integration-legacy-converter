@@ -34,13 +34,7 @@ class InstitutionTest < MiniTest::Test
 
   def test_default_user_group
 
-    assert_equal @inst.default_user_group, 'DEFAULT'
-
-  end
-
-  def test_default_exp_date_days
-
-    assert_equal @inst.default_exp_date_days, 365
+    assert_kind_of UserGroup, @inst.default_user_group
 
   end
 

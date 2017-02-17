@@ -1,4 +1,5 @@
 require './lib/classes/user'
+require './lib/classes/user_group'
 
 # Parser object for standard ZORVLIB Process
 
@@ -15,8 +16,7 @@ class SifUser < User
   }
 
   GENERAL_MAPPING = {
-      user_group:          [0, 10],
-      # registration_date:   [10, 20],
+      original_user_group: [0, 10],
       primary_id:          [31, 42],
       last_name:           [43, 73],
       first_name:          [73, 93],
@@ -64,7 +64,7 @@ class SifUser < User
 
     end
 
-    set_alma_user_group_and_expiry_date
+    set_user_group_from_original
 
   end
 
@@ -138,24 +138,38 @@ class SifUser < User
     self.email = data_hash[:address_line_1]
   end
 
-  def set_alma_user_group_and_expiry_date
+  def set_user_group_from_original
 
-    if @institution.groups_settings.has_key? @user_group
-      alma_user_group_settings = @institution.groups_settings[@user_group]
-      self.user_group = alma_user_group_settings['alma_name']
-      self.expiry_date = date_days_from_now alma_user_group_settings['exp_date_days']
-    elsif @institution.default_user_group
-      self.user_group = @institution.default_user_group
-      self.expiry_date = date_days_from_now @institution.default_exp_date_days
-    else
-      # no translation available for this user_group
-      @institution.logger.warn "User Group encountered with no configured translation: '#{self.user_group}'. Using User class default."
-      self.expiry_date = date_days_from_now DEFAULT_EXPIRY_DATE_DAYS
-      self.user_group = DEFAULT_USER_GROUP
+    begin
+
+      self.user_group = UserGroup.new(@institution, original_user_group)
+
+    rescue StandardError => e # todo exception used for flow control...
+
+      self.user_group = UserGroup.new(@institution, 'DEFAULT')
+
     end
 
-    self
-
   end
+
+  # def set_alma_user_group_and_expiry_date
+  #
+  #   if @institution.groups_settings.has_key? @user_group
+  #     alma_user_group_settings = @institution.groups_settings[@user_group]
+  #     self.user_group = alma_user_group_settings['alma_name']
+  #     self.expiry_date = date_days_from_now alma_user_group_settings['exp_date_days']
+  #   elsif @institution.default_user_group
+  #     self.user_group = @institution.default_user_group
+  #     self.expiry_date = date_days_from_now @institution.default_exp_date_days
+  #   else
+  #     # no translation available for this user_group
+  #     @institution.logger.warn "User Group encountered with no configured translation: '#{self.user_group}'. Using User class default."
+  #     self.expiry_date = date_days_from_now DEFAULT_EXPIRY_DATE_DAYS
+  #     self.user_group = DEFAULT_USER_GROUP
+  #   end
+  #
+  #   self
+  #
+  # end
 
 end

@@ -86,7 +86,7 @@ class RunSet
     if var.is_a? File
       true
     else
-      raise StandardError.new('Value provided to FileSet is not a File!') # todo just return false and handle errors elsewhere
+      raise StandardError.new('Value provided to RunSet is not a File!') # todo just return false and handle errors elsewhere
     end
   end
 

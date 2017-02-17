@@ -4,6 +4,8 @@ include Util::File
 
 class User
 
+  attr_accessor :original_user_group
+
   DEFAULT_EXPIRY_DATE_DAYS = 365
   DEFAULT_USER_GROUP = 'unknown'
 
@@ -14,9 +16,8 @@ class User
     middle_name
     last_name
     gender
-    user_group
+    original_user_group
     campus_code
-    expiry_date
     status
     primary_address_line_1
     primary_address_line_2
@@ -99,6 +100,22 @@ class User
     @ordered_phone_numbers
   end
 
+  def user_group
+    @user_group
+  end
+
+  def user_group_for_alma
+    alma_string @user_group.alma_name
+  end
+
+  def exp_date_for_alma
+    "#{date_days_from_now(@user_group.exp_date_days)}Z"
+  end
+
+  def user_group=(user_group_obj)
+    @user_group = user_group_obj
+  end
+
   # ALMA PRIMARY ID
   # type:         string
   # max_length:   255
@@ -135,29 +152,12 @@ class User
     @gender = alma_string v
   end
 
-  # USER_GROUP
-  # type:         string
-  # max_length:   255
-  # table:        UserGroups
-  # override:     false
-  def user_group=(v)
-    @user_group = alma_string v
-  end
-
   # CAMPUS CODE
   # type:         string
   # max_length:   50
   # override:     false
   def campus_code=(v)
     @campus_code = alma_string v, 50
-  end
-
-  # EXPIRY DATE
-  # type:         string
-  # max_length:   50
-  # format:       2030-01-16Z
-  def expiry_date=(v)
-    @expiry_date = alma_string "#{v}Z", 50
   end
 
   # STATUS

@@ -25,19 +25,19 @@ class SifUserTest < MiniTest::Test
 
   def test_inst_default_user_group
 
-    @user.user_group = 'nonsense'
-    @user.set_alma_user_group_and_expiry_date
+    @user.original_user_group = 'nonsense'
+    @user.set_user_group_from_original
 
-    assert_equal @user.user_group, 'DEFAULT'
+    assert_equal @user.user_group_for_alma, 'DEFAULT'
 
   end
 
   def test_can_handle_groups_with_spaces
 
-    @user.user_group = 'SPACED TEST'
-    @user.set_alma_user_group_and_expiry_date
+    @user.original_user_group = 'SPACED TEST'
+    @user.set_user_group_from_original
 
-    assert_equal @user.user_group, 'WORKS'
+    assert_equal @user.user_group_for_alma, 'WORKS'
 
   end
 
@@ -169,18 +169,7 @@ class SifUserTest < MiniTest::Test
 
   def test_has_proper_user_group
 
-    assert_equal 'ALMA STUDENT', @user.user_group
-
-  end
-
-  def test_has_proper_expiry_date
-
-    days_from_now = 180
-
-    assert_equal(
-      "#{date_days_from_now(days_from_now)}Z",
-      @user.expiry_date
-    )
+    assert_equal 'ALMA STUDENT', @user.user_group_for_alma
 
   end
 

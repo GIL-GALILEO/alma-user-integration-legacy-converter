@@ -1,6 +1,7 @@
 require 'yaml'
 require 'logger'
 require './lib/classes/mailer'
+require './lib/classes/user_group'
 
 class Institution
 
@@ -45,11 +46,7 @@ class Institution
   end
 
   def default_user_group
-    @config['default_user_group']
-  end
-
-  def default_exp_date_days
-    @config['default_exp_date_days']
+    UserGroup.new self, 'DEFAULT'
   end
 
   def barcode_separator

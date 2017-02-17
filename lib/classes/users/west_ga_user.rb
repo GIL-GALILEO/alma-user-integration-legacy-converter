@@ -7,7 +7,7 @@ class WestGaUser < SifUser
   WESTGA_MAXIMUM_ADDRESS_SEGMENTS = 2
 
   WESTGA_GENERAL_MAPPING = {
-      user_group: [45, 55],
+      original_user_group: [45, 55],
       first_name: [340, 360],
       middle_name: [360, 380],
       last_name: [310, 330],
