@@ -771,3 +771,38 @@ test_sif_campus2:
 
 test_sif_empty:
   user_class_file: 'sif_user'
+
+# multi campus
+
+test_multi_campus:
+  campus:
+    campus1:
+      path: 'campus1'
+      user_class_file: 'sif_campus1_user'
+      barcodes: true
+      barcode_separator: '|'
+    campus2:
+      path: 'campus2'
+      user_class_file: 'sif_campus2_user'
+      barcodes: true
+      barcode_separator: '|'
+  notification_emails:
+    - 'mak@uga.edu'
+    - 'mkanning@uga.edu'
+  user_group_settings:
+    DEFAULT:
+      alma_name: 'DEFAULT'
+      exp_date_days: 180
+      weight: 5
+    UNDERGRAD:
+      alma_name: 'ALMA CAMPUS1 STUDENT'
+      weight: 1
+      exp_date_days: 180
+    UNDERGRAD:
+      alma_name: 'ALMA CAMPUS2 STUDENT'
+      weight: 2
+      exp_date_days: 200
+    STAFF:
+      alma_name: 'ALMA STAFF'
+      weight: 10
+      exp_date_days: 365

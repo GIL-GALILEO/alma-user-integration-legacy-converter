@@ -1,7 +1,9 @@
 require 'yaml'
 require 'logger'
+require 'ostruct'
 require './lib/classes/mailer'
 require './lib/classes/user_group'
+
 
 class Institution
 
@@ -39,14 +41,6 @@ class Institution
 
   def code
     @code
-  end
-
-  def parent_inst
-    @parent_inst
-  end
-
-  def default_user_group
-    UserGroup.new self, 'DEFAULT'
   end
 
   def barcode_separator
@@ -89,14 +83,6 @@ class Institution
     @config['path']
   end
 
-  def process_facstaff?
-    !@config['fac_staff'] == 'manual'
-  end
-
-  def expect_mixed?
-    @config['fac_staff'] == 'mixed'
-  end
-
   def expect_barcodes?
     !!@config['barcodes']
   end
@@ -105,8 +91,22 @@ class Institution
     !!@config['exp_date']
   end
 
-  def autoexpire_missing_users?
-    !!@config['expire_users']
+  def campuses
+
+    @config['campus'].map do |campus|
+      campus[0]
+    end
+
+  end
+
+  def campus_configs
+
+    campuses = {}
+    @config['campus'].each do |campus|
+      campuses[campus[0]] = OpenStruct.new campus[1]
+    end
+    campuses
+
   end
 
   private
