@@ -12,7 +12,7 @@ class RunSet
   end
 
   def is_sufficient?
-    !!(inst && config && file_sets.any?)
+    !!(inst && config.any? && file_sets.any?)
   end
 
   def inst=(inst)

@@ -152,24 +152,4 @@ class SifUser < User
 
   end
 
-  # def set_alma_user_group_and_expiry_date
-  #
-  #   if @institution.groups_settings.has_key? @user_group
-  #     alma_user_group_settings = @institution.groups_settings[@user_group]
-  #     self.user_group = alma_user_group_settings['alma_name']
-  #     self.expiry_date = date_days_from_now alma_user_group_settings['exp_date_days']
-  #   elsif @institution.default_user_group
-  #     self.user_group = @institution.default_user_group
-  #     self.expiry_date = date_days_from_now @institution.default_exp_date_days
-  #   else
-  #     # no translation available for this user_group
-  #     @institution.logger.warn "User Group encountered with no configured translation: '#{self.user_group}'. Using User class default."
-  #     self.expiry_date = date_days_from_now DEFAULT_EXPIRY_DATE_DAYS
-  #     self.user_group = DEFAULT_USER_GROUP
-  #   end
-  #
-  #   self
-  #
-  # end
-
 end

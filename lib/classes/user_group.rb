@@ -42,8 +42,6 @@ class UserGroup
       raise StandardError.new
     end
 
-    self
-
   end
 
   def is_heavier_than?(user_group)
