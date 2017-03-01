@@ -7,6 +7,7 @@ class FileSet
     self.barcodes = []
     self.patrons = []
     self.barcodes_hash = {}
+    self.campus = nil
 
   end
 

@@ -7,23 +7,63 @@ class FileHandlerTest < MiniTest::Test
 
   def setup
 
-    @inst = Institution.new('test_sif')
-    @fh = FileHandler.new(@inst, [])
+    @inst = Institution.new 'test_sif'
+    @run_set = FileHandler.new(@inst).run_set
 
   end
 
   def test_has_a_runset
 
-    assert_kind_of RunSet, @fh.run_set
+    assert_kind_of RunSet, @run_set
 
   end
 
-  def test_a_run_set_with_no_filesets_if_no_files
+  def test_produces_file_sets
 
-    assert_equal(
-      [],
-      FileHandler.new(Institution.new('test_sif_empty'), []).run_set.file_sets
-    )
+    assert_kind_of Array, @run_set.file_sets
+    assert_kind_of FileSet, @run_set.file_sets.first
+
+  end
+
+  def test_file_set_has_patron_and_barcode
+
+    file_set = @run_set.file_sets.first
+
+    assert file_set.patrons.any?
+    assert file_set.barcodes.any?
+    assert_nil file_set.campus
+
+  end
+
+  def test_param_handling
+
+    params = %w(
+      expire
+      sample
+      dry-run
+           )
+
+    run_set = FileHandler.new(@inst, params).run_set
+
+    assert run_set.expire?
+    assert run_set.sample?
+    assert run_set.dry_run?
+
+  end
+
+  def test_multi_campus_institution
+
+    multi_campus_inst = Institution.new 'test_multi_campus'
+    multi_camnpus_run_set = FileHandler.new(multi_campus_inst).run_set
+    file_set = multi_camnpus_run_set.file_sets.first
+
+    assert file_set.campus
+
+  end
+
+  def test_no_files_case
+
+    assert FileHandler.new(Institution.new('test_sif_empty')).run_set.file_sets.empty?
 
   end
 

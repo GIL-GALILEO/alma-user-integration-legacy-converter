@@ -10,6 +10,8 @@ class Institution
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'
   INSTITUTION_DATA_PATH         = '/gilftpfiles/'
 
+  attr_accessor :campuses
+
   def initialize(code)
 
     @code = code
@@ -46,16 +48,20 @@ class Institution
     @code
   end
 
-  def barcode_separator
-    @config['barcode_separator']
-  end
-
   def alma_archive_path
     File.join INSTITUTION_DATA_PATH, code, 'archive'
   end
 
   def raw_archive_path
     File.join alma_archive_path, 'raw'
+  end
+
+  def user_class
+    @config['user_class_file']
+  end
+
+  def barcode_separator
+    @config['barcode_separator']
   end
 
   def notification_emails
@@ -70,34 +76,8 @@ class Institution
     @config['user_group_settings'] ? @config['user_group_settings'] : {}
   end
 
-  def user_class
-    @config['user_class_file']
-  end
-
-  def path
-    @config['path']
-  end
-
   def expect_barcodes?
     !!@config['barcodes']
-  end
-
-  def expect_exp_date?
-    !!@config['exp_date']
-  end
-
-  def campuses
-    @campuses
-  end
-
-  private
-
-  def set_parent_inst
-    begin
-      @parent_inst = Institution.new(@config['parent'])
-    rescue StandardError => e
-      @institution_logger.error "Parent Institution for #{code} could not be instantiated: #{e}"
-    end
   end
 
 end

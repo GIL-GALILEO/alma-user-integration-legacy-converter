@@ -700,14 +700,12 @@ test_sif:
   user_class_file: 'sif_user'
   barcodes: true
   barcode_separator: '|'
-  default_user_group: 'DEFAULT'
-  default_exp_date_days: 365
   notification_emails:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'
   user_group_settings:
     DEFAULT:
-      alma_name: 'DEFAULT'
+      alma_name: 'TEST DEFAULT'
       exp_date_days: 180
       weight: 5
     UNDERGRAD:
@@ -727,8 +725,6 @@ test_sif_facstaff:
   user_class_file: 'sif_user'
   barcodes: true
   barcode_separator: '|'
-  default_user_group: 'DEFAULT'
-  default_exp_date_days: 365
   notification_emails:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'

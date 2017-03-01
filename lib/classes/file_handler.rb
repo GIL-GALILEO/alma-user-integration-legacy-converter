@@ -13,7 +13,7 @@ class FileHandler
 
   attr_accessor :run_set
 
-  def initialize(institution, run_arguments)
+  def initialize(institution, run_arguments = [])
 
     unless institution.is_a? Institution
       raise StandardError.new('Cannot generate for something that is not an Institution!')

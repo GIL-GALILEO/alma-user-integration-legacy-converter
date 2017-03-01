@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'yaml'
-require './lib/classes/users/sif_user'
+require './lib/classes/file_handler'
 require './lib/classes/institution'
-require './lib/classes/run_set'
+require './lib/classes/user_factory'
 require './lib/classes/templater'
 
 class TemplaterTest < MiniTest::Test
@@ -11,16 +11,11 @@ class TemplaterTest < MiniTest::Test
 
   def setup
 
-    @test_data = YAML.load_file TEST_DATA_FILE
+    institution = Institution.new 'test_sif'
+    run_set = FileHandler.new(institution).run_set
+    users = UserFactory.generate run_set
 
-    @test_run_set = RunSet.new
-    @test_run_set.inst = Institution.new('test_sif')
-    @test_run_set.config = {}
-
-    @users = [ SifUser.new(@test_data['sif_test'], @test_run_set.inst) ]
-
-    @xml = Templater.run(@users, @test_run_set)
-
+    @xml = Templater.run users, run_set
 
   end
 

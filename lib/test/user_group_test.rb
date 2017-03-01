@@ -35,7 +35,6 @@ class UserGroupTest < MiniTest::Test
     assert_equal 365, @user_group.exp_date_days
     assert_kind_of Integer, @user_group.exp_date_days
 
-
   end
 
   def test_weight_returns_integer_weight

@@ -48,9 +48,21 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_has_mailer
+
+    assert_kind_of Mailer, @inst.mailer
+
+  end
+
   def test_has_groups_data_hash
 
     assert_kind_of Hash, @inst.groups_data
+
+  end
+
+  def test_has_groups_settings_hash
+
+    assert_kind_of Hash, @inst.groups_settings
 
   end
 
@@ -78,6 +90,7 @@ class InstitutionTest < MiniTest::Test
 
   def test_has_campuses
 
+    assert_nil @inst.campuses
     assert_kind_of Array, @multi_campus_inst.campuses
     assert_kind_of Campus, @multi_campus_inst.campuses.first
 

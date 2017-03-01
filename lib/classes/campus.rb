@@ -15,10 +15,9 @@ class Campus
         self.barcode_separator = settings[1]['barcode_separator']
       end
     rescue StandardError => e
-      msg = "Error creating XML for User on row #{row}: #{e.message}"
+      msg = "Error creating Campus (#{name}) for Institution (#{institution.code}): #{e.message}"
       institution.logger.error msg
       institution.mailer.add_script_error_message msg
-
     end
 
   end

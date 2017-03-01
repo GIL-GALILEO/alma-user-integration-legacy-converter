@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require './lib/classes/run_set'
 require './lib/classes/institution'
 
 class CampusTest < MiniTest::Test
@@ -9,11 +8,13 @@ class CampusTest < MiniTest::Test
     @no_campuses_institution = Institution.new('test_sif')
     @institution = Institution.new('test_multi_campus')
 
+    @campus = @institution.campuses.first
+
   end
 
   def test_has_institution
 
-    assert_kind_of Institution, @institution.campuses.first.institution
+    assert_kind_of Institution, @campus.institution
 
   end
 
@@ -26,19 +27,17 @@ class CampusTest < MiniTest::Test
   def test_has_array_of_campuses
 
     assert_kind_of Array, @institution.campuses
-    assert_kind_of Campus, @institution.campuses.first
+    assert_kind_of Campus, @campus
 
   end
 
   def test_has_settings
 
-    campus = @institution.campuses.first
-
-    assert_equal 'campus1', campus.name
-    assert_equal 'sif_campus1_user', campus.user_class
-    assert_equal 'campus1', campus.path
-    assert campus.barcodes
-    assert_equal '|', campus.barcode_separator
+    assert @campus.barcodes
+    assert_equal 'campus1', @campus.name
+    assert_equal 'sif_user', @campus.user_class
+    assert_equal 'campus1', @campus.path
+    assert_equal '|', @campus.barcode_separator
 
   end
 

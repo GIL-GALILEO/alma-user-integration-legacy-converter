@@ -8,19 +8,20 @@ class RunSetTest < MiniTest::Test
 
   def setup
 
-    inst = Institution.new('test_sif')
+    @inst = Institution.new('test_sif')
 
-    config       = {
-        run_type: :full, # todo deprecated?
+    @config       = {
         sample: true,
         expire: true,
         dry_run: true
     }
 
+    @file_set = FileSet.new
+
     @run_set = RunSet.new
-    @run_set.inst = inst
-    @run_set.config = config
-    @run_set.file_sets << FileSet.new
+    @run_set.inst = @inst
+    @run_set.config = @config
+    @run_set.file_sets << @file_set
 
   end
 
@@ -30,9 +31,31 @@ class RunSetTest < MiniTest::Test
 
   end
 
-  def test_returns_false_if_not_sufficient
+  def test_returns_false_if_no_config
 
     bad_run_set = RunSet.new
+    bad_run_set.inst = @inst
+    bad_run_set.file_sets << @file_set
+
+    assert_equal false, bad_run_set.is_sufficient?
+
+  end
+
+  def test_returns_false_if_no_institution
+
+    bad_run_set = RunSet.new
+    bad_run_set.config = @config
+    bad_run_set.file_sets << @file_set
+
+    assert_equal false, bad_run_set.is_sufficient?
+
+  end
+
+  def test_returns_false_if_no_file_sets
+
+    bad_run_set = RunSet.new
+    bad_run_set.inst = @inst
+    bad_run_set.config = @config
 
     assert_equal false, bad_run_set.is_sufficient?
 
@@ -63,9 +86,11 @@ class RunSetTest < MiniTest::Test
 
   end
 
-  def test_has_a_config_hash_value
+  def test_has_config_hash_methods
 
-    assert_equal :full, @run_set.config[:run_type]
+    assert @run_set.sample?
+    assert @run_set.expire?
+    assert @run_set.dry_run?
 
   end
 
@@ -76,24 +101,6 @@ class RunSetTest < MiniTest::Test
     assert_raises StandardError do
       run_set.config = :bad
     end
-
-  end
-
-  def test_responds_boolean_to_expire?
-
-    assert @run_set.expire?
-
-  end
-
-  def test_responds_boolean_to_dry_run?
-
-    assert @run_set.dry_run?
-
-  end
-
-  def test_responds_boolean_to_sample?
-
-    assert @run_set.sample?
 
   end
 

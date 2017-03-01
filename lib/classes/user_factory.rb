@@ -19,10 +19,10 @@ class UserFactory
     # for each file set, build user objects and barcode hash tables
     run_set.file_sets.each do |file_set|
 
-      if file_set.campus.user_class
+      if file_set.campus
         user_class = load_and_initialize_user_class file_set.campus.user_class
       else
-        user_class = load_and_initialize_user_class run_set.user_class
+        user_class = load_and_initialize_user_class run_set.inst.user_class
       end
 
       unless user_class.ancestors.include? User
@@ -35,7 +35,9 @@ class UserFactory
 
       file_set.barcodes.each do |barcode_file|
 
-        file_set.barcodes_hash = parse_barcodes barcode_file, file_set.campus.barcode_separator
+        barcode_separator = file_set.campus ? file_set.campus.barcode_separator : run_set.inst.barcode_separator
+
+        file_set.barcodes_hash = parse_barcodes barcode_file, barcode_separator
 
         archive_raw_file(barcode_file, run_set.inst) unless defined? MiniTest || run_set.sample?
 
