@@ -19,11 +19,19 @@ class UserTest < MiniTest::Test
 
   end
 
-  def test_has_phone_numbers?
+  def test_has_phone_numbers
 
     @user.secondary_address_mobile_phone = '111-222-3333'
 
     assert @user.has_phone_numbers?
+
+  end
+
+  def test_has_scrubbed_email
+
+    @user.email = 'test@test.edu'
+
+    assert_equal 'test@SCRUBBED_test.edu', @user.email
 
   end
 
@@ -42,7 +50,7 @@ class UserTest < MiniTest::Test
 
   end
 
-  def test_has_primary_address?
+  def test_has_primary_address
 
     @user.primary_address_state_province = 'GA'
 
@@ -50,7 +58,7 @@ class UserTest < MiniTest::Test
 
   end
 
-  def test_has_secondary_address?
+  def test_has_secondary_address
 
     @user.secondary_address_state_province = 'GA'
 
@@ -58,7 +66,7 @@ class UserTest < MiniTest::Test
 
   end
 
-  def test_has_contact_info?
+  def test_has_contact_info
 
     @user.primary_address_phone = '111-222-3333'
 

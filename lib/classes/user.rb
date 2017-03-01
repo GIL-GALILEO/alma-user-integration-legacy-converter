@@ -284,7 +284,7 @@ class User
   # type:         string
   # max_length:   255
   def email=(v)
-    @email = alma_string v
+    @email = scrubbed_email(alma_string v)
   end
 
   # BARCODE
@@ -305,6 +305,11 @@ class User
 
   def alma_string(str, size = MAXIMUM_STRING_VALUE_LENGTH)
     xml_safe(str[0...size]) if str
+  end
+
+  # todo temporary function to scrub email addresses before Alma goes live
+  def scrubbed_email(email)
+    email.sub '@', '@SCRUBBED_'
   end
 
   def xml_safe(string)
