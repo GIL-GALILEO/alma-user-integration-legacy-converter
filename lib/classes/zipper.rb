@@ -7,11 +7,7 @@ class Zipper
 
   def self.do(file, institution)
 
-    if institution.parent_inst
-      files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__', institution.parent_inst.code)
-    else
-      files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__', institution.code)
-    end
+    files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__', institution.code)
 
     FileUtils::mkpath files_path
 

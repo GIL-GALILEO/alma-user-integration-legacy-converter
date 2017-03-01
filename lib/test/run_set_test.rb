@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require './lib/classes/file_handler'
 require './lib/classes/run_set'
+require './lib/classes/file_set'
 require './lib/classes/institution'
 
 class RunSetTest < MiniTest::Test
@@ -9,15 +10,17 @@ class RunSetTest < MiniTest::Test
 
     inst = Institution.new('test_sif')
 
-    barcode_file = File.new '/gilftpfiles/test_sif/patrondrop/barcode_file'
-    data_file    = File.new '/gilftpfiles/test_sif/patrondrop/student'
-    config       = { run_type: :full }
+    config       = {
+        run_type: :full, # todo deprecated?
+        sample: true,
+        expire: true,
+        dry_run: true
+    }
 
     @run_set = RunSet.new
     @run_set.inst = inst
-    @run_set.barcode = barcode_file
-    @run_set.data = data_file
     @run_set.config = config
+    @run_set.file_sets << FileSet.new
 
   end
 
@@ -47,23 +50,10 @@ class RunSetTest < MiniTest::Test
 
   end
 
-  def test_has_a_barcode_file
+  def test_has_an_array_of_file_sets
 
-    assert_kind_of File, @run_set.barcode
-
-  end
-
-  def test_has_a_data_file_array
-
-    assert_kind_of Array, @run_set.data
-
-  end
-
-  def test_can_have_two_data_files
-
-    @run_set.add_data File.new('/gilftpfiles/test_sif/patrondrop/student_dni')
-
-    assert_kind_of Array, @run_set.data
+    assert_kind_of Array, @run_set.file_sets
+    assert_kind_of FileSet, @run_set.file_sets.first
 
   end
 
@@ -84,12 +74,26 @@ class RunSetTest < MiniTest::Test
     run_set = RunSet.new
 
     assert_raises StandardError do
-      run_set.data = 'bad'
-    end
-
-    assert_raises StandardError do
       run_set.config = :bad
     end
+
+  end
+
+  def test_responds_boolean_to_expire?
+
+    assert @run_set.expire?
+
+  end
+
+  def test_responds_boolean_to_dry_run?
+
+    assert @run_set.dry_run?
+
+  end
+
+  def test_responds_boolean_to_sample?
+
+    assert @run_set.sample?
 
   end
 

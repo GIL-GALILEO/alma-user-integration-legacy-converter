@@ -58,10 +58,7 @@ class InstitutionTest < MiniTest::Test
 
     bools = [true, false]
 
-    assert_includes bools, @inst.expect_sif?
-    assert_includes bools, @inst.expect_txt?
     assert_includes bools, @inst.expect_barcodes?
-    assert_includes bools, @inst.expect_exp_date?
 
   end
 
@@ -79,29 +76,10 @@ class InstitutionTest < MiniTest::Test
 
   # multi-campus
 
-  def test_has_campus_names
+  def test_has_campuses
 
     assert_kind_of Array, @multi_campus_inst.campuses
-    assert_equal 'campus1', @multi_campus_inst.campuses[0]
-    assert_equal 'campus2', @multi_campus_inst.campuses[1]
-
-  end
-
-  def test_has_campus_configs
-
-    assert_kind_of Hash, @multi_campus_inst.campus_configs
-    assert_kind_of OpenStruct, @multi_campus_inst.campus_configs[@multi_campus_inst.campuses[0]]
-
-  end
-
-  def test_campus_has_methods
-
-    campus_config = @multi_campus_inst.campus_configs['campus1']
-
-    assert campus_config.barcodes
-    assert_equal 'sif_campus1_user', campus_config.user_class_file
-    assert_equal '|', campus_config.barcode_separator
-    assert_equal 'campus1', campus_config.path
+    assert_kind_of Campus, @multi_campus_inst.campuses.first
 
   end
 

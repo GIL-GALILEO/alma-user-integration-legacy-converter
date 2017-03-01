@@ -13,25 +13,43 @@ class UserFactory
       raise StandardError.new('Bad RunSet provided to user factory')
     end
 
-    user_class = load_and_initialize_user_class run_set.inst.user_class
-
-    unless user_class.ancestors.include? User
-      raise StandardError.new('User class not loaded properly in user factory')
-    end
-
-    users_hash = {}
+    users = []
     error_count = 0
 
-    if run_set.is_sufficient?
+    # for each file set, build user objects and barcode hash tables
+    run_set.file_sets.each do |file_set|
 
-      run_set.data.each do |f|
+      if file_set.campus.user_class
+        user_class = load_and_initialize_user_class file_set.campus.user_class
+      else
+        user_class = load_and_initialize_user_class run_set.user_class
+      end
 
-        File.foreach(f).with_index do |line, line_num|
+      unless user_class.ancestors.include? User
+        raise StandardError.new('User class not loaded properly in user factory')
+      end
+
+      unless file_set.is_a? FileSet
+        raise StandardError.new('Run Set contains an invalid File Set.')
+      end
+
+      file_set.barcodes.each do |barcode_file|
+
+        file_set.barcodes_hash = parse_barcodes barcode_file, file_set.campus.barcode_separator
+
+        archive_raw_file(barcode_file, run_set.inst) unless defined? MiniTest || run_set.sample?
+
+      end
+
+      file_set.patrons.each do |patron_file|
+
+        File.foreach(patron_file).with_index do |line, line_num|
+
+          users_hash = {}
 
           begin
 
             user = user_class.new(line, run_set.inst)
-
             ug = user.user_group
             id = user.primary_id
 
@@ -53,6 +71,12 @@ class UserFactory
 
               end
 
+              # set barcode is hash is present
+              users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash
+
+              # set expire date if expire run
+              users_hash[id].exp_date_days = 0 if run_set.expire?
+
             else
 
               # either no user group or no primary_id, either way leave out of final user array
@@ -66,20 +90,16 @@ class UserFactory
             run_set.inst.mailer.add_file_error_message msg
           end
 
+          users += users_hash.values
+
         end
 
         # archive original uploaded file unless testing or sampling
-        archive_raw_file(f, run_set.inst) unless defined? MiniTest || run_set.config[:sample]
+        archive_raw_file(patron_file, run_set.inst) unless defined? MiniTest || run_set.config[:sample]
 
       end
 
-    else
-
-      throw StandardError.new 'RunSet is not sufficient'
-
     end
-
-    users = users_hash.values
 
     if error_count > 0
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
@@ -92,34 +112,7 @@ class UserFactory
     end
 
     # randomly sample from array if sample flag is set
-    users = users.sample(5) if run_set.config[:sample]
-
-    if run_set.barcode_hash || run_set.config[:run_type] == :expire
-
-      users.each do |u|
-
-        # set barcode
-        if run_set.barcode_hash
-
-          barcode = run_set.barcode_hash[u.primary_id]
-
-          if barcode
-            u.barcode = barcode
-          else
-            run_set.inst.logger.warn("Barcode for user (#{u.primary_id}) not found in file #{File.basename(run_set.barcode)}.")
-          end
-
-        end
-
-        # set expire date if expire run
-        u.user_group.exp_date_days = 0 if run_set.config[:run_type] == :expire
-
-      end
-
-      archive_raw_file(run_set.barcode, run_set.inst) unless defined?(MiniTest) || run_set.config[:sample]
-
-    end
-
+    users = users.sample(5) if run_set.sample?
 
     run_set.inst.mailer.add_result_message "Users extracted from file: #{users.length}"
 
@@ -143,6 +136,11 @@ class UserFactory
     Dir.mkdir(inst.raw_archive_path) unless File.exists? inst.raw_archive_path
     FileUtils.mv(File.absolute_path(f), File.join(inst.raw_archive_path, "#{File.basename(f)}_#{Time.now.strftime('%Y%m%d')}.raw"))
 
+  end
+
+  def self.parse_barcodes(file, separator)
+    barcode_array = CSV.read(file, col_sep: separator)
+    Hash[*barcode_array.flatten]
   end
 
 end

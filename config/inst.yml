@@ -778,12 +778,12 @@ test_multi_campus:
   campus:
     campus1:
       path: 'campus1'
-      user_class_file: 'sif_campus1_user'
+      user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: '|'
     campus2:
       path: 'campus2'
-      user_class_file: 'sif_campus2_user'
+      user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: '|'
   notification_emails:

@@ -1,6 +1,7 @@
 require 'csv'
 require './lib/classes/institution'
 require './lib/classes/run_set'
+require './lib/classes/file_set'
 
 class FileHandler
 
@@ -10,108 +11,101 @@ class FileHandler
 
   TXT_FILE_FIELD_COUNT = 23
 
-  def initialize(institution)
+  attr_accessor :run_set
+
+  def initialize(institution, run_arguments)
 
     unless institution.is_a? Institution
       raise StandardError.new('Cannot generate for something that is not an Institution!')
     end
 
-    if institution.path && institution.parent_inst
-      @inst_files_root = File.join DATA_DIR_BASE, institution.parent_inst.code, FILE_DROP_SITE, institution.path
-    elsif institution.path
-      @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE, institution.path
+    @run_set = RunSet.new
+    @run_set.inst = institution
+    @run_set.config = set_config_from run_arguments
+
+    institution_root_path = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE
+
+    if institution.campuses
+      institution.campuses.each do |campus|
+        populate_run_set File.join(institution_root_path, campus.path), campus
+      end
     else
-      @inst_files_root = File.join DATA_DIR_BASE, institution.code, FILE_DROP_SITE
-    end
-
-    @institution = institution
-
-  end
-
-  def generate(config = {})
-
-    run_config = {}
-
-    if config.has_key?(:expire) and config[:expire]
-      run_config[:run_type] = :expire
-      drop_location = File.join @inst_files_root, EXPIRE_DIR, '*'
-    else
-      run_config[:run_type] = :add
-      drop_location = File.join @inst_files_root, '*'
-    end
-
-    files = get_files_in drop_location
-
-    if files.empty?
-      nil
-    else
-      compose_runset(files, run_config)
+      populate_run_set institution_root_path
     end
 
   end
 
   private
 
-  def compose_runset(files, run_config)
+  def populate_run_set(path, campus = nil)
 
-    return nil unless files
+    # if expire flag set, append expire dir to all paths
+    if @run_set.expire?
+      path = File.join path, EXPIRE_DIR
+    end
 
-    run_set = RunSet.new
-    run_set.inst = @institution
+    # establish FileSet to handle files from given path
+    file_set = FileSet.new
+    file_set.campus = campus if campus
 
-    files.each do |file_path|
+    files = get_files_in path
+
+    files.each do |file|
+
+      next if File.directory? file
 
       begin
-        file_first_line = File.open(file_path, &:readline)
+        first_line = File.open(file, &:readline)
       rescue StandardError => e
-        @institution.logger.error("File read error: #{e.message}")
+        @run_set.inst.logger.error "File read error: #{e.message}"
         next
       end
 
-      case detect_type_of_file(file_first_line)
+      case detect_type_of_file_from(first_line)
 
         when 'barcode'
-
-          run_set.barcode = File.new file_path
-
+          file_set.barcodes << file
         when 'patron_sif'
-
-          run_set.add_data File.new(file_path)
-
+          file_set.patrons << file
         when 'patron_txt'
-
-          run_set.add_data File.new(file_path)
-
+          file_set.patrons << file
         when 'unknown'
-
-          @institution.logger.warn("Mystery file encountered: #{file_path}")
-
+          @run_set.inst.logger.warn "Mystery file encountered: #{file}"
         else
-
-          @institution.logger.error("File handling error for file: #{file_path}")
+          @run_set.inst.logger.error "File handling error for file: #{file}"
 
       end
 
     end
-      
-    run_set.config = run_config
 
-    run_set
+    @run_set.file_sets << file_set if file_set.patrons.any?
+
+  end
+
+  def set_config_from(run_arguments)
+
+    run_config = {}
+    run_config[:expire]   = run_arguments.include? 'expire'
+    run_config[:dry_run]  = run_arguments.include? 'dry-run'
+    run_config[:sample]   = run_arguments.include? 'sample'
+    run_config
 
   end
 
   def get_files_in(path)
-    Dir.glob path
+
+    Dir.glob(File.join(path, '*'))
+
   end
 
-  def detect_type_of_file(line)
+  def detect_type_of_file_from(line)
 
     begin
       if CSV.parse_line(line, col_sep: '|' ).length == TXT_FILE_FIELD_COUNT
         return 'patron_txt'
       end
     rescue StandardError => e
-      @institution.logger.error("File read error for file #{file_path}: #{e.message}")
+      @run_set.inst.logger.error("File read error for file #{file_path}: #{e.message}")
       return 'unknown'
     end
 

@@ -1,6 +1,6 @@
 require 'yaml'
 require 'logger'
-require 'ostruct'
+require './lib/classes/campus'
 require './lib/classes/mailer'
 require './lib/classes/user_group'
 
@@ -19,14 +19,17 @@ class Institution
       raise StandardError.new("Institution config could not be loaded for #{@code}")
     end
 
-    if @config['parent']
-      set_parent_inst
-      log_path = "#{INSTITUTION_DATA_PATH}#{parent_inst.code}/#{code}_log.log"
+    # set campuses
+    if @config['campus']
+      @campuses = []
+      @config['campus'].each do |campus_data|
+        @campuses << Campus.new(self, campus_data)
+      end
     else
-      log_path = "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
+      @campuses = nil
     end
 
-    @institution_logger = Logger.new log_path
+    @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
     @mailer = Mailer.new self
 
   end
@@ -67,14 +70,6 @@ class Institution
     @config['user_group_settings'] ? @config['user_group_settings'] : {}
   end
 
-  def expect_sif?
-    @config['file_type'] == 'sif'
-  end
-
-  def expect_txt?
-    @config['file_type'] == 'txt'
-  end
-
   def user_class
     @config['user_class_file']
   end
@@ -92,21 +87,7 @@ class Institution
   end
 
   def campuses
-
-    @config['campus'].map do |campus|
-      campus[0]
-    end
-
-  end
-
-  def campus_configs
-
-    campuses = {}
-    @config['campus'].each do |campus|
-      campuses[campus[0]] = OpenStruct.new campus[1]
-    end
-    campuses
-
+    @campuses
   end
 
   private

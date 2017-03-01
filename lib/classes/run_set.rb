@@ -2,14 +2,15 @@ require 'csv'
 
 class RunSet
 
-  attr_reader :data, :barcode, :config, :inst
+  attr_reader :config, :inst, :file_sets
 
   def initialize
     @data = []
+    @file_sets = []
   end
 
   def is_sufficient?
-    !!(inst && data && config)
+    !!(inst && config && @file_sets.any?)
   end
 
   # the institution object
@@ -18,44 +19,6 @@ class RunSet
       @inst = inst
     else
       raise StandardError.new('Institution provided is not an Institution!')
-    end
-  end
-
-  def add_data(data_file)
-
-    if is_file? data_file
-      @data << data_file
-    else
-      raise StandardError.new('Data file provided is not a File!')
-    end
-
-  end
-
-  # the patron or facstaff file
-  def data=(data_file)
-    if is_file? data_file
-      @data << data_file
-    else
-      raise StandardError.new('Data file provided is not a File!')
-    end
-  end
-
-  # the expiration date file, if provided
-  def exp=(exp_file)
-    if is_file? exp_file
-      @exp = exp_file
-    else
-      raise StandardError.new('Exp Date file provided is not a File!')
-    end
-  end
-
-  # the barcode file, if provided
-  def barcode=(barcode_file)
-    if is_file? barcode_file
-      @barcode = barcode_file
-      parse_barcodes
-    else
-      raise StandardError.new('Barcode file provided is not a File!')
     end
   end
 
@@ -72,21 +35,25 @@ class RunSet
     @barcode_hash
   end
 
-  private
-
-  def parse_barcodes
-    if inst.expect_barcodes? && barcode && inst
-      barcode_array = CSV.read(barcode.path, col_sep: inst.barcode_separator)
-      @barcode_hash = Hash[*barcode_array.flatten]
-    end
-    nil
+  def expire?
+    !!@config[:expire]
   end
+
+  def dry_run?
+    !!@config[:dry_run]
+  end
+
+  def sample?
+    !!@config[:sample]
+  end
+
+  private
 
   def is_file?(var)
     if var.is_a? File
       true
     else
-      raise StandardError.new('Value provided to RunSet is not a File!') # todo just return false and handle errors elsewhere
+      raise StandardError.new('Value provided to RunSet is not a File!')
     end
   end
 

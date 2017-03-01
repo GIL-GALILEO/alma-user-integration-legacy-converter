@@ -35,7 +35,7 @@ class CampusTest < MiniTest::Test
     campus = @institution.campuses.first
 
     assert_equal 'campus1', campus.name
-    assert_equal 'sif_campus1_user', campus.class
+    assert_equal 'sif_campus1_user', campus.user_class
     assert_equal 'campus1', campus.path
     assert campus.barcodes
     assert_equal '|', campus.barcode_separator
