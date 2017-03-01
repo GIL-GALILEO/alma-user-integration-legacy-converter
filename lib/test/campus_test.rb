@@ -41,4 +41,11 @@ class CampusTest < MiniTest::Test
 
   end
 
+  def test_has_user_group_settings
+
+    assert_kind_of Hash, @campus.user_group_settings
+    assert @campus.user_group_settings.any?
+
+  end
+
 end
