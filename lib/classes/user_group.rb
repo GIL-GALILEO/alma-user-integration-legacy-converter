@@ -2,20 +2,23 @@ class UserGroup
 
   attr_accessor :alma_name, :banner_name, :exp_date_days, :weight, :institution
 
-  def initialize(institution, banner_name = nil, fs_codes = nil)
+  def initialize(institution, campus, banner_name = nil, fs_codes = nil)
 
     self.institution = institution
 
     data = nil
 
+    groups_settings = campus ? campus.groups_settings : institution.groups_settings
+
     if banner_name
 
       self.banner_name = banner_name
 
-      data = institution.groups_settings[banner_name]
-
+      data = groups_settings[banner_name]
 
     elsif fs_codes
+
+      raise NotImplementedError.new('FS Codes cannot be translated to User Groups if a Campus has been provided.') if campus
 
       fs_codes.each do |fs_code|
 

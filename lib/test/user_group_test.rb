@@ -7,8 +7,9 @@ class UserGroupTest < MiniTest::Test
   def setup
 
     @inst = Institution.new('test_sif_facstaff')
+    campus = nil
 
-    @user_group = UserGroup.new(@inst, 'STAFF')
+    @user_group = UserGroup.new(@inst, campus, 'STAFF')
 
   end
 
@@ -52,7 +53,7 @@ class UserGroupTest < MiniTest::Test
 
   def test_is_heavier_than_returns_true_when_appropriate
 
-    other_user_group = UserGroup.new(@inst, 'UNDERGRAD')
+    other_user_group = UserGroup.new(@inst, nil, 'UNDERGRAD')
 
     assert @user_group.is_heavier_than? other_user_group
 
@@ -60,7 +61,7 @@ class UserGroupTest < MiniTest::Test
 
   def test_is_heavier_than_returns_false_when_appropriate
 
-    other_user_group = UserGroup.new(@inst, 'FACULTY')
+    other_user_group = UserGroup.new(@inst, nil, 'FACULTY')
 
     assert !@user_group.is_heavier_than?(other_user_group)
 

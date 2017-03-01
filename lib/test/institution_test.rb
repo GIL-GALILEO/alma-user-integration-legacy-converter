@@ -96,4 +96,10 @@ class InstitutionTest < MiniTest::Test
 
   end
 
+  def test_has_empty_groups_settings
+
+    assert_empty @multi_campus_inst.groups_settings
+
+  end
+
 end

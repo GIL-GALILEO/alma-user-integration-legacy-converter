@@ -1,6 +1,6 @@
 class Campus
 
-  attr_accessor :name, :path, :user_class, :barcodes, :barcode_separator, :institution, :user_group_settings
+  attr_accessor :name, :path, :user_class, :barcodes, :barcode_separator, :institution, :groups_settings
 
   def initialize(institution, settings = {})
 
@@ -10,7 +10,7 @@ class Campus
       self.name = settings[0]
       self.path = settings[1]['path']
       self.user_class = settings[1]['user_class_file']
-      self.user_group_settings = settings[1]['user_group_settings']
+      self.groups_settings = settings[1]['user_group_settings']
       if settings[1]['barcodes']
         self.barcodes = settings[1]['barcodes']
         self.barcode_separator = settings[1]['barcode_separator']

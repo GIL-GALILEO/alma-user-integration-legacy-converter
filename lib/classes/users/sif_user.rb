@@ -35,9 +35,10 @@ class SifUser < User
       address_mobile_phone:     [258, 288],
   }
 
-  def initialize(line_data, institution)
+  def initialize(line_data, institution, campus = nil)
     @institution = institution
     @line_data = line_data
+    @campus = campus
 
     user_data = extract_user_data
     address_data = extract_addresses
@@ -142,11 +143,15 @@ class SifUser < User
 
     begin
 
-      self.user_group = UserGroup.new(@institution, original_user_group)
+      self.user_group = UserGroup.new(@institution, @campus, original_user_group)
 
     rescue StandardError => e # todo exception used for flow control...
 
-      self.user_group = UserGroup.new(@institution, 'DEFAULT')
+      self.user_group = UserGroup.new(@institution, @campus, 'DEFAULT')
+
+    rescue NotImplementedError => e
+
+      raise StandardError.new(e) # case: attempt to map FS code with Campus set
 
     end
 

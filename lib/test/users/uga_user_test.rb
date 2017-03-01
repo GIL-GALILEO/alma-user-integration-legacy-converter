@@ -11,9 +11,9 @@ class UgaUserTest < MiniTest::Test
 
   def setup
 
-    test_data = YAML.load_file TEST_DATA_FILE
-    test_inst = Institution.new 'uga'
-    @user = UgaUser.new test_data['uga_test'], test_inst
+    @test_data = YAML.load_file(TEST_DATA_FILE)['uga_test']
+    @test_inst = Institution.new 'uga'
+    @user = UgaUser.new @test_data, @test_inst
 
   end
 
@@ -121,13 +121,13 @@ class UgaUserTest < MiniTest::Test
 
   def test_has_last_pay_date
 
-    assert_equal '20160831', @user.last_pay_date
+    assert_equal '20170228', @user.last_pay_date
 
   end
 
   def test_has_last_enrolled_date
 
-    assert_equal '201608', @user.last_enrolled_date
+    assert_equal '201701', @user.last_enrolled_date
 
   end
 

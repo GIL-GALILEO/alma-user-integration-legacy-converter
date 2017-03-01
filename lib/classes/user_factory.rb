@@ -21,8 +21,10 @@ class UserFactory
 
       if file_set.campus
         user_class = load_and_initialize_user_class file_set.campus.user_class
+        campus = file_set.campus
       else
         user_class = load_and_initialize_user_class run_set.inst.user_class
+        campus = nil
       end
 
       unless user_class.ancestors.include? User
@@ -51,7 +53,7 @@ class UserFactory
 
           begin
 
-            user = user_class.new(line, run_set.inst)
+            user = user_class.new(line, run_set.inst, campus)
             ug = user.user_group
             id = user.primary_id
 

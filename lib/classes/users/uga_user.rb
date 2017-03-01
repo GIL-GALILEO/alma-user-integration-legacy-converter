@@ -108,9 +108,15 @@ class UgaUser < User
 
     begin
 
-      self.user_group = UserGroup.new @institution, nil, fs_codes.split(FS_CODE_SEPARATOR)
+      self.user_group = UserGroup.new @institution, nil, nil, fs_codes.split(FS_CODE_SEPARATOR)
 
     rescue StandardError => e # todo exception used for flow control...
+
+      self.user_group = nil
+
+    rescue NotImplementedError => e
+
+      raise StandardError.new(e) # case: attempt to map FS code with Campus set
 
     end
 
