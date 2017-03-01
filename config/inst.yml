@@ -76,70 +76,69 @@ atlm:
       exp_date_days: 180
       weight: 5
 
-# Augusta University (Summerville)
+# Augusta University (Summerville & MCG)
 augusta:
-  path: 'summerville'
-  user_class_file: 'sif_user'
-  barcodes: true
-  barcode_separator: ","
-  user_group_settings:
-    DEFAULT:
-      alma_name: 'Rundergrad'
-      exp_date_days: 180
-      weight: 5
-    UNDERGRAD:
-      alma_name: 'Rundergrad'
-      exp_date_days: 180
-      weight: 5
-    GRADUATE:
-      alma_name: 'Rundergrad'
-      exp_date_days: 365
-      weight: 6
-    FACULTY:
-      alma_name: 'Rfaculty'
-      exp_date_days: 365
-      weight: 9
-    STAFF:
-      alma_name: 'Rstaff'
-      exp_date_days: 365
-      weight: 7
-    PARTFAC:
-      alma_name: 'Rtemp_prt'
-      exp_date_days: 365
-      weight: 8
-
-# Augusta University - MCG
-augusta-mcg:
-  parent: 'augusta'
-  path: 'mcg'
-  user_class_file: 'sif_user'
-  barcodes: true
-  barcode_separator: "\t"
-  user_group_settings:
-    DEFAULT:
-      alma_name: 'Mundergrad'
-      exp_date_days: 180
-      weight: 5
-    UNDERGRAD:
-      alma_name: 'Mundergrad'
-      exp_date_days: 180
-      weight: 3
-    GRADUATE:
-      alma_name: 'Mundergrad'
-      exp_date_days: 365
-      weight: 5
-    FACULTY:
-      alma_name: 'Mfaculty'
-      exp_date_days: 365
-      weight: 9
-    STAFF:
-      alma_name: 'Mstaff'
-      exp_date_days: 365
-      weight: 7
-    PARTFAC:
-      alma_name: 'Mtemp_prt'
-      exp_date_days: 365
-      weight: 6
+  campus:
+    summerville:
+      path: 'summerville'
+      user_class_file: 'sif_user'
+      barcodes: true
+      barcode_separator: ","
+      user_group_settings:
+        DEFAULT:
+          alma_name: 'Rundergrad'
+          exp_date_days: 180
+          weight: 5
+        UNDERGRAD:
+          alma_name: 'Rundergrad'
+          exp_date_days: 180
+          weight: 5
+        GRADUATE:
+          alma_name: 'Rundergrad'
+          exp_date_days: 365
+          weight: 6
+        FACULTY:
+          alma_name: 'Rfaculty'
+          exp_date_days: 365
+          weight: 9
+        STAFF:
+          alma_name: 'Rstaff'
+          exp_date_days: 365
+          weight: 7
+        PARTFAC:
+          alma_name: 'Rtemp_prt'
+          exp_date_days: 365
+          weight: 8
+    mcg:
+      path: 'mcg'
+      user_class_file: 'sif_user'
+      barcodes: true
+      barcode_separator: "\t"
+      user_group_settings:
+        DEFAULT:
+          alma_name: 'Mundergrad'
+          exp_date_days: 180
+          weight: 5
+        UNDERGRAD:
+          alma_name: 'Mundergrad'
+          exp_date_days: 180
+          weight: 3
+        GRADUATE:
+          alma_name: 'Mundergrad'
+          exp_date_days: 365
+          weight: 5
+        FACULTY:
+          alma_name: 'Mfaculty'
+          exp_date_days: 365
+          weight: 9
+        STAFF:
+          alma_name: 'Mstaff'
+          exp_date_days: 365
+          weight: 7
+        PARTFAC:
+          alma_name: 'Mtemp_prt'
+          exp_date_days: 365
+          weight: 6
 
 # Bainbridge State College
 bain:
@@ -540,48 +539,41 @@ savst:
       exp_date_days: 365
       weight: 6
 
-# South Georgia State College (Douglas)
+# South Georgia State College (Douglas & Waycross)
 sgsc:
-  path: 'douglas'
-  user_class_file: 'sif_user'
-  barcodes: false
-  user_group_settings:
-    DEFAULT:
-      alma_name: 'DCSTDT'
-      exp_date_days: 180
-      weight: 5
-    UNDERGRAD:
-     alma_name: 'DCSTDT'
-     exp_date_days: 180
-     weight: 5
-    GRADUATE:
-     alma_name: 'DCSTDT'
-     exp_date_days: 365
-     weight: 6
-
-# South Georgia State College (Waycross)
-sgsc-way:
-  parent: 'sgsc'
-  path: 'waycross'
-  user_class_file: 'sif_user'
-  barcodes: false
-  user_group_settings:
-    DEFAULT:
-      alma_name: 'WCSTDT'
-      exp_date_days: 180
-      weight: 5
-    UNDERGRAD:
-     alma_name: 'WCSTDT'
-     exp_date_days: 180
-     weight: 5
-    GRADUATE:
-     alma_name: 'WCSTDT'
-     exp_date_days: 365
-     weight: 6
-    WCFAC-STF:
-     alma_name: 'WCFAC-STF'
-     exp_date_days: 365
-     weight: 9
+  campus:
+    waycross:
+      user_class_file: 'sif_user'
+      barcodes: false
+      user_group_settings:
+        DEFAULT:
+          alma_name: '???'
+          exp_date_days: 180
+          weight: 2
+        WCSTDT:
+          alma_name: 'WCSTDT'
+          exp_date_days: 180
+          weight: 5
+        WCFAC-STF:
+          alma_name: 'WCFAC-STF'
+          exp_date_days: 365
+          weight: 10
+    douglas:
+      user_class_file: 'sif_user'
+      barcodes: false
+      user_group_settings:
+        DEFAULT:
+          alma_name: '???'
+          exp_date_days: 180
+          weight: 1
+        DCSTDT:
+          alma_name: 'DCSTDT'
+          exp_date_days: 180
+          weight: 4
+        DCFAC-STF:
+          alma_name: 'DCFAC-STF'
+          exp_date_days: 365
+          weight: 9
 
 # University of Georgia
 uga:
@@ -777,28 +769,37 @@ test_multi_campus:
       user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: '|'
+      user_group_settings:
+        DEFAULT:
+          alma_name: 'CAMPUS1 DEFAULT'
+          exp_date_days: 180
+          weight: 1
+        UNDERGRAD:
+          alma_name: 'ALMA CAMPUS1 STUDENT'
+          weight: 3
+          exp_date_days: 180
+        STAFF:
+          alma_name: 'ALMA CAMPUS1 STAFF'
+          weight: 10
+          exp_date_days: 365
     campus2:
       path: 'campus2'
       user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: '|'
+      user_group_settings:
+        DEFAULT:
+          alma_name: 'CAMPUS2 DEFAULT'
+          exp_date_days: 180
+          weight: 1
+        UNDERGRAD:
+          alma_name: 'ALMA CAMPUS2 STUDENT'
+          weight: 2
+          exp_date_days: 200
+        STAFF:
+          alma_name: 'ALMA CAMPUS2 STAFF'
+          weight: 9
+          exp_date_days: 365
   notification_emails:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'
-  user_group_settings:
-    DEFAULT:
-      alma_name: 'DEFAULT'
-      exp_date_days: 180
-      weight: 5
-    UNDERGRAD:
-      alma_name: 'ALMA CAMPUS1 STUDENT'
-      weight: 1
-      exp_date_days: 180
-    UNDERGRAD:
-      alma_name: 'ALMA CAMPUS2 STUDENT'
-      weight: 2
-      exp_date_days: 200
-    STAFF:
-      alma_name: 'ALMA STAFF'
-      weight: 10
-      exp_date_days: 365
