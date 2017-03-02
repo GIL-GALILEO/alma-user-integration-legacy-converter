@@ -6,8 +6,11 @@ class VsuUser < SifUser
   VSU_ADDRESS_SEGMENT_LENGTH = 429
   VSU_MAXIMUM_ADDRESS_SEGMENTS = 1
 
+  VSU_EXPIRY_DATE_FORMAT = '%Y.%m.%d'
+
   VSU_GENERAL_MAPPING = {
       original_user_group: [45, 55],
+      original_expiry_date: [188,198],
       first_name: [340, 360],
       middle_name: [360, 380],
       last_name: [310, 330],
@@ -45,6 +48,11 @@ class VsuUser < SifUser
 
   def address_segment_mapping
     VSU_ADDRESS_SEGMENT_MAPPING
+  end
+
+  # use expiration date provided in SIF when returning expiry date for Alma
+  def exp_date_for_alma
+    alma_date(DateTime.strptime(original_expiry_date, VSU_EXPIRY_DATE_FORMAT).strftime('%Y-%m-%d'))
   end
 
 end

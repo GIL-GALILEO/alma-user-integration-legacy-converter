@@ -4,7 +4,7 @@ include Util::File
 
 class User
 
-  attr_accessor :original_user_group
+  attr_accessor :original_user_group, :original_expiry_date
 
   DEFAULT_EXPIRY_DATE_DAYS = 365
   DEFAULT_USER_GROUP = 'unknown'
@@ -17,6 +17,7 @@ class User
     last_name
     gender
     original_user_group
+    original_expiry_date
     campus_code
     status
     primary_address_line_1
@@ -109,7 +110,7 @@ class User
   end
 
   def exp_date_for_alma
-    "#{date_days_from_now(@user_group.exp_date_days)}Z"
+    alma_date(date_days_from_now(@user_group.exp_date_days))
   end
 
   def user_group=(user_group_obj)
@@ -305,6 +306,10 @@ class User
 
   def alma_string(str, size = MAXIMUM_STRING_VALUE_LENGTH)
     xml_safe(str[0...size]) if str
+  end
+
+  def alma_date(date_str)
+    "#{date_str}Z"
   end
 
   # todo temporary function to scrub email addresses before Alma goes live

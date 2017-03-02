@@ -21,6 +21,18 @@ class VsuUserTest < MiniTest::Test
 
   end
 
+  def test_has_expiry_date_from_file
+
+    assert_equal '2017.01.16', @user.original_expiry_date
+
+  end
+
+  def test_has_file_date_for_alma_expiry_date
+
+    assert_equal '2017-01-16Z', @user.exp_date_for_alma
+
+  end
+
   def test_has_primary_id
 
     assert_equal '870123456', @user.primary_id
