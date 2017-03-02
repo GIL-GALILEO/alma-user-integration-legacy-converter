@@ -2,7 +2,7 @@ global:
   purge_date: '2382-12-21Z'
   preferred_address_type: 'home'
   preferred_phone_type: 'home'
-  preferred_email_type: 'personal'
+  preferred_email_type: 'school'
   no_email_provided: 'none'
   no_address_provided: 'none provided'
   barcode_type: 'BARCODE'
