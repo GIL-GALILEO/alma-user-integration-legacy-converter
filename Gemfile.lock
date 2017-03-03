@@ -5,7 +5,7 @@ GEM
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
-    rubyzip (1.2.0)
+    rubyzip (1.2.1)
 
 PLATFORMS
   ruby
@@ -13,7 +13,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   net-sftp (= 2.1.2)
-  rubyzip (= 1.2.0)
+  rubyzip
 
 BUNDLED WITH
    1.13.6
