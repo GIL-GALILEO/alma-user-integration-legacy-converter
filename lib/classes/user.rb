@@ -1,10 +1,13 @@
 require './lib/util'
+require 'yaml'
 include Util::App
 include Util::File
 
 class User
 
   attr_accessor :original_user_group, :original_expiry_date
+
+  COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'
 
   DEFAULT_EXPIRY_DATE_DAYS = 365
   DEFAULT_USER_GROUP = 'unknown'
@@ -208,7 +211,7 @@ class User
   # type:         string
   # max_length:   255
   def primary_address_country=(v)
-    @primary_address_country = alma_string v
+    @primary_address_country = alma_string(alma_approved_country(v))
   end
 
   # PRIMARY ADDRESS PHONE
@@ -324,6 +327,11 @@ class User
         .gsub("'",'&apos;')
         .gsub('<','&lt;')
         .gsub('>','&gt;')
+  end
+
+  def alma_approved_country(voyager_country)
+    countries_hash = YAML.load_file COUNTRIES_CODE_TABLE_FILE
+    countries_hash[voyager_country] || ''
   end
 
 end
