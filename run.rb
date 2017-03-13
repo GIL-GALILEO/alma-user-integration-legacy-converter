@@ -51,13 +51,8 @@ if run_set.is_sufficient?
 
     # MOVE FOR ALMA PICKUP
     source_file = File.join zip_file.path
-    if institution.parent_inst
-      destination_file = File.join FILES_ROOT, institution.parent_inst.code, DROP_POINT, File.basename(zip_file.path)
-    else
-      destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
-    end
+    destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
     FileUtils.mv(source_file, destination_file)
-
     institution.mailer.send_finished_notification
 
   end
