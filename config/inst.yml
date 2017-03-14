@@ -11,15 +11,15 @@ abac:
   user_group_settings:
     DEFAULT:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'STU'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
 
 # Armstrong State University
@@ -29,15 +29,15 @@ armstrong:
   user_group_settings:
     DEFAULT:
       alma_name: 'Student'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'Student'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'GRAD'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Albany State University - To be Consolidated with Darton
@@ -47,19 +47,19 @@ asu:
   user_group_settings:
     DEFAULT:
       alma_name: 'UG'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'UG'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'G'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
     FACULTY:
       alma_name: 'F'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 9
 
 # Atlanta Metropolitan College
@@ -69,11 +69,11 @@ atlm:
   user_group_settings:
     DEFAULT:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
 
 # Augusta University (Summerville & MCG)
@@ -87,27 +87,27 @@ augusta:
       user_group_settings:
         DEFAULT:
           alma_name: 'Rundergrad'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 5
         UNDERGRAD:
           alma_name: 'Rundergrad'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 5
         GRADUATE:
           alma_name: 'Rundergrad'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 6
         FACULTY:
           alma_name: 'Rfaculty'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 9
         STAFF:
           alma_name: 'Rstaff'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 7
         PARTFAC:
           alma_name: 'Rtemp_prt'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 8
     mcg:
       path: 'mcg'
@@ -117,27 +117,27 @@ augusta:
       user_group_settings:
         DEFAULT:
           alma_name: 'Mundergrad'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 5
         UNDERGRAD:
           alma_name: 'Mundergrad'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 3
         GRADUATE:
           alma_name: 'Mundergrad'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 5
         FACULTY:
           alma_name: 'Mfaculty'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 9
         STAFF:
           alma_name: 'Mstaff'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 7
         PARTFAC:
           alma_name: 'Mtemp_prt'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 6
 
 # Bainbridge State College
@@ -147,15 +147,15 @@ bain:
   user_group_settings:
     DEFAULT:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'STU'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
 
 # College of Coastal GA
@@ -165,15 +165,15 @@ ccga:
   user_group_settings:
     DEFAULT:
       alma_name: 'SEMESTER'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'SEMESTER'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'SEMESTER'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
 
 # Clayton State University
@@ -183,15 +183,15 @@ clayton:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'STUDENT'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'STUDENT'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Columbus State University
@@ -201,15 +201,15 @@ csu:
   user_group_settings:
     DEFAULT:
       alma_name: 'RG'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'RG'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'RG'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Dalton State College
@@ -220,15 +220,15 @@ dalton:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'STUD'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'STUD'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Darton - To be Consolidated with Albany State
@@ -238,15 +238,15 @@ darton:
   user_group_settings:
     DEFAULT:
       alma_name: 'dstu'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'dstu'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'dstu'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
 
 # East Georgia State College
@@ -256,15 +256,15 @@ ega:
   user_group_settings:
     DEFAULT:
       alma_name: 'ST'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'ST'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'ST'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Fort Valley State University
@@ -274,15 +274,15 @@ ftv:
   user_group_settings:
     DEFAULT:
       alma_name: 'fvstudent'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'fvstudent'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'fvgrad'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Georgia Southern University
@@ -292,23 +292,23 @@ gasou:
   user_group_settings:
     DEFAULT:
       alma_name: 'ST'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'ST'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'GR'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
     EAST_GA:
        alma_name: 'RS'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 4
     FAC_STAFF:
        alma_name: 'GF'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 9
 
 # Georgia College
@@ -318,31 +318,31 @@ gcsu:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
        alma_name: 'GRADUATE'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
     'FACULTY FT':
        alma_name: 'FACULTY'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 8
     'FACULTY PT':
        alma_name: 'FACULTY PT'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 9
     'STAFF FT':
        alma_name: 'FACULTY'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 7
     'STAFF PT':
        alma_name: 'FACULTY PT'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Georgia Gwinnett College
@@ -352,15 +352,15 @@ ggc:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 6
 
 # Georgia Highlands College
@@ -370,15 +370,15 @@ ghc:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     FACSTAFF:
       alma_name: 'FACSTAFF'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 8
     UNDERGRAD:
       alma_name: 'STUD'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
 
 # Gordon State College
@@ -388,19 +388,19 @@ gordon:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     STUDENT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     STAFF:
       alma_name: 'STAFF'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 7
     FACULTY:
       alma_name: 'FACULTY'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 9
 
 # Georgia Piedmont Technical College
@@ -410,11 +410,11 @@ gptc:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
 
 # Georgia State University
@@ -424,39 +424,39 @@ gsu:
   user_group_settings:
     DEFAULT:
       alma_name: 'PUL1'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     PUL1:
       alma_name: 'PUL1'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 2
     L-LAW_FAC:
       alma_name: 'L-LAW_FAC'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 7
     PUL2:
       alma_name: 'PUL2'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 3
     PUL13:
       alma_name: 'PUL13'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 4
     L-STU:
       alma_name: 'L-STU'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     PUL11:
       alma_name: 'PUL11'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     L-LAW_STAF:
       alma_name: 'L-LAW_STAF'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 8
     PUL8:
       alma_name: 'PUL8'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 4
 
 # Georgia Southwestern State University
@@ -466,15 +466,15 @@ gsw:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
        alma_name: 'STUDENT'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     GRADUATE:
        alma_name: 'STUDENT'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 6
 
 # Kennesaw Sate University
@@ -484,23 +484,23 @@ ksu:
   user_group_settings:
     DEFAULT:
       alma_name: 'undergrad'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     undergrad:
        alma_name: 'undergrad'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 5
     graduate:
        alma_name: 'graduate'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 6
     p-fac/staf:
        alma_name: 'facstaff'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 7
     f-fac/staf:
        alma_name: 'facstaff'
-       exp_date_days: 180
+       exp_date_days: 10
        weight: 8
 
 # Middle Georgia State University
@@ -510,15 +510,15 @@ mga:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 6
 
 # Savannah Sate University
@@ -528,15 +528,15 @@ savst:
   user_group_settings:
     DEFAULT:
       alma_name: 'ST'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'ST'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
       alma_name: 'GS'
-      exp_date_days: 365
+      exp_date_days: 30
       weight: 6
 
 # South Georgia State College (Douglas & Waycross)
@@ -548,15 +548,15 @@ sgsc:
       user_group_settings:
         DEFAULT:
           alma_name: '???'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 2
         WCSTDT:
           alma_name: 'WCSTDT'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 5
         WCFAC-STF:
           alma_name: 'WCFAC-STF'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 10
     douglas:
       user_class_file: 'sif_user'
@@ -564,15 +564,15 @@ sgsc:
       user_group_settings:
         DEFAULT:
           alma_name: '???'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 1
         DCSTDT:
           alma_name: 'DCSTDT'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 4
         DCFAC-STF:
           alma_name: 'DCFAC-STF'
-          exp_date_days: 365
+          exp_date_days: 30
           weight: 9
 
 # University of Georgia
@@ -597,36 +597,36 @@ uga:
   user_group_settings:
 #    DEFAULT:
 #      alma_name: 'STU'
-#      exp_date_days: 180
+#      exp_date_days: 10
 #      weight: 5
     'UNDER PRIV':
       alma_name: 'UNDER PRIV'
       weight: 2 # lowest
-      exp_date_days: 180
+      exp_date_days: 10
     'FAC':
       alma_name: 'FAC'
       weight: 10 # highest
-      exp_date_days: 365
+      exp_date_days: 30
     'FAC PRIV':
       alma_name: 'FAC PRIV'
       weight: 9
-      exp_date_days: 365
+      exp_date_days: 30
     'GRAD PRIV':
       alma_name: 'GRAD PRIV'
       weight: 5
-      exp_date_days: 180
+      exp_date_days: 10
     'STAFF':
       alma_name: 'STAFF'
       weight: 8
-      exp_date_days: 365
+      exp_date_days: 30
     'STAFF PRIV':
       alma_name: 'STAFF PRIV'
       weight: 6
-      exp_date_days: 180
+      exp_date_days: 10
     'OUTSIDE':
       alma_name: 'OUTSIDE'
       weight: 1
-      exp_date_days: 180
+      exp_date_days: 10
 
 # University of North Georgia
 ung:
@@ -635,15 +635,15 @@ ung:
   user_group_settings:
     DEFAULT:
       alma_name: 'student'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'student'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     GRADUATE:
        alma_name: 'student'
-       exp_date_days: 365
+       exp_date_days: 30
        weight: 6
 
 # Valdosta State
@@ -653,24 +653,24 @@ vsu:
   user_group_settings:
     DEFAULT:
       alma_name: 'STUDNTUND'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     STUDNTUND:
        alma_name: 'STUDNTUND'
        weight: 5
-       exp_date_days: 180
+       exp_date_days: 10
     STUDNTGRA:
        alma_name: 'STUDNTGRA'
        weight: 10
-       exp_date_days: 365
+       exp_date_days: 30
     STUDNTCOMM:
        alma_name: 'STUDNTCOMM'
        weight: 7
-       exp_date_days: 365
+       exp_date_days: 30
     CONSORT:
        alma_name: 'CONSORT'
        weight: 1
-       exp_date_days: 180
+       exp_date_days: 10
 
 # University of West Georgia
 westga:
@@ -678,13 +678,18 @@ westga:
   barcodes: false
   user_group_settings:
     DEFAULT:
-      alma_name: 'student'
-      exp_date_days: 180
-      weight: 5
-    undergrad:
-      alma_name: 'student'
-      exp_date_days: 180
-      weight: 5
+      alma_name: 'undergrad'
+      exp_date_days: 10
+      weight: 2
+    UNDERGRAD:
+      alma_name: 'undergrad'
+      exp_date_days: 10
+      weight: 4
+    GRADUATE:
+      alma_name: 'grad'
+      exp_date_days: 10
+      weight: 7
+
 
 # testing configs
 
@@ -698,20 +703,20 @@ test_sif:
   user_group_settings:
     DEFAULT:
       alma_name: 'TEST DEFAULT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
       weight: 1
-      exp_date_days: 180
+      exp_date_days: 10
     STAFF:
       alma_name: 'ALMA STAFF'
       weight: 10
-      exp_date_days: 365
+      exp_date_days: 30
     'SPACED TEST':
       alma_name: 'WORKS'
       weight: 5
-      exp_date_days: 180
+      exp_date_days: 10
 
 test_sif_facstaff:
   user_class_file: 'sif_user'
@@ -723,24 +728,24 @@ test_sif_facstaff:
   user_group_settings:
     DEFAULT:
       alma_name: 'DEFAULT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
       weight: 1
-      exp_date_days: 180
+      exp_date_days: 10
     STAFF:
       alma_name: 'ALMA STAFF'
       weight: 9
-      exp_date_days: 365
+      exp_date_days: 30
     FACULTY:
       alma_name: 'ALMA FACULTY'
       weight: 10
-      exp_date_days: 365
+      exp_date_days: 30
     'SPACED TEST':
       alma_name: 'WORKS'
       weight: 5
-      exp_date_days: 180
+      exp_date_days: 10
 
 test_sif_campus2:
   parent: 'test_sif'
@@ -750,14 +755,17 @@ test_sif_campus2:
   user_group_settings:
     DEFAULT:
       alma_name: 'DEFAULT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
     UNDERGRAD:
       alma_name: 'ALMA STUDENT'
-      exp_date_days: 180
+      exp_date_days: 10
       weight: 5
 
 test_sif_empty:
+  user_class_file: 'sif_user'
+
+test_exp_override:
   user_class_file: 'sif_user'
 
 # multi campus
@@ -772,16 +780,16 @@ test_multi_campus:
       user_group_settings:
         DEFAULT:
           alma_name: 'CAMPUS1 DEFAULT'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 1
         UNDERGRAD:
           alma_name: 'ALMA CAMPUS1 STUDENT'
           weight: 3
-          exp_date_days: 180
+          exp_date_days: 10
         STAFF:
           alma_name: 'ALMA CAMPUS1 STAFF'
           weight: 10
-          exp_date_days: 365
+          exp_date_days: 30
     campus2:
       path: 'campus2'
       user_class_file: 'sif_user'
@@ -790,16 +798,16 @@ test_multi_campus:
       user_group_settings:
         DEFAULT:
           alma_name: 'CAMPUS2 DEFAULT'
-          exp_date_days: 180
+          exp_date_days: 10
           weight: 1
         UNDERGRAD:
           alma_name: 'ALMA CAMPUS2 STUDENT'
           weight: 2
-          exp_date_days: 200
+          exp_date_days: 20
         STAFF:
           alma_name: 'ALMA CAMPUS2 STAFF'
           weight: 9
-          exp_date_days: 365
+          exp_date_days: 30
   notification_emails:
     - 'mak@uga.edu'
     - 'mkanning@uga.edu'

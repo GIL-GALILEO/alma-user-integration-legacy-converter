@@ -33,7 +33,7 @@ class UserGroupTest < MiniTest::Test
 
   def test_exp_date_days_returns_integer_exp_date_days
 
-    assert_equal 365, @user_group.exp_date_days
+    assert_equal 30, @user_group.exp_date_days
     assert_kind_of Integer, @user_group.exp_date_days
 
   end

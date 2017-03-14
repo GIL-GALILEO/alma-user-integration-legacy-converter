@@ -203,7 +203,7 @@ class UgaUserTest < MiniTest::Test
 
   def test_has_proper_expiry_date
 
-    date = "#{date_days_from_now(365)}Z"
+    date = "#{date_days_from_now(30)}Z"
 
     assert_equal date, @user.exp_date_for_alma
 
