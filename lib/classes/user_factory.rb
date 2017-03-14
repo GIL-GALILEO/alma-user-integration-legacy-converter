@@ -78,8 +78,14 @@ class UserFactory
               # set barcode is hash is present
               users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash
 
-              # set expire date if expire run
-              users_hash[id].exp_date_days = 0 if run_set.expire?
+              # set expire date
+              if run_set.expire?
+                users_hash[id].exp_date_days = 0
+              elsif file_set.exp_date
+                users_hash[id].exp_date_override = file_set.exp_date
+              elsif run_set.file_exp_date?
+                users_hash[id].exp_date_override = run_set.config[:exp_date_from_file]
+              end
 
             else
 

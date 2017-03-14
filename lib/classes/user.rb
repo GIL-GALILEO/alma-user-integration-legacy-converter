@@ -5,7 +5,7 @@ include Util::File
 
 class User
 
-  attr_accessor :original_user_group, :original_expiry_date
+  attr_accessor :original_user_group, :original_expiry_date, :exp_date_override
 
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'
 
@@ -113,7 +113,11 @@ class User
   end
 
   def exp_date_for_alma
-    alma_date(date_days_from_now(@user_group.exp_date_days))
+    if exp_date_override
+      exp_date_override
+    else
+      alma_date(date_days_from_now(@user_group.exp_date_days))
+    end
   end
 
   def user_group=(user_group_obj)

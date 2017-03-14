@@ -49,4 +49,15 @@ class FileSetTest < MiniTest::Test
 
   end
 
+  def test_can_have_exp_date
+
+    assert_nil @file_set.campus
+
+    campus = Campus.new(Institution.new('test_sif'))
+    @file_set.campus = campus
+
+    assert @file_set.campus
+
+  end
+
 end

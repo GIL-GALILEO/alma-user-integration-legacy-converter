@@ -4,7 +4,6 @@ require './lib/classes/campus'
 require './lib/classes/mailer'
 require './lib/classes/user_group'
 
-
 class Institution
 
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'

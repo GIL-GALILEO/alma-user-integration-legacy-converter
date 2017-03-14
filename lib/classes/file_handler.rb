@@ -10,6 +10,7 @@ class FileHandler
   EXPIRE_DIR = 'expire'
 
   TXT_FILE_FIELD_COUNT = 23
+  EXP_DATE_FORMAT = '%Y-%m-%d'
 
   attr_accessor :run_set
 
@@ -63,6 +64,12 @@ class FileHandler
 
       case detect_type_of_file_from(first_line)
 
+        when 'exp_date'
+          if file_set.campus
+            file_set.exp_date = get_expiry_date_from first_line
+          else
+            @run_set.config[:exp_date_from_file] = get_expiry_date_from first_line
+          end
         when 'barcode'
           file_set.barcodes << file
         when 'patron_sif'
@@ -111,13 +118,17 @@ class FileHandler
 
     case line
 
-      # when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
+      when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
       when /[0-9"]{9,11}[\,|\t][0-9"]+/ then 'barcode'
       when /.{400,}/ then 'patron_sif'
       else 'unknown'
 
     end
 
+  end
+
+  def get_expiry_date_from(first_line)
+    first_line.strip
   end
 
 end

@@ -43,4 +43,8 @@ class RunSet
     !!@config[:sample]
   end
 
+  def file_exp_date?
+    !!@config[:exp_date_from_file]
+  end
+
 end

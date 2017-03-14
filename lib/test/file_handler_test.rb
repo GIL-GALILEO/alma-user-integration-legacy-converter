@@ -59,11 +59,24 @@ class FileHandlerTest < MiniTest::Test
 
     assert file_set.campus
 
+    # exp_date
+    assert_equal file_set.exp_date, '2017-01-01'
+
   end
 
   def test_no_files_case
 
     assert FileHandler.new(Institution.new('test_sif_empty')).run_set.file_sets.empty?
+
+  end
+
+  def test_exp_date_override
+
+    inst = Institution.new 'test_exp_override'
+    run_set = FileHandler.new(inst).run_set
+
+    assert run_set.file_exp_date?
+    assert_equal run_set.config[:exp_date_from_file], '2017-01-01'
 
   end
 
