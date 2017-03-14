@@ -83,7 +83,7 @@ class KsuUserTest < MiniTest::Test
 
   def test_has_primary_address_country
 
-    assert_equal '..', @user.primary_address_country
+    assert_equal '', @user.primary_address_country
 
   end
 
