@@ -674,7 +674,7 @@ vsu:
 
 # University of West Georgia
 westga:
-  user_class_file: 'west_ga_user'
+  user_class_file: 'sif_user'
   barcodes: false
   user_group_settings:
     DEFAULT:
