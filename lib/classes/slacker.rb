@@ -34,19 +34,19 @@ class Slacker
 
   def users_extracted(users, errors)
     post(
-        "User file from `#{@inst.code}` parsed. #{users} extracted with #{errors} errors."
+        "Patron file from `#{@inst.code}` parsed. #{users} patrons extracted with #{errors} errors."
     )
   end
 
   def critical_error(text)
     post(
-        "Job Failed for `#{@inst.code}` #{text}"
+        "Job Failed for `#{@inst.code}`. Error message:\n#{text}"
     )
   end
 
-  def run_completed(text)
+  def run_completed
     post(
-        "Job Completed for `#{@inst.code}` #{text}"
+        "Job Completed for `#{@inst.code}`."
     )
   end
 
