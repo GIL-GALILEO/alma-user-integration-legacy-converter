@@ -58,8 +58,10 @@ if run_set.is_sufficient?
 
   end
 
+  duration = Time.now - start
+  institution.logger.info "File Generation complete for #{institution.code} in #{duration} seconds."
   puts "File Generation complete for #{institution.code}"
-  puts "Time: #{Time.now - start} seconds"
+  puts "Time: #{duration} seconds"
 
 else
 
