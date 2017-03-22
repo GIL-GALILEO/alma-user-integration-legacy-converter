@@ -2,6 +2,7 @@ require 'yaml'
 require 'logger'
 require './lib/classes/campus'
 require './lib/classes/mailer'
+require './lib/classes/slacker'
 require './lib/classes/user_group'
 
 class Institution
@@ -31,6 +32,7 @@ class Institution
     end
 
     @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
+    @slacker = Slacker.new self
     @mailer = Mailer.new self
 
   end
@@ -41,6 +43,10 @@ class Institution
 
   def mailer
     @mailer
+  end
+
+  def slacker
+    @slacker
   end
 
   def code
