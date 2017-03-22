@@ -8,6 +8,7 @@ module Util
       if @institution
         @institution.mailer.send_admin_notification message
         @institution.logger.fatal message
+        @institution.slacker.critical_error message
       end
       puts "#{message} See logs."
       exit

@@ -27,4 +27,10 @@ class SlackerTest < MiniTest::Test
 
   end
 
+  def slacker_has_a_users_extracted
+
+    assert_respond_to @inst.slacker, :users_extracted
+
+  end
+
 end

@@ -32,6 +32,12 @@ class Slacker
 
   end
 
+  def users_extracted(users, errors)
+    post(
+        "User file from `#{@inst.code}` parsed. #{users} extracted with #{errors} errors."
+    )
+  end
+
   def critical_error(text)
     post(
         "Job Failed for `#{@inst.code}` #{text}"

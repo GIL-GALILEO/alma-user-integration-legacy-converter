@@ -126,6 +126,8 @@ class UserFactory
 
     run_set.inst.mailer.add_result_message "Users extracted from file: #{users.length}"
 
+    run_set.inst.slacker.users_extracted users.length, error_count
+
     users
 
   end
