@@ -4,11 +4,11 @@ module Util
 
   module App
 
-    def exit_log_error(message)
-      if @institution
-        @institution.mailer.send_admin_notification message
-        @institution.logger.fatal message
-        @institution.slacker.critical_error message
+    def exit_log_error(message, institution = nil)
+      if institution
+        institution.mailer.send_admin_notification message
+        institution.logger.fatal message
+        institution.slacker.critical_error message
       end
       puts "#{message} See logs."
       exit

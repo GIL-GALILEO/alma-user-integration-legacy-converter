@@ -31,7 +31,7 @@ end
 begin
   run_set = FileHandler.new(institution, ARGV).run_set
 rescue StandardError => e
-  exit_log_error "RunSet composition failed for #{code} with: #{e.message}"
+  exit_log_error "RunSet composition failed for #{code} with: #{e.message}", institution
 end
 
 # If the FileHandler found sufficient files to complete a run, based on the Institution's configuration, then proceed
@@ -41,7 +41,7 @@ if run_set.is_sufficient?
   begin
     output_file = XmlFactory.get_result run_set
   rescue StandardError => e
-    exit_log_error "XmlFactory error for #{code} with: #{e.message}"
+    exit_log_error "XmlFactory error for #{code} with: #{e.message}", institution
   end
 
   # zip up file
