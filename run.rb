@@ -47,8 +47,6 @@ if run_set.is_sufficient?
   # zip up file
   zip_file = Zipper.do output_file, institution
 
-  msg = "File Generation complete for #{institution.code}"
-
   unless run_set.dry_run?
 
     # MOVE FOR ALMA PICKUP
@@ -56,11 +54,11 @@ if run_set.is_sufficient?
     destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
     FileUtils.mv(source_file, destination_file)
     institution.mailer.send_finished_notification
-    institution.slacker.run_completed msg
+    institution.slacker.run_completed
 
   end
 
-  puts msg
+  puts "File Generation complete for #{institution.code}"
   puts "Time: #{Time.now - start} seconds"
 
 else
