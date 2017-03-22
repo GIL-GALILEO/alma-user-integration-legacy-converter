@@ -28,7 +28,7 @@ class Slacker
         as_user: true
                    })
 
-    Slack.chat_postMessage(options)
+    Slack.chat_postMessage(options) unless defined?(MiniTest)
 
   end
 
