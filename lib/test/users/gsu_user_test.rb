@@ -21,9 +21,27 @@ class GsuUserTest < MiniTest::Test
 
   end
 
+  def test_has_original_secondary_user_group
+
+    assert_equal 'PUL11', @user.original_secondary_user_group
+
+  end
+
   def test_has_user_group_object
 
     assert_kind_of UserGroup, @user.user_group
+
+  end
+
+  def test_has_secondary_user_group_object
+
+    assert_kind_of UserGroup, @user.secondary_user_group
+
+  end
+
+  def test_has_heavier_group_for_alma
+
+    assert_equal @user.user_group_for_alma, @user.secondary_user_group.alma_name
 
   end
 

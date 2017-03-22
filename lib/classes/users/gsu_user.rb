@@ -8,6 +8,7 @@ class GsuUser < SifUser
 
   GSU_GENERAL_MAPPING = {
       original_user_group: [45, 55],
+      original_secondary_user_group: [101, 111],
       first_name: [340, 360],
       middle_name: [360, 380],
       last_name: [310, 330],

@@ -5,7 +5,7 @@ include Util::File
 
 class User
 
-  attr_accessor :original_user_group, :original_expiry_date, :exp_date_override
+  attr_accessor :original_user_group, :original_secondary_user_group, :original_expiry_date, :exp_date_override, :user_group, :secondary_user_group
 
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'
 
@@ -104,12 +104,13 @@ class User
     @ordered_phone_numbers
   end
 
-  def user_group
-    @user_group
-  end
-
   def user_group_for_alma
-    alma_string @user_group.alma_name
+    if user_group && secondary_user_group
+      heavier_group = user_group.is_heavier_than?(secondary_user_group) ? user_group : secondary_user_group
+      alma_string heavier_group.alma_name
+    else
+      alma_string user_group.alma_name || secondary_user_group.alma_name
+    end
   end
 
   def exp_date_for_alma
@@ -118,10 +119,6 @@ class User
     else
       alma_date(date_days_from_now(@user_group.exp_date_days))
     end
-  end
-
-  def user_group=(user_group_obj)
-    @user_group = user_group_obj
   end
 
   # ALMA PRIMARY ID
