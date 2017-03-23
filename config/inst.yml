@@ -495,11 +495,11 @@ ksu:
        exp_date_days: 10
        weight: 6
     p-fac/staf:
-       alma_name: 'facstaff'
+       alma_name: 'p-fac/staf'
        exp_date_days: 10
        weight: 7
     f-fac/staf:
-       alma_name: 'facstaff'
+       alma_name: 'f-fac/staf'
        exp_date_days: 10
        weight: 8
 

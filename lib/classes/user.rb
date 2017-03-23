@@ -323,11 +323,12 @@ class User
 
   def xml_safe(string)
     string
-        .gsub('&','&amp;')
-        .gsub('"','&quot;')
-        .gsub("'",'&apos;')
-        .gsub('<','&lt;')
-        .gsub('>','&gt;')
+        .gsub('&', '&amp;')
+        .gsub('"', '&quot;')
+        .gsub("'", '&apos;')
+        .gsub('<', '&lt;')
+        .gsub('>', '&gt;')
+        .gsub("\u001A", '')
   end
 
   def alma_approved_country(voyager_country)
