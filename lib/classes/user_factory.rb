@@ -61,11 +61,15 @@ class UserFactory
 
               if users_hash[id]
 
+                run_set.inst.logger.info "Duplicate patron found with ID #{id} on line #{line} with group #{ug}."
+
                 same_user = users_hash[id]
 
                 if ug.is_heavier_than? same_user.user_group
 
                   users_hash[id] = user
+
+                  run_set.inst.logger.info "User data from line #{line} with group #{ug} has outweighed a previously processed version."
 
                 end
 
