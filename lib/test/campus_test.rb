@@ -18,6 +18,13 @@ class CampusTest < MiniTest::Test
 
   end
 
+  def test_has_campus_code
+
+    assert_equal 'TST1', @campus.code
+    assert_equal 'TST2', @institution.campuses.last.code
+
+  end
+
   def test_has_no_campuses
 
     assert_nil @no_campuses_institution.campuses
