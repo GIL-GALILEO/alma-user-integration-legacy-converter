@@ -146,8 +146,9 @@ class SifUser < User
       self.user_group = UserGroup.new(@institution, @campus, original_user_group) if original_user_group
       self.secondary_user_group = UserGroup.new(@institution, @campus, original_secondary_user_group) if original_secondary_user_group
 
-    rescue StandardError => e # todo exception used for flow control...
+    rescue NoGroupMappingError => e
 
+      @institution.logger.warn "No group mapping found for for user ID: #{self.primary_id}. Using configured default."
       self.user_group = UserGroup.new(@institution, @campus, 'DEFAULT')
 
     rescue NotImplementedError => e

@@ -1,3 +1,5 @@
+require './lib/errors/no_group_mapping_error'
+
 class UserGroup
 
   attr_accessor :alma_name, :banner_name, :exp_date_days, :weight, :institution
@@ -42,15 +44,14 @@ class UserGroup
       self.weight = data['weight'].to_i
       self.exp_date_days = data['exp_date_days']
     else
-      raise StandardError.new
+      # insufficient data to properly map group, use default
+      raise NoGroupMappingError.new
     end
 
   end
 
   def is_heavier_than?(user_group)
-
     user_group.weight < weight
-
   end
 
   def to_s
