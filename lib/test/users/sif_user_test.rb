@@ -185,7 +185,6 @@ class SifUserTest < MiniTest::Test
     @user.campus_code = 'acampuscodecanbenolongerthanfiftyalphanumericcharacters'
     assert_equal 50, @user.campus_code.length
 
-
   end
 
 end

@@ -55,7 +55,24 @@ class UserFactoryTest < MiniTest::Test
 
   end
 
-  def test_duplicate_user_entries_take_the_role_with_highest_weight
+  def test_duplicate_user_entries_in_files_take_the_role_with_highest_weight
+
+    patron_file = File.new '/gilftpfiles/test_sif_duplicates/patrondrop/student'
+
+    file_set = FileSet.new
+    file_set.patrons << patron_file
+
+    @run_set.file_sets << file_set
+
+    result = UserFactory.generate(@run_set)
+    alma_user_groups = result.map(&:user_group).map(&:alma_name)
+
+    assert_includes  alma_user_groups, 'ALMA STAFF'
+
+  end
+
+
+  def test_duplicate_user_entries_across_files_take_the_role_with_highest_weight
 
     patron_file = File.new '/gilftpfiles/test_sif_facstaff/patrondrop/test_sif.txt'
 
