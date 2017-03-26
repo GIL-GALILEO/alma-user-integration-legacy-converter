@@ -10,7 +10,7 @@ class UserFactory
   def self.generate(run_set)
 
     unless run_set.kind_of? RunSet
-      raise StandardError.new('Bad RunSet provided to user factory')
+      fail StandardError, 'Bad RunSet provided to user factory'
     end
 
     users = []
@@ -19,20 +19,16 @@ class UserFactory
     # for each file set, build user objects and barcode hash tables
     run_set.file_sets.each do |file_set|
 
-      if file_set.campus
-        user_class = load_and_initialize_user_class file_set.campus.user_class
-        campus = file_set.campus
-      else
-        user_class = load_and_initialize_user_class run_set.inst.user_class
-        campus = nil
-      end
+      user_class = load_and_initialize_user_class(
+        file_set.campus ? file_set.campus.user_class : run_set.inst.user_class
+      )
 
       unless user_class.ancestors.include? User
-        raise StandardError.new('User class not loaded properly in user factory')
+        fail StandardError, 'User class not loaded properly in user factory'
       end
 
       unless file_set.is_a? FileSet
-        raise StandardError.new('Run Set contains an invalid File Set.')
+        fail StandardError, 'Run Set contains an invalid File Set.'
       end
 
       file_set.barcodes.each do |barcode_file|
@@ -53,7 +49,7 @@ class UserFactory
 
           begin
 
-            user = user_class.new(line, run_set.inst, campus)
+            user = user_class.new(line, run_set.inst, file_set.campus)
             ug = user.user_group
             id = user.primary_id
 
@@ -79,8 +75,11 @@ class UserFactory
 
               end
 
-              # set barcode is hash is present
+              # attempt to set barcode if hash is present
               users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash
+
+              # set campus code
+              user.campus_code = file_set.campus.code if file_set.campus
 
               # set expire date
               if run_set.expire?

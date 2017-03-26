@@ -43,15 +43,24 @@ class UserFactoryTest < MiniTest::Test
 
   def test_result_has_alma_patron_group
 
-
     assert_includes @alma_user_groups, 'ALMA STUDENT'
+
+  end
+
+  def test_user_in_multi_campus_setup_has_campus_code
+
+    test_inst = Institution.new('test_multi_campus')
+    run_set = FileHandler.new(test_inst).run_set
+    result = UserFactory.generate(run_set)
+
+    assert_equal 'TST1', result[0].campus_code
 
   end
 
   def test_users_with_no_group_are_given_default
 
-      assert_equal 3, @result.size
-      assert_includes @alma_user_groups, 'TEST DEFAULT'
+    assert_equal 3, @result.size
+    assert_includes @alma_user_groups, 'TEST DEFAULT'
 
   end
 
