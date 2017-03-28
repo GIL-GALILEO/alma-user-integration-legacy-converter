@@ -7,10 +7,10 @@ class User
 
   attr_accessor :original_user_group, :original_secondary_user_group, :original_expiry_date, :exp_date_override, :user_group, :secondary_user_group
 
-  COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'
+  COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
 
   DEFAULT_EXPIRY_DATE_DAYS = 365
-  DEFAULT_USER_GROUP = 'unknown'
+  DEFAULT_USER_GROUP = 'unknown'.freeze
 
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(
@@ -42,7 +42,7 @@ class User
     email
     barcode
     secondary_id
-  )
+  ).freeze
 
   attr_reader *USER_ATTRIBUTES
 

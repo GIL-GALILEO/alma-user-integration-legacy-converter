@@ -7,26 +7,25 @@ class GsuUser < SifUser
   GSU_MAXIMUM_ADDRESS_SEGMENTS = 1
 
   GSU_GENERAL_MAPPING = {
-      original_user_group: [45, 55],
-      original_secondary_user_group: [101, 111],
-      first_name: [340, 360],
-      middle_name: [360, 380],
-      last_name: [310, 330],
-      email: [917, 983],
-      barcode: [20, 28],
-      primary_id: [238, 248],
-  }
+    original_user_group: [45, 55],
+    original_secondary_user_group: [101, 111],
+    first_name: [340, 360],
+    middle_name: [360, 380],
+    last_name: [310, 330],
+    email: [917, 983],
+    barcode: [20, 27],
+    primary_id: [238, 248]
+  }.freeze
 
   GSU_ADDRESS_SEGMENT_MAPPING = {
-      address_line_1:           [0, 99],
-      address_line_2:           [99, 199],
-      address_city:             [210, 250],
-      address_state_province:   [250, 257],
-      address_postal_code:      [257, 267],
-      address_country:          [267, 287],
-      address_phone:            [287, 307],
-      # address_mobile_phone:     [],
-  }
+    address_line_1:           [0, 99],
+    address_line_2:           [99, 199],
+    address_city:             [210, 250],
+    address_state_province:   [250, 257],
+    address_postal_code:      [257, 267],
+    address_country:          [267, 287],
+    address_phone:            [287, 307]
+  }.freeze
 
   def general_mapping
     GSU_GENERAL_MAPPING

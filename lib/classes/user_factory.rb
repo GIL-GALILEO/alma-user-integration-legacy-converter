@@ -9,7 +9,7 @@ class UserFactory
 
   def self.generate(run_set)
 
-    unless run_set.kind_of? RunSet
+    unless run_set.is_a? RunSet
       fail StandardError, 'Bad RunSet provided to user factory'
     end
 
@@ -76,7 +76,7 @@ class UserFactory
               end
 
               # attempt to set barcode if hash is present
-              users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash
+              users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash.any?
 
               # set campus code
               user.campus_code = file_set.campus.code if file_set.campus
@@ -142,11 +142,9 @@ class UserFactory
 
   end
 
-  private
-
   def self.archive_raw_file(f, inst)
 
-    Dir.mkdir(inst.raw_archive_path) unless File.exists? inst.raw_archive_path
+    Dir.mkdir(inst.raw_archive_path) unless File.exist? inst.raw_archive_path
     FileUtils.mv(File.absolute_path(f), File.join(inst.raw_archive_path, "#{File.basename(f)}_#{Time.now.strftime('%Y%m%d')}.raw"))
 
   end
