@@ -52,7 +52,7 @@ class UserFactory
             ug = user.user_group
             id = user.primary_id
 
-            if ug && id
+            if ug && id && id_is_reasonable(id)
 
               if users_hash[id]
 
@@ -151,6 +151,10 @@ class UserFactory
   def self.parse_barcodes(file, separator)
     barcode_array = CSV.read(file, col_sep: separator)
     Hash[*barcode_array.flatten]
+  end
+
+  def self.id_is_reasonable(id)
+    !(id == '000000000' || id == '')
   end
 
 end
