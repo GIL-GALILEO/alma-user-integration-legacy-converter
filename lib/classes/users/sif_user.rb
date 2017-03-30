@@ -148,8 +148,10 @@ class SifUser < User
 
     rescue NoGroupMappingError => e
 
-      @institution.logger.warn "No group mapping found for for user ID: #{self.primary_id}. Using configured default."
-      self.user_group = UserGroup.new(@institution, @campus, 'DEFAULT')
+      unless self.user_group
+        @institution.logger.warn "No group mapping found for for user ID: #{self.primary_id}. Using configured default."
+        self.user_group = UserGroup.new(@institution, @campus, 'DEFAULT')
+      end
 
     rescue NotImplementedError => e
 

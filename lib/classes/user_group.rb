@@ -12,7 +12,7 @@ class UserGroup
 
     groups_settings = campus ? campus.groups_settings : institution.groups_settings
 
-    if banner_name
+    if banner_name && banner_name != ''
 
       self.banner_name = banner_name
 
@@ -20,7 +20,7 @@ class UserGroup
 
     elsif fs_codes
 
-      raise NotImplementedError.new('FS Codes cannot be translated to User Groups if a Campus has been provided.') if campus
+      raise(NotImplementedError, 'FS Codes cannot be translated to User Groups if a Campus has been provided.') if campus
 
       fs_codes.each do |fs_code|
 
