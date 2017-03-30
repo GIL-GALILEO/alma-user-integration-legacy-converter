@@ -144,7 +144,7 @@ class UserFactory
   def self.archive_raw_file(f, inst)
 
     Dir.mkdir(inst.raw_archive_path) unless File.exist? inst.raw_archive_path
-    FileUtils.mv(File.absolute_path(f), File.join(inst.raw_archive_path, "#{File.basename(f)}_#{Time.now.strftime('%Y%m%d')}.raw"))
+    FileUtils.mv(File.absolute_path(f), File.join(inst.raw_archive_path, "#{File.basename(f)}_#{Time.now.strftime('%Y%m%d')}.old"))
 
   end
 
