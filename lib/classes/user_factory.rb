@@ -14,6 +14,7 @@ class UserFactory
     end
 
     users = []
+    users_hash = {}
     error_count = 0
 
     # for each file set, build user objects and barcode hash tables
@@ -44,8 +45,6 @@ class UserFactory
       file_set.patrons.each do |patron_file|
 
         File.foreach(patron_file).with_index do |line, line_num|
-
-          users_hash = {}
 
           begin
 
@@ -103,14 +102,14 @@ class UserFactory
             run_set.inst.mailer.add_file_error_message msg
           end
 
-          users += users_hash.values
-
         end
 
         # archive original uploaded file unless testing or sampling
         archive_raw_file(patron_file, run_set.inst) unless defined?(MiniTest) || run_set.sample?
 
       end
+
+      users += users_hash.values
 
     end
 
