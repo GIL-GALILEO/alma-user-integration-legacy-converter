@@ -10,7 +10,6 @@ class User
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
 
   DEFAULT_EXPIRY_DATE_DAYS = 365
-  DEFAULT_USER_GROUP = 'unknown'.freeze
 
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(

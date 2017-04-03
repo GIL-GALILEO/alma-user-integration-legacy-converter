@@ -17,12 +17,6 @@ class SifUserTest < MiniTest::Test
 
   end
 
-  def test_class_default_user_group
-
-    assert_equal 'unknown', SifUser::DEFAULT_USER_GROUP
-
-  end
-
   def test_inst_default_user_group
 
     @user.original_user_group = 'nonsense'
