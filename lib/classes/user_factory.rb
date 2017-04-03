@@ -149,7 +149,7 @@ class UserFactory
   end
 
   def self.parse_barcodes(file, separator)
-    barcode_array = CSV.read(file, col_sep: separator)
+    barcode_array = CSV.read(file, col_sep: separator, quote_char: "\x00")
     Hash[*barcode_array.flatten]
   end
 
