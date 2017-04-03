@@ -28,7 +28,7 @@ class SifUserTest < MiniTest::Test
     @user.original_user_group = 'nonsense'
     @user.set_user_group_from_original
 
-    assert_equal @user.user_group_for_alma, 'TEST DEFAULT'
+    assert_equal @user.user_group_for_alma, 'ALMA STUDENT'
 
   end
 

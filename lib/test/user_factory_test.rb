@@ -60,7 +60,7 @@ class UserFactoryTest < MiniTest::Test
   def test_users_with_no_group_are_given_default
 
     assert_equal 3, @result.size
-    assert_includes @alma_user_groups, 'TEST DEFAULT'
+    assert_includes @alma_user_groups, 'ALMA STUDENT'
 
   end
 
