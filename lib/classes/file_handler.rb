@@ -108,21 +108,17 @@ class FileHandler
   def detect_type_of_file_from(line)
 
     begin
-      if CSV.parse_line(line, col_sep: '|' ).length == TXT_FILE_FIELD_COUNT
-        return 'patron_txt'
-      end
+      return 'patron_txt' if CSV.parse_line(line, col_sep: '|').length == TXT_FILE_FIELD_COUNT
     rescue StandardError => e
-      @run_set.inst.logger.error("File read error for file #{file_path}: #{e.message}")
+      @run_set.inst.logger.error("File read error: #{e.message}")
       return 'unknown'
     end
 
     case line
-
-      when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
-      when /[0-9"]{9,11}[\,|\t][0-9"]+/ then 'barcode'
-      when /.{400,}/ then 'patron_sif'
-      else 'unknown'
-
+    when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
+    when /[0-9"]{9,11}[\,|\t][0-9"]+/ then 'barcode'
+    when /.{400,}/ then 'patron_sif'
+    else 'unknown'
     end
 
   end
