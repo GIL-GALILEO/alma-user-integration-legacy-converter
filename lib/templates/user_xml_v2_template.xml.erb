@@ -3,6 +3,7 @@
   <first_name><%= user.first_name %></first_name>
   <middle_name><%= user.middle_name %></middle_name>
   <last_name><%= user.last_name %></last_name>
+  <% if user.campus_code.to_s != '' %><campus_code><%= user.campus_code %></campus_code><% end %>
   <user_group><%= user.user_group_for_alma %></user_group>
   <purge_date><%= defaults.purge_date %></purge_date>
   <expiry_date><%= user.exp_date_for_alma %></expiry_date>
