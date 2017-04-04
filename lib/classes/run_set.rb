@@ -19,7 +19,7 @@ class RunSet
     if inst.is_a? Institution
       @inst = inst
     else
-      raise StandardError.new('Institution provided is not an Institution!')
+      fail StandardError, 'Institution provided is not an Institution!'
     end
   end
 
@@ -27,7 +27,7 @@ class RunSet
     if config_hash.is_a? Hash
       @config = config_hash
     else
-      raise StandardError.new('Config value provided is not a Hash!')
+      fail StandardError, 'Config value provided is not a Hash!'
     end
   end
 
