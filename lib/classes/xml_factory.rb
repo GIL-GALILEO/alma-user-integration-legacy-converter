@@ -1,6 +1,7 @@
 require './lib/classes/user_factory'
 require './lib/classes/templater'
 
+# used to generate users and apply them to the XML template
 class XmlFactory
 
   def self.get_result(run_set)
@@ -8,13 +9,13 @@ class XmlFactory
     begin
       users = UserFactory.generate(run_set)
     rescue StandardError => e
-      raise StandardError.new("XML Factory (UserFactory) error: #{e.message}")
+      raise StandardError, "XML Factory (UserFactory) error: #{e.message}"
     end
 
     begin
       result = Templater.run users, run_set
     rescue StandardError => e
-      raise StandardError.new("XML Factory (Templater) error: #{e.message}")
+      raise StandardError, "XML Factory (Templater) error: #{e.message}"
     end
 
     result

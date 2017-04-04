@@ -5,19 +5,19 @@ require './lib/classes/file_set'
 
 class FileHandler
 
-  DATA_DIR_BASE = '/gilftpfiles'
-  FILE_DROP_SITE = 'patrondrop'
-  EXPIRE_DIR = 'expire'
+  DATA_DIR_BASE = '/gilftpfiles'.freeze
+  FILE_DROP_SITE = 'patrondrop'.freeze
+  EXPIRE_DIR = 'expire'.freeze
 
   TXT_FILE_FIELD_COUNT = 23
-  EXP_DATE_FORMAT = '%Y-%m-%d'
+  EXP_DATE_FORMAT = '%Y-%m-%d'.freeze
 
   attr_accessor :run_set
 
   def initialize(institution, run_arguments = [])
 
     unless institution.is_a? Institution
-      raise StandardError.new('Cannot generate for something that is not an Institution!')
+      fail StandardError, 'Cannot generate for something that is not an Institution!'
     end
 
     @run_set = RunSet.new
@@ -41,9 +41,7 @@ class FileHandler
   def populate_run_set(path, campus = nil)
 
     # if expire flag set, append expire dir to all paths
-    if @run_set.expire?
-      path = File.join path, EXPIRE_DIR
-    end
+    path = File.join path, EXPIRE_DIR if @run_set.expire?
 
     # establish FileSet to handle files from given path
     file_set = FileSet.new
@@ -64,22 +62,22 @@ class FileHandler
 
       case detect_type_of_file_from(first_line)
 
-        when 'exp_date'
-          if file_set.campus
-            file_set.exp_date = get_expiry_date_from first_line
-          else
-            @run_set.config[:exp_date_from_file] = get_expiry_date_from first_line
-          end
-        when 'barcode'
-          file_set.barcodes << file
-        when 'patron_sif'
-          file_set.patrons << file
-        when 'patron_txt'
-          file_set.patrons << file
-        when 'unknown'
-          @run_set.inst.logger.warn "Mystery file encountered: #{file}"
+      when 'exp_date'
+        if file_set.campus
+          file_set.exp_date = get_expiry_date_from first_line
         else
-          @run_set.inst.logger.error "File handling error for file: #{file}"
+          @run_set.config[:exp_date_from_file] = get_expiry_date_from first_line
+        end
+      when 'barcode'
+        file_set.barcodes << file
+      when 'patron_sif'
+        file_set.patrons << file
+      when 'patron_txt'
+        file_set.patrons << file
+      when 'unknown'
+        @run_set.inst.logger.warn "Mystery file encountered: #{file}"
+      else
+        @run_set.inst.logger.error "File handling error for file: #{file}"
 
       end
 
