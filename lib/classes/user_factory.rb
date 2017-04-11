@@ -74,8 +74,15 @@ class UserFactory
 
               end
 
-              # attempt to set barcode if hash is present
-              users_hash[id].barcode = file_set.barcodes_hash[id] if file_set.barcodes_hash.any?
+              # attempt to set barcode if hash is present (and not equal to the primary id)
+              if file_set.barcodes_hash.any?
+                barcode = file_set.barcodes_hash[id]
+                if barcode == id
+                  run_set.inst.logger.info "Barcode discarded since it is equal to primary id on line #{line_num}."
+                else
+                  users_hash[id].barcode = barcode
+                end
+              end
 
               # set campus code
               user.campus_code = file_set.campus.code if file_set.campus
@@ -109,9 +116,9 @@ class UserFactory
 
       end
 
-      users += users_hash.values
-
     end
+
+    users = users_hash.values
 
     if error_count > 0
       run_set.inst.logger.warn "Errors encountered: #{error_count}"
