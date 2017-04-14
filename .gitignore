@@ -7,3 +7,4 @@ inst.yml
 *.log
 config/test_data.yml
 temp/
+deploy.sh
