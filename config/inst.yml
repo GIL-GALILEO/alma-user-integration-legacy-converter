@@ -81,6 +81,7 @@ augusta:
   campus:
     summerville:
       path: 'summerville'
+      code: 'SV'
       user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: ","
@@ -111,32 +112,33 @@ augusta:
           weight: 8
     mcg:
       path: 'mcg'
+      code: 'HS'
       user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: "\t"
       user_group_settings:
         DEFAULT:
-          alma_name: 'Mundergrad'
+          alma_name: 'Gundergrad'
           exp_date_days: 10
           weight: 5
         UNDERGRAD:
-          alma_name: 'Mundergrad'
+          alma_name: 'Gundergrad'
           exp_date_days: 10
           weight: 3
         GRADUATE:
-          alma_name: 'Mundergrad'
+          alma_name: 'Gundergrad'
           exp_date_days: 30
           weight: 5
         FACULTY:
-          alma_name: 'Mfaculty'
+          alma_name: 'Gfaculty'
           exp_date_days: 30
           weight: 9
         STAFF:
-          alma_name: 'Mstaff'
+          alma_name: 'Gstaff'
           exp_date_days: 30
           weight: 7
         PARTFAC:
-          alma_name: 'Mtemp_prt'
+          alma_name: 'Gtemp_prt'
           exp_date_days: 30
           weight: 6
 
@@ -193,6 +195,10 @@ clayton:
        alma_name: 'STUDENT'
        exp_date_days: 30
        weight: 6
+    FAC-STAFF:
+       alma_name: 'FAC-STAFF'
+       exp_date_days: 30
+       weight: 9
 
 # Columbus State University
 csu:
@@ -230,6 +236,14 @@ dalton:
        alma_name: 'STUD'
        exp_date_days: 30
        weight: 6
+    FACULTY:
+       alma_name: 'FACULTY'
+       exp_date_days: 30
+       weight: 9
+    STAFF:
+       alma_name: 'STAFF'
+       exp_date_days: 30
+       weight: 8
 
 # Darton - To be Consolidated with Albany State
 darton:
@@ -543,14 +557,15 @@ savst:
 sgsc:
   campus:
     waycross:
+      path: 'waycross'
       user_class_file: 'sif_user'
       barcodes: false
       user_group_settings:
         DEFAULT:
-          alma_name: '???'
+          alma_name: 'WCSTDT'
           exp_date_days: 10
           weight: 2
-        WCSTDT:
+        UNDERGRAD:
           alma_name: 'WCSTDT'
           exp_date_days: 10
           weight: 5
@@ -559,14 +574,15 @@ sgsc:
           exp_date_days: 30
           weight: 10
     douglas:
+      path: 'douglas'
       user_class_file: 'sif_user'
       barcodes: false
       user_group_settings:
         DEFAULT:
-          alma_name: '???'
+          alma_name: 'DCSTDT'
           exp_date_days: 10
           weight: 1
-        DCSTDT:
+        UNDERGRAD:
           alma_name: 'DCSTDT'
           exp_date_days: 10
           weight: 4
@@ -613,11 +629,11 @@ uga:
       exp_date_days: 30
     'GRAD PRIV':
       alma_name: 'GRAD PRIV'
-      weight: 5
+      weight: 8
       exp_date_days: 10
     'STAFF':
       alma_name: 'STAFF'
-      weight: 8
+      weight: 7
       exp_date_days: 30
     'STAFF PRIV':
       alma_name: 'STAFF PRIV'
@@ -661,7 +677,7 @@ vsu:
        exp_date_days: 10
     STUDNTGRA:
        alma_name: 'STUDNTGRA'
-       weight: 10
+       weight: 7
        exp_date_days: 30
     STUDNTCOMM:
        alma_name: 'STUDNTCOMM'
@@ -670,6 +686,18 @@ vsu:
     CONSORT:
        alma_name: 'CONSORT'
        weight: 1
+       exp_date_days: 10
+    STAFF:
+       alma_name: 'STAFF'
+       weight: 8
+       exp_date_days: 10
+    FACCURRENT:
+       alma_name: 'FACCURRENT'
+       weight: 9
+       exp_date_days: 10
+    FACCOMMART:
+       alma_name: 'FACCOMMART'
+       weight: 9
        exp_date_days: 10
 
 # University of West Georgia
@@ -702,7 +730,7 @@ test_sif:
     - 'mkanning@uga.edu'
   user_group_settings:
     DEFAULT:
-      alma_name: 'TEST DEFAULT'
+      alma_name: 'ALMA STUDENT'
       exp_date_days: 10
       weight: 5
     UNDERGRAD:
@@ -727,22 +755,27 @@ test_sif_facstaff:
     - 'mkanning@uga.edu'
   user_group_settings:
     DEFAULT:
+      type: 'student'
       alma_name: 'DEFAULT'
       exp_date_days: 10
       weight: 5
     UNDERGRAD:
+      type: 'student'
       alma_name: 'ALMA STUDENT'
       weight: 1
       exp_date_days: 10
     STAFF:
+      type: 'facstaff'
       alma_name: 'ALMA STAFF'
       weight: 9
       exp_date_days: 30
     FACULTY:
+      type: 'facstaff'
       alma_name: 'ALMA FACULTY'
       weight: 10
       exp_date_days: 30
     'SPACED TEST':
+      type: 'none'
       alma_name: 'WORKS'
       weight: 5
       exp_date_days: 10
@@ -752,6 +785,7 @@ test_sif_campus2:
   path: 'campus2'
   user_class_file: 'sif_user'
   barcodes: true
+  barcode_separator: ','
   user_group_settings:
     DEFAULT:
       alma_name: 'DEFAULT'
@@ -774,6 +808,7 @@ test_multi_campus:
   campus:
     campus1:
       path: 'campus1'
+      code: 'TST1'
       user_class_file: 'sif_user'
       barcodes: true
       barcode_separator: '|'
@@ -792,9 +827,10 @@ test_multi_campus:
           exp_date_days: 30
     campus2:
       path: 'campus2'
+      code: 'TST2'
       user_class_file: 'sif_user'
       barcodes: true
-      barcode_separator: '|'
+      barcode_separator: ','
       user_group_settings:
         DEFAULT:
           alma_name: 'CAMPUS2 DEFAULT'

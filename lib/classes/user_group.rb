@@ -2,7 +2,7 @@ require './lib/errors/no_group_mapping_error'
 
 class UserGroup
 
-  attr_accessor :alma_name, :banner_name, :exp_date_days, :weight, :institution
+  attr_accessor :type, :alma_name, :banner_name, :exp_date_days, :weight, :institution
 
   def initialize(institution, campus, banner_name = nil, fs_codes = nil)
 
@@ -43,6 +43,7 @@ class UserGroup
       self.alma_name = data['alma_name']
       self.weight = data['weight'].to_i
       self.exp_date_days = data['exp_date_days']
+      self.type = data['type']
     else
       # insufficient data to properly map group, use default
       raise NoGroupMappingError.new

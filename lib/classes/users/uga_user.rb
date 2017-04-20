@@ -5,37 +5,37 @@ require 'date'
 
 class UgaUser < User
 
-  FIELD_SEPARATOR = '|'
-  FS_CODE_SEPARATOR = '~'
+  FIELD_SEPARATOR = '|'.freeze
+  FS_CODE_SEPARATOR = '~'.freeze
 
-  LAST_ENROLLED_DATE_FORMAT = '%Y%m'
-  LAST_PAY_DATE_FORMAT = '%Y%m%d'
-  LAST_ENROLLED_EXPIRE_DAYS = 180
-  LAST_PAY_EXPIRE_DAYS = 180
+  LAST_ENROLLED_DATE_FORMAT = '%Y%m'.freeze
+  LAST_PAY_DATE_FORMAT = '%Y%m%d'.freeze
+  LAST_ENROLLED_EXPIRE_DAYS = 125
+  LAST_PAY_EXPIRE_DAYS = 60
 
   attr_accessor :name, :fs_codes, :class_code, :last_enrolled_date, :last_pay_date
 
   MAPPING = {
-      primary_id:                       0,
-      name:                             1,
-      fs_codes:                         2,
-      primary_address_line_1:           3,
-      primary_address_city:             4,
-      primary_address_state_province:   5,
-      primary_address_postal_code:      6,
-      primary_address_phone:            7,
-      secondary_address_line_1:         8,
-      secondary_address_city:           9,
-      secondary_address_state_province: 10,
-      secondary_address_postal_code:    11,
-      secondary_address_phone:          13,
-      email:                            15,
-      # secondary_id:                     nil,
-      barcode:                          22,
-      class_code:                       16,
-      last_pay_date:                    21,
-      last_enrolled_date:               19,
-  }
+    primary_id:                       0,
+    name:                             1,
+    fs_codes:                         2,
+    primary_address_line_1:           3,
+    primary_address_city:             4,
+    primary_address_state_province:   5,
+    primary_address_postal_code:      6,
+    primary_address_phone:            7,
+    secondary_address_line_1:         8,
+    secondary_address_city:           9,
+    secondary_address_state_province: 10,
+    secondary_address_postal_code:    11,
+    secondary_address_phone:          13,
+    email:                            15,
+    # secondary_id:                     nil,
+    barcode:                          22,
+    class_code:                       16,
+    last_pay_date:                    21,
+    last_enrolled_date:               19
+  }.freeze
 
   def initialize(line_data, institution)
 

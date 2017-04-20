@@ -75,4 +75,10 @@ class UserGroupTest < MiniTest::Test
 
   end
 
+  def test_user_group_has_a_type
+
+    assert_equal @user_group.type, 'facstaff'
+
+  end
+
 end
