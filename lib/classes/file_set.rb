@@ -2,7 +2,7 @@
 # institution
 class FileSet
 
-  attr_accessor :barcodes, :patrons, :barcodes_hash, :campus, :exp_date
+  attr_accessor :barcodes, :patrons, :barcodes_hash, :campus, :exp_dates
 
   def initialize
 
@@ -10,7 +10,7 @@ class FileSet
     self.patrons = []
     self.barcodes_hash = {}
     self.campus = nil
-    self.exp_date = nil
+    self.exp_dates = {}
 
   end
 

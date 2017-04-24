@@ -3,8 +3,8 @@ require './lib/classes/file_handler'
 require './lib/classes/institution'
 require './lib/classes/run_set'
 
-# tests for FileHandler class functionality
-class FileHandlerTest < MiniTest::Test
+# tests for FileHandler class functionality with basic setup
+class FileHandlerBasicTest < MiniTest::Test
   def setup
     @inst = Institution.new 'test_sif'
     @run_set = FileHandler.new(@inst).run_set
@@ -37,13 +37,19 @@ class FileHandlerTest < MiniTest::Test
     assert run_set.sample?
     assert run_set.dry_run?
   end
+end
+
+# tests for FileHandler class functionality with complex setup (e.g. multiple
+# patron files, exp_dates, barcodes, etc.)
+class FileHandlerComplexTest < MiniTest::Test
+  def setup; end
 
   def test_multi_campus_institution
     multi_campus_inst = Institution.new 'test_multi_campus'
     multi_campus_run_set = FileHandler.new(multi_campus_inst).run_set
     file_set = multi_campus_run_set.file_sets.first
     assert file_set.campus
-    assert_equal file_set.exp_date, '2017-01-01'
+    assert_equal '2017-01-01', file_set.exp_dates[:all]
   end
 
   def test_no_files_case
@@ -54,10 +60,17 @@ class FileHandlerTest < MiniTest::Test
     )
   end
 
-  def test_exp_date_override
+  def test_exp_dates_override
     inst = Institution.new 'test_exp_override'
-    run_set = FileHandler.new(inst).run_set
-    assert run_set.file_exp_date?
-    assert_equal run_set.config[:exp_date_from_file], '2017-01-01'
+    file_set = FileHandler.new(inst).run_set.file_sets.first
+    assert_equal file_set.exp_dates[:all], '2017-01-01'
+  end
+
+  def test_multi_exp_date_override
+    inst = Institution.new 'test_sif_facstaff'
+    file_set = FileHandler.new(inst).run_set.file_sets.first
+    assert_nil file_set.exp_dates[:all]
+    assert_equal file_set.exp_dates[:student], '2017-09-01'
+    assert_equal file_set.exp_dates[:facstaff], '2018-01-01'
   end
 end

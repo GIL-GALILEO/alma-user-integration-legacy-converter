@@ -90,10 +90,8 @@ class UserFactory
               # set expire date
               if run_set.expire?
                 users_hash[id].exp_date_days = 0
-              elsif file_set.exp_date
-                users_hash[id].exp_date_override = file_set.exp_date
-              elsif run_set.file_exp_date?
-                users_hash[id].exp_date_override = run_set.config[:exp_date_from_file]
+              else
+                users_hash[id].exp_date_override = file_set.exp_dates[ug.type.to_sym]
               end
 
             else

@@ -2,7 +2,6 @@ require 'csv'
 
 # defines associated RunSets and configuration for a run of the xml generator
 class RunSet
-
   attr_reader :config, :inst
   attr_accessor :file_sets
 
@@ -43,9 +42,4 @@ class RunSet
   def sample?
     @config[:sample]
   end
-
-  def file_exp_date?
-    @config[:exp_date_from_file]
-  end
-
 end
