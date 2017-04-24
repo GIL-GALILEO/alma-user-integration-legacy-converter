@@ -18,6 +18,14 @@ class UserGroup
     alma_name
   end
 
+  def facstaff?
+    type === 'facstaff'
+  end
+
+  def student?
+    type === 'student'
+  end
+
   private
 
   def copy_config_values
