@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require './lib/classes/user_group'
 require './lib/classes/institution'
 
+# tests for UserGroup functionality
 class UserGroupTest < MiniTest::Test
 
   def setup
@@ -31,12 +32,12 @@ class UserGroupTest < MiniTest::Test
 
   end
 
-  # def test_exp_date_days_returns_integer_exp_date_days
-  #
-  #   assert_equal 30, @user_group.exp_date_days
-  #   assert_kind_of Integer, @user_group.exp_date_days
-  #
-  # end
+  def test_exp_days_returns_integer
+
+    assert_equal 30, @user_group.exp_days
+    assert_kind_of Integer, @user_group.exp_days
+
+  end
 
   def test_weight_returns_integer_weight
 
