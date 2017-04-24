@@ -3,6 +3,7 @@ require 'yaml'
 require './lib/classes/users/ung_user'
 require './lib/classes/institution'
 
+# test for UNG User special functionality
 class UngUserTest < MiniTest::Test
 
   TEST_DATA_FILE = './config/test_data.yml'
@@ -15,10 +16,10 @@ class UngUserTest < MiniTest::Test
 
   end
 
-  def test_has_barcode
-
-    assert_equal @user.primary_id, @user.barcode
-
-  end
+  # def test_has_barcode
+  #
+  #   assert_equal @user.primary_id, @user.barcode
+  #
+  # end
 
 end

@@ -35,7 +35,7 @@ rescue StandardError => e
 end
 
 # If the FileHandler found sufficient files to complete a run, based on the Institution's configuration, then proceed
-if run_set.is_sufficient?
+if run_set.sufficient?
 
   # Run XmlFactory, which generates Users and applies the Templater to get an XML file
   begin
