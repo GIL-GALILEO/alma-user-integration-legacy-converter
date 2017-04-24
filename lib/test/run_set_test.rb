@@ -4,17 +4,14 @@ require './lib/classes/run_set'
 require './lib/classes/file_set'
 require './lib/classes/institution'
 
+# tests for RunSet functionality
 class RunSetTest < MiniTest::Test
 
   def setup
 
     @inst = Institution.new('test_sif')
 
-    @config       = {
-        sample: true,
-        expire: true,
-        dry_run: true
-    }
+    @config = { sample: true, expire: true, dry_run: true }
 
     @file_set = FileSet.new
 
@@ -27,7 +24,7 @@ class RunSetTest < MiniTest::Test
 
   def test_returns_true_if_is_sufficient
 
-    assert_equal true, @run_set.is_sufficient?
+    assert_equal true, @run_set.sufficient?
 
   end
 
@@ -37,7 +34,7 @@ class RunSetTest < MiniTest::Test
     bad_run_set.inst = @inst
     bad_run_set.file_sets << @file_set
 
-    assert_equal false, bad_run_set.is_sufficient?
+    assert_equal false, bad_run_set.sufficient?
 
   end
 
@@ -47,7 +44,7 @@ class RunSetTest < MiniTest::Test
     bad_run_set.config = @config
     bad_run_set.file_sets << @file_set
 
-    assert_equal false, bad_run_set.is_sufficient?
+    assert !bad_run_set.sufficient?
 
   end
 
@@ -57,7 +54,7 @@ class RunSetTest < MiniTest::Test
     bad_run_set.inst = @inst
     bad_run_set.config = @config
 
-    assert_equal false, bad_run_set.is_sufficient?
+    assert_equal false, bad_run_set.sufficient?
 
   end
 

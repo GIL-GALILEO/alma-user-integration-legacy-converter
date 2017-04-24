@@ -1,5 +1,6 @@
 require 'csv'
 
+# defines associated RunSets and configuration for a run of the xml generator
 class RunSet
 
   attr_reader :config, :inst
@@ -11,8 +12,8 @@ class RunSet
     @config = {}
   end
 
-  def is_sufficient?
-    !!(inst && config.any? && file_sets.any?)
+  def sufficient?
+    inst && config.any? && file_sets.any?
   end
 
   def inst=(inst)
@@ -32,19 +33,19 @@ class RunSet
   end
 
   def expire?
-    !!@config[:expire]
+    @config[:expire]
   end
 
   def dry_run?
-    !!@config[:dry_run]
+    @config[:dry_run]
   end
 
   def sample?
-    !!@config[:sample]
+    @config[:sample]
   end
 
   def file_exp_date?
-    !!@config[:exp_date_from_file]
+    @config[:exp_date_from_file]
   end
 
 end

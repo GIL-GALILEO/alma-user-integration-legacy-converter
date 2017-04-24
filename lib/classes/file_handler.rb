@@ -3,6 +3,8 @@ require './lib/classes/institution'
 require './lib/classes/run_set'
 require './lib/classes/file_set'
 
+# this class handles the discovery and classification of files in an
+# institution's directory
 class FileHandler
 
   DATA_DIR_BASE = '/gilftpfiles'.freeze

@@ -6,7 +6,7 @@ require './lib/classes/institution'
 # test for UNG User special functionality
 class UngUserTest < MiniTest::Test
 
-  TEST_DATA_FILE = './config/test_data.yml'
+  TEST_DATA_FILE = './config/test_data.yml'.freeze
 
   def setup
 
