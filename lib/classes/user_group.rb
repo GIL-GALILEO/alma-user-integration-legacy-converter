@@ -10,15 +10,15 @@ class UserGroup
     copy_config_values
   end
 
+  def heavier_than?(user_group)
+    user_group.weight < weight
+  end
+
   def to_s
     alma_name
   end
 
   private
-
-  def heavier_than?(user_group)
-    user_group.weight < weight
-  end
 
   def copy_config_values
     if @data && @data['alma_name'] && @data['weight']
