@@ -7,7 +7,7 @@ include Util::App
 
 class UgaUserTest < MiniTest::Test
 
-  TEST_DATA_FILE = './config/test_data.yml'
+  TEST_DATA_FILE = './config/test_data.yml'.freeze
 
   def setup
 

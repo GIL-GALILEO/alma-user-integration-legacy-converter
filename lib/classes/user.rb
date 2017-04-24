@@ -3,13 +3,20 @@ require 'yaml'
 include Util::App
 include Util::File
 
+# base class that will support attributes required by XML template
 class User
 
-  attr_accessor :original_user_group, :original_secondary_user_group, :original_expiry_date, :exp_date_override, :user_group, :secondary_user_group
+  attr_accessor(
+    :original_user_group,
+    :original_secondary_user_group,
+    :original_expiry_date,
+    :exp_date_override,
+    :user_group,
+    :secondary_user_group,
+    :ordered_phone_numbers
+  )
 
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
-
-  DEFAULT_EXPIRY_DATE_DAYS = 365
 
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(
@@ -45,7 +52,7 @@ class User
 
   attr_reader *USER_ATTRIBUTES
 
-  def has_secondary_address?
+  def secondary_address?
     !(@secondary_address_line_1.to_s.empty? &&
       @secondary_address_line_2.to_s.empty? &&
       @secondary_address_city.to_s.empty? &&
@@ -53,8 +60,8 @@ class User
       @secondary_address_postal_code.to_s.empty? &&
       @secondary_address_country.to_s.empty?)
   end
-  
-  def has_primary_address?
+
+  def primary_address?
     !(@primary_address_line_1.to_s.empty? &&
       @primary_address_line_2.to_s.empty? &&
       @primary_address_city.to_s.empty? &&
@@ -63,49 +70,49 @@ class User
       @primary_address_country.to_s.empty?)
   end
 
-  def has_contact_info?
+  def contact_info?
     (
-      has_primary_address? ||
-      has_secondary_address? ||
+      primary_address? ||
+      secondary_address? ||
       !@email.to_s.empty? ||
       !@primary_address_phone.to_s.empty?
     )
   end
 
-  def has_phone_numbers?
-    has_primary_phone_numbers? || has_secondary_phone_numbers?
+  def phone_numbers?
+    primary_phone_numbers? || secondary_phone_numbers?
   end
 
-  def has_primary_phone_numbers?
+  def primary_phone_numbers?
     !(@primary_address_phone.to_s.empty? && @primary_address_mobile_phone.to_s.empty?)
   end
 
-  def has_secondary_phone_numbers?
+  def secondary_phone_numbers?
     !(@secondary_address_phone.to_s.empty? && @secondary_address_mobile_phone.to_s.empty?)
   end
 
-  def has_additional_identifiers?
+  def additional_identifiers?
     !@barcode.to_s.empty? || !@secondary_id.to_s.empty?
   end
 
   def order_phone_numbers
     @ordered_phone_numbers = [
-        @primary_address_phone,
-        @primary_address_mobile_phone,
-        @secondary_address_phone,
-        @secondary_address_mobile_phone
+      @primary_address_phone,
+      @primary_address_mobile_phone,
+      @secondary_address_phone,
+      @secondary_address_mobile_phone
     ].reject do |pn|
       pn.to_s.empty?
     end
   end
 
-  def ordered_phone_numbers
-    @ordered_phone_numbers
-  end
-
   def user_group_for_alma
     if user_group && secondary_user_group
-      heavier_group = user_group.is_heavier_than?(secondary_user_group) ? user_group : secondary_user_group
+      heavier_group = if user_group.heavier_than?(secondary_user_group)
+                        user_group
+                      else
+                        secondary_user_group
+                      end
       alma_string heavier_group.alma_name
     else
       alma_string user_group.alma_name || secondary_user_group.alma_name
@@ -113,11 +120,7 @@ class User
   end
 
   def exp_date_for_alma
-    if exp_date_override
-      exp_date_override
-    else
-      alma_date(date_days_from_now(@user_group.exp_date_days))
-    end
+    alma_date exp_date_override
   end
 
   # ALMA PRIMARY ID
@@ -288,7 +291,7 @@ class User
   # type:         string
   # max_length:   255
   def email=(v)
-    @email = scrubbed_email(alma_string v)
+    @email = scrubbed_email(alma_string (v))
   end
 
   # BARCODE
@@ -315,19 +318,19 @@ class User
     "#{date_str}Z"
   end
 
-  # todo temporary function to scrub email addresses before Alma goes live
+  # TODO: temporary function to scrub email addresses before Alma goes live
   def scrubbed_email(email)
     email.sub '@', '@SCRUBBED_'
   end
 
   def xml_safe(string)
     string
-        .gsub('&', '&amp;')
-        .gsub('"', '&quot;')
-        .gsub("'", '&apos;')
-        .gsub('<', '&lt;')
-        .gsub('>', '&gt;')
-        .gsub("\u001A", '')
+      .gsub('&', '&amp;')
+      .gsub('"', '&quot;')
+      .gsub("'", '&apos;')
+      .gsub('<', '&lt;')
+      .gsub('>', '&gt;')
+      .delete("\u001A")
   end
 
   def alma_approved_country(voyager_country)

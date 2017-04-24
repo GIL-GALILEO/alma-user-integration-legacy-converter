@@ -12,10 +12,10 @@ class UserTest < MiniTest::Test
 
   def test_empty_user_booleans
 
-    assert_equal false, @user.has_primary_address?
-    assert_equal false, @user.has_secondary_address?
-    assert_equal false, @user.has_contact_info?
-    assert_equal false, @user.has_additional_identifiers?
+    assert_equal false, @user.primary_address?
+    assert_equal false, @user.secondary_address?
+    assert_equal false, @user.contact_info?
+    assert_equal false, @user.additional_identifiers?
 
   end
 
@@ -23,7 +23,7 @@ class UserTest < MiniTest::Test
 
     @user.secondary_address_mobile_phone = '111-222-3333'
 
-    assert @user.has_phone_numbers?
+    assert @user.phone_numbers?
 
   end
 
@@ -54,7 +54,7 @@ class UserTest < MiniTest::Test
 
     @user.primary_address_state_province = 'GA'
 
-    assert @user.has_primary_address?
+    assert @user.primary_address?
 
   end
 
@@ -62,7 +62,7 @@ class UserTest < MiniTest::Test
 
     @user.secondary_address_state_province = 'GA'
 
-    assert @user.has_secondary_address?
+    assert @user.secondary_address?
 
   end
 
@@ -70,7 +70,7 @@ class UserTest < MiniTest::Test
 
     @user.primary_address_phone = '111-222-3333'
 
-    assert @user.has_contact_info?
+    assert @user.contact_info?
 
   end
 
@@ -78,16 +78,16 @@ class UserTest < MiniTest::Test
 
     @user.barcode = '100100101000111010101'
 
-    assert @user.has_additional_identifiers?
+    assert @user.additional_identifiers?
 
     @user.secondary_id = 'username'
 
-    assert @user.has_additional_identifiers?
+    assert @user.additional_identifiers?
 
     @user.barcode = ''
     @user.secondary_id = ''
 
-    assert !@user.has_additional_identifiers?
+    assert !@user.additional_identifiers?
 
   end
 

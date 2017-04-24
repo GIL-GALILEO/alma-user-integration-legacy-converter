@@ -31,12 +31,12 @@ class UserGroupTest < MiniTest::Test
 
   end
 
-  def test_exp_date_days_returns_integer_exp_date_days
-
-    assert_equal 30, @user_group.exp_date_days
-    assert_kind_of Integer, @user_group.exp_date_days
-
-  end
+  # def test_exp_date_days_returns_integer_exp_date_days
+  #
+  #   assert_equal 30, @user_group.exp_date_days
+  #   assert_kind_of Integer, @user_group.exp_date_days
+  #
+  # end
 
   def test_weight_returns_integer_weight
 
@@ -55,7 +55,7 @@ class UserGroupTest < MiniTest::Test
 
     other_user_group = UserGroup.new(@inst, nil, 'UNDERGRAD')
 
-    assert @user_group.is_heavier_than? other_user_group
+    assert @user_group.heavier_than? other_user_group
 
   end
 
@@ -63,7 +63,7 @@ class UserGroupTest < MiniTest::Test
 
     other_user_group = UserGroup.new(@inst, nil, 'FACULTY')
 
-    assert !@user_group.is_heavier_than?(other_user_group)
+    assert !@user_group.heavier_than?(other_user_group)
 
   end
 

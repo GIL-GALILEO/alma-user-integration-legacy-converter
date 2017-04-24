@@ -8,7 +8,7 @@
   <purge_date><%= defaults.purge_date %></purge_date>
   <expiry_date><%= user.exp_date_for_alma %></expiry_date>
   <contact_info>
-    <% if user.has_primary_address? %><addresses>
+    <% if user.primary_address? %><addresses>
       <address preferred="true">
         <line1><% if user.primary_address_line_1.to_s.empty? %><%= defaults.no_address_provided %><% else %><%= user.primary_address_line_1 %><% end %></line1>
         <line2><%= user.primary_address_line_2 %></line2>
@@ -20,7 +20,7 @@
           <address_type><%= defaults.preferred_address_type %></address_type>
         </address_types>
       </address>
-      <% if user.has_secondary_address? %><address>
+      <% if user.secondary_address? %><address>
         <line1><%= user.secondary_address_line_1 %></line1>
         <line2><%= user.secondary_address_line_2 %></line2>
         <city><%= user.secondary_address_city %></city>
@@ -40,7 +40,7 @@
         </email_types>
       </email>
     </emails>
-    <% if user.has_phone_numbers? %><phones>
+    <% if user.phone_numbers? %><phones>
       <phone preferred="true" preferred_sms="true">
         <phone_number><%= user.ordered_phone_numbers[0] %></phone_number>
         <phone_types>
@@ -58,7 +58,7 @@
 
     </phones><% end %>
   </contact_info>
-  <% if user.has_additional_identifiers? %><user_identifiers>
+  <% if user.additional_identifiers? %><user_identifiers>
     <% if user.barcode.to_s != '' %><user_identifier>
         <id_type><%= defaults.barcode_type %></id_type>
         <value><%= user.barcode %></value>

@@ -2,7 +2,7 @@ require './lib/errors/no_group_mapping_error'
 
 class UserGroup
 
-  attr_accessor :type, :alma_name, :banner_name, :exp_date_days, :weight, :institution
+  attr_accessor :type, :alma_name, :banner_name, :weight, :institution
 
   def initialize(institution, campus, banner_name = nil, fs_codes = nil)
 
@@ -20,7 +20,10 @@ class UserGroup
 
     elsif fs_codes
 
-      raise(NotImplementedError, 'FS Codes cannot be translated to User Groups if a Campus has been provided.') if campus
+      fail(
+        NotImplementedError,
+        'FS Codes cannot be translated to User Groups if a Campus has been provided.'
+      ) if campus
 
       fs_codes.each do |fs_code|
 
@@ -36,22 +39,17 @@ class UserGroup
 
     end
 
-    if data &&
-        data['alma_name'] &&
-        data['weight'] &&
-        data['exp_date_days']
+    if data && data['alma_name'] && data['weight']
       self.alma_name = data['alma_name']
       self.weight = data['weight'].to_i
-      self.exp_date_days = data['exp_date_days']
       self.type = data['type']
     else
-      # insufficient data to properly map group, use default
-      raise NoGroupMappingError.new
+      fail NoGroupMappingError, 'Insufficient data to properly map group, using default.'
     end
 
   end
 
-  def is_heavier_than?(user_group)
+  def heavier_than?(user_group)
     user_group.weight < weight
   end
 

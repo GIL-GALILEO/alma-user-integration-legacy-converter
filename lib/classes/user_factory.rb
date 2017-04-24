@@ -13,7 +13,6 @@ class UserFactory
       fail StandardError, 'Bad RunSet provided to user factory'
     end
 
-    users = []
     users_hash = {}
     error_count = 0
 
@@ -60,7 +59,7 @@ class UserFactory
 
                 same_user = users_hash[id]
 
-                if ug.is_heavier_than? same_user.user_group
+                if ug.heavier_than? same_user.user_group
 
                   users_hash[id] = user
 
@@ -93,10 +92,6 @@ class UserFactory
               else
                 users_hash[id].exp_date_override = file_set.exp_dates[ug.type.to_sym]
               end
-
-            else
-
-              # either no user group or no primary_id, either way leave out of final user array
 
             end
 
