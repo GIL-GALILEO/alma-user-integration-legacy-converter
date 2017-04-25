@@ -10,7 +10,9 @@ class User
     :secondary_user_group,
     :original_secondary_user_group,
     :exp_date_override,
-    :ordered_phone_numbers
+    :ordered_phone_numbers,
+    :original_user_group,
+    :original_expiry_date
   )
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
   MAXIMUM_STRING_VALUE_LENGTH = 255
@@ -20,8 +22,6 @@ class User
     middle_name
     last_name
     gender
-    original_user_group
-    original_expiry_date
     campus_code
     status
     primary_address_line_1
