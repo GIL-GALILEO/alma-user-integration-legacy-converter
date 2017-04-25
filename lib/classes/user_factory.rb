@@ -4,6 +4,7 @@ require './lib/classes/run_set'
 require './lib/classes/institution'
 require './lib/classes/user'
 require './lib/classes/user_group'
+include Util::App
 
 class UserFactory
 
@@ -88,8 +89,10 @@ class UserFactory
 
               # set expire date
               if run_set.expire?
-                users_hash[id].exp_date_days = 0
-              else
+                users_hash[id].exp_date_override = date_days_from_now 0
+              elsif users_hash[id].exp_date_override &&
+                    !users_hash[id].user_group.exp_days &&
+                    file_set.exp_dates[ug.type.to_sym]
                 users_hash[id].exp_date_override = file_set.exp_dates[ug.type.to_sym]
               end
 

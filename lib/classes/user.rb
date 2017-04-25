@@ -5,19 +5,14 @@ include Util::File
 
 # base class that will support attributes required by XML template
 class User
-
   attr_accessor(
-    :original_user_group,
-    :original_secondary_user_group,
-    :original_expiry_date,
-    :exp_date_override,
     :user_group,
     :secondary_user_group,
+    :original_secondary_user_group,
+    :exp_date_override,
     :ordered_phone_numbers
   )
-
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
-
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(
     primary_id
@@ -49,7 +44,6 @@ class User
     barcode
     secondary_id
   ).freeze
-
   attr_reader *USER_ATTRIBUTES
 
   def secondary_address?
@@ -120,7 +114,14 @@ class User
   end
 
   def exp_date_for_alma
-    alma_date exp_date_override
+    if exp_date_override
+      alma_date exp_date_override
+    elsif user_group.exp_days
+      alma_date date_days_from_now(user_group.exp_days)
+    else
+      # TODO: what happens now?
+      alma_date date_days_from_now 0
+    end
   end
 
   # ALMA PRIMARY ID
@@ -310,12 +311,12 @@ class User
 
   private
 
-  def alma_string(str, size = MAXIMUM_STRING_VALUE_LENGTH)
-    xml_safe(str[0...size]) if str
-  end
-
   def alma_date(date_str)
     "#{date_str}Z"
+  end
+
+  def alma_string(str, size = MAXIMUM_STRING_VALUE_LENGTH)
+    xml_safe(str[0...size]) if str
   end
 
   # TODO: temporary function to scrub email addresses before Alma goes live

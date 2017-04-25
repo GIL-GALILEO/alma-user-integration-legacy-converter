@@ -4,10 +4,11 @@ require './lib/errors/no_group_mapping_error'
 class UserGroup
   attr_accessor :type, :alma_name, :banner_name, :weight, :institution, :exp_days
 
-  def initialize(institution, campus, banner_name = nil, fs_codes = nil)
+  def initialize(institution, campus, banner_name = nil, fs_codes = nil, class_code = nil)
     self.institution = institution
     create_group_data banner_name, fs_codes, campus
     copy_config_values
+    handle_grad_student class_code
   end
 
   def heavier_than?(user_group)
@@ -19,11 +20,11 @@ class UserGroup
   end
 
   def facstaff?
-    type === 'facstaff'
+    type == 'facstaff'
   end
 
   def student?
-    type === 'student'
+    type == 'student'
   end
 
   private
@@ -70,4 +71,14 @@ class UserGroup
       @data = group_settings if !@data || group_settings['weight'] > @data['weight']
     end
   end
+
+  def handle_grad_student(class_code)
+    if student? && class_code == 'G'
+      new_alma_name = institution.groups_data['ZZ']
+      self.alma_name = new_alma_name
+      self.weight = institution.groups_settings[new_alma_name]['weight']
+      self.exp_days = institution.groups_settings[new_alma_name]['exp_days']
+    end
+  end
+
 end

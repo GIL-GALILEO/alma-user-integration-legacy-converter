@@ -6,5 +6,6 @@ secrets.yml
 inst.yml
 *.log
 config/test_data.yml
+config/uga_test_data.yml
 temp/
 deploy.sh
