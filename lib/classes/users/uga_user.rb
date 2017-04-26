@@ -33,7 +33,7 @@ class UgaUser < User
     barcode:                          22
   }.freeze
 
-  def initialize(line_data, institution)
+  def initialize(line_data, institution, campus = nil)
     @institution = institution
     @parsed_line = CSV.parse_line(
       line_data, col_sep: FIELD_SEPARATOR, quote_char: "\x00"

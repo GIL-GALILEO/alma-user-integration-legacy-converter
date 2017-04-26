@@ -596,7 +596,7 @@ uga:
   user_class_file: 'uga_user'
   barcodes: false
   user_group_conversion:
-    '00': 'UNDER PRIV'  # student
+    '00': 'UNDER PRIV'  # student (ug or grad - see class_code)
     '01': 'FAC'         # faculty
     '02': 'STAFF'       # staff
     '03': 'OUTSIDE'     # alumni
@@ -610,36 +610,44 @@ uga:
     '23': 'STAFF PRIV'  # coop ext serv
     '26': 'FAC PRIV'    # mcg staff
     '27': 'UNDER PRIV'  # mcg student
+    'ZZ': 'GRAD PRIV'   # placeholder for generic grad student
   user_group_settings:
 #    No Default - patrons without groups are to be rejected
     'UNDER PRIV':
       type: 'student'
       alma_name: 'UNDER PRIV'
       weight: 2 # lowest
+      exp_days: 45
     'FAC':
       type: 'facstaff'
       alma_name: 'FAC'
       weight: 10 # highest
+      exp_days: 365
     'FAC PRIV':
       type: 'facstaff'
       alma_name: 'FAC PRIV'
       weight: 9
+      exp_days: 365
     'GRAD PRIV':
       type: 'student'
       alma_name: 'GRAD PRIV'
       weight: 8
+      exp_days: 180
     'STAFF':
       type: 'facstaff'
       alma_name: 'STAFF'
       weight: 7
+      exp_days: 90
     'STAFF PRIV':
       type: 'facstaff'
       alma_name: 'STAFF PRIV'
       weight: 6
+      exp_days: 90
     'OUTSIDE':
       type: 'student'
       alma_name: 'OUTSIDE'
       weight: 1
+      exp_days: 30
       
 # University of North Georgia
 ung:
@@ -763,6 +771,7 @@ test_sif_facstaff:
       type: 'facstaff'
       alma_name: 'ALMA STAFF'
       weight: 9
+      exp_days: 30
     FACULTY:
       type: 'facstaff'
       alma_name: 'ALMA FACULTY'
