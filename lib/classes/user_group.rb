@@ -73,7 +73,7 @@ class UserGroup
   end
 
   def handle_grad_student(class_code)
-    if student? && class_code == 'G'
+    if student? && (class_code == 'G' || class_code == 'P')
       new_alma_name = institution.groups_data['ZZ']
       self.alma_name = new_alma_name
       self.weight = institution.groups_settings[new_alma_name]['weight']
