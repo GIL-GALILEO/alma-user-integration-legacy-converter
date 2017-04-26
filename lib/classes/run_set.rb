@@ -6,7 +6,6 @@ class RunSet
   attr_accessor :file_sets
 
   def initialize
-    @data = []
     @file_sets = []
     @config = {}
   end
