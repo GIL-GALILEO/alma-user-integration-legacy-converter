@@ -9,12 +9,15 @@ GEM
     faye-websocket (0.10.7)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     rubyzip (1.2.1)
     slack-api (1.4.0)
       faraday (~> 0.11)
@@ -31,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   net-sftp (= 2.1.2)
+  nokogiri
   rubyzip
   slack-api
 
