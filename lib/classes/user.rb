@@ -180,7 +180,11 @@ class User
   # type:         string
   # max_length:   255
   def primary_address_line_1=(v)
-    @primary_address_line_1 = alma_string v
+    @primary_address_line_1 = if v == ''
+                                alma_string 'No Address Provided'
+                              else
+                                alma_string v
+                              end
   end
 
   # PRIMARY ADDRESS LINE 2

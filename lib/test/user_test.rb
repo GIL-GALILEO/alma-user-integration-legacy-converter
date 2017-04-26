@@ -35,6 +35,14 @@ class UserTest < MiniTest::Test
 
   end
 
+  def test_user_that_receives_no_address_gets_default_value
+
+    @user.primary_address_line_1 = ''
+
+    assert_equal 'No Address Provided', @user.primary_address_line_1
+
+  end
+
   def test_has_ordered_phone_numbers
 
     @user.primary_address_phone = '111-222-3333'
