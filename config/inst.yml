@@ -599,7 +599,7 @@ uga:
     '00': 'UNDER PRIV'  # student (ug or grad - see class_code)
     '01': 'FAC'         # faculty
     '02': 'STAFF'       # staff
-    '03': 'OUTSIDE'     # alumni
+#    '03': 'OUTSIDE'     # alumni
     '04': 'STAFF PRIV'  # retired fac/staff
     '07': 'FAC'         # adj faculty
     '08': 'FAC PRIV'    # emeritus
@@ -637,17 +637,17 @@ uga:
       type: 'facstaff'
       alma_name: 'STAFF'
       weight: 7
-      exp_days: 90
+      exp_days: 45
     'STAFF PRIV':
       type: 'facstaff'
       alma_name: 'STAFF PRIV'
       weight: 6
-      exp_days: 90
-    'OUTSIDE':
-      type: 'student'
-      alma_name: 'OUTSIDE'
-      weight: 1
-      exp_days: 30
+      exp_days: 45
+#    'OUTSIDE':
+#      type: 'student'
+#      alma_name: 'OUTSIDE'
+#      weight: 1
+#      exp_days: 30
       
 # University of North Georgia
 ung:

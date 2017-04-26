@@ -9,9 +9,9 @@ require './lib/classes/mailer'
 require './lib/util'
 include Util::App
 
-LOG_FILE     = './log.log'
-FILES_ROOT   = '/gilftpfiles'
-DROP_POINT   = '/sis/synchronize'
+LOG_FILE     = './log.log'.freeze
+FILES_ROOT   = '/gilftpfiles'.freeze
+DROP_POINT   = '/sis/synchronize'.freeze
 
 start = Time.now
 
@@ -19,6 +19,8 @@ start = Time.now
 
 # Load params
 code = ARGV[0]
+
+# TODO: check if file already exists for today, stop and warn
 
 # Set Institution
 begin
