@@ -92,7 +92,7 @@ class UserFactory
               if run_set.expire?
                 users_hash[id].exp_date_days = 0
               elsif users_hash[id].user_group.exp_days
-                users_hash[id].exp_date_override = date_days_from_now run_set.inst.groups_settings[ug.alma_name]['exp_days']
+                users_hash[id].exp_date_override = date_days_from_now users_hash[id].user_group.exp_days
               else
                 users_hash[id].exp_date_override = file_set.exp_dates[ug.type.to_sym]
               end
