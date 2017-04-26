@@ -14,6 +14,7 @@ class User
     :original_user_group,
     :original_expiry_date
   )
+  DEFAULT_ADDRESS = 'No Address Provided'.freeze
   COUNTRIES_CODE_TABLE_FILE = './config/countries.yml'.freeze
   MAXIMUM_STRING_VALUE_LENGTH = 255
   USER_ATTRIBUTES = %w(
@@ -47,7 +48,7 @@ class User
   attr_reader *USER_ATTRIBUTES
 
   def secondary_address?
-    !(@secondary_address_line_1.to_s.empty? &&
+    !((@secondary_address_line_1.to_s.empty? || @secondary_address_line_1 == DEFAULT_ADDRESS) &&
       @secondary_address_line_2.to_s.empty? &&
       @secondary_address_city.to_s.empty? &&
       @secondary_address_state_province.to_s.empty? &&
@@ -56,7 +57,7 @@ class User
   end
 
   def primary_address?
-    !(@primary_address_line_1.to_s.empty? &&
+    !((@primary_address_line_1.to_s.empty? || @primary_address_line_1 == DEFAULT_ADDRESS) &&
       @primary_address_line_2.to_s.empty? &&
       @primary_address_city.to_s.empty? &&
       @primary_address_state_province.to_s.empty? &&
@@ -181,7 +182,7 @@ class User
   # max_length:   255
   def primary_address_line_1=(v)
     @primary_address_line_1 = if v == ''
-                                alma_string 'No Address Provided'
+                                alma_string DEFAULT_ADDRESS
                               else
                                 alma_string v
                               end
@@ -240,7 +241,11 @@ class User
   # type:         string
   # max_length:   255
   def secondary_address_line_1=(v)
-    @secondary_address_line_1 = alma_string v
+    @secondary_address_line_1 = if v == ''
+                                  alma_string DEFAULT_ADDRESS
+                                else
+                                  alma_string v
+                                end
   end
 
   # SECONDARY ADDRESS LINE 2

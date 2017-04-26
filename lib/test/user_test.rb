@@ -38,8 +38,10 @@ class UserTest < MiniTest::Test
   def test_user_that_receives_no_address_gets_default_value
 
     @user.primary_address_line_1 = ''
+    @user.secondary_address_line_1 = ''
 
     assert_equal 'No Address Provided', @user.primary_address_line_1
+    assert_equal 'No Address Provided', @user.secondary_address_line_1
 
   end
 
