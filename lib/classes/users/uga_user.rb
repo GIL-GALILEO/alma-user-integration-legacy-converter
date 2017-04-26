@@ -42,7 +42,8 @@ class UgaUser < User
       set_attribute_value(attr, index) if index
     end
     set_user_group_from_original
-    run_expire_checks
+    run_expire_checks if user_group
+    self
   end
 
   def mapping
@@ -72,15 +73,13 @@ class UgaUser < User
   end
 
   def expire_based_on_last_pay_date?
-    # if the last pay date is more than 180 days ago, expire user
-    return false unless last_pay_date_obj && user_group.facstaff?
-    (DateTime.now - last_pay_date_obj).to_i > LAST_PAY_EXPIRE_DAYS
+    return false unless user_group.facstaff?
+    last_pay_date == '' || ((DateTime.now - last_pay_date_obj).to_i > LAST_PAY_EXPIRE_DAYS)
   end
 
   def expire_based_on_last_enrolled_date?
-    # if the last enrolled date is more than 180 days ago, expire user
-    return false unless last_enrolled_date_obj && user_group.student?
-    (DateTime.now - last_enrolled_date_obj).to_i > LAST_ENROLLED_EXPIRE_DAYS
+    return false unless user_group.student?
+    last_enrolled_date == '' || ((DateTime.now - last_enrolled_date_obj).to_i > LAST_ENROLLED_EXPIRE_DAYS)
   end
 
   def set_user_group_from_original
@@ -98,9 +97,12 @@ class UgaUser < User
   end
 
   def run_expire_checks
-    user_group.exp_days = 0 if user_group &&
-                               (expire_based_on_last_enrolled_date? ||
-                               expire_based_on_last_pay_date?)
+    case user_group.type
+    when 'facstaff'
+      user_group.exp_days = 0 if expire_based_on_last_pay_date?
+    when 'student'
+      user_group.exp_days = 0 if expire_based_on_last_enrolled_date?
+    end
   end
 
   private
