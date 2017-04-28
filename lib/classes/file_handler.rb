@@ -82,8 +82,7 @@ class FileHandler
     begin
       return 'patron_txt' if CSV.parse_line(line, col_sep: '|', quote_char: "\x00").length == TXT_FILE_FIELD_COUNT
     rescue StandardError => e
-      @run_set.inst.logger.error("File read error: #{e.message}")
-      return 'unknown'
+      @run_set.inst.logger.error("File read error using CSV.parse_line: #{e.message}")
     end
     case line
     when /2[0-9]{3}[-][0-9]{2}[-][0-9]{2}$/ then 'exp_date'
