@@ -2,11 +2,9 @@ require './lib/classes/users/sif_user'
 
 # specialty parsing for KSU file
 class KsuUser < SifUser
-
   KSU_USER_SEGMENT_LENGTH = 466
   KSU_ADDRESS_SEGMENT_LENGTH = 429
   KSU_MAXIMUM_ADDRESS_SEGMENTS = 2
-
   KSU_GENERAL_MAPPING = {
     barcode:                [20, 35],
     original_user_group:    [45, 55],
@@ -15,7 +13,6 @@ class KsuUser < SifUser
     first_name:             [340, 360],
     middle_name:            [360, 380]
   }.freeze
-
   KSU_ADDRESS_SEGMENT_MAPPING = {
     address_type:             [0, 1],
     address_line_1:           [22, 72],
@@ -47,5 +44,4 @@ class KsuUser < SifUser
   def address_segment_mapping
     KSU_ADDRESS_SEGMENT_MAPPING
   end
-
 end
