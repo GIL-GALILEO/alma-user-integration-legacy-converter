@@ -11,6 +11,7 @@ class Institution
   INSTITUTION_DATA_PATH         = '/gilftpfiles/'
 
   attr_accessor :campuses
+  attr_reader :mailer, :slacker, :code, :apikey
 
   def initialize(code)
 
@@ -31,6 +32,7 @@ class Institution
       @campuses = nil
     end
 
+    @apikey = @config['api-key']
     @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
     @slacker = Slacker.new self
     @mailer = Mailer.new self
@@ -39,18 +41,6 @@ class Institution
 
   def logger
     @institution_logger
-  end
-
-  def mailer
-    @mailer
-  end
-
-  def slacker
-    @slacker
-  end
-
-  def code
-    @code
   end
 
   def alma_archive_path

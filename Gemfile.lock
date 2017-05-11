@@ -1,6 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (5.1.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    alma_api (0.1.0)
+      activesupport
+      faraday
+      mighty_struct (>= 0.1.2)
+    concurrent-ruby (1.0.5)
     eventmachine (1.2.3)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
@@ -9,6 +19,8 @@ GEM
     faye-websocket (0.10.7)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    i18n (0.8.1)
+    mighty_struct (0.2.0)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -24,6 +36,9 @@ GEM
       faraday_middleware (~> 0.10.0)
       faye-websocket (~> 0.10.6)
       multi_json (~> 1.0, >= 1.0.3)
+    thread_safe (0.3.6)
+    tzinfo (1.2.3)
+      thread_safe (~> 0.1)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -32,6 +47,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alma_api
   minitest
   net-sftp (= 2.1.2)
   nokogiri
