@@ -27,14 +27,6 @@ class UserTest < MiniTest::Test
 
   end
 
-  def test_has_scrubbed_email
-
-    @user.email = 'test@test.edu'
-
-    assert_equal 'test@SCRUBBED_test.edu', @user.email
-
-  end
-
   def test_user_that_receives_no_address_gets_default_value
 
     @user.primary_address_line_1 = ''

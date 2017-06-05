@@ -70,9 +70,7 @@ class UserFactory
                 end
 
               else
-
                 users_hash[id] = user
-
               end
 
               # attempt to set barcode if hash is present (and not equal to the primary id)
@@ -90,11 +88,19 @@ class UserFactory
 
               # set expire date
               if run_set.expire?
+                # expire run
                 users_hash[id].exp_date_days = 0
               elsif users_hash[id].user_group.exp_days
+                # user group-configured expire date days (UGA)
                 users_hash[id].exp_date_override = date_days_from_now users_hash[id].user_group.exp_days
               else
-                users_hash[id].exp_date_override = file_set.exp_dates[ug.type.to_sym]
+                # file-based expire date. checks for use group type dates first,
+                # defaults to :all
+                users_hash[id].exp_date_override = if file_set.exp_dates[ug.type.to_sym]
+                                                     file_set.exp_dates[ug.type.to_sym]
+                                                   else
+                                                     file_set.exp_dates[:all]
+                                                   end
               end
 
             end
