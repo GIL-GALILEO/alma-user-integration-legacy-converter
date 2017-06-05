@@ -7,8 +7,9 @@ require './lib/classes/user_group'
 
 class Institution
 
-  INSTITUTION_CONFIG_FILE       = './config/inst.yml'
-  INSTITUTION_DATA_PATH         = '/gilftpfiles/'
+  INSTITUTION_CONFIG_FILE       = './config/inst.yml'.freeze
+  INSTITUTION_DATA_PATH         = '/gilftpfiles/'.freeze
+  FILE_DROP_SITE                = 'patrondrop'.freeze
 
   attr_accessor :campuses
   attr_reader :mailer, :slacker, :code, :apikey
@@ -75,4 +76,36 @@ class Institution
     !!@config['barcodes']
   end
 
+  def unprocessed_file?
+    institution_root_path = File.join INSTITUTION_DATA_PATH, code, FILE_DROP_SITE
+    if campuses
+      campuses.each do |campus|
+        files_path = File.join(institution_root_path, campus.path)
+        return true if important_file? files_path
+      end
+    else
+      files_path = institution_root_path
+      return true if important_file? files_path
+    end
+    false
+  end
+
+  private
+
+  def important_file?(path)
+    ignore_files = %w(exp_date exp_date_student exp_date_facstaff log)
+    files = Dir.glob(File.join(path, '*'))
+    files.each do |file|
+      ext = File.extname(file)
+      filename = if ext.empty?
+                   File.basename file
+                 else
+                   File.basename(file, ext)
+                 end
+      next if ignore_files.include? filename
+      next if filename.include? 'barcode'
+      return true
+    end
+    false
+  end
 end
