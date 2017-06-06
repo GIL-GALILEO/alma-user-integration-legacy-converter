@@ -3,7 +3,6 @@ require 'zip'
 
 class Zipper
   ZIP_ARCHIVE_PATH = '/gilftpfiles/__INST_CODE__/archive/'.freeze
-
   def self.do(file, institution)
     files_path = ZIP_ARCHIVE_PATH.gsub('__INST_CODE__', institution.code)
     FileUtils.mkpath files_path
