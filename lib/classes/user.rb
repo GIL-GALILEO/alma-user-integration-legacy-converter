@@ -340,7 +340,7 @@ class User
 
   def alma_approved_country(voyager_country)
     countries_hash = YAML.load_file COUNTRIES_CODE_TABLE_FILE
-    countries_hash[voyager_country] || voyager_country
+    countries_hash[voyager_country] || ''
   end
 
 end
