@@ -280,7 +280,7 @@ class User
   # type:         string
   # max_length:   255
   def secondary_address_country=(v)
-    @secondary_address_country = alma_string v
+    @secondary_address_country = alma_string( alma_approved_country(v))
   end
 
   # SECONDARY ADDRESS PHONE
@@ -340,7 +340,7 @@ class User
 
   def alma_approved_country(voyager_country)
     countries_hash = YAML.load_file COUNTRIES_CODE_TABLE_FILE
-    countries_hash[voyager_country] || ''
+    countries_hash[voyager_country] || voyager_country
   end
 
 end
