@@ -82,19 +82,30 @@ class UserFactoryTest < MiniTest::Test
 
 
   def test_duplicate_user_entries_across_files_take_the_role_with_highest_weight
-
     patron_file = File.new '/gilftpfiles/test_sif_facstaff/patrondrop/test_sif.txt'
-
     file_set = FileSet.new
     file_set.patrons << patron_file
-
     @run_set.file_sets << file_set
-
     result = UserFactory.generate(@run_set)
     alma_user_groups = result.map(&:user_group).map(&:alma_name)
+    assert_includes alma_user_groups, 'ALMA STAFF'
+  end
+end
 
-    assert_includes  alma_user_groups, 'ALMA STAFF'
+class UserFactoryTestMultiDup < MiniTest::Test
 
+  def setup
+    @test_inst = Institution.new('test_sif_facstaff')
+    @run_set = FileHandler.new(@test_inst).run_set
+    @result = UserFactory.generate(@run_set)
+  end
+
+  def test_duplicate_users_are_given_correct_attributes
+    assert_equal 2, @result.length
+    assert_equal 'ALMA STAFF', @result[0].user_group.alma_name
+    assert_equal 'ALMA STUDENT', @result[1].user_group.alma_name
+    assert_equal '2018-01-01Z', @result[0].exp_date_for_alma
+    assert_equal '2017-09-01Z', @result[1].exp_date_for_alma
   end
 
 end

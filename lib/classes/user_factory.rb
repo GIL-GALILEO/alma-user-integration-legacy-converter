@@ -46,29 +46,22 @@ class UserFactory
       file_set.patrons.each do |patron_file|
 
         File.foreach(patron_file).with_index do |line, line_num|
-
+          line_num += 1
           begin
-
             user = user_class.new(line, run_set.inst, file_set.campus)
             ug = user.user_group
             id = user.primary_id
-
             if ug && id && id_is_reasonable(id)
-
               if users_hash[id]
-
                 run_set.inst.logger.info "Duplicate patron found with ID #{id} on line #{line_num} with group #{ug}."
-
                 same_user = users_hash[id]
-
                 if ug.heavier_than? same_user.user_group
-
                   users_hash[id] = user
-
                   run_set.inst.logger.info "User data from line #{line_num} with group #{ug} has outweighed a previously processed version."
-
+                else
+                  run_set.inst.logger.info "User Data discarded for duplicate user. UG is #{ug}."
+                  next
                 end
-
               else
                 users_hash[id] = user
               end

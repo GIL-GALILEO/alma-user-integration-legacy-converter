@@ -39,16 +39,12 @@ class SifUser < User
     @institution = institution
     @line_data = line_data
     @campus = campus
-
     user_data = extract_user_data
     address_data = extract_addresses
-
     user_data.each do |attr, value|
         set_value attr, value
     end
-
     address_data.each do |segment, data_hash|
-
       case segment.to_s
         when '1'
           # permanent
@@ -62,11 +58,8 @@ class SifUser < User
         else
           # discard?
       end
-
     end
-
     set_user_group_from_original
-
   end
 
   def user_segment_length
@@ -140,25 +133,17 @@ class SifUser < User
   end
 
   def set_user_group_from_original
-
     begin
-
       self.user_group = UserGroup.new(@institution, @campus, original_user_group) if original_user_group
       self.secondary_user_group = UserGroup.new(@institution, @campus, original_secondary_user_group) if original_secondary_user_group
-
     rescue NoGroupMappingError => e
-
       unless self.user_group
         @institution.logger.warn "No group mapping found for for user ID: #{self.primary_id}. Using configured default."
         self.user_group = UserGroup.new(@institution, @campus, 'DEFAULT')
       end
-
     rescue NotImplementedError => e
-
       raise StandardError.new(e) # case: attempt to map FS code with Campus set
-
     end
-
   end
 
 end

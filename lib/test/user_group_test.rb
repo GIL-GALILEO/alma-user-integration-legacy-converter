@@ -22,11 +22,6 @@ class UserGroupTest < MiniTest::Test
     assert_equal 'STAFF', @user_group.banner_name
   end
 
-  def test_exp_days_returns_integer
-    assert_equal 30, @user_group.exp_days
-    assert_kind_of Integer, @user_group.exp_days
-  end
-
   def test_weight_returns_integer_weight
     assert_equal 9, @user_group.weight
     assert_kind_of Integer, @user_group.weight
