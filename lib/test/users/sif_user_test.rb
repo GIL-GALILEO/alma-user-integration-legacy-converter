@@ -139,7 +139,7 @@ class SifUserTest < MiniTest::Test
 
   def test_has_secondary_address_country
 
-    assert_equal 'United States of Ame', @user.secondary_address_country
+    assert_equal 'USA', @user.secondary_address_country
 
   end
 
