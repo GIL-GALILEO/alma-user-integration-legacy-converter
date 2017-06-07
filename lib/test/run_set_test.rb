@@ -8,7 +8,7 @@ require './lib/classes/institution'
 class RunSetTest < MiniTest::Test
   def setup
     @inst = Institution.new('test_sif')
-    @config = { sample: true, expire: true, dry_run: true }
+    @config = { sample: true, dry_run: true }
     @file_set = FileSet.new
     @run_set = RunSet.new
     @run_set.inst = @inst
@@ -60,7 +60,6 @@ class RunSetTest < MiniTest::Test
 
   def test_has_config_hash_methods
     assert @run_set.sample?
-    assert @run_set.expire?
     assert @run_set.dry_run?
   end
 

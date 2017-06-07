@@ -80,10 +80,7 @@ class UserFactory
               user.campus_code = file_set.campus.code if file_set.campus
 
               # set expire date
-              if run_set.expire?
-                # expire run
-                users_hash[id].exp_date_days = 0
-              elsif users_hash[id].user_group.exp_days
+              if users_hash[id].user_group.exp_days
                 # user group-configured expire date days (UGA)
                 users_hash[id].exp_date_override = date_days_from_now users_hash[id].user_group.exp_days
               else

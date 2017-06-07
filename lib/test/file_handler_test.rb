@@ -28,12 +28,10 @@ class FileHandlerBasicTest < MiniTest::Test
 
   def test_param_handling
     params = %w(
-      expire
       sample
       dry-run
     )
     run_set = FileHandler.new(@inst, params).run_set
-    assert run_set.expire?
     assert run_set.sample?
     assert run_set.dry_run?
   end

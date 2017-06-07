@@ -10,7 +10,6 @@ class XmlFactoryTest < MiniTest::Test
 
     @institution = Institution.new 'test_sif'
     @run_set = FileHandler.new(@institution, []).run_set
-    @expire_run_set = FileHandler.new(@institution, ['expire']).run_set
 
   end
 

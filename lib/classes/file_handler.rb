@@ -9,7 +9,6 @@ class FileHandler
   attr_accessor :run_set
   DATA_DIR_BASE = '/gilftpfiles'.freeze
   FILE_DROP_SITE = 'patrondrop'.freeze
-  EXPIRE_DIR = 'expire'.freeze
   TXT_FILE_FIELD_COUNT = 23
   EXP_DATE_FORMAT = '%Y-%m-%d'.freeze
   VALID_EXP_DATE_TYPES = %w(student facstaff).freeze
@@ -34,8 +33,6 @@ class FileHandler
   private
 
   def populate_run_set(path, campus = nil)
-    # if expire flag set, append expire dir to all paths
-    path = File.join path, EXPIRE_DIR if @run_set.expire?
     # establish FileSet to handle files from given path
     file_set = FileSet.new
     file_set.campus = campus if campus
@@ -68,7 +65,6 @@ class FileHandler
 
   def parse_arguments(run_arguments)
     run_config = {}
-    run_config[:expire]   = run_arguments.include? 'expire'
     run_config[:dry_run]  = run_arguments.include? 'dry-run'
     run_config[:sample]   = run_arguments.include? 'sample'
     run_config

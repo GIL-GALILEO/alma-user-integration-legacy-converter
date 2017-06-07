@@ -30,10 +30,6 @@ class RunSet
     end
   end
 
-  def expire?
-    @config[:expire]
-  end
-
   def dry_run?
     @config[:dry_run]
   end

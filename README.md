@@ -16,11 +16,6 @@ For the full experience:
 
 `ruby run.rb any_institution_code_here`
 
-To set the value of the `expiry_date` field to the current day for all users in 
-the provided file (these files must be in the `expire` directory):
-
-`ruby run.rb any_institution_code_here expire`
-
 To just generate files and not upload or send notifications:
 
 `ruby run.rb any_institution_code_here dry-run`
