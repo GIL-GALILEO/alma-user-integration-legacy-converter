@@ -15,9 +15,9 @@ inst_configs.each do |institution|
       if file_set.patrons.length > 0
         times = file_set.patrons.map { |f| "#{File.basename(f)}: #{File.new(f).mtime}" }.join("\n")
         message = if file_set.campus
-                    "`#{institution.code}` `#{file_set.campus.path}` has an unprocessed file. mtimes: ```#{times}```"
+                    "`#{institution.code}` `#{file_set.campus.path}` has an unprocessed file. ```#{times}```"
                   else
-                    "`#{institution.code}` has an unprocessed file. mtimes: ```#{times}```"
+                    "`#{institution.code}` has an unprocessed file. ```#{times}```"
                   end
         institution.slacker.post(message) unless defined?(MiniTest)
         puts message unless defined?(MiniTest)
