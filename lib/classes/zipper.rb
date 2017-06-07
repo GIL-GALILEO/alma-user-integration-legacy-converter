@@ -15,7 +15,7 @@ class Zipper
       end
     rescue StandardError => e
       # TODO cleanup failed run
-      exit_log_error "Problem compressing XML file for delivery: #{e.message}"
+      raise StandardError, "Problem compressing XML file for delivery: #{e.message}"
     end
     File.new zip_file_path
   end

@@ -47,7 +47,11 @@ if run_set.sufficient?
   end
 
   # zip up file
-  zip_file = Zipper.do output_file, institution
+  begin
+    zip_file = Zipper.do output_file, institution
+  rescue StandardError => e
+    exit_log_error "Zipper failed: #{e}"
+  end
 
   unless run_set.dry_run?
 
