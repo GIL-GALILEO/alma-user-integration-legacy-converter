@@ -1,5 +1,6 @@
 require 'yaml'
 require './lib/classes/institution'
+require './lib/classes/file_handler'
 
 CONFIG_FILE  = './config/inst.yml'.freeze
 
@@ -8,8 +9,22 @@ inst_configs = YAML.load_file CONFIG_FILE
 
 inst_configs.each do |institution|
   institution = Institution.new institution[0]
-  next unless institution.unprocessed_file?
-  message = "`#{institution.code}` has an unprocessed file"
-  institution.slacker.post(message) unless defined?(MiniTest)
-  puts message unless defined?(MiniTest)
+  begin
+    run_set = FileHandler.new(institution).run_set
+    run_set.file_sets.each do |file_set|
+      if file_set.patrons.length > 0
+        message = if file_set.campus
+                    "`#{institution.code}` `#{file_set.campus.path}` has an unprocessed file"
+                  else
+                    "`#{institution.code}` has an unprocessed file"
+                  end
+        institution.slacker.post(message) unless defined?(MiniTest)
+        puts message unless defined?(MiniTest)
+      end
+    end
+  rescue StandardError => e
+    error_message = "problem with `#{institution.code}`: `#{e}`"
+    institution.slacker.post(error_message) unless defined?(MiniTest)
+    puts error_message unless defined?(MiniTest)
+  end
 end

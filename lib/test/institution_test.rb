@@ -102,10 +102,4 @@ class InstitutionTest < MiniTest::Test
 
   end
 
-  def test_has_unprocessed_file
-
-    assert @inst.unprocessed_file?
-
-  end
-
 end

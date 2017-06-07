@@ -96,13 +96,14 @@ class FileHandler
 
   def add_exp_date_to_fileset(file_set, filename, first_line)
     type = extract_type_from_filename(filename)
+    fail StandardError, "exp_date file has invalid filename: #{filename}" unless type
     file_set.exp_dates[type.to_sym] = get_expiry_date_from first_line
     file_set
   end
 
   # expect type to be defined at end of filename
   def extract_type_from_filename(filename)
-    final_underscore = filename.rindex('_')
+    final_underscore = File.basename(filename, File.extname(filename)).rindex('_')
     return false unless final_underscore
     type = filename[(final_underscore + 1)..filename.length]
     if VALID_EXP_DATE_TYPES.include? type
