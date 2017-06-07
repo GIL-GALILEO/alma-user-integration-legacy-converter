@@ -20,7 +20,7 @@ class Institution
     inst_configs = YAML.load_file(INSTITUTION_CONFIG_FILE)
     @config = inst_configs[@code]
     unless @config
-      raise StandardError.new("Institution config could not be loaded for #{@code}")
+      fail StandardError, "Institution config could not be loaded for #{@code}"
     end
 
     # set campuses
@@ -33,8 +33,8 @@ class Institution
       @campuses = nil
     end
 
+    set_logger
     @apikey = @config['api-key']
-    @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
     @slacker = Slacker.new self
     @mailer = Mailer.new self
 
@@ -107,5 +107,15 @@ class Institution
       return true
     end
     false
+  end
+
+  def set_logger
+    retries = 2
+    begin
+      @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
+    rescue StandardError => e
+      retries -= 1
+      retry if retries > 0
+    end
   end
 end
