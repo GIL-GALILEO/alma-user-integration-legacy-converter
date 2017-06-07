@@ -89,7 +89,9 @@ class FileHandler
   end
 
   def get_expiry_date_from(first_line)
-    first_line.strip
+    exp_date = first_line.strip
+    fail StandardError, "Expiration Date in file is in an invalid format: #{exp_date}" unless exp_date_is_valid?(exp_date)
+    exp_date
   end
 
   def add_exp_date_to_fileset(file_set, filename, first_line)
@@ -109,5 +111,13 @@ class FileHandler
       'all'
     end
   end
+
+  def exp_date_is_valid?(exp_date)
+    DateTime.strptime(exp_date, EXP_DATE_FORMAT)
+    true
+  rescue StandardError => e
+    false
+  end
+
 
 end
