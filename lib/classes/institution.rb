@@ -9,6 +9,7 @@ class Institution
 
   INSTITUTION_CONFIG_FILE       = './config/inst.yml'.freeze
   INSTITUTION_DATA_PATH         = '/gilftpfiles/'.freeze
+  INSTITUTION_LOGS_PATH         = '/gilftpfiles/logs/'.freeze
   FILE_DROP_SITE                = 'patrondrop'.freeze
 
   attr_accessor :campuses
@@ -112,7 +113,7 @@ class Institution
   def set_logger
     retries = 2
     begin
-      @institution_logger = Logger.new "#{INSTITUTION_DATA_PATH}#{code}/#{code}_log.log"
+      @institution_logger = Logger.new "#{INSTITUTION_LOGS_PATH}#{code}_log.log"
     rescue StandardError => e
       retries -= 1
       retry if retries > 0
