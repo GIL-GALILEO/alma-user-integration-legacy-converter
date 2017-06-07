@@ -13,7 +13,7 @@ inst_configs.each do |institution|
     run_set = FileHandler.new(institution).run_set
     run_set.file_sets.each do |file_set|
       if file_set.patrons.length > 0
-        times = file_set.patrons.map { |f| File.new(f).mtime }.join("\n")
+        times = file_set.patrons.map { |f| "#{File.basename(f)}: #{File.new(f).mtime}" }.join("\n")
         message = if file_set.campus
                     "`#{institution.code}` `#{file_set.campus.path}` has an unprocessed file. mtimes: ```#{times}```"
                   else
