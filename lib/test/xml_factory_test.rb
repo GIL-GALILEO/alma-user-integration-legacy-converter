@@ -51,25 +51,5 @@ class XmlFactoryTest < MiniTest::Test
     assert File.foreach(XmlFactory.get_result(@run_set)).grep /(123)456-7890/
 
   end
-  
-  def test_expire_produces_file
-
-    assert_kind_of File, XmlFactory.get_result(@expire_run_set)
-
-  end
-
-  def test_expire_produces_xml_with_user_node
-
-    assert File.foreach(XmlFactory.get_result(@expire_run_set)).grep /<user>/
-
-  end
-
-  def test_expire_produces_xml_with_today_expiry_date
-
-    date = Date.parse(Time.now.strftime('%Y-%m-%d')).to_s
-
-    assert File.foreach(XmlFactory.get_result(@expire_run_set)).grep(date)
-
-  end
 
 end
