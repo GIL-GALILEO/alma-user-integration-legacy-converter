@@ -84,6 +84,7 @@ class Institution
     begin
       @institution_logger = Logger.new "#{INSTITUTION_LOGS_PATH}#{code}_log.log"
     rescue StandardError => e
+      sleep 1
       retries -= 1
       retry if retries > 0
     end
