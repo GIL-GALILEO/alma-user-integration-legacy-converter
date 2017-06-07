@@ -34,7 +34,7 @@ class Institution
       @campuses = nil
     end
 
-    set_logger
+    @institution_logger = Logger.new "#{INSTITUTION_LOGS_PATH}#{code}_log.log"
     @apikey = @config['api-key']
     @slacker = Slacker.new self
     @mailer = Mailer.new self
@@ -75,18 +75,5 @@ class Institution
 
   def expect_barcodes?
     !!@config['barcodes']
-  end
-
-  private
-
-  def set_logger
-    retries = 2
-    begin
-      @institution_logger = Logger.new "#{INSTITUTION_LOGS_PATH}#{code}_log.log"
-    rescue StandardError => e
-      sleep 1
-      retries -= 1
-      retry if retries > 0
-    end
   end
 end
