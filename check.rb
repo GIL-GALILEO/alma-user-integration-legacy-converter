@@ -23,7 +23,7 @@ inst_configs.each do |institution|
       end
     end
   rescue StandardError => e
-    error_message = "problem with `#{institution.code}`: `#{e}`"
+    error_message = "problem with `#{institution.code}`: ```#{e}```"
     institution.slacker.post(error_message) unless defined?(MiniTest)
     puts error_message unless defined?(MiniTest)
   end
