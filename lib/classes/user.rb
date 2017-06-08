@@ -87,7 +87,7 @@ class User
   end
 
   def additional_identifiers?
-    !@barcode.to_s.empty? || !@secondary_id.to_s.empty?
+    !barcode.to_s.empty? || !@secondary_id.to_s.empty?
   end
 
   def order_phone_numbers
