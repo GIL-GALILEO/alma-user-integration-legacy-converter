@@ -28,6 +28,10 @@ class Api
     response
   end
 
+  def user_group(primary_id)
+    user(primary_id).user_group.value
+  end
+
   private
 
   def post(path, xml)
