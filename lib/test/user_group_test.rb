@@ -56,3 +56,14 @@ class UserGroupTest < MiniTest::Test
     assert !@user_group.student?
   end
 end
+
+class UgaUserGroupTest < Minitest::Test
+  def setup
+    @inst = Institution.new('uga')
+  end
+
+  def test_grad_student_outweigs_staff
+    user_group = UserGroup.new @inst, nil, nil, %w(00 03 02), 'G'
+    assert_equal 'GRAD PRIV', user_group.alma_name
+  end
+end

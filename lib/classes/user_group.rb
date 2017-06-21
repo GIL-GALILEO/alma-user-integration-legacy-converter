@@ -6,9 +6,8 @@ class UserGroup
 
   def initialize(institution, campus, banner_name = nil, fs_codes = nil, class_code = nil)
     self.institution = institution
-    create_group_data banner_name, fs_codes, campus
+    create_group_data banner_name, fs_codes, campus, class_code
     copy_config_values
-    handle_grad_student class_code
   end
 
   def heavier_than?(user_group)
@@ -40,7 +39,7 @@ class UserGroup
     end
   end
 
-  def create_group_data(banner_name, fs_codes, campus)
+  def create_group_data(banner_name, fs_codes, campus, class_code)
     @data = nil
     if banner_name && banner_name != ''
       create_from_banner banner_name, campus
@@ -49,7 +48,7 @@ class UserGroup
         NotImplementedError,
         'FS Codes cannot be translated to User Groups if a Campus has been provided.'
       ) if campus
-      create_from_fs_codes fs_codes
+      create_from_fs_codes fs_codes, class_code
     end
   end
 
@@ -63,21 +62,15 @@ class UserGroup
     @data = groups_settings[banner_name]
   end
 
-  def create_from_fs_codes(fs_codes)
+  def create_from_fs_codes(fs_codes, class_code)
     fs_codes.each do |fs_code|
       next unless institution.groups_data.key? fs_code
       alma_name = institution.groups_data[fs_code]
       group_settings = institution.groups_settings[alma_name]
+      if fs_code == '00' && (class_code == 'G' || class_code == 'P')
+        group_settings = institution.groups_settings[institution.groups_data['ZZ']]
+      end
       @data = group_settings if !@data || group_settings['weight'] > @data['weight']
-    end
-  end
-
-  def handle_grad_student(class_code)
-    if student? && (class_code == 'G' || class_code == 'P')
-      new_alma_name = institution.groups_data['ZZ']
-      self.alma_name = new_alma_name
-      self.weight = institution.groups_settings[new_alma_name]['weight']
-      self.exp_days = institution.groups_settings[new_alma_name]['exp_days']
     end
   end
 
