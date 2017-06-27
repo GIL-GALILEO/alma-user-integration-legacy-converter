@@ -12,6 +12,7 @@ class UgaUser < User
   LAST_PAY_DATE_FORMAT = '%Y%m%d'.freeze
   LAST_ENROLLED_EXPIRE_DAYS = 180
   LAST_PAY_EXPIRE_DAYS = 60
+  NEVER_EXPIRE_FS_CODES = %w(04 08).freeze
   MAPPING = {
     primary_id:                       0,
     name:                             1,
@@ -42,7 +43,7 @@ class UgaUser < User
       set_attribute_value(attr, index) if index
     end
     set_user_group_from_original
-    run_expire_checks if user_group
+    run_expire_checks unless never_expire
     self
   end
 
@@ -87,7 +88,7 @@ class UgaUser < User
       @institution,
       nil,
       nil,
-      fs_codes.split(FS_CODE_SEPARATOR),
+      fs_code_array,
       class_code
     )
   rescue StandardError # TODO: exception used for flow control...
@@ -107,6 +108,10 @@ class UgaUser < User
 
   private
 
+  def never_expire
+    fs_code_array & NEVER_EXPIRE_FS_CODES
+  end
+
   def set_names(names, other_names)
     self.last_name = names[0]
     self.first_name = other_names[0]
@@ -121,6 +126,10 @@ class UgaUser < User
   def handle_empty_names
     self.last_name = 'NONE'
     self.first_name = 'NONE'
+  end
+
+  def fs_code_array
+    fs_codes.split(FS_CODE_SEPARATOR)
   end
 
 end

@@ -120,11 +120,15 @@ class UgaUserGroupTest < UgaUserTest
     undergraduate_test_data = test_data['undergrad']
     graduate_test_data = test_data['grad']
     both_test_data = test_data['student_and_staff']
+    emeritus_test_data = test_data['emeritus']
+    retired_test_data = test_data['retired']
     @inst = Institution.new 'uga'
     @staff_user = UgaUser.new staff_test_data, @inst
     @undergraduate_user = UgaUser.new undergraduate_test_data, @inst
     @graduate_user = UgaUser.new graduate_test_data, @inst
     @both_user = UgaUser.new both_test_data, @inst
+    @emeritus_user = UgaUser.new emeritus_test_data, @inst
+    @retired_user = UgaUser.new retired_test_data, @inst
   end
 
   def test_staff_user_is_staff
@@ -147,10 +151,22 @@ class UgaUserGroupTest < UgaUserTest
     assert @both_user.last_enrolled_date_obj && @both_user.last_pay_date_obj
     assert_equal 'FAC', @both_user.user_group.alma_name
     assert_equal(
-      # "#{(@both_user.last_pay_date_obj + 365).strftime('%Y-%m-%d')}Z",
-      "#{date_days_from_now 365}Z",
+      "#{date_days_from_now 400}Z",
       @both_user.exp_date_for_alma
     )
   end
 
+  def test_emeritus_user_is_not_expired
+    assert_equal(
+      "#{date_days_from_now 400}Z",
+      @emeritus_user.exp_date_for_alma
+    )
+  end
+
+  def test_retired_user_is_not_expired
+    assert_equal(
+      "#{date_days_from_now 400}Z",
+      @emeritus_user.exp_date_for_alma
+    )
+  end
 end
