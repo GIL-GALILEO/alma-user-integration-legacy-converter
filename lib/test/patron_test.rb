@@ -69,4 +69,12 @@ class PatronTest < MiniTest::Test
     assert_equal 'email@institution.edu', @patron.primary_email
     assert_equal 'email@home.com', @patron.secondary_email
   end
+
+  # legacy field name helpers
+  def test_legacy_helpers
+    assert_equal @patron.primary_phone, @patron.primary_address_phone
+    assert_equal @patron.secondary_phone, @patron.secondary_address_phone
+    assert_nil @patron.primary_address_mobile_phone
+    assert_nil @patron.secondary_address_mobile_phone
+  end
 end

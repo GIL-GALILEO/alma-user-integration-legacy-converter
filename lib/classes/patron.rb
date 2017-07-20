@@ -41,6 +41,27 @@ class Patron
     populate_fields
   end
 
+  # for supprt of legacy field names
+  def primary_address_phone
+    primary_phone
+  end
+
+  def primary_address_mobile_phone
+    nil
+  end
+
+  def secondary_address_phone
+    secondary_phone
+  end
+
+  def secondary_address_mobile_phone
+    nil
+  end
+
+  def email
+    primary_email
+  end
+
   private
 
   def populate_fields
