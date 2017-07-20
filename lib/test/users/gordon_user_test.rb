@@ -5,7 +5,7 @@ require './lib/classes/institution'
 
 class GordonUserTest < MiniTest::Test
 
-  TEST_DATA_FILE = './config/test_data.yml'
+  TEST_DATA_FILE = './config/test_data.yml'.freeze
 
   def setup
 
@@ -89,7 +89,7 @@ class GordonUserTest < MiniTest::Test
 
   def test_has_primary_address_phone
 
-    assert_equal '9001234567', @user.primary_address_phone
+    assert_equal '(900) 123-4567', @user.primary_address_phone
 
   end
 
