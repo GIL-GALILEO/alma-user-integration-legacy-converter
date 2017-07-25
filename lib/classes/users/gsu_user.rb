@@ -5,10 +5,11 @@ class GsuUser < SifUser
   GSU_USER_SEGMENT_LENGTH = 488
   GSU_ADDRESS_SEGMENT_LENGTH = 429
   GSU_MAXIMUM_ADDRESS_SEGMENTS = 1
-
+  GSU_EXPIRY_DATE_FORMAT = '%Y.%m.%d'.freeze
   GSU_GENERAL_MAPPING = {
     original_user_group: [45, 55],
     original_secondary_user_group: [101, 111],
+    original_expiry_date: [198, 209],
     first_name: [340, 360],
     middle_name: [360, 380],
     last_name: [310, 330],
@@ -45,6 +46,11 @@ class GsuUser < SifUser
 
   def maximum_address_segments
     GSU_MAXIMUM_ADDRESS_SEGMENTS
+  end
+
+  # use expiration date provided in SIF when returning expiry date for Alma
+  def exp_date_for_alma
+    alma_date(DateTime.strptime(original_expiry_date, GSU_EXPIRY_DATE_FORMAT).strftime('%Y-%m-%d'))
   end
 
 end

@@ -5,7 +5,7 @@ require './lib/classes/institution'
 
 class GsuUserTest < MiniTest::Test
 
-  TEST_DATA_FILE = './config/test_data.yml'
+  TEST_DATA_FILE = './config/test_data.yml'.freeze
 
   def setup
 
@@ -42,6 +42,19 @@ class GsuUserTest < MiniTest::Test
   def test_has_heavier_group_for_alma
 
     assert_equal @user.user_group_for_alma, @user.secondary_user_group.alma_name
+
+  end
+
+
+  def test_has_expiry_date_from_sif_file
+
+    assert_equal '2328.12.31', @user.original_expiry_date
+
+  end
+
+  def test_has_sif_date_for_alma_expiry_date
+
+    assert_equal '2328-12-31Z', @user.exp_date_for_alma
 
   end
 

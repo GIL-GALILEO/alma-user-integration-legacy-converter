@@ -17,7 +17,7 @@ class VsuUserTest < MiniTest::Test
     assert_kind_of UserGroup, @user.user_group
   end
 
-  def test_has_expiry_date_from_file
+  def test_has_expiry_date_from_sif_file
     assert_equal '2017.01.16', @user.original_expiry_date
   end
 
