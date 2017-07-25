@@ -6,14 +6,16 @@ class GordonUser < SifUser
   GORDON_USER_SEGMENT_LENGTH = 466
   GORDON_ADDRESS_SEGMENT_LENGTH = 429
   GORDON_MAXIMUM_ADDRESS_SEGMENTS = 2
-
+  GORDON_EXPIRY_DATE_FORMAT = '%Y.%m.%d'.freeze
   GORDON_GENERAL_MAPPING = {
-    barcode:             [20, 40],
-    original_user_group: [45, 55],
-    primary_id:          [238, 248],
-    last_name:           [310, 330],
-    first_name:          [340, 360],
-    middle_name:         [360, 380]
+    barcode:              [20, 40],
+    original_user_group:  [45, 55],
+    original_expiry_date: [478, 488],
+    primary_id:           [238, 248],
+    last_name:            [310, 330],
+    first_name:           [340, 360],
+    middle_name:          [360, 380],
+    email:                [921, 952]
   }.freeze
 
   GORDON_ADDRESS_SEGMENT_MAPPING = {
@@ -45,6 +47,11 @@ class GordonUser < SifUser
 
   def address_segment_mapping
     GORDON_ADDRESS_SEGMENT_MAPPING
+  end
+
+  # use expiration date provided in SIF when returning expiry date for Alma
+  def exp_date_for_alma
+    alma_date(DateTime.strptime(original_expiry_date, GORDON_EXPIRY_DATE_FORMAT).strftime('%Y-%m-%d'))
   end
 
 end

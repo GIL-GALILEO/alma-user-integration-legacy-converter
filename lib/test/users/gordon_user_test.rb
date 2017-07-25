@@ -27,6 +27,18 @@ class GordonUserTest < MiniTest::Test
 
   end
 
+  def test_has_expiry_date_from_sif_file
+
+    assert_equal '2025.12.31', @user.original_expiry_date
+
+  end
+
+  def test_has_sif_date_for_alma_expiry_date
+
+    assert_equal '2025-12-31Z', @user.exp_date_for_alma
+
+  end
+
   def test_has_barcode
 
     assert_equal '12345678900000', @user.barcode
