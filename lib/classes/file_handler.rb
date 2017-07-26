@@ -103,7 +103,7 @@ class FileHandler
 
   # expect type to be defined at end of filename
   def extract_type_from_filename(filename)
-    final_underscore = File.basename(filename, File.extname(filename)).rindex('_')
+    final_underscore = File.basename(filename, '.*').rindex('_')
     return false unless final_underscore
     type = filename[(final_underscore + 1)..filename.length]
     if VALID_EXP_DATE_TYPES.include? type
