@@ -28,14 +28,14 @@ module Util
     def extract_from_line(start, finish)
       value = @line_data[start...finish]
       if value
-        value.rstrip
+        value.strip
       else
         ''
       end
     end
 
     def set_value(attribute, value)
-      self.send("#{attribute}=", value)
+      send("#{attribute}=", value)
     end
 
   end
