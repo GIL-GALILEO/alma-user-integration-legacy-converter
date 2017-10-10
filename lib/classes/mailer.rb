@@ -3,10 +3,10 @@ require 'uri'
 
 class Mailer
 
-  FROM_ADDRESS = 'gil@usg.edu'
-  ADMIN_ADDRESS = 'mak@uga.edu'
-  SMTP_SERVER = 'localhost'
-  DEFAULT_TO_ADDRESS = 'mak@uga.edu'
+  FROM_ADDRESS = 'gil@usg.edu'.freeze
+  ADMIN_ADDRESS = 'h7c9u9t3h8x2x2l1@gil-galileo.slack.com'.freeze
+  SMTP_SERVER = 'localhost'.freeze
+  DEFAULT_TO_ADDRESS = 'mak@uga.edu'.freeze
 
   def initialize(institution)
     @script_errors = []
@@ -88,29 +88,25 @@ END
   private
 
   def email(to, message)
-
     if to.is_a? Array
       to.each do |address|
         email address, message
       end
-    else
-      if to.is_a?(String) && to =~ URI::MailTo::EMAIL_REGEXP
-        begin
-          Net::SMTP.start(SMTP_SERVER, 25) do |smtp|
-            smtp.send_message(
-                message,
-                FROM_ADDRESS,
-                to
-            )
-          end
-        rescue StandardError => e
-          @institution.logger.warn "Email could not be sent to #{to}. Exception: #{e}"
+    elsif to.is_a?(String) && to =~ URI::MailTo::EMAIL_REGEXP
+      begin
+        Net::SMTP.start(SMTP_SERVER, 25) do |smtp|
+          smtp.send_message(
+              message,
+              FROM_ADDRESS,
+              to
+          )
         end
-      else
-        @institution.logger.warn "Bad email address encountered for #{@institution.code}: #{to}"
+      rescue StandardError => e
+        @institution.logger.warn "Email could not be sent to #{to}. Exception: #{e}"
       end
+    else
+      @institution.logger.warn "Bad email address encountered for #{@institution.code}: #{to}"
     end
-
   end
 
 end
