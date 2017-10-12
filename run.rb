@@ -59,7 +59,7 @@ if run_set.sufficient?
     source_file = File.join zip_file.path
     destination_file = File.join FILES_ROOT, institution.code, DROP_POINT, File.basename(zip_file.path)
     FileUtils.mv(source_file, destination_file)
-    institution.mailer.send_finished_notification
+    # institution.mailer.send_finished_notification
     institution.slacker.run_completed
 
   end
