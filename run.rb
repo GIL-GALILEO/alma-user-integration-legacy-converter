@@ -10,7 +10,7 @@ require './lib/util'
 include Util::App
 
 FILES_ROOT   = '/gilftpfiles'.freeze
-LOG_FILE     = FILES_ROOT + '/log.log'.freeze
+LOG_FILE     = FILES_ROOT + './log.log'.freeze
 DROP_POINT   = '/sis/synchronize'.freeze
 
 start = Time.now
