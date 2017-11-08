@@ -9,8 +9,8 @@ require './lib/classes/mailer'
 require './lib/util'
 include Util::App
 
-LOG_FILE     = './log.log'.freeze
 FILES_ROOT   = '/gilftpfiles'.freeze
+LOG_FILE     = FILES_ROOT + './log.log'.freeze
 DROP_POINT   = '/sis/synchronize'.freeze
 
 start = Time.now
