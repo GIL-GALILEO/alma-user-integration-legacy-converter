@@ -146,10 +146,10 @@ class UgaUserGroupTest < UgaUserTest
     assert_equal 'GRAD PRIV', @graduate_user.user_group.alma_name
   end
 
-  def test_both_user_is_facstaff
-    assert @both_user.user_group.facstaff?
+  def test_both_user_is_student
+    assert @both_user.user_group.student?
     assert @both_user.last_enrolled_date_obj && @both_user.last_pay_date_obj
-    assert_equal 'FAC', @both_user.user_group.alma_name
+    assert_equal 'UNDER PRIV', @both_user.user_group.alma_name
     assert_equal(
       "#{date_days_from_now 400}Z",
       @both_user.exp_date_for_alma

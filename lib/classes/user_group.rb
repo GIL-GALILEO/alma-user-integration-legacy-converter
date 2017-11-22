@@ -63,14 +63,21 @@ class UserGroup
   end
 
   def create_from_fs_codes(fs_codes, class_code)
-    fs_codes.each do |fs_code|
-      next unless institution.groups_data.key? fs_code
-      alma_name = institution.groups_data[fs_code]
-      group_settings = institution.groups_settings[alma_name]
-      if fs_code == '00' && (class_code == 'G' || class_code == 'P')
-        group_settings = institution.groups_settings[institution.groups_data['ZZ']]
+    # ug students who are staff should be set as ug students
+    if fs_codes.include?('00') && fs_codes.include?('02') && class_code == 'U'
+      @data = institution.groups_settings[institution.groups_data['00']]
+    else
+      fs_codes.each do |fs_code|
+        next unless institution.groups_data.key? fs_code
+        alma_name = institution.groups_data[fs_code]
+        group_settings = institution.groups_settings[alma_name]
+        if fs_code == '00' && (class_code == 'G' || class_code == 'P')
+          group_settings = institution.groups_settings[institution.groups_data['ZZ']]
+        end
+        if !@data || group_settings['weight'] > @data['weight']
+          @data = group_settings
+        end
       end
-      @data = group_settings if !@data || group_settings['weight'] > @data['weight']
     end
   end
 
