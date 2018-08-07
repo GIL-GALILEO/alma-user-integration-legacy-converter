@@ -62,7 +62,7 @@ class UgaUserGroupTest < Minitest::Test
     @inst = Institution.new('uga')
   end
 
-  def test_grad_student_outweigs_staff
+  def test_grad_student_outweighs_staff
     user_group = UserGroup.new @inst, nil, nil, %w(00 03 02), 'G'
     assert_equal 'GRAD PRIV', user_group.alma_name
   end
