@@ -64,8 +64,10 @@ class UserGroup
 
   def create_from_fs_codes(fs_codes, class_code)
     # ug students who are staff should be set as ug students
-    if (fs_codes.include?('00') || fs_codes.include?('65') ) && fs_codes.include?('02') && (class_code == 'U' || class_code == 'G')
+    if (fs_codes.include?('00') || fs_codes.include?('65')) && fs_codes.include?('02') && class_code == 'U'
       @data = institution.groups_settings[institution.groups_data['00']]
+    elsif (fs_codes.include?('00') || fs_codes.include?('65')) && fs_codes.include?('02') && class_code == 'G'
+      @data = institution.groups_settings[institution.groups_data['ZZ']]
     else
       fs_codes.each do |fs_code|
         next unless institution.groups_data.key? fs_code

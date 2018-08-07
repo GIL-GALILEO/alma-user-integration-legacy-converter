@@ -55,15 +55,30 @@ class UserGroupTest < MiniTest::Test
     assert @user_group.facstaff?
     assert !@user_group.student?
   end
-end
-
-class UgaUserGroupTest < Minitest::Test
-  def setup
-    @inst = Institution.new('uga')
-  end
 
   def test_grad_student_outweighs_staff
-    user_group = UserGroup.new @inst, nil, nil, %w(00 03 02), 'G'
+    inst = Institution.new('uga')
+    user_group = UserGroup.new inst, nil, nil, %w(00 03 02), 'G'
     assert_equal 'GRAD PRIV', user_group.alma_name
+  end
+
+  def test_student_group_for_student_employees
+    inst = Institution.new('uga')
+    assert_equal(
+      'UNDER PRIV',
+      UserGroup.new(inst, nil, nil, %w(00 02), 'U').alma_name
+    )
+    assert_equal(
+      'GRAD PRIV',
+      UserGroup.new(inst, nil, nil, %w(00 02), 'G').alma_name
+    )
+    assert_equal(
+      'UNDER PRIV',
+      UserGroup.new(inst, nil, nil, %w(02 65), 'U').alma_name
+    )
+    assert_equal(
+      'GRAD PRIV',
+      UserGroup.new(inst, nil, nil, %w(02 10), 'U').alma_name
+    )
   end
 end
