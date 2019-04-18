@@ -30,7 +30,7 @@ GEM
     net-ssh (3.2.0)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     slack-api (1.4.0)
       faraday (~> 0.11)
       faraday_middleware (~> 0.10.0)
@@ -55,4 +55,4 @@ DEPENDENCIES
   slack-api
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
