@@ -9,6 +9,7 @@ class KsuUser < SifUser
   KSU_GENERAL_MAPPING = {
     barcode:                [20, 35],
     original_user_group:    [45, 55],
+    secondary_id:           [76, 84],
     original_expiry_date:   [198, 209],
     primary_id:             [238, 248],
     last_name:              [310, 330],

@@ -21,6 +21,10 @@ class KsuUserTest < MiniTest::Test
     assert_equal '000123456', @user.primary_id
   end
 
+  def test_has_secondary_id
+    assert_equal 'secondry', @user.secondary_id
+  end
+
   def test_has_expiry_date_from_file
     assert_equal '2017.08.31', @user.original_expiry_date
   end
